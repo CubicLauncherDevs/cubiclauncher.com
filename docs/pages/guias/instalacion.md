@@ -31,7 +31,7 @@ Antes de comenzar, asegúrate de que tu equipo cumpla con los siguientes requisi
 
 Puedes obtener la última versión de CubicLauncher en formato `.jar` desde nuestro sitio oficial o desde GitHub:
 
-- **Sitio Web**: [cubiclauncher.com/descargas](https://www.cubiclauncher.com)
+- **Sitio Web**: [cubiclauncher.com/install](https://www.cubiclauncher.com/install)
 - **GitHub**: [Releases oficial de CubicLauncher](https://github.com/CubicLauncher/CubicLauncher/releases)
 
 ---
