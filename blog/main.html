@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — CubicLauncher</title>
+    <meta name="description" content="Noticias, actualizaciones y guías del equipo de CubicLauncher.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/blog.css">
+    <link rel="icon" href="https://raw.githubusercontent.com/CubicLauncher/CubicLauncher/refs/heads/nextUpdate/src/main/resources/com.cubiclauncher.launcher/assets/logos/cubic.png">
+</head>
+
+<body>
+
+    <!-- Mobile toggle -->
+    <button class="mobile-menu-toggle" id="menuToggle">
+        <i class="fa-solid fa-bars"></i>
+        <span>Menú</span>
+    </button>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="/index.html">
+                <h2>CubicLauncher</h2>
+            </a>
+            <div class="subtitle">Blog</div>
+        </div>
+
+        <div class="sidebar-search">
+            <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Buscar artículos..." autocomplete="off">
+            </div>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+
+        <nav class="sidebar-posts" id="sidebarPosts">
+            <!-- Populated by blog-loader.js -->
+        </nav>
+
+        <div class="sidebar-footer">
+            <p>&copy; 2026 CubicLauncher</p>
+            <div class="sidebar-links">
+                <a href="https://github.com/CubicLauncher" target="_blank" rel="noopener">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://discord.gg/WQ5KtQYj" target="_blank" rel="noopener">
+                    <i class="fa-brands fa-discord"></i>
+                </a>
+                <a href="/index.html">
+                    <i class="fa-solid fa-globe"></i>
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="content" id="content">
+
+        <!-- List view -->
+        <div id="blogListView">
+            <div class="blog-header">
+                <h1>Blog</h1>
+                <p>Noticias, actualizaciones y guías del equipo de CubicLauncher.</p>
+            </div>
+            <div class="posts-grid" id="postsGrid">
+                <div class="loading-state" style="grid-column:1/-1">
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                    <p>Cargando artículos...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Post view -->
+        <div id="blogPostView">
+            <!-- Populated by blog-loader.js -->
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="js/blog-loader.js"></script>
+</body>
+
+</html>

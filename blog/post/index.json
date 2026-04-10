@@ -1,0 +1,14 @@
+[
+  {
+    "slug": "bienvenida",
+    "title": "Bienvenidos al blog de CubicLauncher",
+    "date": "2026-04-09",
+    "author": "CubicLauncher Team",
+    "authorGithub": "CubicLauncher",
+    "pinned": true,
+    "tags": [
+      "Anuncio"
+    ],
+    "excerpt": "Hoy lanzamos el blog oficial de CubicLauncher, el lugar donde compartiremos noticias, actualizaciones, guías y mucho más sobre el proyecto."
+  }
+]
