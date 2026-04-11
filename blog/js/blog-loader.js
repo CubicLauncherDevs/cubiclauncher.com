@@ -1,6 +1,6 @@
 // ── Configuration ────────────────────────────────────────────────────────────
-const POSTS_INDEX = 'posts/index.json';
-const POSTS_PATH  = 'posts/';
+const POSTS_INDEX = 'post/index.json';
+const POSTS_PATH  = 'post/';
 
 // ── State ─────────────────────────────────────────────────────────────────────
 let allPosts = [];
