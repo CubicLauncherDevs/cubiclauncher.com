@@ -10,5 +10,19 @@
       "Anuncio"
     ],
     "excerpt": "Hoy lanzamos el blog oficial de CubicLauncher, el lugar donde compartiremos noticias, actualizaciones, guías y mucho más sobre el proyecto."
+  },
+  {
+    "slug": "migracion-rust",
+    "title": "De Java a Rust: Por qué estamos migrando CubicLauncher",
+    "date": "2026-04-12",
+    "author": "staFF6773",
+    "authorGithub": "staFF6773",
+    "pinned": false,
+    "tags": [
+      "Desarrollo",
+      "Rust",
+      "Java"
+    ],
+    "excerpt": "La JVM nos trajo memory leaks con consumos de hasta 573 MB en descarga. Te explicamos por qué decidimos migrar CubicLauncher a Rust y qué viene después."
   }
 ]
