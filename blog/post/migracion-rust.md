@@ -18,16 +18,22 @@ Haciendo pruebas internas, medimos cuánta RAM usaba el launcher en diferentes m
 | Descargando archivos | ~573 MB |
 | Después de descargar (tras limpieza manual) | ~400 MB |
 
-![Consumo en reposo](../img/image.png)
+<img width="781" height="232" alt="image" src="https://github.com/user-attachments/assets/8b331290-7329-4a02-a28f-95b720e59fba" />
+
 *Lo que consume el launcher sin hacer nada.*
 
-![Consumo en vista de versiones](../img/image2.png)
+<img width="644" height="97" alt="image" src="https://github.com/user-attachments/assets/71ec5e8b-7467-46b4-9f90-b4400ae64040" />
+
 *El consumo sube al navegar por las versiones disponibles.*
 
 Lo peor no fue el pico de memoria durante las descargas, sino lo que pasaba después: **Java no soltaba la memoria** aunque ya no la estuviera usando.
 
-![Consumo durante descarga](../img/image3.png)
+<img width="566" height="364" alt="image" src="https://github.com/user-attachments/assets/48e15043-4581-4031-8ba6-953195ffd516" />
+
 *Pico registrado durante una descarga.*
+
+<img width="787" height="209" alt="image" src="https://github.com/user-attachments/assets/f5bd533f-310b-4fbb-98dd-3ff4f0062caa" />
+
 
 Si descargas varias versiones seguidas, el problema empeora. Para una herramienta que tiene que estar abierta de fondo mientras juegas, este consumo es simplemente inaceptable.
 
