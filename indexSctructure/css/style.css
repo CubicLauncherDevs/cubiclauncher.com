@@ -54,3 +54,156 @@
         .nav-link:hover {
             color: #e8e8e8;
         }
+
+        /* ── Rust Migration Announcement Banner ── */
+        .rust-banner-section {
+            padding: 4rem 0;
+            background-color: #0f0f0f;
+        }
+
+        .rust-banner-card {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            background-color: #151515;
+            border: 1px solid #252525;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+        .rust-banner-card:hover {
+            border-color: #333333;
+        }
+        .rust-banner-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #333333, transparent);
+        }
+
+        /* Ferris */
+        .rust-ferris-container {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .rust-ferris-img {
+            width: 220px;
+            height: auto;
+            animation: ferris-float 4s ease-in-out infinite;
+        }
+        @keyframes ferris-float {
+            0%, 100% { transform: translateY(0px) rotate(-2deg); }
+            50%       { transform: translateY(-14px) rotate(2deg); }
+        }
+
+        /* Content */
+        .rust-banner-content {
+            flex: 1;
+        }
+        .rust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #333333;
+            color: #b0b0b0;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.9rem;
+            border-radius: 999px;
+            margin-bottom: 1.25rem;
+        }
+        .rust-badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #e8e8e8;
+            animation: pulse-dot 1.8s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50%       { opacity: 0.4; transform: scale(0.7); }
+        }
+
+        .rust-banner-title {
+            font-size: 2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: #e8e8e8;
+        }
+        .rust-gradient-text {
+            background: linear-gradient(90deg, #e8e8e8, #b0b0b0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .rust-banner-desc {
+            color: #a0a0a0;
+            line-height: 1.7;
+            margin-bottom: 1.75rem;
+            font-size: 0.975rem;
+        }
+
+        .rust-banner-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.75rem;
+        }
+        .rust-highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid #252525;
+            border-radius: 8px;
+            padding: 0.45rem 0.9rem;
+            font-size: 0.85rem;
+            color: #b0b0b0;
+        }
+        .rust-highlight-item i {
+            color: #e8e8e8;
+            font-size: 0.8rem;
+        }
+
+        .rust-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: #e8e8e8;
+            color: #0f0f0f;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 0.75rem 1.75rem;
+            border-radius: 10px;
+            border: 1px solid #d0d0d0;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        .rust-cta-btn:hover {
+            background-color: #f5f5f5;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .rust-banner-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem 1.5rem;
+                gap: 2rem;
+            }
+            .rust-ferris-img { width: 160px; }
+            .rust-banner-title { font-size: 1.5rem; }
+            .rust-banner-highlights { justify-content: center; }
+        }

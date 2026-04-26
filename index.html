@@ -109,6 +109,54 @@
             </div>
     </section>
 
+    <!-- Rust Migration Announcement Banner -->
+    <section id="rust-announcement" class="rust-banner-section">
+        <div class="container mx-auto px-6">
+            <div class="rust-banner-card">
+                <!-- Ferris Art -->
+                <div class="rust-ferris-container">
+                    <img src="https://rustlang-es.org/ferris-hero.avif" alt="Ferris, la mascota de Rust"
+                        class="rust-ferris-img">
+                </div>
+
+                <!-- Announcement Content -->
+                <div class="rust-banner-content">
+                    <div class="rust-badge">
+                        <span class="rust-badge-dot"></span>
+                        Anuncio importante
+                    </div>
+                    <h2 class="rust-banner-title">
+                        CubicLauncher está migrando a <span class="rust-gradient-text">Rust</span> 🦀
+                    </h2>
+                    <p class="rust-banner-desc">
+                        Estamos reescribiendo CubicLauncher desde cero en Rust + Tauri para ofrecer un launcher
+                        más rápido, seguro y eficiente. Esto significa menor consumo de memoria, inicio
+                        instantáneo y soporte nativo multiplataforma sin compromisos.
+                    </p>
+                    <div class="rust-banner-highlights">
+                        <div class="rust-highlight-item">
+                            <i class="fas fa-bolt"></i>
+                            <span>Rendimiento nativo</span>
+                        </div>
+                        <div class="rust-highlight-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Memory-safe por diseño</span>
+                        </div>
+                        <div class="rust-highlight-item">
+                            <i class="fas fa-laptop"></i>
+                            <span>Windows, Linux & macOS</span>
+                        </div>
+                    </div>
+                    <a href="/blog/main.html#migracion-rust" class="rust-cta-btn">
+                        <i class="fas fa-newspaper mr-2"></i>
+                        Leer el artículo completo en el blog
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Features Section -->
     <section id="features" class="py-20 bg-cubic-darker">
         <div class="container mx-auto px-6">
@@ -126,7 +174,7 @@
                         <i class="fas fa-bolt text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3">Rendimiento óptimo</h3>
-                    <p class="text-cubic-text-secondary">Al estar hecho en Java, esta diseñado para ser ligero y rápido,
+                    <p class="text-cubic-text-secondary">Al estar hecho en Rust, esta diseñado para ser ligero y rápido,
                         sin consumir recursos innecesarios mientras juegas.</p>
                 </div>
 
@@ -171,7 +219,7 @@
                         <i class="fas fa-laptop text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3">Multisistema</h3>
-                    <p class="text-cubic-text-secondary">CubicLauncher al estar creado en java es multisistema, es
+                    <p class="text-cubic-text-secondary">CubicLauncher al estar creado en Rust es multisistema, es
                         decir, funciona en varios sistemas operativos.</p>
                 </div>
 
@@ -242,8 +290,8 @@
                             <div class="mb-2"><span class="text-green-400">$</span> git clone
                                 https://github.com/CubicLauncher/CubicLauncher.git</div>
                             <div class="mb-2"><span class="text-green-400">$</span> cd CubicLauncher</div>
-                            <div class="mb-2"><span class="text-green-400">$</span> ./gradlew build</div>
-                            <div class="mb-2"><span class="text-green-400">$</span> ./gradlew run</div>
+                            <div class="mb-2"><span class="text-green-400">$</span> bun install</div>
+                            <div class="mb-2"><span class="text-green-400">$</span> bun tauri dev</div>
                             <div class="text-cubic-text-secondary"># ¡Listo! El launcher se está ejecutando localmente
                             </div>
                         </div>
