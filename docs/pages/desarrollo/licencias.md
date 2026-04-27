@@ -13,10 +13,10 @@ La aplicación principal de CubicLauncher está licenciada bajo la **GNU General
 
 ## Librerías propias
 
-Las librerías desarrolladas por la organización CubicLauncher, como **[CLaunch](#librerias/claunch)** (librería de lanzamiento) y **[Proton](#librerias/proton)** (librería de descargas), se distribuyen bajo la **GNU Lesser General Public License v2.1 (LGPL-2.1)**.
+Las librerías desarrolladas por la organización CubicLauncher, como **[CLaunch](#librerias/claunch)** y **[Proton](#librerias/proton)**, se han portado a **Rust** y se distribuyen bajo la **GNU Lesser General Public License v2.1 (LGPL-2.1)**.
 
 Esta licencia permite que las librerías sean utilizadas por otros proyectos, incluso aquellos que no son GPL, siempre que los cambios realizados en la librería propia se liberen bajo los mismos términos.
 
 ## Contribuciones de terceros
 
-CubicLauncher utiliza diversas librerías de terceros, cada una con su propia licencia (MIT, Apache 2.0, etc.). Puedes consultar la lista completa de dependencias en el archivo `build.gradle.kts` del repositorio principal.
+CubicLauncher utiliza diversas librerías de terceros (crates de Rust y paquetes de NPM), cada una con su propia licencia (MIT, Apache 2.0, etc.). Puedes consultar la lista completa de dependencias en los archivos `src-tauri/Cargo.toml` y `package.json` del repositorio principal.

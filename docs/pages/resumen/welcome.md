@@ -4,13 +4,14 @@
 
 ## ¿Qué es CubicLauncher?
 
-CubicLauncher no es solo otro lanzador; es un proyecto comunitario nacido de la necesidad de un software transparente y eficiente. 
+CubicLauncher no es solo otro lanzador; es un proyecto comunitario nacido de la necesidad de un software transparente y eficiente. Con nuestra reciente migración a **Rust**, hemos llevado el rendimiento al siguiente nivel.
 
 ### Características principales:
-- **Optimizado**: Consume pocos recursos, ideal para equipos de gama baja.
+- **Rendimiento Nativo**: Desarrollado en Rust y Tauri para un inicio instantáneo y mínimo impacto en el sistema.
+- **Cuentas Microsoft**: Inicia sesión de forma segura para usar tu perfil oficial, skins y capas.
 - **Transparente**: 100% código abierto bajo la licencia GPL-3.0.
-- **Personalizable**: Ajusta desde el rendimiento hasta la apariencia visual.
-- **Soporte Multi-Versión**: Compatible con versiones Alpha, Beta y las más recientes.
+- **Actualizaciones Automáticas**: Servicio integrado para mantenerte siempre en la última versión.
+- **Soporte Multi-Versión**: Compatible con todas las versiones de Minecraft, desde Alpha hasta las más recientes.
 
 ## Por dónde empezar
 

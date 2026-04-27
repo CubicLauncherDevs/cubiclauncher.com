@@ -1,97 +1,65 @@
-# Guía de Instalación de CubicLauncher
+# Guía de Contribución
 
-Bienvenido a la guía oficial de instalación de CubicLauncher. Sigue estos pasos detallados para configurar correctamente el launcher en tu sistema operativo y disfrutar de la mejor experiencia.
+¡Gracias por tu interés en contribuir a CubicLauncher! Somos un proyecto de código abierto y agradecemos cualquier ayuda, ya sea reportando errores, sugiriendo características o escribiendo código.
 
-## Requisitos de Sistema
+## Tecnologías Utilizadas
 
-Antes de comenzar, asegúrate de que tu equipo cumpla con los siguientes requisitos mínimos para garantizar un funcionamiento fluido.
+CubicLauncher ha evolucionado hacia un stack tecnológico moderno y eficiente:
+- **Backend**: Rust con [Tauri](https://tauri.app/).
+- **Frontend**: [TypeScript](https://www.typescriptlang.org/) con [Svelte](https://svelte.dev/).
+- **Gestor de Paquetes**: [Bun](https://bun.sh/).
+- **Estilos**: CSS.
 
-### Requisitos de Software
+## Cómo empezar
 
-- **Java Runtime Environment (JRE)**: **OpenJDK 21 o posterior**. CubicLauncher requiere una versión moderna de Java para funcionar correctamente.
-- **Sistema Operativo**: 
-  - **Windows**: Windows 10 o Windows 11 (64 bits).
-  - **Linux**: Distribuciones modernas (Ubuntu, Arch, Fedora, Debian).
-  - **macOS**: macOS 10.15 o superior (Catalina en adelante).
+### 1. Preparar el entorno
+Consulta la [Guía de Compilación](#desarrollo/compilacion) para configurar Rust, Bun y las dependencias de Tauri en tu sistema.
 
-### Requisitos de Hardware
-
-- **Memoria RAM**:
-  - Mínimo: 2 GB.
-  - Recomendado: 4 GB o más.
-- **Procesador (CPU)**: CPU de 64 bits.
-- **Gráficos (GPU)**: Compatibilidad con OpenGL 3.3 o superior.
-- **Espacio en Disco**: 
-  - 100 MB para el launcher básico.
-  - Espacio adicional para las versiones de Minecraft.
-
----
-
-## 1. Descarga del Launcher
-
-Puedes obtener la última versión de CubicLauncher en formato `.jar` desde nuestro sitio oficial o desde GitHub:
-
-- **Sitio Web**: [cubiclauncher.com/descargas](https://www.cubiclauncher.com)
-- **GitHub**: [Releases oficial de CubicLauncher](https://github.com/CubicLauncher/CubicLauncher/releases)
-
----
-
-## 2. Instalación por Sistema Operativo
-
-CubicLauncher se distribuye como un archivo `.jar` ejecutable, lo que permite que funcione en múltiples plataformas de la misma manera.
-
-### Windows
-1. Descarga el archivo `CubicLauncher.jar`.
-2. Asegúrate de tener instalado **OpenJDK 21**.
-3. Haz doble clic en el archivo para iniciar. Si el archivo se abre con un compresor (como WinRAR), haz clic derecho -> **Abrir con** -> **Java(TM) Platform SE binary**.
-4. **Ubicación de archivos**: Tus configuraciones y mundos se guardarán en `%APPDATA%\CubicLauncher`.
-
-### Linux
-1. Descarga el archivo `CubicLauncher.jar`.
-2. Otorga permisos de ejecución al archivo mediante la terminal:
+### 2. Fork y Clonación
+1. Haz un Fork del repositorio en GitHub.
+2. Clona tu fork localmente:
    ```bash
-   chmod +x CubicLauncher.jar
+   git clone https://github.com/TU_USUARIO/CubicLauncher.git
    ```
-3. Ejecuta el launcher con el siguiente comando:
-   ```bash
-   java -jar CubicLauncher.jar
-   ```
-4. **Ubicación de archivos**: Los archivos se almacenarán en la carpeta oculta `~/.cubic`.
 
-### macOS
+### 3. Crear una rama
+Siempre crea una rama descriptiva para tus cambios:
+```bash
+git checkout -b feature/nueva-caracteristica
+# o
+git checkout -b fix/error-especifico
+```
 
-<div class="alert alert-warning">
-    <strong>Versión Experimental:</strong>
-    <p>El soporte para macOS se considera experimental. No se han realizado pruebas oficiales en hardware nativo de Apple, por lo que no garantizamos su correcto funcionamiento en este momento.</p>
-</div>
+## Estándares de Código
 
-1. Descarga el archivo `CubicLauncher.jar`.
-2. Debido a las políticas de seguridad de macOS, haz clic derecho sobre el archivo y selecciona **Abrir**.
-3. Confirma que deseas abrir la aplicación de un desarrollador no verificado.
-4. **Ubicación de archivos**: Se guardarán en `~/Library/Application Support/CubicLauncher`.
+### Rust
+- Usa `cargo fmt` antes de enviar tus cambios.
+- Sigue las recomendaciones de `clippy`: `cargo clippy`.
+- Documenta las funciones públicas en el backend.
+
+### Frontend
+- Mantén los componentes pequeños y reutilizables.
+- Usa TypeScript para mayor seguridad en los tipos.
+- Asegúrate de que la interfaz sea responsiva.
+
+## Enviar un Pull Request (PR)
+
+1. Sube tus cambios a tu fork: `git push origin mi-rama`.
+2. Abre un Pull Request hacia la rama `main` (o la rama de desarrollo activa) del repositorio oficial.
+3. Describe detalladamente qué cambios has realizado y por qué.
+4. Si tu PR corrige un issue existente, menciónalo (ej: `Fixes #123`).
+
+## Reportar Errores
+
+Si encuentras un error, por favor abre un **Issue** en GitHub incluyendo:
+- Pasos para reproducir el error.
+- Comportamiento esperado vs. Comportamiento actual.
+- Capturas de pantalla si es un error visual.
+- Logs de la consola si es un error técnico.
 
 ---
 
-## 3. Instalación de Java (Recomendado)
-
-Para el mejor rendimiento y compatibilidad, recomendamos encarecidamente el uso de **OpenJDK** a través de **Adoptium Temurin**:
-
-1. Visita [Adoptium.net (Temurin 21)](https://adoptium.net/temurin/releases/?version=21).
-2. Selecciona tu sistema operativo y arquitectura (x64 o AArch64 para Mac M1/M2).
-3. Descarga el instalador del **JRE** o **JDK** de la versión 21.
-4. Sigue los pasos del instalador y asegúrate de marcar la opción **"Set JAVA_HOME variable"** si aparece.
-
----
-
-## 4. Solución de Problemas Comunes
-
-- **"El archivo no es una aplicación válida"**: Asegúrate de que estás intentando abrir un archivo `.jar` y no un archivo comprimido. Necesitas Java instalado para "ejecutar" el archivo.
-- **Error "Incompatible JRE"**: Si recibes este error, significa que tu sistema está usando una versión de Java antigua (como Java 8 o 17). Instala **OpenJDK 21** y asegúrate de que sea la versión por defecto.
-- **La consola se cierra rápido**: Intenta ejecutar el launcher desde una terminal/consola de comandos con `java -jar CubicLauncher.jar` para ver el mensaje de error exacto.
-
----
-
-<div class="alert alert-sugerencia">
-    <strong>Soporte en Discord</strong>
-    <p>¿Aún tienes problemas? Únete a nuestro <a href="https://discord.gg/WQ5KtQYj">Discord</a> y nuestro equipo te ayudará con gusto.</p>
+<div class="alert alert-note">
+    <strong>Comunidad:</strong>
+    <p>Si tienes dudas sobre cómo implementar algo, no dudes en preguntar en nuestro canal de desarrollo en <a href="https://discord.gg/RxQMDvVYkt">Discord</a>.</p>
 </div>

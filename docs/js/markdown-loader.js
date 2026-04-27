@@ -16,7 +16,6 @@ const config = {
             items: [
                 { title: 'Instalación', file: 'guias/instalacion' },
                 { title: 'Configuración', file: 'guias/configuracion' },
-                { title: 'Uso de la Consola', file: 'guias/consola' }
             ]
         },
         {
@@ -249,7 +248,9 @@ async function loadPage(pageName) {
         window.history.pushState({}, '', `#${newHash}`);
     }
 
-    // Show loading state
+    // Show loading state with smooth transition
+    contentDiv.style.opacity = '0.4';
+    contentDiv.style.transition = 'opacity 0.25s ease';
     contentDiv.innerHTML = '<div class="loading">Cargando documentación...</div>';
 
     try {
@@ -272,16 +273,30 @@ async function loadPage(pageName) {
             hljs.highlightElement(block);
         });
 
+        // Add copy buttons to code blocks
+        addCopyButtons();
+
         // Get and display GitHub author info
         try {
             const filePath = `${config.pagesPath}${pageName}${config.fileExtension}`;
             const authorInfo = await getGitHubAuthorInfo(filePath);
             if (authorInfo) {
                 addAuthorInfo(authorInfo);
+            } else {
+                addAuthorInfo(null); // Fallback for last updated
             }
         } catch (e) {
             console.error('Error loading author info:', e);
+            addAuthorInfo(null);
         }
+
+        // Add next/prev page navigation
+        addPageNavigation(pageName);
+
+        // Smooth transition in
+        setTimeout(() => {
+            contentDiv.style.opacity = '1';
+        }, 50);
 
     } catch (error) {
         console.error('Error loading page:', error);
@@ -289,10 +304,105 @@ async function loadPage(pageName) {
             <div class="error">
                 <h1>Página no encontrada</h1>
                 <p>La página que estás buscando no existe o no está disponible en este momento.</p>
-                <p><a href="#${config.defaultPage}">Volver a la página de inicio</a></p>
+                <p><a href="#${config.defaultPage}" data-page="${config.defaultPage}">Volver a la página de inicio</a></p>
             </div>
         `;
+        contentDiv.style.opacity = '1';
+        
+        // Add click listener for error back link
+        const backLink = contentDiv.querySelector('a');
+        if (backLink) {
+            backLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                loadPage(config.defaultPage);
+            });
+        }
     }
+}
+
+// Add copy buttons to code blocks
+function addCopyButtons() {
+    document.querySelectorAll('.markdown-body pre').forEach(pre => {
+        // Check if there's already a copy button to avoid duplicates
+        if (pre.querySelector('.copy-code-btn')) return;
+
+        const btn = document.createElement('button');
+        btn.className = 'copy-code-btn';
+        btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copiar';
+        
+        btn.addEventListener('click', () => {
+            const code = pre.querySelector('code').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Copiado';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copiar';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        });
+        
+        pre.appendChild(btn);
+    });
+}
+
+// Add next/previous page navigation
+function addPageNavigation(currentPageName) {
+    const flatPages = [];
+    config.navigation.forEach(section => {
+        section.items.forEach(item => {
+            flatPages.push({ ...item, sectionTitle: section.title });
+        });
+    });
+
+    const currentIndex = flatPages.findIndex(p => p.file === currentPageName);
+    if (currentIndex === -1) return;
+
+    const prevPage = currentIndex > 0 ? flatPages[currentIndex - 1] : null;
+    const nextPage = currentIndex < flatPages.length - 1 ? flatPages[currentIndex + 1] : null;
+
+    if (!prevPage && !nextPage) return;
+
+    const navContainer = document.createElement('div');
+    navContainer.className = 'docs-navigation';
+
+    let html = '';
+    
+    if (prevPage) {
+        html += `
+            <a href="#${prevPage.file}" class="docs-nav-link prev" data-page="${prevPage.file}">
+                <span class="docs-nav-label">Anterior &bull; ${prevPage.sectionTitle}</span>
+                <span class="docs-nav-title"><i class="fa-solid fa-arrow-left"></i> ${prevPage.title}</span>
+            </a>
+        `;
+    } else {
+        html += `<div></div>`;
+    }
+
+    if (nextPage) {
+        html += `
+            <a href="#${nextPage.file}" class="docs-nav-link next" data-page="${nextPage.file}">
+                <span class="docs-nav-label">Siguiente &bull; ${nextPage.sectionTitle}</span>
+                <span class="docs-nav-title">${nextPage.title} <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+        `;
+    } else {
+        html += `<div></div>`;
+    }
+
+    navContainer.innerHTML = html;
+
+    // Add click listeners to new links
+    navContainer.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            loadPage(link.getAttribute('data-page'));
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+
+    const contentDiv = document.getElementById('markdownContent');
+    contentDiv.appendChild(navContainer);
 }
 
 // Function to get GitHub author information for a file
@@ -327,7 +437,7 @@ async function getGitHubAuthorInfo(filePath) {
 
 // Add anchor links to headers
 function addAnchorLinks() {
-    const headers = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    const headers = document.querySelectorAll('.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6');
 
     headers.forEach(header => {
         if (!header.id) {
@@ -426,18 +536,6 @@ function addAuthorInfo(authorInfo) {
             }
             .author-name:hover {
                 text-decoration: underline;
-            }
-            .last-updated {
-                display: inline-flex;
-                align-items: center;
-                gap: 6px;
-                font-size: 0.85em;
-                color: var(--text-color);
-                opacity: 0.7;
-                margin-top: 0.25rem;
-            }
-            .last-updated-icon {
-                font-size: 0.9em;
             }
             /* Make the avatar and name clickable */
             .author-link {

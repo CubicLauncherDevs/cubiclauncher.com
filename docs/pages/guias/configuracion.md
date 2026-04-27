@@ -9,6 +9,13 @@ CubicLauncher permite una gran flexibilidad para ajustar el rendimiento y compor
 - **Consola de errores**: Útil para depurar si el juego o el launcher se cierran inesperadamente.
 - **Cerrar al iniciar juego**: Opción para cerrar el launcher automáticamente una vez que Minecraft ha arrancado.
 
+## Cuentas de Microsoft (Nuevo)
+
+CubicLauncher ahora soporta la autenticación oficial de Microsoft:
+- **Inicio de Sesión Nativo**: Usa el flujo de Device Code para conectar tu cuenta de forma segura.
+- **Perfiles Oficiales**: Al iniciar sesión, el launcher cargará automáticamente tu nombre, skin y capa oficial.
+- **Servidores Premium**: Juega en cualquier servidor que requiera una cuenta oficial de Minecraft.
+
 ## Ajustes de Minecraft
 
 ### Versiones
@@ -31,30 +38,27 @@ Esta es la sección más importante para garantizar un juego fluido.
   - JRE 21 (recomendado para versiones actuales).
 - **Argumentos JVM**: Añade parámetros adicionales para optimizar el recolector de basura o el rendimiento del procesador.
 
-## Archivo settings.json
+## Archivo settings.cub
 
-Si prefieres editar la configuración manualmente (para usuarios avanzados), puedes encontrar el archivo `settings.json` en la carpeta raíz de CubicLauncher.
+Si prefieres editar la configuración manualmente (para usuarios avanzados), puedes encontrar el archivo `settings.cub` en la carpeta raíz de CubicLauncher.
 
 ```json
 {
-  "language": "en_us",
-  "autoUpdate": true,
-  "errorConsole": false,
-  "closeLauncherOnGameStart": false,
-  "showAlphaVersions": false,
-  "showBetaVersions": false,
-  "forceDiscreteGpu": false,
-  "minMemory": 512,
-  "maxMemory": 2,
-  "jre8_path": "path Java 8",
-  "jre17_path": "path Java 17",
-  "jre21_path": "path Java 21",
-  "jvmArguments": "",
-  "minMemoryUnit": "MB",
-  "maxMemoryUnit": "GB",
   "username": "steve",
-  "firstLaunch": false,
-  "native_styles": false
+  "user": null,
+  "min_memory": 1,
+  "max_memory": 2,
+  "jre8_path": "/usr/lib/jvm/java-8-openjdk/bin/java",
+  "jre17_path": "/usr/lib/jvm/java-17-openjdk/bin/java",
+  "jre21_path": "/usr/lib/jvm/java-21-openjdk/bin/java",
+  "language": "es",
+  "auto_updates": false,
+  "show_error_console": false,
+  "close_launcher_on_play": true,
+  "show_snapshots": false,  
+  "show_alpha": false,
+  "force_gpu": false,
+  "jvm_args": ""
 }
 ```
 
