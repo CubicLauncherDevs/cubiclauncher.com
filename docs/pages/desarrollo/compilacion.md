@@ -8,11 +8,17 @@ Antes de comenzar, asegúrate de tener instalado lo siguiente:
 
 ### 1. Rust
 
-CubicLauncher requiere Rust edición 2024 o superior. Instálalo con `rustup`:
+CubicLauncher requiere Rust edición 2024 o superior.
 
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-```
+- **Windows, macOS y Linux:**
+  Instálalo con `rustup` desde [rustup.rs](https://rustup.rs/):
+
+  ```bash
+  # En Linux/macOS
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  ```
+
+  En **Windows**, descarga y ejecuta el instalador `rustup-init.exe`.
 
 Verifica la instalación:
 
@@ -25,9 +31,15 @@ cargo --version
 
 El frontend utiliza [Bun](https://bun.sh/) como gestor de paquetes y runtime:
 
-```bash
-curl -fsSL https://bun.sh/install | bash
-```
+- **macOS y Linux:**
+  ```bash
+  curl -fsSL https://bun.sh/install | bash
+  ```
+
+- **Windows (PowerShell):**
+  ```powershell
+  powershell -c "irm bun.sh/install.ps1 | iex"
+  ```
 
 Verifica la instalación:
 
@@ -35,9 +47,23 @@ Verifica la instalación:
 bun --version
 ```
 
-### 3. Dependencias del sistema (solo Linux)
+### 3. Dependencias del sistema
 
-En distribuciones basadas en Debian/Ubuntu, instala las dependencias nativas que requiere Tauri:
+Cada sistema operativo requiere herramientas adicionales para compilar aplicaciones Tauri.
+
+#### Windows
+1. **Microsoft C++ Build Tools:** Descarga e instala los [Build Tools para Visual Studio](https://visualstudio.microsoft.com/visual-cpp-build-tools/). Durante la instalación, asegúrate de seleccionar la carga de trabajo **"Desarrollo para el escritorio con C++"**.
+2. **WebView2:** Tauri utiliza Microsoft Edge WebView2. Ya viene preinstalado en Windows 10 (v1803+) y Windows 11.
+
+#### macOS
+Instala las herramientas de línea de comandos de Xcode:
+
+```bash
+xcode-select --install
+```
+
+#### Linux
+En distribuciones basadas en Debian/Ubuntu:
 
 ```bash
 sudo apt update
