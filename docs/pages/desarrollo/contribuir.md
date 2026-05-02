@@ -61,5 +61,5 @@ Si encuentras un error, por favor abre un **Issue** en GitHub incluyendo:
 
 <div class="alert alert-note">
     <strong>Comunidad:</strong>
-    <p>Si tienes dudas sobre cómo implementar algo, no dudes en preguntar en nuestro canal de desarrollo en <a href="https://discord.gg/RxQMDvVYkt">Discord</a>.</p>
+    <p>Si tienes dudas sobre cómo implementar algo, no dudes en preguntar en nuestro canal de desarrollo en <a href="https://discord.gg/7VaqSrPukm">Discord</a>.</p>
 </div>

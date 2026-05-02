@@ -23,7 +23,7 @@
 
 Si no encuentras la solución en las guías, únete a nuestra comunidad:
 
-- **Discord**: Es el canal más rápido para obtener ayuda en tiempo real. Contamos con un canal de soporte dedicado. [Unirse al Discord](https://discord.gg/RxQMDvVYkt).
+- **Discord**: Es el canal más rápido para obtener ayuda en tiempo real. Contamos con un canal de soporte dedicado. [Unirse al Discord](https://discord.gg/7VaqSrPukm).
 - **Reddit**: Puedes publicar tus dudas en r/CubicLauncher, donde otros usuarios y desarrolladores podrán ayudarte.
 - **GitHub Issues**: Para errores técnicos detallados, abre un reporte en GitHub.
 

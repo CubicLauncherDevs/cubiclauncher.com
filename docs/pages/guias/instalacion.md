@@ -78,5 +78,5 @@ Aunque el launcher no lo necesite, Minecraft sí. Recomendamos **Adoptium Temuri
 
 <div class="alert alert-sugerencia">
     <strong>Soporte en Discord</strong>
-    <p>¿Aún tienes problemas? Únete a nuestro <a href="https://discord.gg/WQ5KtQYj">Discord</a> y nuestro equipo te ayudará con gusto.</p>
+    <p>¿Aún tienes problemas? Únete a nuestro <a href="https://discord.gg7VaqSrPukm">Discord</a> y nuestro equipo te ayudará con gusto.</p>
 </div>

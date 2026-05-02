@@ -30,5 +30,5 @@ Para una guía detallada paso a paso sobre cómo configurar Java para Minecraft,
 
 <div class="alert alert-sugerencia">
     <strong>Sugerencia:</strong>
-    <p>Si tienes problemas con la instalación, consulta nuestra sección de <a href="https://discord.gg/WQ5KtQYj">Soporte en Discord</a>.</p>
+    <p>Si tienes problemas con la instalación, consulta nuestra sección de <a href="https://discord.gg/7VaqSrPukm">Soporte en Discord</a>.</p>
 </div>

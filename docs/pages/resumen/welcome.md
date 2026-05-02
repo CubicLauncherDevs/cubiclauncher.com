@@ -26,7 +26,7 @@ Si eres nuevo, te recomendamos seguir estos pasos:
 CubicLauncher crece gracias a su comunidad. Si encuentras un error o tienes una sugerencia, no dudes en contactarnos:
 
 <div class="flex-row">
-    <a href="https://discord.gg/RxQMDvVYkt" class="btn btn-primary">Discord</a>
+    <a href="https://discord.gg/7VaqSrPukm" class="btn btn-primary">Discord</a>
     <a href="https://www.reddit.com/r/CubicLauncher/" class="btn btn-primary">Subreddit</a>
     <a href="https://github.com/CubicLauncher/CubicLauncher" class="btn btn-primary">GitHub</a>
 </div>
