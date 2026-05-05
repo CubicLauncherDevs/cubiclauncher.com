@@ -7,7 +7,4 @@ export default defineConfig({
 		sveltekit(),
 		tailwindcss()
 	],
-	build: {
-		outDir: 'dist'
-	}
 });
