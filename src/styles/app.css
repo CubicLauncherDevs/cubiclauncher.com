@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Cantarell", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+/* Custom prose styles */
+.prose h1 {
+  @apply text-4xl md:text-5xl font-black tracking-tighter uppercase mb-8;
+}
+
+.prose h2 {
+  @apply text-2xl font-bold tracking-tight mt-12 mb-4 border-b border-white/5 pb-2;
+}
+
+.prose p {
+  @apply text-neutral-400 leading-relaxed font-light mb-6;
+}
+
+.prose ul {
+  @apply list-none pl-0 mb-6;
+}
+
+.prose li {
+  @apply relative pl-6 mb-2 text-neutral-400 font-light;
+}
+
+.prose li::before {
+  content: "";
+  @apply absolute left-0 top-[0.6em] w-1.5 h-1.5 bg-white/20 rounded-full;
+}
+
+.prose strong {
+  @apply text-white font-medium;
+}
+
+.prose code {
+  @apply bg-white/5 px-1.5 py-0.5 rounded text-white font-mono text-sm;
+}
+
+.prose pre {
+  @apply bg-neutral-900 border border-white/5 rounded-2xl p-6 overflow-x-auto mb-8;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0 text-neutral-300;
+}
+
+.prose blockquote {
+  @apply border-l-2 border-white/10 pl-6 italic text-neutral-500 my-8;
+}
+
+/* Fonts */
+@layer base {
+  @font-face {
+    font-family: 'Cantarell';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/Cantarell-Regular.woff2') format('woff2');
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Cantarell';
+    font-style: italic;
+    font-weight: 400;
+    src: url('/fonts/Cantarell-Italic.woff2') format('woff2');
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Cantarell';
+    font-style: normal;
+    font-weight: 700;
+    src: url('/fonts/Cantarell-Bold.woff2') format('woff2');
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Cantarell';
+    font-style: italic;
+    font-weight: 700;
+    src: url('/fonts/Cantarell-BoldItalic.woff2') format('woff2');
+    font-display: swap;
+  }
+}
+
+/* Animations */
+@keyframes fall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+  }
+
+  100% {
+    transform: translateY(120vh) rotate(360deg);
+  }
+}
+
+.falling-logo {
+  animation: fall linear infinite;
+}
