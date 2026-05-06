@@ -24,6 +24,14 @@
         { name: "Logs y Debugging", href: "/docs/debug" },
       ],
     },
+    {
+      title: "Legal",
+      items: [
+        { name: "Privacidad", href: "/docs/privacy" },
+        { name: "Términos de Uso", href: "/docs/terms" },
+        { name: "Licencia", href: "/docs/license" },
+      ],
+    },
   ];
 
   interface Props {

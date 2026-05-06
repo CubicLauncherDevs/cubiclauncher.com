@@ -77,21 +77,21 @@
         <ul class="flex flex-col gap-4">
           <li>
             <a
-              href="/privacidad"
+              href="/docs/privacy"
               class="text-sm text-neutral-400 hover:text-white transition-colors"
               >Privacidad</a
             >
           </li>
           <li>
             <a
-              href="/terminos"
+              href="/docs/terms"
               class="text-sm text-neutral-400 hover:text-white transition-colors"
               >Términos</a
             >
           </li>
           <li>
             <a
-              href="/licencias"
+              href="/docs/license"
               class="text-sm text-neutral-400 hover:text-white transition-colors"
               >Licencias</a
             >

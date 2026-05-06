@@ -3,8 +3,8 @@ import type { PageLoad } from './$types';
 
 export const load: PageLoad = async () => {
 	try {
-		const modules = import.meta.glob('../../lib/docs/introduction.md');
-		const path = '../../lib/docs/introduction.md';
+		const modules = import.meta.glob('../../lib/docs/Comenzando/introduction.md');
+		const path = '../../lib/docs/Comenzando/introduction.md';
 		
 		if (!(path in modules)) {
 			throw error(404, 'No se pudo encontrar la introducción');

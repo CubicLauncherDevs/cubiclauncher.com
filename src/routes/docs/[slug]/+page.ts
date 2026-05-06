@@ -5,11 +5,13 @@ export const load: PageLoad = async ({ params }) => {
 	const slug = params.slug;
 	
 	try {
-		// Use import.meta.glob for better type safety and to avoid dynamic import issues in some environments
-		const modules = import.meta.glob('../../../lib/docs/*.md');
-		const path = `../../../lib/docs/${slug}.md`;
+		// Use import.meta.glob with ** to search in subdirectories
+		const modules = import.meta.glob('../../../lib/docs/**/*.md');
 		
-		if (!(path in modules)) {
+		// Find the module that matches the slug (e.g., .../Comenzando/install.md matches slug 'install')
+		const path = Object.keys(modules).find(p => p.endsWith(`/${slug}.md`));
+		
+		if (!path) {
 			throw error(404, `No se pudo encontrar la página: ${slug}`);
 		}
 
