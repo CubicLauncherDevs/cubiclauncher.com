@@ -15,6 +15,7 @@
         { name: "Gestión de Instancias", href: "/docs/instances" },
         { name: "Cuentas", href: "/docs/accounts" },
         { name: "Mods y Recursos", href: "/docs/mods" },
+        { name: "Temas", href: "/docs/themes" },
       ],
     },
     {
