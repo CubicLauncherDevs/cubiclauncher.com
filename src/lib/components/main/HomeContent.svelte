@@ -1,5 +1,6 @@
 <script lang="ts">
   import Hero from "./Hero.svelte";
+  import DevelopersSection from "./DevelopersSection.svelte";
 
   const features = [
     {
@@ -64,6 +65,8 @@
       </div>
     </div>
   </section>
+
+  <DevelopersSection />
 
   <!-- Community Section -->
   <section class="py-48 bg-white text-black">
