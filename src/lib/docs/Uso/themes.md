@@ -29,7 +29,7 @@ El archivo `theme.json` sigue este esquema:
 ```jsonc
 {
   "$schema": "https://raw.githubusercontent.com/CubicLauncher/Themes/refs/heads/main/theme-schema.json",
-  "name": "Miku",
+  "name": "Theme1",
   "author": "CubicLauncher",
   "type": "user",
   "font": "font",
