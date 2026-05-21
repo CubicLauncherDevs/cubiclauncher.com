@@ -16,7 +16,7 @@ Al utilizar **CubicLauncher**, aceptás los siguientes términos y condiciones. 
 </div>
 
 ## 1. Licencia y Código Abierto
-CubicLauncher se distribuye bajo la licencia **GNU General Public License v3.0 (GPL-3.0)**. Esto significa que el software se proporciona "tal cual está en el repositorio de GitHub", el equipo de CubicLauncher mantiene el proyecto y contribuidores externos bajo esta licencia. Podés consultar los detalles completos de la <a href="/docs/Legal/license" class="text-blue-400 hover:underline">Licencia</a>.
+CubicLauncher se distribuye bajo la licencia **GNU General Public License v3.0 (GPL-3.0)**. Esto significa que el software se proporciona "tal cual está en el repositorio de GitHub", el equipo de CubicLauncher mantiene el proyecto y contribuidores externos bajo esta licencia. Podés consultar los detalles completos de la <a href="/docs/license" class="text-blue-400 hover:underline">Licencia</a>.
 
 ## 2. Uso Responsable
 Como usuario, sos responsable de:
