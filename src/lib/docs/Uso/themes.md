@@ -6,7 +6,19 @@ title: Temas | CubicLauncher
 
 CubicLauncher te permite personalizar completamente la interfaz con temas. Cada tema define colores, fuentes, bordes y una imagen de fondo opcional.
 
-> **Warning:** El schema (`$schema`) referenciado en los ejemplos puede estar desactualizado. Revisá el repositorio oficial de [CubicLauncher Themes](https://github.com/CubicLauncher/Themes) para la versión más reciente.
+
+<div class="my-6 flex gap-3 rounded-lg border border-yellow-500 bg-yellow-500/5 p-4 text-yellow-500">
+	<div class="flex flex-col gap-1">
+		<span class="text-sm font-bold uppercase tracking-wider text-yellow-400">AVISO</span>
+		<div class="m-0 text-sm leading-relaxed text-neutral-400">
+			El schema <code>($schema)</code> referenciado en los ejemplos puede estar desactualizado. Revisá el repositorio oficial de 
+			<a href="https://github.com/CubicLauncher/Themes" class="text-yellow-400 underline" target="_blank" rel="noopener noreferrer">
+				CubicLauncher Themes
+			</a>
+			para la versión más reciente.
+		</div>
+	</div>
+</div>
 
 ## Estructura de un tema
 
@@ -48,6 +60,7 @@ El archivo `theme.json` sigue este esquema:
 | `font` | `string?` | Ruta a un archivo de fuente dentro de la carpeta del tema. |
 | `bg_image` | `string?` | Nombre del archivo de imagen de fondo (debe estar en la misma carpeta). |
 | `variables` | `object` | Mapa de variables CSS que definen la apariencia. |
+
 
 ## Imagen de fondo
 
