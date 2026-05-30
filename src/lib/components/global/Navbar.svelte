@@ -52,7 +52,7 @@
                 </a>
 
                 <nav class="hidden md:flex items-center gap-8">
-                    {#each ["Docs", "Blog"] as link}
+                    {#each ["Docs"] as link}
                         <a
                             href="/{link.toLowerCase()}"
                             class="text-[10px] font-bold text-neutral-500 hover:text-white transition-colors uppercase tracking-[0.2em]"
@@ -105,7 +105,7 @@
 
 {#if isMobileMenuOpen}
     <div
-        class="fixed inset-0 z-[60] bg-neutral-950/95 backdrop-blur-xl flex flex-col items-center justify-center pointer-events-auto"
+        class="fixed inset-0 z-60 bg-neutral-950/95 backdrop-blur-xl flex flex-col items-center justify-center pointer-events-auto"
         in:fade={{ duration: 300 }}
         out:fade={{ duration: 300 }}
     >
@@ -142,7 +142,7 @@
                 >
             </a>
 
-            {#each ["Docs", "Blog"] as link}
+            {#each ["Docs"] as link}
                 <a
                     href="/{link.toLowerCase()}"
                     class="text-xl font-bold text-neutral-400 hover:text-white transition-colors uppercase tracking-[0.2em]"
