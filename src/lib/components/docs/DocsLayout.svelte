@@ -46,7 +46,7 @@
       <!-- Mobile Sidebar Overlay -->
       {#if isMobileMenuOpen}
         <div
-          class="fixed inset-0 z-[100] bg-neutral-950/90 backdrop-blur-md p-8 md:hidden"
+          class="fixed inset-0 z-100 bg-neutral-950/90 backdrop-blur-md p-8 md:hidden"
           transition:fade={{ duration: 200 }}
         >
           <div class="flex justify-end mb-8">

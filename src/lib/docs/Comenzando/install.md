@@ -36,6 +36,7 @@ Ofrecemos soporte para múltiples formatos en Linux:
 - **RPM:** Descarga, otorga permisos de ejecución y abre.
 - **AppImage:** Descarga, otorga permisos de ejecución y abre.
 - **Debian/Ubuntu:** Instala el paquete `.deb` usando `sudo apt install ./cubiclauncher.deb`.
+- **ARCH APKGBUILD:** Compilar localmente es obligatorio. Los binarios generados por las CI de GitHub (Ubuntu) pueden no ser compatibles con Arch Linux debido a su modelo rolling release. <a href="/docs/arch" class="text-blue-400 hover:underline">Guia</a>.
 
 ## macOS
 
