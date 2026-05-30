@@ -34,6 +34,7 @@ CubicLauncher es un launcher **offline por naturaleza**: no se comunica con serv
 - **Servidores de Mojang**: Para descargar versiones del juego, obtener manifiestos y recursos necesarios para ejecutar Minecraft.
 - **Microsoft (OAuth2)**: Para la autenticación de cuentas. CubicLauncher nunca tiene acceso a tu contraseña; la identificación se realiza directamente en los servidores de Microsoft mediante el flujo oficial de OAuth2, el mismo estándar utilizado por el launcher oficial y launchers reconocidos como **Prism Launcher**.
 - **GitHub**: Para obtener actualizaciones del launcher.
+- **Modrinth**: Para el servicio del mod manager.
 
 No existe ninguna otra conexión a servidores externos.
 

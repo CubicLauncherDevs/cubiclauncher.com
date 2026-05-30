@@ -20,7 +20,7 @@ Puedes encontrar el texto completo de la licencia en el archivo [`LICENSE`](http
 ## Librerías Externas
 Este proyecto utiliza diversas librerías de código abierto para su funcionamiento. Estas librerías están sujetas a sus propias licencias, que incluyen:
 
-- Cubic Proton [[GitHub](https://github.com/CubicLauncher/Proton)] — **GNU General Public License v2.0 (GPL-2.0)**
-- Cubic CLaunch (claunch-rs) [[GitHub](https://github.com/CubicLauncher/claunch-rs/)] — **GNU General Public License v2.0 (GPL-2.0)**
+- Cubic Aqua [[GitHub](https://github.com/CubicLauncher/Aqua)] — **GNU General Public License v2.0 (GPL-2.0)**
+- Cubic Launchwerk [[GitHub](https://github.com/CubicLauncher/Launchwerk/)] — **GNU General Public License v2.0 (GPL-2.0)**
 - Tokio [[GitHub](https://github.com/tokio-rs/tokio)] — **MIT License**
 - Tauri [[GitHub](https://github.com/tauri-apps/tauri)] — **MIT / Apache 2.0**
