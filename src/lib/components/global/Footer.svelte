@@ -8,10 +8,10 @@
 >
   <!-- Subtle background glow -->
   <div
-    class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent"
+    class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-px bg-linear-to-r from-transparent via-white/20 to-transparent"
   ></div>
   <div
-    class="absolute -top-24 left-1/2 -translate-x-1/2 w-[800px] h-[200px] bg-white/[0.02] blur-[100px] rounded-full pointer-events-none"
+    class="absolute -top-24 left-1/2 -translate-x-1/2 w-200 h-50 bg-white/2 blur-[100px] rounded-full pointer-events-none"
   ></div>
 
   <div class="max-w-7xl mx-auto px-6 relative z-10">

@@ -10,6 +10,7 @@ Instalar CubicLauncher es un proceso sencillo. Sigue las instrucciones correspon
 
 Antes de instalar, asegúrate de tener instalado **Java** en tu sistema. Recomendamos las siguientes versiones:
 
+- **Java 25:** Para versiones de Minecraft 26.1 y superiores.
 - **Java 21:** Para versiones de Minecraft 1.21 y superiores.
 - **Java 17:** Para versiones de Minecraft 1.17 y superiores.
 - **Java 8:** Para versiones de Minecraft 1.16.5 e inferiores.
@@ -36,6 +37,7 @@ Ofrecemos soporte para múltiples formatos en Linux:
 - **RPM:** Descarga, otorga permisos de ejecución y abre.
 - **AppImage:** Descarga, otorga permisos de ejecución y abre.
 - **Debian/Ubuntu:** Instala el paquete `.deb` usando `sudo apt install ./cubiclauncher.deb`.
+- **ARCH APKGBUILD:** Compilar localmente es obligatorio. Los binarios generados por las CI de GitHub (Ubuntu) pueden no ser compatibles con Arch Linux debido a su modelo rolling release. <a href="/docs/arch" class="text-blue-400 hover:underline">Guia</a>.
 
 ## macOS
 

@@ -17,7 +17,8 @@
     linux: [
       { label: ".deb", url: "#" },
       { label: ".appimage", url: "#" },
-      { label: "x86_64.rpm", url: "#" }
+      { label: "x86_64.rpm", url: "#" },
+      { label: "Arch Pkgbuild", url: "/docs/arch" },
     ]
   };
 
@@ -61,6 +62,7 @@
       if (win.length > 0) releases.windows = win;
       if (mac.length > 0) releases.macos = mac;
       if (lin.length > 0) releases.linux = lin;
+      releases.linux.push({ label: "Arch PKGBUILD", url: "/docs/arch" });
     } catch (e) {
       console.error("Error fetching latest release:", e);
     }
@@ -93,7 +95,7 @@
         "AppImage universal para distribuciones Linux.",
       primaryDownload: "Descargar AppImage",
       primaryLink: "#",
-      secondaryDownload: "Ver en Flathub",
+      secondaryDownload: "",
       secondaryLink: "#",
       instructions: [
         "Descarga el archivo AppImage.",
@@ -133,17 +135,17 @@
 >
   <!-- Decorative background elements -->
   <div
-    class="absolute top-0 inset-x-0 h-[500px] bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none"
+    class="absolute top-0 inset-x-0 h-125 bg-linear-to-b from-white/3 to-transparent pointer-events-none"
   ></div>
   <div
-    class="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-white/[0.02] blur-[120px] rounded-full pointer-events-none"
+    class="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-white/2 blur-[120px] rounded-full pointer-events-none"
   ></div>
 
   <div class="container mx-auto px-6 relative z-10 max-w-5xl">
     <div class="text-center mb-20">
       <h1 class="text-5xl md:text-7xl font-bold tracking-tighter mb-6">
         Instalar <span
-          class="bg-gradient-to-r from-white to-neutral-500 bg-clip-text text-transparent"
+          class="bg-linear-to-r from-white to-neutral-500 bg-clip-text text-transparent"
           >CubicLauncher</span
         >
       </h1>
@@ -177,7 +179,7 @@
 
     <!-- Active OS Content -->
     <div
-      class="bg-neutral-900/50 border border-white/10 rounded-[2rem] p-8 md:p-12 backdrop-blur-xl shadow-2xl relative overflow-hidden group transition-all duration-500"
+      class="bg-neutral-900/50 border border-white/10 rounded-4xl p-8 md:p-12 backdrop-blur-xl shadow-2xl relative overflow-hidden group transition-all duration-500"
     >
       <div
         class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl transition-opacity duration-700"
@@ -264,7 +266,7 @@
             {#each activePlatform.instructions as instruction, i}
               <li class="flex gap-4 items-start group">
                 <span
-                  class="flex-shrink-0 w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-bold text-neutral-400 group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-300"
+                  class="shrink-0 w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-bold text-neutral-400 group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-300"
                 >
                   {i + 1}
                 </span>

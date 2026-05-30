@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from "$app/state";
-
+  
   const menuItems = [
     {
       title: "Comenzando",
@@ -26,6 +26,12 @@
       ],
     },
     {
+      title: "Guias",
+      items: [
+        { name: "Arch PKGBUILD", href: "/docs/arch" },
+      ],
+    },
+    {
       title: "Legal",
       items: [
         { name: "Privacidad", href: "/docs/privacy" },
@@ -44,7 +50,7 @@
 </script>
 
 <aside
-  class="w-full md:w-64 flex-shrink-0 md:sticky md:top-24 md:h-[calc(100vh-6rem)] overflow-y-auto pr-4 pb-12 scrollbar-hide"
+  class="w-full md:w-64 shrink-0 md:sticky md:top-24 md:h-[calc(100vh-6rem)] overflow-y-auto pr-4 pb-12 scrollbar-hide"
 >
   <nav class="flex flex-col gap-8">
     {#each menuItems as section}
