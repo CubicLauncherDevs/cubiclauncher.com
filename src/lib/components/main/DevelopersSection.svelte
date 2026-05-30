@@ -31,7 +31,18 @@
               />
             </div>
           </div>
-          <h3 class="text-xl font-bold tracking-tight mb-1">{dev.name}</h3>
+          <div class="flex items-center justify-center gap-1.5 mb-1">
+            {#if dev.flag}
+              <img
+                src="/flags/{dev.flag}.svg"
+                alt="{dev.flag}"
+                class="w-5 h-auto"
+              />
+            {/if}
+            <h3 class="text-xl font-bold tracking-tight">
+              {dev.name}
+            </h3>
+          </div>
           <p class="text-neutral-400 text-sm mb-6">{dev.role}</p>
           <a
             href="https://github.com/{dev.github}"
