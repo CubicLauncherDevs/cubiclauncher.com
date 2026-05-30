@@ -52,11 +52,11 @@
                 </a>
 
                 <nav class="hidden md:flex items-center gap-8">
-                    {#each ["Docs", "Blog"] as link}
+                    {#each [["Docs", "/docs"], ["Temas", "/themes"], ["Blog", "/blog"]] as [label, href]}
                         <a
-                            href="/{link.toLowerCase()}"
+                            href={href}
                             class="text-[10px] font-bold text-neutral-500 hover:text-white transition-colors uppercase tracking-[0.2em]"
-                            >{link}</a
+                            >{label}</a
                         >
                     {/each}
                     <a
@@ -142,11 +142,11 @@
                 >
             </a>
 
-            {#each ["Docs", "Blog"] as link}
+            {#each [["Docs", "/docs"], ["Temas", "/themes"], ["Blog", "/blog"]] as [label, href]}
                 <a
-                    href="/{link.toLowerCase()}"
+                    href={href}
                     class="text-xl font-bold text-neutral-400 hover:text-white transition-colors uppercase tracking-[0.2em]"
-                    on:click={toggleMobileMenu}>{link}</a
+                    on:click={toggleMobileMenu}>{label}</a
                 >
             {/each}
             <a

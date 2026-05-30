@@ -54,6 +54,13 @@
           </li>
           <li>
             <a
+              href="/themes"
+              class="text-sm text-neutral-400 hover:text-white transition-colors"
+              >Temas</a
+            >
+          </li>
+          <li>
+            <a
               href="/blog"
               class="text-sm text-neutral-400 hover:text-white transition-colors"
               >Blog</a
