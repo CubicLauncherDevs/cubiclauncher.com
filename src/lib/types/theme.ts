@@ -5,7 +5,6 @@ export interface Theme {
   previewUrl: string;
   zipUrl: string;
   zipName: string;
-  themeJsonUrl: string;
 }
 
 export interface ThemeJson {

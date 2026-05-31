@@ -1,5 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { page } from "$app/stores";
+  import { pushState } from "$app/navigation";
   import type { Theme } from "$lib/types/theme";
   import {
     fetchThemeTree,
@@ -13,8 +15,18 @@
   let loading = $state(true);
   let error = $state("");
   let hasCached = $state(false);
+  let filterAuthor = $state("");
+
+  let filteredThemes = $derived(
+    filterAuthor
+      ? themes.filter((t) => t.author === filterAuthor)
+      : themes
+  );
 
   onMount(async () => {
+    const urlAuthor = $page.url.searchParams.get("author");
+    if (urlAuthor) filterAuthor = urlAuthor;
+
     const cached = getCachedThemes();
     if (cached) {
       themes = cached;
@@ -44,6 +56,11 @@
       }
     }
   });
+
+  function clearFilter() {
+    filterAuthor = "";
+    pushState("", {});
+  }
 </script>
 
 <section class="min-h-screen pt-36 pb-32 bg-neutral-950 text-white">
@@ -61,6 +78,20 @@
         Explorá y descargá temas creados por la comunidad.
       </p>
     </div>
+
+    <!-- Author filter bar -->
+    {#if filterAuthor}
+      <div class="text-center mb-10">
+        <p class="text-sm text-neutral-400">
+          Mostrando temas de
+          <span class="text-white font-semibold">{filterAuthor}</span>
+          —
+          <button onclick={clearFilter} class="text-white underline underline-offset-4 decoration-white/20 hover:decoration-white/60 transition-all">
+            Ver todos
+          </button>
+        </p>
+      </div>
+    {/if}
 
     <!-- Content -->
     {#if error && themes.length === 0}
@@ -86,14 +117,14 @@
           </div>
         {/each}
       </div>
-    {:else if themes.length === 0 && !loading}
+    {:else if filteredThemes.length === 0 && !loading}
       <div class="text-center py-20">
         <p class="text-neutral-500">No hay temas disponibles todavía.</p>
       </div>
     {:else}
       <!-- Grid with staggered animation -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {#each themes as theme, i}
+        {#each filteredThemes as theme, i}
           <div
             class="card-enter"
             style="animation-delay: {i * 80}ms"

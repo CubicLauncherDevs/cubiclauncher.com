@@ -12,11 +12,6 @@ export function parseThemeDirName(dirName: string): { name: string; author: stri
   return { name: dirName.substring(0, idx), author: dirName.substring(idx + 1) };
 }
 
-export function isPreviewFile(name: string): boolean {
-  const lower = name.toLowerCase();
-  return /\.(png|jpg|jpeg|gif|webp)$/.test(lower) && !lower.endsWith(".zip");
-}
-
 export function rawUrl(path: string): string {
   const segments = path.split("/").map((s) => encodeURIComponent(s));
   return `${RAW_BASE}/${segments.join("/")}`;
@@ -31,10 +26,12 @@ export async function fetchThemeTree(): Promise<GitHubTreeItem[]> {
 
 export function buildThemesFromTree(tree: GitHubTreeItem[]): Theme[] {
   const themes: Theme[] = [];
-  const dirs = tree.filter((item) => item.type === "tree");
+  const themeDirs = tree.filter(
+    (item) => item.type === "tree" && item.path.startsWith("src/") && item.path.split("/").length === 3
+  );
   const files = tree.filter((item) => item.type === "blob");
 
-  for (const dir of dirs) {
+  for (const dir of themeDirs) {
     const prefix = dir.path + "/";
     const children = files.filter((f) => {
       if (!f.path.startsWith(prefix)) return false;
@@ -42,19 +39,25 @@ export function buildThemesFromTree(tree: GitHubTreeItem[]): Theme[] {
       return relative.length > 0 && !relative.includes("/");
     });
     const zip = children.find((f) => f.path.toLowerCase().endsWith(".zip"));
-    const preview = children.find((f) => isPreviewFile(f.path));
+    const preview = children.find((f) => {
+      const name = f.path.split("/").pop() || "";
+      return name.toLowerCase() === "showcase.png";
+    });
 
     if (!zip) continue;
 
-    const { name, author } = parseThemeDirName(dir.path);
+    const dirName = dir.path.split("/").pop() || "";
+    const { name, author } = parseThemeDirName(dirName);
+    const zipName = zip.path.split("/").pop() || "";
+    const id = zipName.replace(/\.zip$/i, "");
+
     themes.push({
-      id: dir.path,
+      id,
       name,
       author,
       previewUrl: preview ? rawUrl(preview.path) : "",
       zipUrl: rawUrl(zip.path),
-      zipName: zip.path.split("/").pop() || "",
-      themeJsonUrl: rawUrl(`${dir.path}/theme.json`),
+      zipName,
     });
   }
 

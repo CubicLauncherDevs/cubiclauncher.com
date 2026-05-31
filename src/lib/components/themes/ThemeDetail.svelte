@@ -1,13 +1,11 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import type { Theme, ThemeJson, ColorGroup } from "$lib/types/theme";
-  import { fetchThemeTree, buildThemesFromTree, getCachedThemes, setCachedThemes, categorizeVariables } from "$lib/utils/themes";
+  import type { Theme } from "$lib/types/theme";
+  import { fetchThemeTree, buildThemesFromTree, getCachedThemes, setCachedThemes } from "$lib/utils/themes";
 
   let { slug }: { slug: string } = $props();
 
   let theme = $state<Theme | null>(null);
-  let themeJson = $state<ThemeJson | null>(null);
-  let groups = $state<ColorGroup[]>([]);
   let loading = $state(true);
   let error = $state("");
 
@@ -41,25 +39,7 @@
     }
 
     theme = found;
-
-    try {
-      const res = await fetch(theme.themeJsonUrl);
-      if (res.ok) {
-        const json: ThemeJson = await res.json();
-        themeJson = json;
-        if (json.variables) {
-          groups = categorizeVariables(json.variables);
-        }
-      }
-    } catch {
-      // theme.json fetch failed, show partial info
-    } finally {
-      loading = false;
-    }
-  }
-
-  function isColorValue(value: string): boolean {
-    return /^(#|rgb|hsl|oklch)/.test(value.trim());
+    loading = false;
   }
 
   let showLightbox = $state(false);
@@ -120,7 +100,14 @@
           <!-- Preview -->
           <div class="lg:col-span-3">
             {#if theme.previewUrl}
-              <div class="rounded-2xl overflow-hidden border border-white/10 bg-neutral-900 cursor-pointer" onclick={() => (showLightbox = true)}>
+              <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
+              <div
+                class="rounded-2xl overflow-hidden border border-white/10 bg-neutral-900 cursor-pointer"
+                onclick={() => (showLightbox = true)}
+                onkeydown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); showLightbox = true; } }}
+                role="button"
+                tabindex="0"
+              >
                 <img
                   src={theme.previewUrl}
                   alt={theme.name}
@@ -140,41 +127,9 @@
           <!-- Info -->
           <div class="lg:col-span-2">
             <h1 class="text-4xl font-bold tracking-tighter mb-2">{theme.name}</h1>
-            <p class="text-lg text-neutral-400 mb-6">por {theme.author}</p>
-
-            {#if themeJson?.bg_image || themeJson?.bg_image_blur || themeJson?.bg_image_opacity}
-              <div class="bg-neutral-900/50 border border-white/5 rounded-xl p-4 mb-6 space-y-2">
-                <h4 class="text-[10px] font-bold text-neutral-500 uppercase tracking-[0.2em] mb-2">Fondo</h4>
-                {#if themeJson.bg_image}
-                  <div class="flex justify-between text-sm">
-                    <span class="text-neutral-400">Imagen</span>
-                    <span class="text-white font-mono text-xs">{themeJson.bg_image}</span>
-                  </div>
-                {/if}
-                {#if themeJson.bg_image_blur}
-                  <div class="flex justify-between text-sm">
-                    <span class="text-neutral-400">Blur</span>
-                    <span class="text-white font-mono text-xs">{themeJson.bg_image_blur}</span>
-                  </div>
-                {/if}
-                {#if themeJson.bg_image_opacity !== undefined}
-                  <div class="flex justify-between text-sm">
-                    <span class="text-neutral-400">Opacidad</span>
-                    <span class="text-white font-mono text-xs">{themeJson.bg_image_opacity}</span>
-                  </div>
-                {/if}
-              </div>
-            {/if}
-
-            {#if themeJson?.font}
-              <div class="bg-neutral-900/50 border border-white/5 rounded-xl p-4 mb-6">
-                <h4 class="text-[10px] font-bold text-neutral-500 uppercase tracking-[0.2em] mb-2">Tipografía</h4>
-                <div class="flex justify-between text-sm">
-                  <span class="text-neutral-400">Fuente</span>
-                  <span class="text-white font-mono text-xs">{themeJson.font}</span>
-                </div>
-              </div>
-            {/if}
+            <p class="text-lg text-neutral-400 mb-6">
+              por <a href="/themes?author={encodeURIComponent(theme.author)}" class="text-white hover:underline underline-offset-4 decoration-white/30 transition-all">{theme.author}</a>
+            </p>
 
             <a
               href={theme.zipUrl}
@@ -189,39 +144,6 @@
           </div>
         </div>
 
-        <!-- Color Palette -->
-        {#if groups.length > 0}
-          <div class="mt-16">
-            <h2 class="text-2xl font-bold tracking-tighter mb-8">Colores</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-              {#each groups as group}
-                <div class="bg-neutral-900/50 border border-white/5 rounded-xl p-5">
-                  <h3 class="text-[10px] font-bold text-neutral-500 uppercase tracking-[0.2em] mb-4">{group.label}</h3>
-                  <div class="space-y-2">
-                    {#each group.vars as v}
-                      <div class="flex items-center gap-3">
-                        {#if isColorValue(v.value)}
-                          <span
-                            class="w-6 h-6 rounded-lg border border-white/10 shrink-0"
-                            style="background: {v.value}"
-                          ></span>
-                        {:else}
-                          <span class="w-6 h-6 rounded-lg bg-neutral-800 shrink-0 flex items-center justify-center">
-                            <span class="text-[8px] text-neutral-500 font-mono">--</span>
-                          </span>
-                        {/if}
-                        <div class="flex-1 min-w-0">
-                          <p class="text-xs text-neutral-300 truncate">{v.key}</p>
-                          <p class="text-[10px] text-neutral-500 font-mono truncate">{v.value}</p>
-                        </div>
-                      </div>
-                    {/each}
-                  </div>
-                </div>
-              {/each}
-            </div>
-          </div>
-        {/if}
       </div>
     {/if}
   </div>
@@ -231,16 +153,16 @@
   <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
   <div
     class="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
-    onclick={closeLightbox}
+    onclick={(e) => { if (e.target === e.currentTarget) closeLightbox(); }}
+    role="dialog"
+    aria-modal="true"
+    tabindex="-1"
   >
-    <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
     <img
       src={theme.previewUrl}
       alt={theme.name}
-      onclick={(e) => e.stopPropagation()}
       class="max-w-full max-h-full w-auto h-auto object-contain rounded-xl shadow-2xl"
     />
-
   </div>
 {/if}
 
