@@ -8,7 +8,7 @@
 
 <a
   href="/themes/{theme.id}"
-  class="block bg-neutral-900 border border-white/10 rounded-xl overflow-hidden hover:border-white/20 transition-colors"
+  class="group block bg-neutral-900 border border-white/10 rounded-xl overflow-hidden hover:border-white/25 transition-all hover:bg-neutral-800/50"
 >
   <div class="aspect-[16/9] bg-neutral-800 relative overflow-hidden">
     {#if theme.previewUrl}
@@ -16,7 +16,7 @@
         src={theme.previewUrl}
         alt={theme.name}
         loading="lazy"
-        class="w-full h-full object-cover {imgLoaded ? 'opacity-100' : 'opacity-0'}"
+        class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 {imgLoaded ? 'opacity-100' : 'opacity-0'}"
         onload={() => (imgLoaded = true)}
       />
     {:else}
@@ -26,13 +26,14 @@
         </svg>
       </div>
     {/if}
+    <div class="absolute inset-0 bg-gradient-to-t from-neutral-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
   </div>
 
   <div class="p-4">
     <div class="flex items-start justify-between gap-2">
       <div class="min-w-0">
-        <h3 class="text-sm font-semibold text-white truncate">{theme.name}</h3>
-        <p class="text-xs text-neutral-500 truncate mt-0.5">{theme.author}</p>
+        <h3 class="text-sm font-semibold text-white truncate group-hover:text-white/90 transition-colors">{theme.name}</h3>
+        <p class="text-xs text-neutral-500 truncate mt-0.5 group-hover:text-neutral-400 transition-colors">{theme.author}</p>
       </div>
       <button
         onclick={(e) => {
@@ -43,7 +44,7 @@
           a.download = theme.zipName;
           a.click();
         }}
-        class="shrink-0 flex items-center justify-center w-7 h-7 bg-white/5 rounded-lg hover:bg-white/10 transition-colors cursor-pointer mt-0.5"
+        class="shrink-0 flex items-center justify-center w-7 h-7 bg-white/5 rounded-lg hover:bg-white/15 transition-colors cursor-pointer mt-0.5 opacity-0 group-hover:opacity-100 focus:opacity-100"
         title="Descargar {theme.name}"
       >
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3.5 h-3.5 text-neutral-400">

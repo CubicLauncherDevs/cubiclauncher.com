@@ -2,12 +2,20 @@
   import { onMount } from "svelte";
   import type { Theme } from "$lib/types/theme";
   import { fetchThemeTree, buildThemesFromTree, getCachedThemes, setCachedThemes } from "$lib/utils/themes";
+  import ThemeCard from "./ThemeCard.svelte";
 
   let { slug }: { slug: string } = $props();
 
   let theme = $state<Theme | null>(null);
+  let allThemes = $state<Theme[]>([]);
   let loading = $state(true);
   let error = $state("");
+
+  let relatedThemes = $derived.by(() => {
+    const current = theme;
+    if (!current) return [];
+    return allThemes.filter((t) => t.author === current.author && t.id !== current.id);
+  });
 
   onMount(async () => {
     await loadTheme();
@@ -31,6 +39,7 @@
       }
     }
 
+    allThemes = themes;
     const found = themes.find((t) => t.id === slug);
     if (!found) {
       error = "Tema no encontrado";
@@ -47,7 +56,6 @@
   function closeLightbox() {
     showLightbox = false;
   }
-
 </script>
 
 <section class="min-h-screen pt-40 pb-32 bg-neutral-950 text-white overflow-hidden relative">
@@ -144,6 +152,19 @@
           </div>
         </div>
 
+        <!-- Related themes -->
+        {#if relatedThemes.length > 0}
+          <div class="mt-20 pt-12 border-t border-white/5">
+            <h2 class="text-xl font-bold tracking-tighter mb-6">
+              Más temas de {theme.author}
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {#each relatedThemes.slice(0, 3) as related}
+                <ThemeCard theme={related} />
+              {/each}
+            </div>
+          </div>
+        {/if}
       </div>
     {/if}
   </div>
