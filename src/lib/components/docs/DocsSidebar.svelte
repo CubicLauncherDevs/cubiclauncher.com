@@ -15,7 +15,7 @@
         { name: "Gestión de Instancias", href: "/docs/instances" },
         { name: "Cuentas", href: "/docs/accounts" },
         { name: "Mods y Recursos", href: "/docs/mods" },
-        { name: "Temas", href: "/docs/themes" },
+        { name: "Cómo poner un theme", href: "/docs/instalar-tema" },
       ],
     },
     {
@@ -29,6 +29,7 @@
       title: "Guias",
       items: [
         { name: "Arch PKGBUILD", href: "/docs/arch" },
+        { name: "Cómo hacer themes", href: "/docs/hacer-themes" },
       ],
     },
     {

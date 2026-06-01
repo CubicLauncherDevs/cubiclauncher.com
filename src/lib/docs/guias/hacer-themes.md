@@ -1,24 +1,10 @@
 ---
-title: Temas | CubicLauncher
+title: Cómo hacer themes | CubicLauncher
 ---
 
-# Temas
+# Cómo hacer themes
 
 CubicLauncher te permite personalizar completamente la interfaz con temas. Cada tema define colores, fuentes, bordes y una imagen de fondo opcional.
-
-
-<div class="my-6 flex gap-3 rounded-lg border border-yellow-500 bg-yellow-500/5 p-4 text-yellow-500">
-	<div class="flex flex-col gap-1">
-		<span class="text-sm font-bold uppercase tracking-wider text-yellow-400">AVISO</span>
-		<div class="m-0 text-sm leading-relaxed text-neutral-400">
-			El schema <code>($schema)</code> referenciado en los ejemplos puede estar desactualizado. Revisá el repositorio oficial de 
-			<a href="https://github.com/CubicLauncher/Themes" class="text-yellow-400 underline" target="_blank" rel="noopener noreferrer">
-				CubicLauncher Themes
-			</a>
-			para la versión más reciente.
-		</div>
-	</div>
-</div>
 
 ## Estructura de un tema
 
@@ -40,12 +26,12 @@ El archivo `theme.json` sigue este esquema:
 
 ```jsonc
 {
-  "$schema": "https://raw.githubusercontent.com/CubicLauncher/Themes/refs/heads/main/theme-schema.json",
-  "name": "Theme1",
-  "author": "CubicLauncher",
+  "name": "Mi Tema",
+  "author": "TuNombre",
   "type": "user",
-  "font": "font",
   "bg_image": "bg.jpg",
+  "bg_image_blur": "10px",
+  "bg_image_opacity": 0.6,
   "variables": { /* ... */ }
 }
 ```
@@ -54,13 +40,13 @@ El archivo `theme.json` sigue este esquema:
 
 | Campo | Tipo | Descripción |
 |---|---|---|
-| `name` | `string` | Nombre visible del tema en el selector. |
-| `author` | `string` | Autor del tema. |
-| `type` | `string` | Siempre `"user"`. Los temas `builtin` vienen incluidos en el launcher. |
-| `font` | `string?` | Ruta a un archivo de fuente dentro de la carpeta del tema. |
+| `name` | `string` | **Requerido.** Nombre visible del tema en el selector. |
+| `author` | `string?` | Autor del tema. |
+| `type` | `string?` | Siempre `"user"`. Los temas `builtin` vienen incluidos en el launcher. |
 | `bg_image` | `string?` | Nombre del archivo de imagen de fondo (debe estar en la misma carpeta). |
+| `bg_image_blur` | `string?` | Desenfoque del fondo (ej: `"10px"`). |
+| `bg_image_opacity` | `number?` | Opacidad del fondo (0 a 1, ej: `0.6`). |
 | `variables` | `object` | Mapa de variables CSS que definen la apariencia. |
-
 
 ## Imagen de fondo
 
@@ -70,15 +56,12 @@ El campo `bg_image` referencia un archivo dentro de la carpeta del tema (ej: `bg
 - **No carga imágenes de más de 25 MB** por seguridad y eficiencia.
 - **Solo acepta formatos de imagen válidos** (PNG, JPG, GIF, WEBP, etc.).
 
-Las siguientes variables controlan cómo se muestra el fondo:
+Si el launcher no puede cargar la imagen (archivo corrupto, formato no válido, muy pesado), la ignora y no muestra fondo. Además de los campos anteriores, el launcher maneja internamente estas variables CSS para el fondo:
 
-| Variable | Ejemplo | Descripción |
-|---|---|---|
-| `--bg-image` | `none` | Se establece automáticamente al cargar la imagen. No la toques. |
-| `--bg-image-blur` | `10px` | Desenfoque del fondo. |
-| `--bg-image-opacity` | `0.6` | Opacidad del fondo (0 a 1). |
-
-Si el launcher no puede cargar la imagen (archivo corrupto, formato no válido, muy pesado), la ignora y no muestra fondo.
+| Variable | Descripción |
+|---|---|
+| `--bg-image` | Se establece automáticamente al cargar la imagen. |
+| `--bg-image-loaded` | Se setea a `0` mientras carga y `1` cuando está lista. |
 
 ## Variables CSS disponibles
 
@@ -151,56 +134,21 @@ Las variables en `theme.json` se aplican directamente como CSS custom properties
 | `--icon-filter` | Filtro CSS para iconos |
 | `--icon-filter-error` | Filtro para iconos de error |
 
-## Ejemplo completo
+## Publicar un theme
 
-Acá tenés un tema funcional, "Miku":
+Si querés compartir tu theme con la comunidad, mandate un PR al [repositorio oficial de Themes](https://github.com/CubicLauncher/Themes).
 
-```json
-{
-  "$schema": "https://raw.githubusercontent.com/CubicLauncher/Themes/refs/heads/main/theme-schema.json",
-  "name": "Azulito lindo xd",
-  "author": "CubicLauncher",
-  "type": "user",
-  "bg_image": "bg.jpg",
-  "variables": {
-    "--bg-main": "#0a0a0a",
-    "--bg-sidebar": "#0d0d0d",
-    "--bg-card": "#141414",
-    "--bg-item-active": "#1a1a1a",
-    "--bg-overlay": "rgba(0,0,0,0.75)",
-    "--bg-input": "#111111",
-    "--text-primary": "#d8e8f0",
-    "--text-secondary": "#6a8a9a",
-    "--text-muted": "#485a68",
-    "--border-color": "#1c2a38",
-    "--border-radius": "5px",
-    "--border-radius-sm": "2px",
-    "--accent": "#5ab8f5",
-    "--accent-rgb": "90,184,245",
-    "--accent-hover": "#3a9ad4",
-    "--accent-text": "#0a0a0a",
-    "--shadow-sm": "0 1px 3px rgba(0,0,0,0.5)",
-    "--shadow-md": "0 4px 12px rgba(0,0,0,0.6)",
-    "--glow-accent": "0 0 14px rgba(90,184,245,0.25)",
-    "--color-success": "#5fb86a",
-    "--color-success-rgb": "95,184,106",
-    "--color-error": "#e85a5a",
-    "--color-error-rgb": "232,90,90",
-    "--color-warning": "#e8a840",
-    "--color-warning-rgb": "232,168,64",
-    "--color-status-starting": "#39b8a5",
-    "--color-status-started": "#4ecdc4",
-    "--icon-filter": "invert(90%) sepia(10%) hue-rotate(180deg)",
-    "--icon-filter-error": "invert(40%) sepia(80%) saturate(5000%) hue-rotate(340deg) brightness(100%) contrast(100%)",
-    "--scrollbar-track": "#0a0a0a",
-    "--scrollbar-thumb": "#1c2a38",
-    "--font-family": "Cantarell, sans-serif",
-    "--font-size-base": "14px",
-    "--font-size-sm": "12px",
-    "--font-size-lg": "16px",
-    "--bg-image": "none",
-    "--bg-image-blur": "10px",
-    "--bg-image-opacity": "0.6"
-  }
-}
+La estructura del repo es:
+
 ```
+src/
+└── <tu-usuario>/
+    └── <nombre-del-theme>/
+        ├── showcase.png
+        └── Nombre:Autor.zip
+```
+
+- **`showcase.png`** — captura del launcher con tu theme aplicado para mostrarlo en la galería.
+- **`Nombre:Autor.zip`** — zip con el directorio del theme adentro, que contiene `theme.json` y opcionalmente `bg.EXTENSION`. El nombre del zip sigue la convención `Nombre:Autor.zip`.
+
+Formatos de imagen aceptados para el background: **PNG**, **GIF**, **WEBP**, **JPG**.

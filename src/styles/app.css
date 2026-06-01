@@ -46,6 +46,22 @@
   @apply bg-transparent p-0 text-neutral-300;
 }
 
+.prose table {
+  @apply w-full mb-8 border-collapse;
+}
+
+.prose th {
+  @apply text-left text-xs font-bold uppercase tracking-wider text-neutral-400 px-4 py-3 border-b border-white/10;
+}
+
+.prose td {
+  @apply px-4 py-3 text-sm text-neutral-400 border-b border-white/5;
+}
+
+.prose tbody tr:hover {
+  @apply bg-white/[0.02];
+}
+
 .prose blockquote {
   @apply border-l-2 border-white/10 pl-6 italic text-neutral-500 my-8;
 }
