@@ -61,14 +61,7 @@
           </li>
           <li>
             <a
-              href="/blog"
-              class="text-sm text-neutral-400 hover:text-white transition-colors"
-              >Blog</a
-            >
-          </li>
-          <li>
-            <a
-              href="/soporte"
+              href="/docs/soporte/"
               class="text-sm text-neutral-400 hover:text-white transition-colors"
               >Soporte</a
             >

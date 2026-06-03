@@ -28,6 +28,7 @@
     {
       title: "Guias",
       items: [
+        { name: "Soporte Oficial", href: "/docs/soporte"},
         { name: "Arch PKGBUILD", href: "/docs/arch" },
         { name: "Cómo hacer themes", href: "/docs/hacer-themes" },
       ],
