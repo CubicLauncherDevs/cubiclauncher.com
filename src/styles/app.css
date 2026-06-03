@@ -46,6 +46,194 @@
   @apply bg-transparent p-0 text-neutral-300;
 }
 
+/* Code blocks with language badge and copy button */
+.code-block {
+  @apply bg-neutral-900 border border-white/5 rounded-2xl mb-8 overflow-hidden;
+}
+
+.code-block pre {
+  @apply border-0 mb-0 rounded-none bg-transparent;
+}
+
+.code-block-header {
+  @apply flex items-center justify-between px-6 py-2 border-b border-white/5;
+}
+
+.code-block-lang {
+  @apply text-[11px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-md text-white;
+  background-color: #525252;
+}
+
+.code-block-header[data-lang="bash"] .code-block-lang,
+.code-block-header[data-lang="shell"] .code-block-lang {
+  background-color: #22c55e;
+}
+
+.code-block-header[data-lang="json"] .code-block-lang,
+.code-block-header[data-lang="jsonc"] .code-block-lang {
+  background-color: #3b82f6;
+}
+
+.code-block-header[data-lang="text"] .code-block-lang {
+  background-color: #525252;
+}
+
+.code-block-header[data-lang="html"] .code-block-lang,
+.code-block-header[data-lang="xml"] .code-block-lang,
+.code-block-header[data-lang="svg"] .code-block-lang {
+  background-color: #ea580c;
+}
+
+.code-block-header[data-lang="javascript"] .code-block-lang,
+.code-block-header[data-lang="js"] .code-block-lang,
+.code-block-header[data-lang="jsx"] .code-block-lang {
+  background-color: #ca8a04;
+}
+
+.code-block-header[data-lang="typescript"] .code-block-lang,
+.code-block-header[data-lang="ts"] .code-block-lang,
+.code-block-header[data-lang="tsx"] .code-block-lang {
+  background-color: #2563eb;
+}
+
+.code-block-header[data-lang="css"] .code-block-lang,
+.code-block-header[data-lang="scss"] .code-block-lang,
+.code-block-header[data-lang="less"] .code-block-lang {
+  background-color: #a855f7;
+}
+
+.code-block-header[data-lang="python"] .code-block-lang,
+.code-block-header[data-lang="py"] .code-block-lang {
+  background-color: #0891b2;
+}
+
+.code-block-header[data-lang="yaml"] .code-block-lang,
+.code-block-header[data-lang="yml"] .code-block-lang {
+  background-color: #db2777;
+}
+
+.code-block-header[data-lang="docker"] .code-block-lang,
+.code-block-header[data-lang="dockerfile"] .code-block-lang {
+  background-color: #1d4ed8;
+}
+
+.code-block-header[data-lang="go"] .code-block-lang {
+  background-color: #0d9488;
+}
+
+.code-block-header[data-lang="rust"] .code-block-lang,
+.code-block-header[data-lang="rs"] .code-block-lang {
+  background-color: #ea580c;
+}
+
+.code-block-header[data-lang="c"] .code-block-lang,
+.code-block-header[data-lang="cpp"] .code-block-lang {
+  background-color: #525252;
+}
+
+.code-block-header[data-lang="sql"] .code-block-lang {
+  background-color: #d97706;
+}
+
+.code-block-header[data-lang="diff"] .code-block-lang {
+  background-color: #65a30d;
+}
+
+.code-block-header[data-lang="ruby"] .code-block-lang,
+.code-block-header[data-lang="rb"] .code-block-lang {
+  background-color: #dc2626;
+}
+
+.code-block-header[data-lang="php"] .code-block-lang {
+  background-color: #7c3aed;
+}
+
+.code-block-header[data-lang="lua"] .code-block-lang {
+  background-color: #0369a1;
+}
+
+.code-block-header[data-lang="perl"] .code-block-lang {
+  background-color: #0284c7;
+}
+
+.code-block-copy {
+  @apply flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest text-neutral-500 hover:text-white transition-colors cursor-pointer bg-transparent border-0 p-0;
+}
+
+.code-block-copy svg {
+  @apply size-3.5;
+}
+
+/* Syntax highlighting for code blocks */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #6b7280;
+  font-style: italic;
+}
+
+.token.punctuation {
+  color: #9ca3af;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #f472b6;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #4ade80;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #fbbf24;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #c084fc;
+}
+
+.token.function,
+.token.class-name {
+  color: #60a5fa;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #fb923c;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
 .prose table {
   @apply w-full mb-8 border-collapse;
 }
