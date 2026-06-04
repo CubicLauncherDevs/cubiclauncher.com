@@ -37,6 +37,38 @@ makepkg -si
 ```
 
 
+## Actualizar a una nueva versión
+
+Cuando se publique una nueva versión de CubicLauncher, puedes actualizar el paquete compilado localmente sin necesidad de volver a descargar el `PKGBUILD` desde cero.
+
+Accede al directorio donde descargaste el `PKGBUILD`, edita el archivo y cambia el valor de `pkgver` por la nueva versión:
+
+```bash
+cd cubiclauncher-build
+nano PKGBUILD
+```
+
+Busca la línea `pkgver=` y actualízala. Luego actualiza los checksums automáticamente con `updpkgsums`:
+
+```bash
+updpkgsums
+```
+
+Finalmente, recompila e instala el paquete actualizado:
+
+```bash
+makepkg -si
+```
+
+<div class="my-6 flex gap-3 rounded-lg border border-yellow-500 bg-yellow-500/5 p-4 text-yellow-500">
+	<div class="flex flex-col gap-1">
+		<span class="text-sm font-bold uppercase tracking-wider text-yellow-400">NOTA</span>
+		<div class="m-0 text-sm leading-relaxed text-neutral-400">
+			El comando <code>updpkgsums</code> pertenece al paquete <code>pacman-contrib</code>. Si no lo tienes instalado, puedes obtenerlo con <code>sudo pacman -S pacman-contrib</code>.
+		</div>
+	</div>
+</div>
+
 ## Problemas comunes
 
 ### Error al descargar dependencias (404)
