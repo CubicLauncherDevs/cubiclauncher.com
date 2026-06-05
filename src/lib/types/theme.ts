@@ -5,6 +5,12 @@ export interface Theme {
   previewUrl: string;
   zipUrl: string;
   zipName: string;
+  dirPath?: string;
+}
+
+export interface ThemeCommitInfo {
+  date: string;
+  committer: string;
 }
 
 export interface ThemeJson {

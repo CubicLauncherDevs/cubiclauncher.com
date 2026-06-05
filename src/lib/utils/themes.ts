@@ -1,10 +1,11 @@
-import type { Theme, ColorGroup, GitHubTreeItem } from "$lib/types/theme";
+import type { Theme, ThemeCommitInfo, ColorGroup, GitHubTreeItem } from "$lib/types/theme";
 
 const GITHUB_OWNER = "CubicLauncher";
 const GITHUB_REPO = "Themes";
 const GITHUB_BRANCH = "main";
 const RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}`;
 const API_TREE_URL = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/git/trees/${GITHUB_BRANCH}?recursive=1`;
+const API_BASE = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}`;
 
 export function parseThemeDirName(dirName: string): { name: string; author: string } {
   const idx = dirName.lastIndexOf(":");
@@ -58,6 +59,7 @@ export function buildThemesFromTree(tree: GitHubTreeItem[]): Theme[] {
       previewUrl: preview ? rawUrl(preview.path) : "",
       zipUrl: rawUrl(zip.path),
       zipName,
+      dirPath: dir.path,
     });
   }
 
@@ -81,6 +83,24 @@ export function setCachedThemes(themes: Theme[]) {
     localStorage.setItem(CACHE_KEY, JSON.stringify(themes));
   } catch {
     /* empty */
+  }
+}
+
+export async function fetchThemeCommitInfo(dirPath: string): Promise<ThemeCommitInfo | null> {
+  try {
+    const encodedPath = dirPath.split("/").map((s) => encodeURIComponent(s)).join("/");
+    const url = `${API_BASE}/commits?sha=${GITHUB_BRANCH}&path=${encodedPath}&per_page=1`;
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (!Array.isArray(data) || data.length === 0) return null;
+    const c = data[0].commit;
+    return {
+      date: c.author?.date || c.committer?.date || "",
+      committer: c.author?.name || c.committer?.name || data[0].author?.login || data[0].committer?.login || "",
+    };
+  } catch {
+    return null;
   }
 }
 

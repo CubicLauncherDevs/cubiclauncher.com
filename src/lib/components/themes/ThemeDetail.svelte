@@ -1,7 +1,6 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import type { Theme } from "$lib/types/theme";
-  import { fetchThemeTree, buildThemesFromTree, getCachedThemes, setCachedThemes } from "$lib/utils/themes";
+  import type { Theme, ThemeCommitInfo } from "$lib/types/theme";
+  import { fetchThemeTree, buildThemesFromTree, getCachedThemes, setCachedThemes, fetchThemeCommitInfo } from "$lib/utils/themes";
   import ThemeCard from "./ThemeCard.svelte";
 
   let { slug }: { slug: string } = $props();
@@ -10,6 +9,9 @@
   let allThemes = $state<Theme[]>([]);
   let loading = $state(true);
   let error = $state("");
+  let commitInfo = $state<ThemeCommitInfo | null>(null);
+  let commitLoading = $state(false);
+  let showLightbox = $state(false);
 
   let relatedThemes = $derived.by(() => {
     const current = theme;
@@ -17,13 +19,15 @@
     return allThemes.filter((t) => t.author === current.author && t.id !== current.id);
   });
 
-  onMount(async () => {
-    await loadTheme();
+  $effect(() => {
+    const id = slug;
+    loadTheme(id);
   });
 
-  async function loadTheme() {
+  async function loadTheme(id: string) {
     loading = true;
     error = "";
+    commitInfo = null;
 
     let themes: Theme[] | null = getCachedThemes();
 
@@ -40,7 +44,7 @@
     }
 
     allThemes = themes;
-    const found = themes.find((t) => t.id === slug);
+    const found = themes.find((t) => t.id === id);
     if (!found) {
       error = "Tema no encontrado";
       loading = false;
@@ -49,13 +53,17 @@
 
     theme = found;
     loading = false;
+
+    if (found.dirPath) {
+      commitLoading = true;
+      fetchThemeCommitInfo(found.dirPath).then((info) => {
+        commitInfo = info;
+        commitLoading = false;
+      });
+    }
   }
 
-  let showLightbox = $state(false);
-
-  function closeLightbox() {
-    showLightbox = false;
-  }
+  let closeLightbox = () => { showLightbox = false; };
 </script>
 
 <section class="min-h-screen pt-40 pb-32 bg-neutral-950 text-white overflow-hidden relative">
@@ -138,6 +146,20 @@
             <p class="text-lg text-neutral-400 mb-6">
               por <a href="/themes?author={encodeURIComponent(theme.author)}" class="text-white hover:underline underline-offset-4 decoration-white/30 transition-all">{theme.author}</a>
             </p>
+
+            {#if commitLoading}
+              <div class="animate-pulse mb-6">
+                <div class="h-3 bg-neutral-800 rounded w-40"></div>
+              </div>
+            {:else if commitInfo}
+              <p class="text-xs text-neutral-500 mb-6">
+                Publicado el {new Date(commitInfo.date).toLocaleDateString("es-ES", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </p>
+            {/if}
 
             <a
               href={theme.zipUrl}
