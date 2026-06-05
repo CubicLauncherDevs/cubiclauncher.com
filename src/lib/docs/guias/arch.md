@@ -4,6 +4,8 @@ title: Instalación en Arch Linux | CubicLauncher
 
 # Arch Linux
 
+## Instalación
+
 En Arch Linux se recomienda compilar CubicLauncher localmente utilizando el `PKGBUILD` oficial. No es necesario clonar el repositorio completo ni instalar dependencias manualmente: el propio `PKGBUILD` descarga el código fuente y `makepkg` se encarga de resolver e instalar las dependencias necesarias.
 
 <div class="my-6 flex gap-3 rounded-lg border border-yellow-500 bg-yellow-500/5 p-4 text-yellow-500">
@@ -35,7 +37,6 @@ cd cubiclauncher-build
 wget https://raw.githubusercontent.com/CubicLauncher/CubicLauncher/main/dist/arch/PKGBUILD
 makepkg -si
 ```
-
 
 ## Actualizar a una nueva versión
 
@@ -69,6 +70,16 @@ makepkg -si
 	</div>
 </div>
 
+## La auto-actualización no funciona en Arch
+
+CubicLauncher incluye un mecanismo de auto-actualización integrado que descarga el binario más reciente desde GitHub Releases y reemplaza el ejecutable actual. En Arch Linux este mecanismo **no funciona** y no se puede solucionar, por las siguientes razones:
+
+1. **Permisos del sistema**: Al instalar mediante `makepkg -si`, el binario se copia a `/usr/bin/cubiclauncher` con permisos de **root** (`root:root`). El usuario normal no tiene permisos de escritura sobre `/usr/bin`, por lo que el auto-updater no puede sobrescribir el archivo.
+
+2. **Incompatibilidad de binarios**: Aunque se ejecutara el auto-updater como root, los binarios precompilados de GitHub Actions están vinculados contra las bibliotecas de Ubuntu, lo que puede generar fallos en Arch.
+
+3. **Filosofía de Arch**: En Arch Linux la forma correcta de actualizar cualquier programa es a través de `pacman`. Usar auto-actualizadores externos bypassa el gestor de paquetes, dejando el sistema en un estado inconsistente (pacman no sabrá que el binario fue reemplazado).
+
 ## Problemas comunes
 
 ### Error al descargar dependencias (404)
@@ -100,6 +111,7 @@ Una vez actualizado el sistema, vuelve a ejecutar:
 ```bash
 makepkg -si
 ```
+
 <div class="my-6 flex gap-3 rounded-lg border border-yellow-500 bg-yellow-500/5 p-4 text-yellow-500">
 	<div class="flex flex-col gap-1">
 		<span class="text-sm font-bold uppercase tracking-wider text-yellow-400">AVISO</span>
