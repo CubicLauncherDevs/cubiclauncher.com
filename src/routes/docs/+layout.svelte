@@ -9,6 +9,10 @@
   <title>{page.data.title || "Documentación | CubicLauncher"}</title>
 </svelte:head>
 
-<DocsLayout>
+<DocsLayout
+  docsIndex={page.data.docsIndex}
+  prev={page.data.prev}
+  next={page.data.next}
+>
   {@render children()}
 </DocsLayout>

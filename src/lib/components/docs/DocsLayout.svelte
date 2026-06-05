@@ -1,10 +1,35 @@
 <script lang="ts">
   import DocsSidebar from "./DocsSidebar.svelte";
+  import DocSearch from "./DocSearch.svelte";
+  import TableOfContents from "./TableOfContents.svelte";
   import { fade } from "svelte/transition";
   import { afterNavigate } from "$app/navigation";
   import { tick } from "svelte";
 
-  let { children } = $props();
+  interface DocIndexEntry {
+    title: string;
+    slug: string;
+    category: string;
+    content: string;
+  }
+
+  interface DocItem {
+    name: string;
+    slug: string;
+  }
+
+  let {
+    children,
+    docsIndex = [],
+    prev = null,
+    next = null,
+  }: {
+    children: any;
+    docsIndex: DocIndexEntry[];
+    prev: DocItem | null;
+    next: DocItem | null;
+  } = $props();
+
   let isMobileMenuOpen = $state(false);
   let listenerAdded = $state(false);
 
@@ -82,10 +107,15 @@
 
 <div class="pt-32 pb-24">
   <div class="container mx-auto px-6 max-w-7xl">
-    <div class="flex flex-col md:flex-row gap-12">
+    <div class="flex flex-col lg:flex-row gap-12">
       <!-- Desktop Sidebar -->
       <div class="hidden md:block w-64 shrink-0">
-        <DocsSidebar />
+        <div class="sticky top-24 flex flex-col max-h-[calc(100vh-6rem)]">
+          <DocSearch {docsIndex} />
+          <div class="mt-6 flex-1 overflow-y-auto pr-2 -mr-2 pb-4 scrollbar-hide">
+            <DocsSidebar />
+          </div>
+        </div>
       </div>
 
       <!-- Mobile Menu Button -->
@@ -148,12 +178,47 @@
         </div>
       {/if}
 
-      <!-- Main Content -->
-      <main class="flex-1 min-w-0">
-        <div class="prose prose-invert prose-neutral max-w-none">
-          {@render children()}
+      <!-- Content + TOC wrapper -->
+      <div class="flex-1 min-w-0 flex flex-col lg:flex-row gap-12">
+        <!-- Main Content -->
+        <main class="flex-1 min-w-0">
+          <div class="prose prose-invert prose-neutral max-w-none">
+            {@render children()}
+          </div>
+
+          {#if prev || next}
+            <div class="mt-16 pt-8 border-t border-white/10 flex justify-between items-start">
+              {#if prev}
+                <a
+                  href={prev.slug ? `/docs/${prev.slug}` : "/docs"}
+                  class="group flex flex-col gap-1 px-4 py-3 rounded-xl hover:bg-white/5 transition-colors"
+                >
+                  <span class="text-xs text-neutral-500">Anterior</span>
+                  <span class="text-sm text-white group-hover:text-neutral-200 transition-colors">{prev.name}</span>
+                </a>
+              {:else}
+                <div></div>
+              {/if}
+              {#if next}
+                <a
+                  href={next.slug ? `/docs/${next.slug}` : "/docs"}
+                  class="group flex flex-col gap-1 px-4 py-3 rounded-xl hover:bg-white/5 transition-colors text-right"
+                >
+                  <span class="text-xs text-neutral-500">Siguiente</span>
+                  <span class="text-sm text-white group-hover:text-neutral-200 transition-colors">{next.name}</span>
+                </a>
+              {:else}
+                <div></div>
+              {/if}
+            </div>
+          {/if}
+        </main>
+
+        <!-- Table of Contents (Desktop) -->
+        <div class="hidden lg:block w-56 shrink-0">
+          <TableOfContents />
         </div>
-      </main>
+      </div>
     </div>
   </div>
 </div>

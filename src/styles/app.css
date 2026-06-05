@@ -289,6 +289,15 @@
   }
 }
 
+/* Scrollbar hide */
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 /* Animations */
 @keyframes fall {
   0% {

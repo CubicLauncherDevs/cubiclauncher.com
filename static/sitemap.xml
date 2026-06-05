@@ -36,7 +36,12 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://cubiclauncher.com/docs/themes</loc>
+    <loc>https://cubiclauncher.com/docs/instalar-tema</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.com/docs/hacer-themes</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -47,6 +52,16 @@
   </url>
   <url>
     <loc>https://cubiclauncher.com/docs/debug</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.com/docs/soporte</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.com/docs/arch</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
