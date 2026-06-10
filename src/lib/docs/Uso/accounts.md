@@ -1,49 +1,45 @@
 ---
-title: Accounts | CubicLauncher
+title: Ya, pero como se usa?
 ---
 
-# Accounts
+# Como usar CubicLauncher?
 
-CubicLauncher ofrece dos métodos de inicio de sesión para adaptarse a diferentes necesidades de los jugadores.
+Muchas personas nos han dicho sobre como se usa nuestro launcher, lo que igual se entiende ya que tenemos una interfaz bastante unica. 
+Aca te mostraremos algunas cosas basicas mas a detalle que no estan en el tutorial.
 
-<div class="my-6 flex gap-3 rounded-lg border border-green-500/20 bg-green-500/5 p-4 text-green-400">
-	<div class="flex flex-col gap-1">
-		<span class="text-sm font-bold uppercase tracking-wider text-green-400">Nota</span>
-		<div class="m-0 text-sm leading-relaxed text-neutral-400">
-        Los servidores premium que requieren Cuenta Premium no permitirán el acceso con una cuenta Offline.
-		</div>
-	</div>
+
+## Como pongo un usuario?
+
+Configurar un usuario en CubicLauncher es super sencillo, solo tenes que seguir estos pasos:
+
+### Paso 1
+Clickea a la seccion de usuario en la barra lateral.
+
+<div class="my-4 flex justify-center">
+	<img src="/docs/howto/step1.png" alt="UI del launcher" class="rounded-lg border border-neutral-800 max-w-full" />
 </div>
 
-## Cuenta Offline (No Premium)
+### Paso 2
+Al darle click te saldra un modal donde puedes elegir si queres hacer una cuenta online o iniciar sesion con microsoft.
 
-La cuenta Offline permite acceder rápidamente al juego introduciendo únicamente un nombre de usuario.
-
-
-<div class="my-6 flex gap-3 rounded-lg border border-yellow-500/20 bg-yellow-500/5 p-4 text-yellow-400">
-	<div class="flex flex-col gap-1">
-		<span class="text-sm font-bold uppercase tracking-wider text-yellow-400">Aviso</span>
-		<div class="m-0 text-sm leading-relaxed text-neutral-400">
-        CubicLauncher no almacena ni gestiona contraseñas de Microsoft. La autenticación se realiza mediante el sistema OAuth 2.0 proporcionado por Microsoft.
-		</div>
-	</div>
+<div class="my-4 flex justify-center">
+	<img src="/docs/howto/step2.png" alt="easter egg xddd" class="rounded-lg border border-neutral-800 max-w-full" />
 </div>
 
-## Cuenta Microsoft (OAuth 2.0)
+### Paso 3
+Dependiendo de que elegiste sigue los pasos a continuacion en la pantalla.
 
-CubicLauncher utiliza la autenticación oficial de Microsoft mediante OAuth 2.0 para el acceso a cuentas premium de Minecraft.
-
-Para garantizar una experiencia de inicio de sesión de Minecraft, CubicLauncher utiliza el mismo Microsoft OAuth Client ID empleado por Prism Launcher durante el proceso de autenticación.
-
-<div class="my-6 flex gap-3 rounded-lg border border-red-500/20 bg-red-500/5 p-4 text-red-500">
-	<div class="flex flex-col gap-1">
-		<span class="text-sm font-bold uppercase tracking-wider text-red-400">Importante</span>
-		<div class="m-0 text-sm leading-relaxed text-neutral-400">
-        El uso de OAuth 2.0 indica que CubicLauncher utiliza el sistema de autenticación de Microsoft para iniciar sesión de forma segura.
-		</div>
-	</div>
+Si elegiste offline te saldra una entrada de texto donde podras escribir tu nombre de usuario.
+<div class="my-4 flex justify-center">
+	<img src="/docs/howto/step3.png" alt=">_<" class="rounded-lg border border-neutral-800 max-w-full" />
 </div>
 
-### ¿Qué es OAuth 2.0?
+Si elegiste inicio de sesion con microsoft te saldra el siguiente modal.
+<div class="my-4 flex justify-center">
+	<img src="/docs/howto/step4.png" alt="A launcher for launch them all." class="rounded-lg border border-neutral-800 max-w-full" />
+</div>
 
-OAuth 2.0 es un protocolo de autorización utilizado por Microsoft para permitir que aplicaciones de terceros accedan de forma segura a determinados servicios sin compartir la contraseña del usuario.
+> Que tengo que hacer?
+
+Copia el codigo que te sale en ese menu y entra al sitio de verificacion ```https://www.microsoft.com/link```.
+Ingresa el codigo que te dio el launcher y inicia sesion normalmente, al terminar el launcher ya estara con tu cuenta.

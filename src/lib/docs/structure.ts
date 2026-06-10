@@ -19,6 +19,8 @@ export const docsStructure: DocSection[] = [
   {
     title: "Uso",
     items: [
+      { name: "Ya, pero como se usa?", slug: "howto" },
+      { name: "Que es Java?", slug: "java" },
       { name: "Gestión de Instancias", slug: "instances" },
       { name: "Cuentas", slug: "accounts" },
       { name: "Mods y Recursos", slug: "mods" },
@@ -50,4 +52,4 @@ export const docsStructure: DocSection[] = [
   },
 ];
 
-export const flatDocs = docsStructure.flatMap(s => s.items);
+export const flatDocs = docsStructure.flatMap((s) => s.items);
