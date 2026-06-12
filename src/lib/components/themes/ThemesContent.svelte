@@ -287,7 +287,7 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {#each Array(6) as _}
               <div class="bg-neutral-900 border border-white/5 rounded-xl overflow-hidden animate-pulse">
-                <div class="aspect-[16/9] bg-neutral-800"></div>
+                <div class="aspect-video bg-neutral-800"></div>
                 <div class="p-4 space-y-2">
                   <div class="h-4 bg-neutral-800 rounded w-2/3"></div>
                   <div class="h-3 bg-neutral-800 rounded w-1/3"></div>
@@ -325,7 +325,7 @@
       <div class="mt-20 text-center">
         <p class="text-sm text-neutral-500">
           ¿Querés crear tu propio tema?
-          <a href="/docs/themes" class="text-white underline underline-offset-4 decoration-white/20 hover:decoration-white/60 transition-all">Seguí la guía</a>
+          <a href="/docs/hacer-themes" class="text-white underline underline-offset-4 decoration-white/20 hover:decoration-white/60 transition-all">Seguí la guía</a>
           y compartilo en
           <a href="https://github.com/CubicLauncher/Themes" target="_blank" rel="noopener noreferrer" class="text-white underline underline-offset-4 decoration-white/20 hover:decoration-white/60 transition-all">GitHub</a>.
         </p>
