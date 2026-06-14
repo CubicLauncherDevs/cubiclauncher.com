@@ -92,6 +92,8 @@
     "search": "Rechercher",
     "clearAll": "Tout effacer",
     "clearFilters": "Effacer les filtres",
+    "sortByDateNewest": "Plus récents",
+    "sortByDateOldest": "Plus anciens",
     "sortByNameAZ": "Nom A-Z",
     "sortByNameZA": "Nom Z-A",
     "sortByAuthorAZ": "Auteur A-Z",
@@ -115,7 +117,7 @@
     "viewAll": "Voir tous les thèmes",
     "allThemes": "Tous les thèmes",
     "by": "par",
-    "publishedOn": "Publié le {date}",
+    "publishedOn": "Publié le",
     "downloadZIP": "Télécharger ZIP",
     "moreBy": "Plus de thèmes par {author}",
     "notFound": "Thème non trouvé"

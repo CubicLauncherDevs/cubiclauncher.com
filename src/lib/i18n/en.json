@@ -92,6 +92,8 @@
     "search": "Search",
     "clearAll": "Clear all",
     "clearFilters": "Clear filters",
+    "sortByDateNewest": "Newest first",
+    "sortByDateOldest": "Oldest first",
     "sortByNameAZ": "Name A-Z",
     "sortByNameZA": "Name Z-A",
     "sortByAuthorAZ": "Author A-Z",
@@ -115,7 +117,7 @@
     "viewAll": "View all themes",
     "allThemes": "All themes",
     "by": "by",
-    "publishedOn": "Published on {date}",
+    "publishedOn": "Published on",
     "downloadZIP": "Download ZIP",
     "moreBy": "More themes by {author}",
     "notFound": "Theme not found"
@@ -123,7 +125,7 @@
   "docs": {
     "searchPlaceholder": "Search…",
     "searchLabel": "Search documentation",
-    "results": "{count} result | {count} results",
+    "results": "{count, plural, one {# result} other {# results}}",
     "noResults": "No results found for \"{query}\"",
     "mobileMenu": "Documentation Menu",
     "closeMenu": "Close menu",

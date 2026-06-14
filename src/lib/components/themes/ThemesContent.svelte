@@ -5,8 +5,7 @@
   import { t } from "$lib/i18n";
   import type { Theme } from "$lib/types/theme";
   import {
-    fetchThemeTree,
-    buildThemesFromTree,
+    fetchAllThemes,
     getCachedThemes,
     setCachedThemes,
   } from "$lib/utils/themes";
@@ -19,8 +18,8 @@
 
   let searchQuery = $state("");
   let selectedAuthor = $state("");
-  type SortOption = "name-asc" | "name-desc" | "author-asc" | "author-desc";
-  let sortBy = $state<SortOption>("name-asc");
+  type SortOption = "name-asc" | "name-desc" | "author-asc" | "author-desc" | "date-desc" | "date-asc";
+  let sortBy = $state<SortOption>("date-desc");
   let showMobileFilters = $state(false);
 
   let authors = $derived(
@@ -63,6 +62,22 @@
       case "author-desc":
         sorted.sort((a, b) => b.author.localeCompare(a.author) || a.name.localeCompare(b.name));
         break;
+      case "date-desc":
+        sorted.sort((a, b) => {
+          if (!a.date && !b.date) return a.name.localeCompare(b.name);
+          if (!a.date) return 1;
+          if (!b.date) return -1;
+          return b.date.localeCompare(a.date);
+        });
+        break;
+      case "date-asc":
+        sorted.sort((a, b) => {
+          if (!a.date && !b.date) return a.name.localeCompare(b.name);
+          if (!a.date) return 1;
+          if (!b.date) return -1;
+          return a.date.localeCompare(b.date);
+        });
+        break;
     }
 
     return sorted;
@@ -82,10 +97,8 @@
 
     if (!cached) {
       try {
-        const tree = await fetchThemeTree();
-        const result = buildThemesFromTree(tree);
-        themes = result;
-        setCachedThemes(result);
+        themes = await fetchAllThemes();
+        setCachedThemes(themes);
       } catch (e) {
         error = e instanceof Error ? e.message : "Error al cargar los temas";
       } finally {
@@ -94,10 +107,9 @@
     } else {
       loading = false;
       try {
-        const tree = await fetchThemeTree();
-        const result = buildThemesFromTree(tree);
-        themes = result;
-        setCachedThemes(result);
+        const fresh = await fetchAllThemes();
+        themes = fresh;
+        setCachedThemes(fresh);
       } catch {
         /* silent refresh */
       }
@@ -197,6 +209,8 @@
             bind:value={sortBy}
             class="appearance-none bg-neutral-900 border border-white/10 rounded-lg pl-3 pr-8 py-1.5 text-xs text-neutral-400 focus:outline-none focus:border-white/25 cursor-pointer transition-colors"
           >
+            <option value="date-desc">{$t('themes.sortByDateNewest')}</option>
+            <option value="date-asc">{$t('themes.sortByDateOldest')}</option>
             <option value="name-asc">{$t('themes.sortByNameAZ')}</option>
             <option value="name-desc">{$t('themes.sortByNameZA')}</option>
             <option value="author-asc">{$t('themes.sortByAuthorAZ')}</option>

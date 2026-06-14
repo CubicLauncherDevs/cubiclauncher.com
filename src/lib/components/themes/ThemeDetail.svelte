@@ -1,7 +1,7 @@
 <script lang="ts">
   import { t, locale } from "$lib/i18n";
   import type { Theme, ThemeCommitInfo } from "$lib/types/theme";
-  import { fetchThemeTree, buildThemesFromTree, getCachedThemes, setCachedThemes, fetchThemeCommitInfo } from "$lib/utils/themes";
+  import { fetchAllThemes, getCachedThemes, setCachedThemes, fetchThemeCommitInfo } from "$lib/utils/themes";
   import ThemeCard from "./ThemeCard.svelte";
 
   let { slug }: { slug: string } = $props();
@@ -34,8 +34,7 @@
 
     if (!themes) {
       try {
-        const tree = await fetchThemeTree();
-        themes = buildThemesFromTree(tree);
+        themes = await fetchAllThemes();
         setCachedThemes(themes);
       } catch (e) {
         error = e instanceof Error ? e.message : "Error loading theme";
@@ -55,7 +54,9 @@
     theme = found;
     loading = false;
 
-    if (found.dirPath) {
+    if (found.date) {
+      commitInfo = { date: found.date, committer: "" };
+    } else if (found.dirPath) {
       commitLoading = true;
       fetchThemeCommitInfo(found.dirPath).then((info) => {
         commitInfo = info;
@@ -65,7 +66,18 @@
   }
 
   let closeLightbox = () => { showLightbox = false; };
+
+  let docTitle = $derived(
+    theme ? `${theme.name} - CubicLauncher`
+      : slug ? `${slug.split(":").at(0)} - CubicLauncher`
+      : $t('page.themesTitle')
+  );
 </script>
+
+<svelte:head>
+  <title>{docTitle}</title>
+  <meta name="description" content={$t('page.themeDesc')} />
+</svelte:head>
 
 <section class="min-h-screen pt-40 pb-32 bg-neutral-950 text-white overflow-hidden relative">
   <div class="absolute top-0 inset-x-0 h-125 bg-linear-to-b from-white/3 to-transparent pointer-events-none"></div>

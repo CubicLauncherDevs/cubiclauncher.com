@@ -6,6 +6,7 @@ export interface Theme {
   zipUrl: string;
   zipName: string;
   dirPath?: string;
+  date?: string;
 }
 
 export interface ThemeCommitInfo {

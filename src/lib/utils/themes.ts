@@ -88,6 +88,30 @@ export function setCachedThemes(themes: Theme[]) {
   }
 }
 
+export async function fetchAllThemes(): Promise<Theme[]> {
+  const tree = await fetchThemeTree();
+  let themes = buildThemesFromTree(tree);
+
+  try {
+    const results = await Promise.allSettled(
+      themes.map((t) =>
+        t.dirPath ? fetchThemeCommitInfo(t.dirPath) : Promise.resolve(null)
+      )
+    );
+    themes = themes.map((t, i) => {
+      const info = results[i].status === "fulfilled" ? results[i].value : null;
+      if (info?.date) {
+        return { ...t, date: info.date };
+      }
+      return t;
+    });
+  } catch {
+    /* silent */
+  }
+
+  return themes;
+}
+
 export async function fetchThemeCommitInfo(dirPath: string): Promise<ThemeCommitInfo | null> {
   try {
     const encodedPath = dirPath.split("/").map((s) => encodeURIComponent(s)).join("/");
