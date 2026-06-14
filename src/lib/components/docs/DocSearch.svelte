@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
+  import { t } from "$lib/i18n";
 
   interface DocIndexEntry {
     title: string;
@@ -83,7 +84,7 @@
           highlightedCategory: highlightText(entry.category, terms),
         };
       })
-      .filter((e): e => e.score > 0)
+      .filter((e): e is typeof e & { highlightedTitle: string; highlightedCategory: string } => e.score > 0)
       .sort((a, b) => b.score - a.score)
       .slice(0, 10);
   });
@@ -150,13 +151,13 @@
     <input
       bind:this={inputEl}
       type="text"
-      placeholder="Buscar…"
-      bind:value={query}
-      oninput={onInput}
-      onkeydown={onKeydown}
-      onfocus={() => { if (query) isOpen = true; }}
-      onblur={onBlur}
-      aria-label="Buscar en documentación"
+       placeholder={$t('docs.searchPlaceholder')}
+       bind:value={query}
+       oninput={onInput}
+       onkeydown={onKeydown}
+       onfocus={() => { if (query) isOpen = true; }}
+       onblur={onBlur}
+       aria-label={$t('docs.searchLabel')}
       aria-autocomplete="list"
       aria-controls="search-results"
       class="w-full pl-10 pr-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-neutral-500 transition-colors"
@@ -169,7 +170,7 @@
   {#if isOpen && filtered.length > 0}
     <div id="search-results" role="listbox" class="absolute top-full left-0 right-0 mt-2 bg-neutral-900 border border-white/10 rounded-xl overflow-hidden shadow-2xl z-50">
       <div class="px-4 pt-2 pb-1 text-[10px] font-bold text-neutral-600 uppercase tracking-wider">
-        {filtered.length} resultado{filtered.length !== 1 ? 's' : ''}
+        {$t('docs.results', { count: filtered.length })}
       </div>
       {#each filtered as entry, i}
         <button
@@ -197,7 +198,7 @@
 
   {#if isOpen && query && filtered.length === 0}
     <div class="absolute top-full left-0 right-0 mt-2 bg-neutral-900 border border-white/10 rounded-xl p-4 shadow-2xl z-50">
-      <p class="text-sm text-neutral-400">No se encontraron resultados para "<span class="text-neutral-200">{query}</span>"</p>
+      <p class="text-sm text-neutral-400">{$t('docs.noResults', { query })}</p>
     </div>
   {/if}
 </div>

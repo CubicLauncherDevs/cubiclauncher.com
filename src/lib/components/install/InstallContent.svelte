@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { t } from "$lib/i18n";
 
   type Download = { label: string; url: string };
 
@@ -28,40 +29,27 @@
   const platforms = [
     {
       id: "windows",
-      name: "Windows",
+      nameKey: "install.platforms.windows",
       icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>`,
-      description: "Instalador recomendado para Windows 10 y 11.",
-      instructions: [
-        "Descarga el archivo instalador (.exe).",
-        "Ejecuta el archivo. Si Windows SmartScreen muestra una advertencia, haz clic en 'Más información' y luego en 'Ejecutar de todas formas'.",
-        "Sigue las instrucciones del instalador.",
-        "Inicia CubicLauncher desde el menú de inicio.",
-      ],
-      requirements: "Windows 10 64-bit o superior. Se recomienda 4GB de RAM mínimo.",
+      descKey: "install.platforms.windowsDesc",
+      reqKey: "install.platforms.windowsReq",
+      stepKeys: ["install.platforms.windowsStep1", "install.platforms.windowsStep2", "install.platforms.windowsStep3", "install.platforms.windowsStep4"],
     },
     {
       id: "linux",
-      name: "Linux",
+      nameKey: "install.platforms.linux",
       icon: `<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-7 h-7"><title>Linux</title><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071.771-.06 1.592-.536 2.257-1.306.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.357.357 0 00-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139zm.529 3.405h.013c.213 0 .396.062.584.198.19.135.33.332.438.533.105.259.158.459.166.724 0-.02.006-.04.006-.06v.105a.086.086 0 01-.004-.021l-.004-.024a1.807 1.807 0 01-.15.706.953.953 0 01-.213.335.71.71 0 00-.088-.042c-.104-.045-.198-.064-.284-.133a1.312 1.312 0 00-.22-.066c.05-.06.146-.133.183-.198.053-.128.082-.264.088-.402v-.02a1.21 1.21 0 00-.061-.4c-.045-.134-.101-.2-.183-.333-.084-.066-.167-.132-.267-.132h-.016c-.093 0-.176.03-.262.132a.8.8 0 00-.205.334 1.18 1.18 0 00-.09.4v.019c.002.089.008.179.02.267-.193-.067-.438-.135-.607-.202a1.635 1.635 0 01-.018-.2v-.02a1.772 1.772 0 01.15-.768c.082-.22.232-.406.43-.533a.985.985 0 01.594-.2zm-2.962.059h.036c.142 0 .27.048.399.135.146.129.264.288.344.465.09.199.14.4.153.667v.004c.007.134.006.2-.002.266v.08c-.03.007-.056.018-.083.024-.152.055-.274.135-.393.2.012-.09.013-.18.003-.267v-.015c-.012-.133-.04-.2-.082-.333a.613.613 0 00-.16.07c-.083.067-.1.133-.133.198l-.002.005c-.055.122-.09.254-.102.39-.004.088-.003.178.003.267-.14-.044-.3-.088-.448-.133-.025-.067-.045-.133-.064-.2a1.73 1.73 0 01-.064-.667c.018-.266.068-.535.164-.802.09-.267.223-.468.4-.668.173-.195.394-.323.64-.397a.93.93 0 01.298-.066z"/></svg>`,
-      description: "AppImage universal para distribuciones Linux.",
-      instructions: [
-        "Descarga el archivo AppImage.",
-        "Haz clic derecho en el archivo descargado, selecciona 'Propiedades', ve a la pestaña 'Permisos' y marca 'Permitir ejecutar el archivo como un programa'. Alternativamente, ejecuta chmod +x cubiclauncher.AppImage en la terminal.",
-        "Haz doble clic para ejecutar el launcher.",
-      ],
-      requirements: "Cualquier distribución Linux moderna de 64-bit.",
+      descKey: "install.platforms.linuxDesc",
+      reqKey: "install.platforms.linuxReq",
+      stepKeys: ["install.platforms.linuxStep1", "install.platforms.linuxStep2", "install.platforms.linuxStep3"],
     },
     {
       id: "macos",
-      name: "macOS",
+      nameKey: "install.platforms.macos",
       icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.62-1.496 3.6-2.978 1.128-1.625 1.59-3.21 1.62-3.303-.032-.014-3.1-1.187-3.136-4.733-.03-2.96 2.42-4.4 2.53-4.457-1.39-2.023-3.535-2.29-4.316-2.336-1.954-.153-3.83 1.196-4.83 1.196s-2.52-1.12-4.14-1.095zM15.54 3.82c.84-.99 1.408-2.366 1.254-3.737-1.173.045-2.62.77-3.486 1.76-.78.85-1.442 2.247-1.26 3.593 1.298.098 2.65-.688 3.492-1.616z"/></svg>`,
-      description: "Aplicación universal para Apple Silicon (M1/M2/M3) y procesadores Intel.",
-      instructions: [
-        "Descarga el archivo .dmg.",
-        "Abre el archivo y arrastra el ícono de CubicLauncher a la carpeta Aplicaciones.",
-        "La primera vez que lo abras, puede que macOS te impida ejecutarlo. Ve a Ajustes del Sistema > Privacidad y Seguridad y haz clic en 'Abrir de todos modos'.",
-      ],
-      requirements: "macOS 11.0 (Big Sur) o posterior.",
+      descKey: "install.platforms.macosDesc",
+      reqKey: "install.platforms.macosReq",
+      stepKeys: ["install.platforms.macosStep1", "install.platforms.macosStep2", "install.platforms.macosStep3"],
     },
   ];
 
@@ -136,15 +124,15 @@
     <!-- Header -->
     <div class="text-center mb-20">
       <h1 class="text-5xl md:text-7xl font-bold tracking-tighter mb-6">
-        Instalar
+        {$t('install.title')}
         <span
           class="bg-linear-to-r from-white to-neutral-500 bg-clip-text text-transparent"
         >
-          CubicLauncher
+          {$t('install.titleHighlight')}
         </span>
       </h1>
       <p class="text-xl text-neutral-400 font-light max-w-2xl mx-auto">
-        Elegí tu sistema operativo y descargá la última versión disponible.
+        {$t('install.subtitle')}
       </p>
     </div>
 
@@ -172,7 +160,7 @@
           >
             {@html platform.icon}
           </div>
-          <span class="relative z-10">{platform.name}</span>
+          <span class="relative z-10">{$t(platform.nameKey)}</span>
           {#if selectedOS === platform.id}
             <span
               class="absolute -top-2 -right-2 w-4 h-4 bg-white rounded-full flex items-center justify-center shadow-lg"
@@ -244,7 +232,7 @@
         </div>
         <p class="text-neutral-400 text-sm mb-2">{error}</p>
         <p class="text-neutral-600 text-xs mb-8">
-          Las descargas por defecto siguen disponibles
+          {$t('install.defaultDownloadsAvailable')}
         </p>
         <button
           onclick={() => {
@@ -254,7 +242,7 @@
           }}
           class="bg-white text-black px-8 py-3 text-[10px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all"
         >
-          Reintentar
+          {$t('install.retry')}
         </button>
       </div>
     {/if}
@@ -272,16 +260,16 @@
           <div>
             <div class="flex items-center gap-3 mb-1">
               <h2 class="text-3xl font-bold tracking-tight">
-                {activePlatform.name}
+                {$t(activePlatform.nameKey)}
               </h2>
               <span
                 class="px-2.5 py-0.5 rounded-full bg-white/10 text-[9px] font-bold uppercase tracking-[0.15em] text-white/70"
               >
-                Recomendado
+                {$t('install.recommended')}
               </span>
             </div>
             <p class="text-neutral-400 font-light leading-relaxed">
-              {activePlatform.description}
+              {$t(activePlatform.descKey)}
             </p>
           </div>
         </div>
@@ -324,7 +312,7 @@
                     <div
                       class="text-[10px] font-bold uppercase tracking-[0.2em] text-black/50 mb-0.5"
                     >
-                      Descargar
+                      {$t('install.download')}
                     </div>
                     <div class="text-xl font-bold tracking-tight">
                       {download.label}
@@ -382,9 +370,9 @@
                       {download.label}
                     </div>
                     <div
-                      class="text-[10px] text-neutral-600 uppercase tracking-[0.1em]"
+                      class="text-[10px] text-neutral-600 uppercase tracking-widest"
                     >
-                      Descargar
+                      {$t('install.download')}
                     </div>
                   </div>
                 </a>
@@ -410,10 +398,10 @@
                     d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25"
                   />
                 </svg>
-                Requisitos del sistema
+                {$t('install.systemRequirements')}
               </div>
               <p class="text-sm text-neutral-500 font-light leading-relaxed">
-                {activePlatform.requirements}
+                {$t(activePlatform.reqKey)}
               </p>
             </div>
           </div>
@@ -443,7 +431,7 @@
                 <h3
                   class="text-[11px] font-bold uppercase tracking-[0.2em] text-neutral-300"
                 >
-                  Instrucciones
+                  {$t('install.instructions')}
                 </h3>
               </div>
 
@@ -454,7 +442,7 @@
                 ></div>
 
                 <ul class="space-y-10">
-                  {#each activePlatform.instructions as instruction, i}
+                  {#each activePlatform.stepKeys as instruction, i}
                     <li class="relative pl-12 group">
                       <!-- Timeline dot -->
                       <div
@@ -465,7 +453,7 @@
                       <p
                         class="text-neutral-400 font-light leading-relaxed group-hover:text-neutral-200 transition-colors duration-400"
                       >
-                        {instruction}
+                        {$t(instruction)}
                       </p>
                     </li>
                   {/each}
@@ -481,7 +469,7 @@
             class="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-white/[0.02] border border-white/5"
           >
             <span class="text-sm text-neutral-500">
-              ¿Buscás otra versión o arquitectura?
+              {$t('install.lookingForOther')}
             </span>
             <a
               href="https://github.com/CubicLauncher/CubicLauncher/releases"
@@ -489,7 +477,7 @@
               rel="noopener noreferrer"
               class="text-sm text-white font-medium underline underline-offset-4 decoration-white/30 hover:decoration-white/60 transition-all"
             >
-              Ver todas las releases
+              {$t('install.viewAllReleases')}
             </a>
             <svg
               xmlns="http://www.w3.org/2000/svg"

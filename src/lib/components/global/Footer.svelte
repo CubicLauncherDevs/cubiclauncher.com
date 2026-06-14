@@ -1,5 +1,6 @@
 <script lang="ts">
   import Logo from "$lib/Logo.svelte";
+  import { t } from "$lib/i18n";
   const currentYear = new Date().getFullYear();
 </script>
 
@@ -32,38 +33,35 @@
           >
         </a>
         <p class="text-neutral-400 leading-relaxed max-w-sm font-light text-sm">
-          Alternativa moderna a los launchers tradicionales de Minecraft. Está
-          diseñado para ser ligero, rápido y accesible, permitiendo a cualquier
-          usuario ejecutar el juego sin comprometer el rendimiento, incluso en
-          equipos con recursos limitados.
+          {$t('footer.brand')}
         </p>
       </div>
 
       <!-- Links Column 2 -->
       <div class="flex flex-col gap-6">
         <h3 class="text-[10px] font-bold text-white uppercase tracking-[0.2em]">
-          Recursos
+          {$t('footer.resources')}
         </h3>
         <ul class="flex flex-col gap-4">
           <li>
             <a
               href="/docs"
               class="text-sm text-neutral-400 hover:text-white transition-colors"
-              >Documentación</a
+              >{$t('footer.documentation')}</a
             >
           </li>
           <li>
             <a
               href="/themes"
               class="text-sm text-neutral-400 hover:text-white transition-colors"
-              >Temas</a
+              >{$t('footer.themes')}</a
             >
           </li>
           <li>
             <a
               href="/docs/soporte/"
               class="text-sm text-neutral-400 hover:text-white transition-colors"
-              >Soporte</a
+              >{$t('footer.support')}</a
             >
           </li>
         </ul>
@@ -72,28 +70,28 @@
       <!-- Links Column 3 -->
       <div class="flex flex-col gap-6">
         <h3 class="text-[10px] font-bold text-white uppercase tracking-[0.2em]">
-          Legal
+          {$t('footer.legal')}
         </h3>
         <ul class="flex flex-col gap-4">
           <li>
             <a
               href="/docs/privacy"
               class="text-sm text-neutral-400 hover:text-white transition-colors"
-              >Privacidad</a
+              >{$t('footer.privacy')}</a
             >
           </li>
           <li>
             <a
               href="/docs/terms"
               class="text-sm text-neutral-400 hover:text-white transition-colors"
-              >Términos</a
+              >{$t('footer.terms')}</a
             >
           </li>
           <li>
             <a
               href="/docs/license"
               class="text-sm text-neutral-400 hover:text-white transition-colors"
-              >Licencias</a
+              >{$t('footer.license')}</a
             >
           </li>
         </ul>
@@ -105,8 +103,7 @@
       class="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/5 gap-4"
     >
       <p class="text-xs text-neutral-500">
-        &copy; {currentYear} CubicLauncher. Código abierto bajo licencia GPLv3. No
-        afiliado a Mojang AB.
+        {$t('footer.copyright', { year: currentYear })}
       </p>
 
       <div class="flex items-center gap-6">

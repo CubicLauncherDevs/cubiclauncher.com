@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import { page } from "$app/stores";
   import { pushState } from "$app/navigation";
+  import { t } from "$lib/i18n";
   import type { Theme } from "$lib/types/theme";
   import {
     fetchThemeTree,
@@ -124,15 +125,11 @@
   <div class="container mx-auto px-6 max-w-6xl">
     <!-- Header -->
     <div class="text-center mb-12">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[9px] font-bold uppercase tracking-[0.2em] text-neutral-500 mb-6">
-        <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
-        {loading ? "..." : themes.length} temas disponibles
-      </div>
       <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-4">
-        Personalizá tu launcher
+        {$t('themes.title')}
       </h1>
       <p class="text-base text-neutral-400 font-light max-w-lg mx-auto">
-        Explorá y descargá temas creados por la comunidad.
+        {$t('themes.description')}
       </p>
     </div>
 
@@ -145,14 +142,14 @@
         <input
           type="text"
           bind:value={searchQuery}
-          placeholder="Buscar por nombre o autor..."
+          placeholder={$t('themes.searchPlaceholder')}
           class="w-full bg-neutral-900 border border-white/10 rounded-full pl-12 pr-4 py-3.5 text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-white/25 focus:bg-neutral-800/80 transition-all"
         />
         {#if searchQuery}
           <button
             onclick={() => searchQuery = ""}
             class="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-white transition-colors"
-            aria-label="Limpiar búsqueda"
+            aria-label={$t('themes.clearSearch')}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -168,8 +165,8 @@
         {#if hasActiveFilters}
           {#if selectedAuthor}
             <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-xs text-white">
-              <span class="text-neutral-400">Autor:</span> {selectedAuthor}
-              <button onclick={() => selectAuthor("")} class="hover:text-white/60 transition-colors ml-0.5" aria-label="Quitar filtro de autor">
+              <span class="text-neutral-400">{$t('themes.author')}:</span> {selectedAuthor}
+              <button onclick={() => selectAuthor("")} class="hover:text-white/60 transition-colors ml-0.5" aria-label={$t('themes.removeAuthorFilter')}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3 h-3">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                 </svg>
@@ -178,8 +175,8 @@
           {/if}
           {#if searchQuery}
             <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-xs text-white">
-              <span class="text-neutral-400">Buscar:</span> "{searchQuery}"
-              <button onclick={() => searchQuery = ""} class="hover:text-white/60 transition-colors ml-0.5" aria-label="Borrar búsqueda">
+              <span class="text-neutral-400">{$t('themes.search')}:</span> "{searchQuery}"
+              <button onclick={() => searchQuery = ""} class="hover:text-white/60 transition-colors ml-0.5" aria-label={$t('themes.clearSearchText')}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3 h-3">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                 </svg>
@@ -187,7 +184,7 @@
             </span>
           {/if}
           <button onclick={clearFilters} class="text-xs text-neutral-500 hover:text-white underline underline-offset-4 decoration-white/20 transition-all">
-            Limpiar todo
+            {$t('themes.clearAll')}
           </button>
         {:else}
           <span class="text-xs text-neutral-600"></span>
@@ -195,16 +192,15 @@
       </div>
 
       <div class="flex items-center gap-4">
-        <span class="text-sm text-neutral-500 tabular-nums">{filteredThemes.length} resultado{filteredThemes.length !== 1 ? "s" : ""}</span>
         <div class="relative">
           <select
             bind:value={sortBy}
             class="appearance-none bg-neutral-900 border border-white/10 rounded-lg pl-3 pr-8 py-1.5 text-xs text-neutral-400 focus:outline-none focus:border-white/25 cursor-pointer transition-colors"
           >
-            <option value="name-asc">Nombre A-Z</option>
-            <option value="name-desc">Nombre Z-A</option>
-            <option value="author-asc">Autor A-Z</option>
-            <option value="author-desc">Autor Z-A</option>
+            <option value="name-asc">{$t('themes.sortByNameAZ')}</option>
+            <option value="name-desc">{$t('themes.sortByNameZA')}</option>
+            <option value="author-asc">{$t('themes.sortByAuthorAZ')}</option>
+            <option value="author-desc">{$t('themes.sortByAuthorDesc')}</option>
           </select>
           <svg class="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-neutral-500 pointer-events-none" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
@@ -217,7 +213,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
             <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
           </svg>
-          Filtros
+          {$t('themes.filters')}
         </button>
       </div>
     </div>
@@ -225,13 +221,13 @@
     <!-- Mobile author filter panel -->
     {#if showMobileFilters}
       <div class="md:hidden mb-8 p-4 rounded-xl bg-neutral-900/80 border border-white/10">
-        <h4 class="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-500 mb-3">Filtrar por autor</h4>
+        <h4 class="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-500 mb-3">{$t('themes.filterByAuthor')}</h4>
         <div class="flex flex-wrap gap-2">
           <button
             onclick={() => { selectAuthor(""); showMobileFilters = false; }}
             class="px-3 py-1.5 rounded-lg text-xs transition-colors {!selectedAuthor ? 'bg-white/15 text-white' : 'bg-white/5 text-neutral-400 hover:text-white'}"
           >
-            Todos
+            {$t('themes.all')}
           </button>
           {#each authors as author}
             <button
@@ -250,13 +246,13 @@
     <div class="flex gap-8">
       <!-- Sidebar (desktop) -->
       <aside class="hidden md:block w-48 shrink-0">
-        <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-500 mb-4">Autores</h3>
+        <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-500 mb-4">{$t('themes.authors')}</h3>
         <div class="space-y-0.5">
           <button
             onclick={() => selectAuthor("")}
             class="w-full flex items-center justify-between px-3 py-1.5 rounded-lg text-xs transition-colors {!selectedAuthor ? 'bg-white/10 text-white' : 'text-neutral-500 hover:text-white hover:bg-white/5'}"
           >
-            <span>Todos</span>
+            <span>{$t('themes.all')}</span>
             <span class="text-neutral-600">{themes.length}</span>
           </button>
           {#each authors as author}
@@ -280,7 +276,7 @@
               onclick={() => location.reload()}
               class="bg-white text-black px-6 py-2.5 text-[10px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all"
             >
-              Reintentar
+              {$t('themeDetail.retry')}
             </button>
           </div>
         {:else if loading && !hasCached}
@@ -297,14 +293,14 @@
           </div>
         {:else if filteredThemes.length === 0 && !loading}
           <div class="text-center py-20">
-            <p class="text-neutral-400 text-lg mb-2">No se encontraron temas</p>
-            <p class="text-sm text-neutral-600 mb-8">Intentá con otros términos de búsqueda o filtros</p>
+            <p class="text-neutral-400 text-lg mb-2">{$t('themes.noResults')}</p>
+            <p class="text-sm text-neutral-600 mb-8">{$t('themes.noResultsHint')}</p>
             {#if hasActiveFilters}
               <button
                 onclick={clearFilters}
                 class="bg-white text-black px-6 py-2.5 text-[10px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all"
               >
-                Limpiar filtros
+                {$t('themes.clearFilters')}
               </button>
             {/if}
           </div>
@@ -324,9 +320,9 @@
     {#if !loading || hasCached}
       <div class="mt-20 text-center">
         <p class="text-sm text-neutral-500">
-          ¿Querés crear tu propio tema?
-          <a href="/docs/hacer-themes" class="text-white underline underline-offset-4 decoration-white/20 hover:decoration-white/60 transition-all">Seguí la guía</a>
-          y compartilo en
+          {$t('themes.createYourOwn')}
+          <a href="/docs/hacer-themes" class="text-white underline underline-offset-4 decoration-white/20 hover:decoration-white/60 transition-all">{$t('themes.followGuide')}</a>
+          {$t('themes.shareOn')}
           <a href="https://github.com/CubicLauncher/Themes" target="_blank" rel="noopener noreferrer" class="text-white underline underline-offset-4 decoration-white/20 hover:decoration-white/60 transition-all">GitHub</a>.
         </p>
       </div>

@@ -1,12 +1,13 @@
 <script lang="ts">
+  import { t } from "$lib/i18n";
   import HomeContent from "$lib/components/main/HomeContent.svelte";
 </script>
 
 <svelte:head>
-  <title>Home | CubicLauncher</title>
+  <title>{$t('page.homeTitle')}</title>
   <meta
     name="description"
-    content="CubicLauncher es un launcher de Minecraft open source, ligero y personalizable."
+    content={$t('page.homeDesc')}
   />
 </svelte:head>
 

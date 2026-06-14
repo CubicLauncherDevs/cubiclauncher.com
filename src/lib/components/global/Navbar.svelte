@@ -1,7 +1,9 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import Logo from "$lib/Logo.svelte";
+    import LanguageSwitcher from "$lib/i18n/LanguageSwitcher.svelte";
     import { fade } from "svelte/transition";
+    import { t } from "$lib/i18n";
 
     let scrolled = false;
     let isMobileMenuOpen = false;
@@ -52,32 +54,35 @@
                 </a>
 
                 <nav class="hidden md:flex items-center gap-8">
-                    {#each [["Docs", "/docs"], ["Temas", "/themes"]] as [label, href]}
+                    {#each [["nav.docs", "/docs"], ["nav.themes", "/themes"]] as [labelKey, href]}
                         <a
                             href={href}
                             class="text-[10px] font-bold text-neutral-500 hover:text-white transition-colors uppercase tracking-[0.2em]"
-                            >{label}</a
+                            >{$t(labelKey)}</a
                         >
                     {/each}
                     <a
                         href="https://discord.com/invite/7VaqSrPukm"
                         class="text-[10px] font-bold text-neutral-500 hover:text-white transition-colors uppercase tracking-[0.2em]"
-                        >Discord</a
+                        >{$t('nav.discord')}</a
                     >
                 </nav>
             </div>
 
-            <div class="flex items-center gap-3 sm:gap-8 shrink-0">
+            <div class="flex items-center gap-3 sm:gap-6 shrink-0">
+                <div class="hidden sm:block">
+                  <LanguageSwitcher />
+                </div>
                 <button
                     class="hidden sm:block text-[10px] font-bold text-neutral-500 hover:text-white transition-colors uppercase tracking-[0.2em]"
                 >
-                    Donar
+                    {$t('nav.donate')}
                 </button>
                 <a
                     href="/install"
                     class="hidden sm:flex bg-white text-black px-6 py-2 sm:px-8 sm:py-3 text-[10px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all active:scale-95"
                 >
-                    Descargar
+                    {$t('nav.download')}
                 </a>
                 <button
                     class="md:hidden text-white p-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-colors focus:outline-none flex items-center justify-center"
@@ -142,24 +147,24 @@
                 >
             </a>
 
-            {#each [["Docs", "/docs"], ["Temas", "/themes"]] as [label, href]}
+            {#each [["nav.docs", "/docs"], ["nav.themes", "/themes"]] as [labelKey, href]}
                 <a
                     href={href}
                     class="text-xl font-bold text-neutral-400 hover:text-white transition-colors uppercase tracking-[0.2em]"
-                    on:click={toggleMobileMenu}>{label}</a
+                    on:click={toggleMobileMenu}>{$t(labelKey)}</a
                 >
             {/each}
             <a
                 href="https://discord.com/invite/7VaqSrPukm"
                 class="text-xl font-bold text-neutral-400 hover:text-white transition-colors uppercase tracking-[0.2em]"
-                on:click={toggleMobileMenu}>Discord</a
+                on:click={toggleMobileMenu}>{$t('nav.discord')}</a
             >
 
             <button
                 class="mt-4 text-xl font-bold text-neutral-400 hover:text-white transition-colors uppercase tracking-[0.2em]"
                 on:click={toggleMobileMenu}
             >
-                Donar
+                {$t('nav.donate')}
             </button>
 
             <a
@@ -167,8 +172,12 @@
                 class="mt-8 bg-white text-black px-10 py-3 text-sm font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all active:scale-95"
                 on:click={toggleMobileMenu}
             >
-                Descargar
+                {$t('nav.download')}
             </a>
+
+            <div class="mt-6">
+              <LanguageSwitcher />
+            </div>
         </nav>
     </div>
 {/if}

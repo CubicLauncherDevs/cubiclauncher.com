@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from "$app/state";
+  import { t } from "$lib/i18n";
   import { docsStructure } from "$lib/docs/structure";
 
   interface Props {
@@ -19,7 +20,7 @@
         <h3
           class="text-[10px] font-bold text-neutral-500 uppercase tracking-[0.2em] px-2"
         >
-          {section.title}
+          {$t(section.titleKey)}
         </h3>
         <div class="flex flex-col gap-1">
           {#each section.items as item}
@@ -31,7 +32,7 @@
                 ? 'bg-white/5 text-white font-medium'
                 : 'text-neutral-400 hover:text-white hover:bg-white/5'}"
             >
-              {item.name}
+              {$t(item.nameKey)}
             </a>
           {/each}
         </div>

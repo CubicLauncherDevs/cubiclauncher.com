@@ -1,5 +1,6 @@
 <script lang="ts">
   import { developers } from "$lib/data/developers";
+  import { t } from "$lib/i18n";
 </script>
 
 <section class="py-24">
@@ -8,10 +9,10 @@
       <h2
         class="text-4xl md:text-5xl font-black tracking-tighter mb-4 uppercase"
       >
-        Desarrolladores
+        {$t('developers.title')}
       </h2>
       <p class="text-neutral-400 max-w-xl mx-auto font-light">
-        Conoce al equipo detrás de CubicLauncher
+        {$t('developers.description')}
       </p>
     </div>
 
@@ -43,7 +44,7 @@
               {dev.name}
             </h3>
           </div>
-          <p class="text-neutral-400 text-sm mb-6">{dev.role}</p>
+          <p class="text-neutral-400 text-sm mb-6">{$t(dev.roleKey)}</p>
           <a
             href="https://github.com/{dev.github}"
             target="_blank"
@@ -62,7 +63,7 @@
                 clip-rule="evenodd"
               />
             </svg>
-            GitHub
+            {$t('developers.github')}
           </a>
         </div>
       {/each}

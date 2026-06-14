@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { t, locale } from "$lib/i18n";
   import type { Theme, ThemeCommitInfo } from "$lib/types/theme";
   import { fetchThemeTree, buildThemesFromTree, getCachedThemes, setCachedThemes, fetchThemeCommitInfo } from "$lib/utils/themes";
   import ThemeCard from "./ThemeCard.svelte";
@@ -37,7 +38,7 @@
         themes = buildThemesFromTree(tree);
         setCachedThemes(themes);
       } catch (e) {
-        error = e instanceof Error ? e.message : "Error al cargar el tema";
+        error = e instanceof Error ? e.message : "Error loading theme";
         loading = false;
         return;
       }
@@ -46,7 +47,7 @@
     allThemes = themes;
     const found = themes.find((t) => t.id === id);
     if (!found) {
-      error = "Tema no encontrado";
+      error = "Theme not found";
       loading = false;
       return;
     }
@@ -67,8 +68,8 @@
 </script>
 
 <section class="min-h-screen pt-40 pb-32 bg-neutral-950 text-white overflow-hidden relative">
-  <div class="absolute top-0 inset-x-0 h-[500px] bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none"></div>
-  <div class="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-white/[0.02] blur-[120px] rounded-full pointer-events-none"></div>
+  <div class="absolute top-0 inset-x-0 h-125 bg-linear-to-b from-white/3 to-transparent pointer-events-none"></div>
+  <div class="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-white/2 blur-[120px] rounded-full pointer-events-none"></div>
 
   <div class="container mx-auto px-6 relative z-10 max-w-6xl">
     {#if loading}
@@ -85,16 +86,16 @@
         <p class="text-neutral-400 text-lg mb-6">{error}</p>
         <div class="flex gap-4 justify-center">
           <button
-            onclick={loadTheme}
+            onclick={() => loadTheme(slug)}
             class="bg-white text-black px-8 py-3 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all active:scale-95"
           >
-            Reintentar
+            {$t('themeDetail.retry')}
           </button>
           <a
             href="/themes"
             class="px-8 py-3 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 transition-all"
           >
-            Ver todos los temas
+            {$t('themeDetail.viewAll')}
           </a>
         </div>
       </div>
@@ -108,7 +109,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
             <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
           </svg>
-          Todos los temas
+          {$t('themeDetail.allThemes')}
         </a>
 
         <!-- Main Content -->
@@ -144,7 +145,7 @@
           <div class="lg:col-span-2">
             <h1 class="text-4xl font-bold tracking-tighter mb-2">{theme.name}</h1>
             <p class="text-lg text-neutral-400 mb-6">
-              por <a href="/themes?author={encodeURIComponent(theme.author)}" class="text-white hover:underline underline-offset-4 decoration-white/30 transition-all">{theme.author}</a>
+              {$t('themeDetail.by')} <a href="/themes?author={encodeURIComponent(theme.author)}" class="text-white hover:underline underline-offset-4 decoration-white/30 transition-all">{theme.author}</a>
             </p>
 
             {#if commitLoading}
@@ -153,7 +154,7 @@
               </div>
             {:else if commitInfo}
               <p class="text-xs text-neutral-500 mb-6">
-                Publicado el {new Date(commitInfo.date).toLocaleDateString("es-ES", {
+                {$t('themeDetail.publishedOn')} {new Date(commitInfo.date).toLocaleDateString($locale === 'en' ? 'en-US' : 'es-ES', {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
@@ -169,7 +170,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
               </svg>
-              Descargar ZIP
+              {$t('themeDetail.downloadZIP')}
             </a>
           </div>
         </div>
@@ -178,7 +179,7 @@
         {#if relatedThemes.length > 0}
           <div class="mt-20 pt-12 border-t border-white/5">
             <h2 class="text-xl font-bold tracking-tighter mb-6">
-              Más temas de {theme.author}
+              {$t('themeDetail.moreBy', { author: theme.author })}
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {#each relatedThemes.slice(0, 3) as related}

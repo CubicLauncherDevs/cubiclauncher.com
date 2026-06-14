@@ -1,4 +1,6 @@
+import { get } from "svelte/store";
 import type { Theme, ThemeCommitInfo, ColorGroup, GitHubTreeItem } from "$lib/types/theme";
+import { t } from "$lib/i18n";
 
 const GITHUB_OWNER = "CubicLauncher";
 const GITHUB_REPO = "Themes";
@@ -9,7 +11,7 @@ const API_BASE = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}`;
 
 export function parseThemeDirName(dirName: string): { name: string; author: string } {
   const idx = dirName.lastIndexOf(":");
-  if (idx === -1) return { name: dirName, author: "Desconocido" };
+  if (idx === -1) return { name: dirName, author: get(t)('themesUtil.unknownAuthor') };
   return { name: dirName.substring(0, idx), author: dirName.substring(idx + 1) };
 }
 
@@ -20,7 +22,7 @@ export function rawUrl(path: string): string {
 
 export async function fetchThemeTree(): Promise<GitHubTreeItem[]> {
   const res = await fetch(API_TREE_URL);
-  if (!res.ok) throw new Error(`Error al obtener temas (${res.status})`);
+  if (!res.ok) throw new Error(get(t)('themesUtil.fetchError', { status: res.status }));
   const data = await res.json();
   return data.tree as GitHubTreeItem[];
 }
@@ -107,16 +109,17 @@ export async function fetchThemeCommitInfo(dirPath: string): Promise<ThemeCommit
 export function categorizeVariables(
   variables: Record<string, string>
 ): ColorGroup[] {
+  const $tFn = get(t);
   const groups: { label: string; prefixes: string[] }[] = [
-    { label: "Fondo", prefixes: ["--bg-"] },
-    { label: "Texto", prefixes: ["--text-"] },
-    { label: "Acento", prefixes: ["--accent"] },
-    { label: "Bordes y Sombras", prefixes: ["--border-", "--shadow-", "--glow-"] },
-    { label: "Estado", prefixes: ["--color-"] },
-    { label: "Scrollbar", prefixes: ["--scrollbar-"] },
-    { label: "Tipografía", prefixes: ["--font-", "--font-size-"] },
-    { label: "Iconos", prefixes: ["--icon-"] },
-    { label: "Transiciones", prefixes: ["--transition-"] },
+    { label: $tFn('themesUtil.groupBackground'), prefixes: ["--bg-"] },
+    { label: $tFn('themesUtil.groupText'), prefixes: ["--text-"] },
+    { label: $tFn('themesUtil.groupAccent'), prefixes: ["--accent"] },
+    { label: $tFn('themesUtil.groupBorders'), prefixes: ["--border-", "--shadow-", "--glow-"] },
+    { label: $tFn('themesUtil.groupState'), prefixes: ["--color-"] },
+    { label: $tFn('themesUtil.groupScrollbar'), prefixes: ["--scrollbar-"] },
+    { label: $tFn('themesUtil.groupTypography'), prefixes: ["--font-", "--font-size-"] },
+    { label: $tFn('themesUtil.groupIcons'), prefixes: ["--icon-"] },
+    { label: $tFn('themesUtil.groupTransitions'), prefixes: ["--transition-"] },
   ];
 
   const result: ColorGroup[] = [];
@@ -142,7 +145,7 @@ export function categorizeVariables(
     }
   }
   if (other.length > 0) {
-    result.push({ label: "Otras", vars: other });
+    result.push({ label: $tFn('themesUtil.groupOther'), vars: other });
   }
 
   return result;

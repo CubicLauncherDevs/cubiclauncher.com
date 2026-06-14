@@ -1,6 +1,7 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import Logo from "$lib/Logo.svelte";
+    import { t } from "$lib/i18n";
 
     let fallingLogos: {
         id: number;
@@ -81,9 +82,7 @@
         <p
             class="max-w-2xl text-lg md:text-xl text-neutral-400 leading-relaxed mb-12 font-light"
         >
-            Un launcher de Minecraft libre, de código abierto y centrado en el
-            rendimiento. Gestiona múltiples instancias, mods y con una
-            simplicidad radical.
+            {$t('hero.description')}
         </p>
 
         <div
@@ -93,7 +92,7 @@
                 href="/install"
                 class="w-full sm:w-auto bg-white text-black px-12 py-5 font-bold text-[11px] uppercase tracking-[0.2em] rounded-2xl hover:scale-105 transition-all shadow-xl shadow-white/5 text-center"
             >
-                Descargar Estable
+                {$t('hero.download')}
             </a>
             <a
                 href="https://github.com/CubicLauncher/CubicLauncher"
@@ -101,7 +100,7 @@
                 rel="noopener noreferrer"
                 class="w-full sm:w-auto px-12 py-5 border border-white/10 text-white font-bold text-[11px] uppercase tracking-[0.2em] rounded-2xl hover:bg-white/5 transition-all"
             >
-                Código Fuente
+                {$t('hero.sourceCode')}
             </a>
         </div>
     </div>

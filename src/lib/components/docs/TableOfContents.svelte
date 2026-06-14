@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { t } from "$lib/i18n";
   import { tick } from "svelte";
   import { afterNavigate } from "$app/navigation";
 
@@ -54,7 +55,7 @@
 {#if headings.length > 1}
   <nav class="sticky top-24">
     <h3 class="text-[10px] font-bold text-neutral-500 uppercase tracking-[0.2em] mb-4 px-3">
-      En esta página
+      {$t('docs.onThisPage')}
     </h3>
     <div class="flex flex-col gap-0.5">
       {#each headings as heading}

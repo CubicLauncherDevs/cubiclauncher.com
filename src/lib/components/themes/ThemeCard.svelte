@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { t } from "$lib/i18n";
   import type { Theme } from "$lib/types/theme";
 
   let { theme }: { theme: Theme } = $props();
@@ -10,7 +11,7 @@
   href="/themes/{theme.id}"
   class="group block bg-neutral-900 border border-white/10 rounded-xl overflow-hidden hover:border-white/25 transition-all hover:bg-neutral-800/50"
 >
-  <div class="aspect-[16/9] bg-neutral-800 relative overflow-hidden">
+  <div class="aspect-video bg-neutral-800 relative overflow-hidden">
     {#if theme.previewUrl}
       <img
         src={theme.previewUrl}
@@ -26,7 +27,7 @@
         </svg>
       </div>
     {/if}
-    <div class="absolute inset-0 bg-gradient-to-t from-neutral-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+    <div class="absolute inset-0 bg-linear-to-t from-neutral-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
   </div>
 
   <div class="p-4">
@@ -45,7 +46,7 @@
           a.click();
         }}
         class="shrink-0 flex items-center justify-center w-7 h-7 bg-white/5 rounded-lg hover:bg-white/15 transition-colors cursor-pointer mt-0.5 opacity-0 group-hover:opacity-100 focus:opacity-100"
-        title="Descargar {theme.name}"
+        title={theme.name}
       >
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3.5 h-3.5 text-neutral-400">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
