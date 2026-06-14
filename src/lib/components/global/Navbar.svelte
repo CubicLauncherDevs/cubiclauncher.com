@@ -73,11 +73,11 @@
                 <div class="hidden sm:block">
                   <LanguageSwitcher />
                 </div>
-                <button
-                    class="hidden sm:block text-[10px] font-bold text-neutral-500 hover:text-white transition-colors uppercase tracking-[0.2em]"
-                >
+                <a
+                    href="https://ko-fi.com/cubiclauncher"
+                    class="hidden sm:block text-[10px] font-bold text-neutral-500 hover:text-white transition-colors uppercase tracking-[0.2em]">
                     {$t('nav.donate')}
-                </button>
+            </a>
                 <a
                     href="/install"
                     class="hidden sm:flex bg-white text-black px-6 py-2 sm:px-8 sm:py-3 text-[10px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all active:scale-95"
