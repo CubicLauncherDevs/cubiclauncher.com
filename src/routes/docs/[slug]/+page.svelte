@@ -1,10 +1,15 @@
 <script lang="ts">
+	import { currentLocale } from "$lib/i18n";
 	let { data } = $props();
-	let Content = $derived(data.content);
+	let mod = $derived(data.localeContent[$currentLocale] || data.localeContent['es']);
+	let Content = $derived(mod?.default);
+	let title = $derived(mod?.metadata?.title || 'Documentación');
 </script>
 
 <svelte:head>
-	<title>{data.meta.title || 'Documentación'} | CubicLauncher</title>
+	<title>{title} | CubicLauncher</title>
 </svelte:head>
 
-<Content />
+{#if Content}
+	<Content />
+{/if}

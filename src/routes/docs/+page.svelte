@@ -1,11 +1,15 @@
 <script lang="ts">
-	import { t } from "$lib/i18n";
+	import { currentLocale, t } from "$lib/i18n";
 	let { data } = $props();
-	let Content = $derived(data.content);
+	let mod = $derived(data.localeContent[$currentLocale] || data.localeContent['es']);
+	let Content = $derived(mod?.default);
+	let title = $derived(mod?.metadata?.title || $t('page.docsTitle'));
 </script>
 
 <svelte:head>
-	<title>{data.meta.title || $t('page.docsTitle')}</title>
+	<title>{title}</title>
 </svelte:head>
 
-<Content />
+{#if Content}
+	<Content />
+{/if}

@@ -60,3 +60,79 @@ export const docsStructure: DocSection[] = [
 ];
 
 export const flatDocs = docsStructure.flatMap((s) => s.items);
+
+export const localeDocDirs: Record<string, string> = {
+  en: 'en-EN',
+  es: 'es-ES',
+  fr: 'fr-FR',
+};
+
+const slugToFileEn: Record<string, string> = {
+  '': 'Getting-Started/introduction',
+  install: 'Getting-Started/install',
+  howto: 'Usage/howto',
+  java: 'Usage/java',
+  instances: 'Usage/instances',
+  accounts: 'Usage/accounts',
+  mods: 'Usage/mods',
+  'instalar-tema': 'Usage/install-theme',
+  config: 'Advanced/config',
+  debug: 'Advanced/debug',
+  soporte: 'guides/support',
+  arch: 'guides/arch',
+  'hacer-themes': 'guides/making-themes',
+  privacy: 'Legal/privacy',
+  terms: 'Legal/terms',
+  license: 'Legal/license',
+};
+
+const slugToFileEs: Record<string, string> = {
+  '': 'Comenzando/introduction',
+  install: 'Comenzando/install',
+  howto: 'Uso/howto',
+  java: 'Uso/java',
+  instances: 'Uso/instances',
+  accounts: 'Uso/accounts',
+  mods: 'Uso/mods',
+  'instalar-tema': 'Uso/instalar-tema',
+  config: 'Avanzado/config',
+  debug: 'Avanzado/debug',
+  soporte: 'guias/soporte',
+  arch: 'guias/arch',
+  'hacer-themes': 'guias/hacer-themes',
+  privacy: 'Legal/privacy',
+  terms: 'Legal/terms',
+  license: 'Legal/license',
+};
+
+const slugToFileFr: Record<string, string> = {
+  '': 'Pour-commencer/introduction',
+  install: 'Pour-commencer/install',
+  howto: 'Utilisation/howto',
+  java: 'Utilisation/java',
+  instances: 'Utilisation/instances',
+  accounts: 'Utilisation/accounts',
+  mods: 'Utilisation/mods',
+  'instalar-tema': 'Utilisation/installer-theme',
+  config: 'Avance/config',
+  debug: 'Avance/debug',
+  soporte: 'guides/support',
+  arch: 'guides/arch',
+  'hacer-themes': 'guides/creer-themes',
+  privacy: 'Legal/privacy',
+  terms: 'Legal/terms',
+  license: 'Legal/license',
+};
+
+export const localeSlugMap: Record<string, Record<string, string>> = {
+  en: slugToFileEn,
+  es: slugToFileEs,
+  fr: slugToFileFr,
+};
+
+export function getDocPath(locale: string, slug: string): string {
+  const dir = localeDocDirs[locale] || 'es-ES';
+  const map = localeSlugMap[locale] || slugToFileEs;
+  const file = map[slug] || slug;
+  return `${dir}/${file}.md`;
+}
