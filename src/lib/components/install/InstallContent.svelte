@@ -66,7 +66,7 @@
     else selectedOS = "windows";
 
     try {
-      const res = await fetch("https://api.github.com/repos/CubicLauncher/CubicLauncher/releases/latest");
+      const res = await fetch("https://api.github.com/repos/CubicLauncherDevs/CubicLauncher/releases/latest");
       const data = await res.json();
 
       if (!data || !data.assets) throw new Error("No se pudieron obtener los assets");
