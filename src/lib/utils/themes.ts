@@ -2,9 +2,9 @@ import { get } from "svelte/store";
 import type { Theme, ThemeCommitInfo, ColorGroup, GitHubTreeItem } from "$lib/types/theme";
 import { t } from "$lib/i18n";
 
-const GITHUB_OWNER = "CubicLauncher";
+const GITHUB_OWNER = "CubicLauncherDevs";
 const GITHUB_REPO = "Themes";
-const GITHUB_BRANCH = "main";
+const GITHUB_BRANCH = "master";
 const RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}`;
 const API_TREE_URL = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/git/trees/${GITHUB_BRANCH}?recursive=1`;
 const API_BASE = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}`;

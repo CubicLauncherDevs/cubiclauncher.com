@@ -288,7 +288,7 @@
                   class="group relative flex items-center gap-6 w-full bg-white text-black px-8 py-6 rounded-[1.75rem] overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_0_50px_rgba(255,255,255,0.06)]"
                 >
                   <div
-                    class="absolute inset-0 bg-linear-to-r from-black/[0.02] to-transparent"
+                    class="absolute inset-0 bg-linear-to-r from-black/2 to-transparent"
                   ></div>
                   <div
                     class="w-14 h-14 rounded-2xl bg-black/5 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300"
@@ -343,7 +343,7 @@
                   href={download.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="group flex items-center gap-4 w-full px-6 py-4 mt-3 rounded-2xl border border-white/[0.06] text-white transition-all duration-300 hover:bg-white/[0.03] hover:border-white/20 hover:pl-8"
+                  class="group flex items-center gap-4 w-full px-6 py-4 mt-3 rounded-2xl border border-white/6 text-white transition-all duration-300 hover:bg-white/3 hover:border-white/20 hover:pl-8"
                 >
                   <div
                     class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-white/10 transition-colors"
@@ -380,7 +380,7 @@
             {/each}
 
             <!-- System Requirements -->
-            <div class="mt-10 pt-8 border-t border-white/[0.06]">
+            <div class="mt-10 pt-8 border-t border-white/6">
               <div
                 class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[9px] font-bold uppercase tracking-[0.2em] text-neutral-500 mb-4"
               >
@@ -438,7 +438,7 @@
               <div class="relative">
                 <!-- Timeline line -->
                 <div
-                  class="absolute left-[15px] top-2 bottom-2 w-px bg-white/[0.06]"
+                  class="absolute left-3.75 top-2 bottom-2 w-px bg-white/6"
                 ></div>
 
                 <ul class="space-y-10">
@@ -446,7 +446,7 @@
                     <li class="relative pl-12 group">
                       <!-- Timeline dot -->
                       <div
-                        class="absolute left-0 top-1 w-[30px] h-[30px] rounded-full bg-neutral-900 border border-white/10 flex items-center justify-center text-[11px] font-bold text-neutral-500 group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-400 z-10"
+                        class="absolute left-0 top-1 w-7.5 h-7.5 rounded-full bg-neutral-900 border border-white/10 flex items-center justify-center text-[11px] font-bold text-neutral-500 group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-400 z-10"
                       >
                         {i + 1}
                       </div>
@@ -466,13 +466,13 @@
         <!-- Footer -->
         <div class="mt-24 text-center">
           <div
-            class="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-white/[0.02] border border-white/5"
+            class="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-white/2 border border-white/5"
           >
             <span class="text-sm text-neutral-500">
               {$t('install.lookingForOther')}
             </span>
             <a
-              href="https://github.com/CubicLauncher/CubicLauncher/releases"
+              href="https://github.com/CubicLauncherDevs/CubicLauncher/releases"
               target="_blank"
               rel="noopener noreferrer"
               class="text-sm text-white font-medium underline underline-offset-4 decoration-white/30 hover:decoration-white/60 transition-all"
