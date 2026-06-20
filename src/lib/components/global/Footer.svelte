@@ -124,7 +124,7 @@
           </svg>
         </a>
         <a
-          href="https://github.com/CubicLauncher"
+          href="https://github.com/CubicLauncherDevs"
           class="text-neutral-500 hover:text-white transition-colors"
           aria-label="GitHub"
         >

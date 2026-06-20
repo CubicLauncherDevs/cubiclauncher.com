@@ -87,7 +87,7 @@
           </button>
         </a>
         <a
-          href="https://github.com/CubicLauncher/CubicLauncher"
+          href="https://github.com/CubicLauncherDevs/CubicLauncher"
           target="_blank"
           rel="noopener noreferrer"
           class="flex items-center gap-3 px-10 py-5 border border-black/10 text-black font-bold text-[11px] uppercase tracking-[0.3em] rounded-2xl hover:bg-black/5 transition-all"

@@ -95,7 +95,7 @@
                 {$t('hero.download')}
             </a>
             <a
-                href="https://github.com/CubicLauncher/CubicLauncher"
+                href="https://github.com/CubicLauncherDevs/CubicLauncher"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="w-full sm:w-auto px-12 py-5 border border-white/10 text-white font-bold text-[11px] uppercase tracking-[0.2em] rounded-2xl hover:bg-white/5 transition-all"

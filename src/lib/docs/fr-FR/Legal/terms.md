@@ -56,7 +56,7 @@ Ceci est conforme aux termes de la [GNU General Public License v3.0](https://www
 Vous pouvez utiliser, modifier et distribuer CubicLauncher librement, à condition que :
 
 - Vous conserviez les avis de copyright et de licence originaux.
-- Vous distribuiez le code source ou un lien accessible vers celui-ci (par exemple, le [dépôt officiel GitHub](https://github.com/CubicLauncher/CubicLauncher)).
+- Vous distribuiez le code source ou un lien accessible vers celui-ci (par exemple, le [dépôt officiel GitHub](https://github.com/CubicLauncherDevs/CubicLauncher)).
 - Vous redistribuiez sous la même licence **GPL-3.0**.
 
 Ceci s'applique à la fois au logiciel original et à toute version modifiée.

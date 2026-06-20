@@ -136,7 +136,7 @@ The variables in `theme.json` are applied directly as CSS custom properties. The
 
 ## Publishing a theme
 
-If you want to share your theme with the community, send a PR to the [official Themes repository](https://github.com/CubicLauncher/Themes).
+If you want to share your theme with the community, send a PR to the [official Themes repository](https://github.com/CubicLauncherDevs/Themes).
 
 The repo structure is:
 

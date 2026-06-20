@@ -8,7 +8,7 @@ Installer un thème dans CubicLauncher est très simple. Suivez ces 3 étapes.
 
 ## Étape 1 : Télécharger le thème
 
-Cherchez un thème dans la section [Thèmes](/themes) de la page ou dans le dépôt officiel [CubicLauncher Themes](https://github.com/CubicLauncher/Themes). Téléchargez-le en fichier ZIP.
+Cherchez un thème dans la section [Thèmes](/themes) de la page ou dans le dépôt officiel [CubicLauncher Themes](https://github.com/CubicLauncherDevs/Themes). Téléchargez-le en fichier ZIP.
 
 <div class="my-4 flex justify-center">
 	<img src="/docs/htat/step1.png" alt="Bouton de téléchargement" class="rounded-lg border border-neutral-800 max-w-full" />

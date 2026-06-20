@@ -40,7 +40,7 @@ Utiliza GitHub Issues para:
 
 ### Repositorio Oficial
 
-**Repositorio:** https://github.com/CubicLauncher/CubicLauncher
+**Repositorio:** https://github.com/CubicLauncherDevs/CubicLauncher
 
 Al crear un issue, intenta incluir:
 
