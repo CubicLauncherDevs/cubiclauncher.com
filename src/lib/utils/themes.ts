@@ -22,7 +22,7 @@ export function rawUrl(path: string): string {
 
 export async function fetchThemeTree(): Promise<GitHubTreeItem[]> {
   const res = await fetch(API_TREE_URL);
-  if (!res.ok) throw new Error(get(t)('themesUtil.fetchError', { status: res.status }));
+  if (!res.ok) throw new Error(get(t)('themesUtil.fetchError', { values: { status: res.status } }));
   const data = await res.json();
   return data.tree as GitHubTreeItem[];
 }

@@ -191,7 +191,7 @@
         {#if relatedThemes.length > 0}
           <div class="mt-20 pt-12 border-t border-white/5">
             <h2 class="text-xl font-bold tracking-tighter mb-6">
-              {$t('themeDetail.moreBy', { author: theme.author })}
+              {$t('themeDetail.moreBy', { values: { author: theme.author } })}
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {#each relatedThemes.slice(0, 3) as related}

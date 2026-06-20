@@ -5,6 +5,8 @@ import es from './es.json';
 import en from './en.json';
 import fr from './fr.json';
 
+type MessageFormatter = (id: string | { id: string; locale?: string; format?: string; default?: string; values?: Record<string, string | number | boolean | Date | null | undefined> }, options?: { locale?: string; format?: string; default?: string; values?: Record<string, string | number | boolean | Date | null | undefined> }) => string;
+
 addMessages('es', es);
 addMessages('en', en);
 addMessages('fr', fr);
@@ -14,7 +16,7 @@ init({
   initialLocale: browser ? 'es' : 'es',
 });
 
-export const t = svelteT as unknown as Readable<(id: string, options?: Record<string, unknown>) => string>;
+export const t = svelteT as Readable<MessageFormatter>;
 export { locale as currentLocale, locale };
 
 export function setLocale(localeCode: string) {

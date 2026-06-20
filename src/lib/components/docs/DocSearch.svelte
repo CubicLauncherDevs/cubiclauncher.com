@@ -170,7 +170,7 @@
   {#if isOpen && filtered.length > 0}
     <div id="search-results" role="listbox" class="absolute top-full left-0 right-0 mt-2 bg-neutral-900 border border-white/10 rounded-xl overflow-hidden shadow-2xl z-50">
       <div class="px-4 pt-2 pb-1 text-[10px] font-bold text-neutral-600 uppercase tracking-wider">
-        {$t('docs.results', { count: filtered.length })}
+        {$t('docs.results', { values: { count: filtered.length } })}
       </div>
       {#each filtered as entry, i}
         <button
@@ -198,7 +198,7 @@
 
   {#if isOpen && query && filtered.length === 0}
     <div class="absolute top-full left-0 right-0 mt-2 bg-neutral-900 border border-white/10 rounded-xl p-4 shadow-2xl z-50">
-      <p class="text-sm text-neutral-400">{$t('docs.noResults', { query })}</p>
+      <p class="text-sm text-neutral-400">{$t('docs.noResults', { values: { query } })}</p>
     </div>
   {/if}
 </div>

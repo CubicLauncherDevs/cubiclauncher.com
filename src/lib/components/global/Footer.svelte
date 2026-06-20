@@ -103,7 +103,7 @@
       class="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/5 gap-4"
     >
       <p class="text-xs text-neutral-500">
-        {$t('footer.copyright', { year: currentYear })}
+        {$t('footer.copyright', { values: { year: currentYear } })}
       </p>
 
       <div class="flex items-center gap-6">
