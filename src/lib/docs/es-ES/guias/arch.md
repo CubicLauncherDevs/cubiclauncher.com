@@ -34,7 +34,7 @@ En Arch Linux se recomienda compilar CubicLauncher localmente utilizando el `PKG
 mkdir cubiclauncher-build
 cd cubiclauncher-build
 
-wget https://raw.githubusercontent.com/CubicLauncher/CubicLauncher/main/dist/arch/PKGBUILD
+wget https://raw.githubusercontent.com/CubicLauncherDevs/CubicLauncher/main/dist/arch/PKGBUILD
 makepkg -si
 ```
 
