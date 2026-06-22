@@ -47,7 +47,9 @@
     "description": "Conoce al equipo detrás de CubicLauncher",
     "github": "GitHub",
     "role1": "Fundador & Desarrollador principal",
-    "role2": "Cofundador & Desarrollador principal"
+    "role2": "Cofundador & Desarrollador principal",
+    "role3": "Colaborador",
+    "role4": "Colaborador"
   },
   "install": {
     "title": "Instalar",

@@ -47,7 +47,9 @@
     "description": "Meet the team behind CubicLauncher",
     "github": "GitHub",
     "role1": "Founder & Lead Developer",
-    "role2": "Co-founder & Lead Developer"
+    "role2": "Co-founder & Lead Developer",
+    "role3": "Contributor",
+    "role4": "Contributor"
   },
   "install": {
     "title": "Install",

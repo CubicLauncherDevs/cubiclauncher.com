@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { developers } from "$lib/data/developers";
+  import { developers, contributors } from "$lib/data/developers";
   import { t } from "$lib/i18n";
 </script>
 
@@ -66,6 +66,36 @@
             {$t('developers.github')}
           </a>
         </div>
+      {/each}
+    </div>
+
+    <div class="text-center mt-16 mb-6">
+      <h3 class="text-2xl font-black tracking-tighter uppercase">
+        Contribuyentes
+      </h3>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-6">
+      {#each contributors as dev}
+        <a
+          href="https://github.com/{dev.github}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex flex-col items-center gap-2"
+        >
+          <div
+            class="w-14 h-14 rounded-full overflow-hidden ring-2 ring-white/10 group-hover:ring-white/30 group-hover:scale-110 transition-all duration-300"
+          >
+            <img
+              src="https://github.com/{dev.github}.png"
+              alt="{dev.name}"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <span class="text-xs text-neutral-500 group-hover:text-white transition-colors">
+            {dev.name}
+          </span>
+        </a>
       {/each}
     </div>
   </div>

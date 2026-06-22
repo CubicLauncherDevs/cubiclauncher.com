@@ -22,3 +22,18 @@ export const developers: Developer[] = [
     flag: "Nicaragua",
   },
 ];
+
+export const contributors: Developer[] = [
+  {
+    name: "4xnl",
+    role: "Colaborador",
+    roleKey: "developers.role3",
+    github: "4xnl",
+  },
+  {
+    name: "1vcbGH",
+    role: "Colaborador",
+    roleKey: "developers.role4",
+    github: "1vcbGH",
+  },
+];
