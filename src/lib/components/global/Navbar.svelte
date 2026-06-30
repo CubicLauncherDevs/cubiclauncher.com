@@ -54,7 +54,7 @@
                 </a>
 
                 <nav class="hidden md:flex items-center gap-8">
-                    {#each [["nav.docs", "/docs"], ["nav.themes", "/themes"]] as [labelKey, href]}
+                    {#each [["nav.docs", "https://dev.cubiclauncher.org/docs"], ["nav.themes", "/themes"]] as [labelKey, href]}
                         <a
                             href={href}
                             class="text-[10px] font-bold text-neutral-500 hover:text-white transition-colors uppercase tracking-[0.2em]"
@@ -147,7 +147,7 @@
                 >
             </a>
 
-            {#each [["nav.docs", "/docs"], ["nav.themes", "/themes"]] as [labelKey, href]}
+            {#each [["nav.docs", "https://dev.cubiclauncher.org/docs"], ["nav.themes", "/themes"]] as [labelKey, href]}
                 <a
                     href={href}
                     class="text-xl font-bold text-neutral-400 hover:text-white transition-colors uppercase tracking-[0.2em]"

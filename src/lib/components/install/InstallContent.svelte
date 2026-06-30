@@ -20,7 +20,7 @@
       { label: ".deb", url: "#" },
       { label: ".appimage", url: "#" },
       { label: "x86_64.rpm", url: "#" },
-      { label: "Arch PKGBUILD", url: "/docs/arch" },
+      { label: "Arch PKGBUILD", url: "https://dev.cubiclauncher.org/docs/es-ES/guias/arch" },
     ]
   });
   let loading = $state(true);
@@ -93,7 +93,7 @@
       if (win.length > 0) releases.windows = win;
       if (mac.length > 0) releases.macos = mac;
       if (lin.length > 0) releases.linux = lin;
-      releases.linux.push({ label: "Arch PKGBUILD", url: "/docs/arch" });
+      releases.linux.push({ label: "Arch PKGBUILD", url: "https://dev.cubiclauncher.org/docs/es-ES/guias/arch" });
     } catch (e) {
       error = e instanceof Error ? e.message : "Error al obtener la última versión";
       console.error("Error fetching latest release:", e);
@@ -140,7 +140,7 @@
     <div class="flex flex-wrap justify-center gap-4 mb-24">
       {#each platforms as platform}
         <button
-          class="relative flex flex-col items-center gap-3 px-10 py-6 rounded-[2rem] transition-all duration-500 font-bold text-[11px] uppercase tracking-[0.2em] border overflow-hidden group {selectedOS ===
+          class="relative flex flex-col items-center gap-3 px-10 py-6 rounded-4xl transition-all duration-500 font-bold text-[11px] uppercase tracking-[0.2em] border overflow-hidden group {selectedOS ===
           platform.id
             ? 'bg-white text-black border-white shadow-[0_0_60px_rgba(255,255,255,0.08)] scale-105'
             : 'bg-neutral-900/80 border-white/5 text-neutral-400 hover:bg-neutral-800 hover:text-white hover:border-white/20'}"

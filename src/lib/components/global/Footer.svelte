@@ -45,7 +45,7 @@
         <ul class="flex flex-col gap-4">
           <li>
             <a
-              href="/docs"
+              href="https://dev.cubiclauncher.org/docs"
               class="text-sm text-neutral-400 hover:text-white transition-colors"
               >{$t('footer.documentation')}</a
             >
@@ -59,7 +59,7 @@
           </li>
           <li>
             <a
-              href="/docs/soporte/"
+              href="https://dev.cubiclauncher.org/docs/es-ES/guias/soporte"
               class="text-sm text-neutral-400 hover:text-white transition-colors"
               >{$t('footer.support')}</a
             >
@@ -75,21 +75,21 @@
         <ul class="flex flex-col gap-4">
           <li>
             <a
-              href="/docs/privacy"
+              href="https://dev.cubiclauncher.org/docs/es-ES/Legal/privacy"
               class="text-sm text-neutral-400 hover:text-white transition-colors"
               >{$t('footer.privacy')}</a
             >
           </li>
           <li>
             <a
-              href="/docs/terms"
+              href="https://dev.cubiclauncher.org/docs/es-ES/Legal/terms"
               class="text-sm text-neutral-400 hover:text-white transition-colors"
               >{$t('footer.terms')}</a
             >
           </li>
           <li>
             <a
-              href="/docs/license"
+              href="https://dev.cubiclauncher.org/docs/es-ES/Legal/license"
               class="text-sm text-neutral-400 hover:text-white transition-colors"
               >{$t('footer.license')}</a
             >

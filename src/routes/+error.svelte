@@ -1,7 +1,6 @@
 <script lang="ts">
   import { page } from "$app/state";
   import { t } from "$lib/i18n";
-  import { docsStructure } from "$lib/docs/structure";
 </script>
 
 <svelte:head>
@@ -31,29 +30,11 @@
         {$t('error.backToHome')}
       </a>
       <a
-        href="/docs"
+        href="https://dev.cubiclauncher.org/docs"
         class="px-6 py-3 bg-white/5 border border-white/10 rounded-xl text-sm font-medium text-white hover:bg-white/10 transition-colors"
       >
         {$t('error.documentation')}
       </a>
-    </div>
-
-    <div class="mt-16">
-      <h3 class="text-sm font-bold text-neutral-500 uppercase tracking-widest mb-6">
-        {$t('error.docs')}
-      </h3>
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-left max-w-xl mx-auto">
-        {#each docsStructure as section}
-          {#each section.items as item}
-            <a
-              href={item.slug ? `/docs/${item.slug}` : "/docs"}
-              class="px-4 py-2.5 rounded-lg bg-white/5 border border-white/5 text-sm text-neutral-300 hover:text-white hover:bg-white/10 hover:border-white/10 transition-all"
-            >
-              {$t(item.nameKey)}
-            </a>
-          {/each}
-        {/each}
-      </div>
     </div>
   </div>
 </div>

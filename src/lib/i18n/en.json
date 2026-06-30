@@ -124,19 +124,6 @@
     "moreBy": "More themes by {author}",
     "notFound": "Theme not found"
   },
-  "docs": {
-    "searchPlaceholder": "Search…",
-    "searchLabel": "Search documentation",
-    "results": "{count, plural, one {# result} other {# results}}",
-    "noResults": "No results found for \"{query}\"",
-    "mobileMenu": "Documentation Menu",
-    "closeMenu": "Close menu",
-    "prev": "Previous",
-    "next": "Next",
-    "copy": "Copy",
-    "copied": "Copied!",
-    "onThisPage": "On this page"
-  },
   "error": {
     "notFoundTitle": "Page not found",
     "errorTitle": "Error",
@@ -154,8 +141,7 @@
     "themesTitle": "Themes - CubicLauncher",
     "themesDesc": "Explore and download community-created themes to customize CubicLauncher.",
     "themeTitle": "{name} - CubicLauncher",
-    "themeDesc": "Theme details for CubicLauncher.",
-    "docsTitle": "Documentation | CubicLauncher"
+    "themeDesc": "Theme details for CubicLauncher."
   },
   "themesUtil": {
     "unknownAuthor": "Unknown",
@@ -170,28 +156,5 @@
     "groupIcons": "Icons",
     "groupTransitions": "Transitions",
     "groupOther": "Other"
-  },
-  "docsStructure": {
-    "gettingStarted": "Getting Started",
-    "introduction": "Introduction",
-    "installation": "Installation",
-    "usage": "Usage",
-    "howto": "How do I use it?",
-    "whatIsJava": "What is Java?",
-    "instanceManagement": "Instance Management",
-    "accounts": "Accounts",
-    "modsAndResources": "Mods & Resources",
-    "howToInstallTheme": "How to install a theme",
-    "advanced": "Advanced",
-    "configuration": "Configuration",
-    "logsAndDebugging": "Logs & Debugging",
-    "guides": "Guides",
-    "officialSupport": "Official Support",
-    "archPKGBUILD": "Arch PKGBUILD",
-    "howToMakeThemes": "How to make themes",
-    "legal": "Legal",
-    "privacy": "Privacy",
-    "termsOfUse": "Terms of Use",
-    "license": "License"
   }
 }

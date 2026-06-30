@@ -124,19 +124,6 @@
     "moreBy": "Más temas de {author}",
     "notFound": "Tema no encontrado"
   },
-  "docs": {
-    "searchPlaceholder": "Buscar…",
-    "searchLabel": "Buscar en documentación",
-    "results": "{count, plural, one {# resultado} other {# resultados}}",
-    "noResults": "No se encontraron resultados para \"{query}\"",
-    "mobileMenu": "Menú de Documentación",
-    "closeMenu": "Cerrar menú",
-    "prev": "Anterior",
-    "next": "Siguiente",
-    "copy": "Copiar",
-    "copied": "¡Copiado!",
-    "onThisPage": "En esta página"
-  },
   "error": {
     "notFoundTitle": "Página no encontrada",
     "errorTitle": "Error",
@@ -154,8 +141,7 @@
     "themesTitle": "Temas - CubicLauncher",
     "themesDesc": "Explorá y descargá temas creados por la comunidad para personalizar CubicLauncher.",
     "themeTitle": "{name} - CubicLauncher",
-    "themeDesc": "Detalle del tema para CubicLauncher.",
-    "docsTitle": "Documentación | CubicLauncher"
+    "themeDesc": "Detalle del tema para CubicLauncher."
   },
   "themesUtil": {
     "unknownAuthor": "Desconocido",
@@ -170,28 +156,5 @@
     "groupIcons": "Iconos",
     "groupTransitions": "Transiciones",
     "groupOther": "Otras"
-  },
-  "docsStructure": {
-    "gettingStarted": "Comenzando",
-    "introduction": "Introducción",
-    "installation": "Instalación",
-    "usage": "Uso",
-    "howto": "¿Ya, pero cómo se usa?",
-    "whatIsJava": "¿Qué es Java?",
-    "instanceManagement": "Gestión de Instancias",
-    "accounts": "Cuentas",
-    "modsAndResources": "Mods y Recursos",
-    "howToInstallTheme": "Cómo poner un theme",
-    "advanced": "Avanzado",
-    "configuration": "Configuración",
-    "logsAndDebugging": "Logs y Debugging",
-    "guides": "Guias",
-    "officialSupport": "Soporte Oficial",
-    "archPKGBUILD": "Arch PKGBUILD",
-    "howToMakeThemes": "Cómo hacer themes",
-    "legal": "Legal",
-    "privacy": "Privacidad",
-    "termsOfUse": "Términos de Uso",
-    "license": "Licencia"
   }
 }

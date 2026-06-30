@@ -124,19 +124,6 @@
     "moreBy": "Plus de thèmes par {author}",
     "notFound": "Thème non trouvé"
   },
-  "docs": {
-    "searchPlaceholder": "Rechercher…",
-    "searchLabel": "Rechercher dans la documentation",
-    "results": "{count, plural, one {# résultat} other {# résultats}}",
-    "noResults": "Aucun résultat trouvé pour \"{query}\"",
-    "mobileMenu": "Menu de documentation",
-    "closeMenu": "Fermer le menu",
-    "prev": "Précédent",
-    "next": "Suivant",
-    "copy": "Copier",
-    "copied": "Copié !",
-    "onThisPage": "Sur cette page"
-  },
   "error": {
     "notFoundTitle": "Page non trouvée",
     "errorTitle": "Erreur",
@@ -154,8 +141,7 @@
     "themesTitle": "Thèmes - CubicLauncher",
     "themesDesc": "Explorez et téléchargez des thèmes créés par la communauté pour personnaliser CubicLauncher.",
     "themeTitle": "{name} - CubicLauncher",
-    "themeDesc": "Détail du thème pour CubicLauncher.",
-    "docsTitle": "Documentation | CubicLauncher"
+    "themeDesc": "Détail du thème pour CubicLauncher."
   },
   "themesUtil": {
     "unknownAuthor": "Inconnu",
@@ -170,28 +156,5 @@
     "groupIcons": "Icônes",
     "groupTransitions": "Transitions",
     "groupOther": "Autres"
-  },
-  "docsStructure": {
-    "gettingStarted": "Pour commencer",
-    "introduction": "Introduction",
-    "installation": "Installation",
-    "usage": "Utilisation",
-    "howto": "Comment l'utiliser ?",
-    "whatIsJava": "Qu'est-ce que Java ?",
-    "instanceManagement": "Gestion des instances",
-    "accounts": "Comptes",
-    "modsAndResources": "Mods et ressources",
-    "howToInstallTheme": "Comment installer un thème",
-    "advanced": "Avancé",
-    "configuration": "Configuration",
-    "logsAndDebugging": "Logs et débogage",
-    "guides": "Guides",
-    "officialSupport": "Support officiel",
-    "archPKGBUILD": "Arch PKGBUILD",
-    "howToMakeThemes": "Comment créer des thèmes",
-    "legal": "Juridique",
-    "privacy": "Confidentialité",
-    "termsOfUse": "Conditions d'utilisation",
-    "license": "Licence"
   }
 }
