@@ -335,7 +335,7 @@
       <div class="mt-20 text-center">
         <p class="text-sm text-neutral-500">
           {$t('themes.createYourOwn')}
-          <a href="https://dev.cubiclauncher.org/docs/hacer-themes" class="text-white underline underline-offset-4 decoration-white/20 hover:decoration-white/60 transition-all">{$t('themes.followGuide')}</a>
+          <a href="https://dev.cubiclauncher.org/docs/es-ES/guias/hacer-themes" class="text-white underline underline-offset-4 decoration-white/20 hover:decoration-white/60 transition-all">{$t('themes.followGuide')}</a>
           {$t('themes.shareOn')}
           <a href="https://github.com/CubicLauncherDevs/Themes" target="_blank" rel="noopener noreferrer" class="text-white underline underline-offset-4 decoration-white/20 hover:decoration-white/60 transition-all">GitHub</a>.
         </p>
