@@ -37,9 +37,9 @@ export const contributors: Developer[] = [
     github: "1vcbGH",
   },
   {
-    name: "pertompg-amen",
+    name: "mpg-perto",
     role: "Colaborador",
     roleKey: "developers.role5",
-    github: "pertompg-amen",
+    github: "mpg-perto",
   },
 ];
