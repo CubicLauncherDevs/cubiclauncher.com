@@ -123,7 +123,16 @@
     "publishedOn": "Publié le",
     "downloadZIP": "Télécharger ZIP",
     "moreBy": "Plus de thèmes par {author}",
-    "notFound": "Thème non trouvé"
+    "notFound": "Thème non trouvé",
+    "version": "Version",
+    "versions": "Versions",
+    "changelog": "Journal des modifications",
+    "latestVersion": "Dernière version",
+    "viewAllVersions": "Voir toutes les versions",
+    "backToTheme": "Retour au thème",
+    "description": "Description",
+    "noDescription": "Ce thème n'a pas de description.",
+    "noChangelog": "Cette version n'a pas de journal des modifications."
   },
   "error": {
     "notFoundTitle": "Page non trouvée",

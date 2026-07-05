@@ -1,34 +1,29 @@
 <script lang="ts">
+  import { page } from "$app/stores";
   import { t, locale } from "$lib/i18n";
-  import type { Theme, ThemeCommitInfo } from "$lib/types/theme";
-  import { fetchAllThemes, getCachedThemes, setCachedThemes, fetchThemeCommitInfo } from "$lib/utils/themes";
-  import ThemeCard from "./ThemeCard.svelte";
+  import type { Theme, ThemeVersion } from "$lib/types/theme";
+  import { fetchAllThemes, getCachedThemes, setCachedThemes } from "$lib/utils/themes";
+  import { renderMarkdown } from "$lib/utils/markdown";
 
-  let { slug }: { slug: string } = $props();
+  let slug = $derived($page.params.slug as string);
+  let version = $derived($page.params.version as string);
 
   let theme = $state<Theme | null>(null);
-  let allThemes = $state<Theme[]>([]);
+  let ver = $state<ThemeVersion | null>(null);
   let loading = $state(true);
   let error = $state("");
-  let commitInfo = $state<ThemeCommitInfo | null>(null);
-  let commitLoading = $state(false);
-  let showLightbox = $state(false);
 
-  let relatedThemes = $derived.by(() => {
-    const current = theme;
-    if (!current) return [];
-    return allThemes.filter((t) => t.author === current.author && t.id !== current.id);
-  });
+  let changelogHtml = $derived(
+    ver?.changelog ? renderMarkdown(ver.changelog) : ""
+  );
 
   $effect(() => {
-    const id = slug;
-    loadTheme(id);
+    loadVersion(slug, version);
   });
 
-  async function loadTheme(id: string) {
+  async function loadVersion(slugId: string, versionName: string) {
     loading = true;
     error = "";
-    commitInfo = null;
 
     let themes: Theme[] | null = getCachedThemes();
 
@@ -43,8 +38,7 @@
       }
     }
 
-    allThemes = themes;
-    const found = themes.find((t) => t.id === id);
+    const found = themes.find((t) => t.slug === slugId);
     if (!found) {
       error = "Theme not found";
       loading = false;
@@ -52,25 +46,19 @@
     }
 
     theme = found;
-    loading = false;
-
-    if (found.date) {
-      commitInfo = { date: found.date, committer: "" };
-    } else if (found.dirPath) {
-      commitLoading = true;
-      fetchThemeCommitInfo(found.dirPath).then((info) => {
-        commitInfo = info;
-        commitLoading = false;
-      });
+    const foundVer = found.versions.find((v) => v.version === versionName);
+    if (!foundVer) {
+      error = `Version ${versionName} not found`;
+      loading = false;
+      return;
     }
+
+    ver = foundVer;
+    loading = false;
   }
 
-  let closeLightbox = () => { showLightbox = false; };
-
   let docTitle = $derived(
-    theme ? `${theme.name} - CubicLauncher`
-      : slug ? `${slug.split(":").at(0)} - CubicLauncher`
-      : $t('page.themesTitle')
+    theme ? `${theme.name} ${version} - CubicLauncher` : "CubicLauncher"
   );
 </script>
 
@@ -98,7 +86,7 @@
         <p class="text-neutral-400 text-lg mb-6">{error}</p>
         <div class="flex gap-4 justify-center">
           <button
-            onclick={() => loadTheme(slug)}
+            onclick={() => loadVersion(slug, version)}
             class="bg-white text-black px-8 py-3 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all active:scale-95"
           >
             {$t('themeDetail.retry')}
@@ -111,35 +99,23 @@
           </a>
         </div>
       </div>
-    {:else if theme}
-      <div class="max-w-5xl mx-auto">
-        <!-- Breadcrumb -->
-        <a
-          href="/themes"
-          class="inline-flex items-center gap-2 text-sm text-neutral-500 hover:text-white transition-colors mb-8"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-          </svg>
-          {$t('themeDetail.allThemes')}
-        </a>
+    {:else if theme && ver}
+      <div class="max-w-4xl mx-auto">
+        <div class="flex items-center gap-2 text-sm text-neutral-500 mb-8">
+          <a href="/themes" class="hover:text-white transition-colors">{$t('themeDetail.allThemes')}</a>
+          <span>/</span>
+          <a href="/themes/{theme.slug}" class="hover:text-white transition-colors">{theme.name}</a>
+          <span>/</span>
+          <span class="text-white">{ver.version}</span>
+        </div>
 
-        <!-- Main Content -->
-        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
-          <!-- Preview -->
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 mb-10">
           <div class="lg:col-span-3">
-            {#if theme.previewUrl}
-              <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
-              <div
-                class="rounded-2xl overflow-hidden border border-white/10 bg-neutral-900 cursor-pointer"
-                onclick={() => (showLightbox = true)}
-                onkeydown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); showLightbox = true; } }}
-                role="button"
-                tabindex="0"
-              >
+            {#if ver.previewUrl}
+              <div class="rounded-2xl overflow-hidden border border-white/10 bg-neutral-900">
                 <img
-                  src={theme.previewUrl}
-                  alt={theme.name}
+                  src={ver.previewUrl}
+                  alt="{theme.name} {ver.version}"
                   loading="lazy"
                   class="w-full aspect-video object-cover"
                 />
@@ -153,20 +129,16 @@
             {/if}
           </div>
 
-          <!-- Info -->
           <div class="lg:col-span-2">
-            <h1 class="text-4xl font-bold tracking-tighter mb-2">{theme.name}</h1>
-            <p class="text-lg text-neutral-400 mb-6">
+            <h1 class="text-4xl font-bold tracking-tighter mb-1">{theme.name}</h1>
+            <p class="text-base text-neutral-400 mb-1">
               {$t('themeDetail.by')} <a href="/themes?author={encodeURIComponent(theme.author)}" class="text-white hover:underline underline-offset-4 decoration-white/30 transition-all">{theme.author}</a>
             </p>
+            <p class="text-sm text-neutral-500 mb-4">{$t('themeDetail.version')} {ver.version}</p>
 
-            {#if commitLoading}
-              <div class="animate-pulse mb-6">
-                <div class="h-3 bg-neutral-800 rounded w-40"></div>
-              </div>
-            {:else if commitInfo}
+            {#if ver.date}
               <p class="text-xs text-neutral-500 mb-6">
-                {$t('themeDetail.publishedOn')} {new Date(commitInfo.date).toLocaleDateString($locale === 'en' ? 'en-US' : 'es-ES', {
+                {$t('themeDetail.publishedOn')} {new Date(ver.date).toLocaleDateString($locale === 'en' ? 'en-US' : 'es-ES', {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
@@ -175,51 +147,50 @@
             {/if}
 
             <a
-              href={theme.zipUrl}
-              download={theme.zipName}
+              href={ver.zipUrl}
+              download={ver.zipName}
               class="flex items-center justify-center gap-3 w-full bg-white text-black px-8 py-4 font-bold text-[11px] uppercase tracking-[0.2em] rounded-2xl hover:bg-neutral-200 transition-all active:scale-95 shadow-xl shadow-white/5 mb-3"
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
               </svg>
-              {$t('themeDetail.downloadZIP')}
+              {$t('themeDetail.downloadZIP')} ({ver.version})
+            </a>
+
+            <div class="flex items-center gap-2 mt-4">
+              {#each theme.versions as v}
+                <a
+                  href="/themes/{theme.slug}/{v.version}"
+                  class="px-2.5 py-1 rounded-lg text-xs transition-colors {v.version === ver.version ? 'bg-white/15 text-white' : 'bg-white/5 text-neutral-400 hover:text-white hover:bg-white/10'}"
+                >
+                  {v.version}
+                </a>
+              {/each}
+            </div>
+
+            <a
+              href="/themes/{theme.slug}"
+              class="block text-center text-xs text-neutral-500 hover:text-white transition-colors mt-4"
+            >
+              {$t('themeDetail.backToTheme')}
             </a>
           </div>
         </div>
 
-        <!-- Related themes -->
-        {#if relatedThemes.length > 0}
-          <div class="mt-20 pt-12 border-t border-white/5">
-            <h2 class="text-xl font-bold tracking-tighter mb-6">
-              {$t('themeDetail.moreBy', { values: { author: theme.author } })}
-            </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {#each relatedThemes.slice(0, 3) as related}
-                <ThemeCard theme={related} />
-              {/each}
+        {#if changelogHtml}
+          <div class="mt-8 pt-8 border-t border-white/5">
+            <h2 class="text-lg font-bold tracking-tighter mb-4">{$t('themeDetail.changelog')} — {ver.version}</h2>
+            <div class="prose prose-invert prose-neutral max-w-none text-sm text-neutral-300">
+              {@html changelogHtml}
             </div>
+          </div>
+        {:else}
+          <div class="mt-8 pt-8 border-t border-white/5">
+            <h2 class="text-lg font-bold tracking-tighter mb-4">{$t('themeDetail.changelog')} — {ver.version}</h2>
+            <p class="text-sm text-neutral-500 italic">{$t('themeDetail.noChangelog')}</p>
           </div>
         {/if}
       </div>
     {/if}
   </div>
 </section>
-
-{#if showLightbox && theme?.previewUrl}
-  <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
-  <div
-    class="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
-    onclick={(e) => { if (e.target === e.currentTarget) closeLightbox(); }}
-    role="dialog"
-    aria-modal="true"
-    tabindex="-1"
-  >
-    <img
-      src={theme.previewUrl}
-      alt={theme.name}
-      class="max-w-full max-h-full w-auto h-auto object-contain rounded-xl shadow-2xl"
-    />
-  </div>
-{/if}
-
-<svelte:window onkeydown={(e) => e.key === "Escape" && showLightbox && closeLightbox()} />

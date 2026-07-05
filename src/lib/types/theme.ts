@@ -1,17 +1,26 @@
-export interface Theme {
-  id: string;
-  name: string;
-  author: string;
+export interface ThemeVersion {
+  version: string;
   previewUrl: string;
   zipUrl: string;
   zipName: string;
-  dirPath?: string;
+  dirPath: string;
   date?: string;
+  changelog?: string | null;
 }
 
-export interface ThemeCommitInfo {
-  date: string;
-  committer: string;
+export interface Theme {
+  id: string;
+  slug: string;
+  name: string;
+  author: string;
+  dirPath: string;
+  description?: string | null;
+  versions: ThemeVersion[];
+  latestVersion: string;
+  previewUrl: string;
+  zipUrl: string;
+  zipName: string;
+  date?: string;
 }
 
 export interface ThemeJson {
@@ -29,10 +38,4 @@ export interface ThemeJson {
 export interface ColorGroup {
   label: string;
   vars: { key: string; value: string }[];
-}
-
-export interface GitHubTreeItem {
-  path: string;
-  type: "blob" | "tree";
-  url: string;
 }

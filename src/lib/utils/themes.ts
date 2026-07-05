@@ -1,79 +1,37 @@
 import { get } from "svelte/store";
-import type { Theme, ThemeCommitInfo, ColorGroup, GitHubTreeItem } from "$lib/types/theme";
+import type { Theme, ColorGroup } from "$lib/types/theme";
 import { t } from "$lib/i18n";
 
-const GITHUB_OWNER = "CubicLauncherDevs";
+const GITHUB_OWNER = "cubiclauncherdevs";
 const GITHUB_REPO = "Themes";
 const GITHUB_BRANCH = "master";
 const RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}`;
-const API_TREE_URL = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/git/trees/${GITHUB_BRANCH}?recursive=1`;
-const API_BASE = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}`;
-
-export function parseThemeDirName(dirName: string): { name: string; author: string } {
-  const idx = dirName.lastIndexOf(":");
-  if (idx === -1) return { name: dirName, author: get(t)('themesUtil.unknownAuthor') };
-  return { name: dirName.substring(0, idx), author: dirName.substring(idx + 1) };
-}
+const THEMES_JSON_URL = `${RAW_BASE}/themes.json`;
 
 export function rawUrl(path: string): string {
   const segments = path.split("/").map((s) => encodeURIComponent(s));
   return `${RAW_BASE}/${segments.join("/")}`;
 }
 
-export async function fetchThemeTree(): Promise<GitHubTreeItem[]> {
-  const res = await fetch(API_TREE_URL);
+export async function fetchAllThemes(): Promise<Theme[]> {
+  const url = `${THEMES_JSON_URL}?_=${Date.now()}`;
+  const res = await fetch(url);
   if (!res.ok) throw new Error(get(t)('themesUtil.fetchError', { values: { status: res.status } }));
-  const data = await res.json();
-  return data.tree as GitHubTreeItem[];
+  return await res.json() as Theme[];
 }
 
-export function buildThemesFromTree(tree: GitHubTreeItem[]): Theme[] {
-  const themes: Theme[] = [];
-  const themeDirs = tree.filter(
-    (item) => item.type === "tree" && item.path.startsWith("src/") && item.path.split("/").length === 3
-  );
-  const files = tree.filter((item) => item.type === "blob");
-
-  for (const dir of themeDirs) {
-    const prefix = dir.path + "/";
-    const children = files.filter((f) => {
-      if (!f.path.startsWith(prefix)) return false;
-      const relative = f.path.substring(prefix.length);
-      return relative.length > 0 && !relative.includes("/");
-    });
-    const zip = children.find((f) => f.path.toLowerCase().endsWith(".zip"));
-    const preview = children.find((f) => {
-      const name = f.path.split("/").pop() || "";
-      return name.toLowerCase() === "showcase.png";
-    });
-
-    if (!zip) continue;
-
-    const dirName = dir.path.split("/").pop() || "";
-    const { name, author } = parseThemeDirName(dirName);
-    const zipName = zip.path.split("/").pop() || "";
-    const id = zipName.replace(/\.zip$/i, "");
-
-    themes.push({
-      id,
-      name,
-      author,
-      previewUrl: preview ? rawUrl(preview.path) : "",
-      zipUrl: rawUrl(zip.path),
-      zipName,
-      dirPath: dir.path,
-    });
-  }
-
-  return themes;
-}
-
-const CACHE_KEY = "cubiclauncher-themes";
+const CACHE_VERSION = 2;
+const CACHE_KEY = `cubiclauncher-themes-v${CACHE_VERSION}`;
 
 export function getCachedThemes(): Theme[] | null {
   try {
     const raw = localStorage.getItem(CACHE_KEY);
-    if (raw) return JSON.parse(raw);
+    if (raw) {
+      const data = JSON.parse(raw) as Theme[];
+      if (Array.isArray(data) && data.length > 0 && data[0].slug && data[0].versions) {
+        return data;
+      }
+    }
   } catch {
     /* empty */
   }
@@ -85,48 +43,6 @@ export function setCachedThemes(themes: Theme[]) {
     localStorage.setItem(CACHE_KEY, JSON.stringify(themes));
   } catch {
     /* empty */
-  }
-}
-
-export async function fetchAllThemes(): Promise<Theme[]> {
-  const tree = await fetchThemeTree();
-  let themes = buildThemesFromTree(tree);
-
-  try {
-    const results = await Promise.allSettled(
-      themes.map((t) =>
-        t.dirPath ? fetchThemeCommitInfo(t.dirPath) : Promise.resolve(null)
-      )
-    );
-    themes = themes.map((t, i) => {
-      const info = results[i].status === "fulfilled" ? results[i].value : null;
-      if (info?.date) {
-        return { ...t, date: info.date };
-      }
-      return t;
-    });
-  } catch {
-    /* silent */
-  }
-
-  return themes;
-}
-
-export async function fetchThemeCommitInfo(dirPath: string): Promise<ThemeCommitInfo | null> {
-  try {
-    const encodedPath = dirPath.split("/").map((s) => encodeURIComponent(s)).join("/");
-    const url = `${API_BASE}/commits?sha=${GITHUB_BRANCH}&path=${encodedPath}&per_page=1`;
-    const res = await fetch(url);
-    if (!res.ok) return null;
-    const data = await res.json();
-    if (!Array.isArray(data) || data.length === 0) return null;
-    const c = data[0].commit;
-    return {
-      date: c.author?.date || c.committer?.date || "",
-      committer: c.author?.name || c.committer?.name || data[0].author?.login || data[0].committer?.login || "",
-    };
-  } catch {
-    return null;
   }
 }
 
