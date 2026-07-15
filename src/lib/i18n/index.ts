@@ -4,12 +4,14 @@ import type { Readable } from 'svelte/store';
 import es from './es.json';
 import en from './en.json';
 import fr from './fr.json';
+import de from './de.json';
 
 type MessageFormatter = (id: string | { id: string; locale?: string; format?: string; default?: string; values?: Record<string, string | number | boolean | Date | null | undefined> }, options?: { locale?: string; format?: string; default?: string; values?: Record<string, string | number | boolean | Date | null | undefined> }) => string;
 
 addMessages('es', es);
 addMessages('en', en);
 addMessages('fr', fr);
+addMessages('de', de);
 
 init({
   fallbackLocale: 'es',

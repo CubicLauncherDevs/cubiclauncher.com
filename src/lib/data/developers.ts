@@ -42,4 +42,10 @@ export const contributors: Developer[] = [
     roleKey: "developers.role5",
     github: "mpg-perto",
   },
+  {
+    name: "Edgajuman",
+    role: "Colaborador",
+    roleKey: "developers.role6",
+    github: "Edgajuman",
+  },
 ];

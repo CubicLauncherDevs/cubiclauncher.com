@@ -8,6 +8,7 @@
     { code: 'es', label: 'ES', name: 'Español' },
     { code: 'en', label: 'EN', name: 'English' },
     { code: 'fr', label: 'FR', name: 'Français' },
+    { code: 'de', label: 'DE', name: 'Deutsch' },
   ];
 
   let current = $derived(locales.find(l => l.code === $currentLocale) || locales[0]);
