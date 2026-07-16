@@ -113,7 +113,13 @@
     "themesAvailable": "{count, plural, one {# theme available} other {# themes available}}",
     "results": "{count, plural, one {# result} other {# results}}",
     "removeAuthorFilter": "Remove author filter",
-    "clearSearchText": "Clear search text"
+    "clearSearchText": "Clear search text",
+    "downloadTheme": "Download theme",
+    "page": "Page",
+    "previous": "Previous",
+    "next": "Next",
+    "showing": "Showing {start} to {end} of {total}",
+    "sortBy": "Sort by"
   },
   "themeDetail": {
     "retry": "Retry",

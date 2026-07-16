@@ -113,7 +113,13 @@
     "themesAvailable": "{count, plural, one {# tema disponible} other {# temas disponibles}}",
     "results": "{count, plural, one {# resultado} other {# resultados}}",
     "removeAuthorFilter": "Quitar filtro de autor",
-    "clearSearchText": "Borrar búsqueda"
+    "clearSearchText": "Borrar búsqueda",
+    "downloadTheme": "Descargar tema",
+    "page": "Página",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "showing": "Mostrando {start} a {end} de {total}",
+    "sortBy": "Ordenar por"
   },
   "themeDetail": {
     "retry": "Reintentar",
