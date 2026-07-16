@@ -39,6 +39,9 @@
     "feature6Desc": "Gérez facilement tous vos mods, modloaders, packs de textures et logs directement depuis l'interface du lanceur.",
     "openSource": "OPEN SOURCE",
     "mission": "La mission de CubicLauncher est de fournir une solution gratuite et de haute qualité pour les joueurs qui souhaitent accéder à Minecraft sans compte premium. Notre priorité est la stabilité, les performances et l'accessibilité, en cherchant toujours à améliorer l'expérience utilisateur sans compromettre l'ouverture et la transparence du code. CubicLauncher est une alternative moderne aux lanceurs traditionnels de Minecraft, conçu pour être léger, rapide et accessible, permettant à tout utilisateur d'exécuter le jeu sans compromettre les performances, même sur des machines aux ressources limitées.",
+    "featuredThemes": "Thèmes à la une",
+    "viewAllThemes": "Voir tous les thèmes",
+    "shuffleThemes": "Mélanger",
     "joinDiscord": "Rejoindre Discord",
     "contributeGitHub": "Contribuer sur GitHub"
   },

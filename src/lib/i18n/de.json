@@ -39,6 +39,9 @@
     "feature6Desc": "Verwalte all deine Mods, Modloader, Texture Packs und Logs direkt über die Launcher-Oberfläche.",
     "openSource": "OPEN SOURCE",
     "mission": "CubicLaunchers Mission ist es, eine kostenlose, hochwertige Lösung für Spieler bereitzustellen, die Minecraft ohne Premium-Account nutzen möchten. Unser Fokus liegt auf Stabilität, Leistung und Zugänglichkeit. Wir verbessern stets das Benutzererlebnis, ohne die Offenheit und Transparenz des Codes zu beeinträchtigen.",
+    "featuredThemes": "Ausgewählte Themes",
+    "viewAllThemes": "Alle Themes anzeigen",
+    "shuffleThemes": "Mischen",
     "joinDiscord": "Discord beitreten",
     "contributeGitHub": "Auf GitHub beitragen"
   },

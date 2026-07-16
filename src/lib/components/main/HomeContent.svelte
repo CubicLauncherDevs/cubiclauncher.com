@@ -1,5 +1,6 @@
 <script lang="ts">
   import Hero from "./Hero.svelte";
+  import RandomThemes from "./RandomThemes.svelte";
   import DevelopersSection from "./DevelopersSection.svelte";
   import { t } from "$lib/i18n";
 
@@ -39,6 +40,8 @@
 
 <main class="bg-neutral-950 overflow-x-hidden">
   <Hero />
+
+  <RandomThemes />
 
   <!-- Features Grid -->
   <section class="py-24">
