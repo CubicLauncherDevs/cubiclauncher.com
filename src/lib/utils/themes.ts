@@ -20,31 +20,7 @@ export async function fetchAllThemes(): Promise<Theme[]> {
   return await res.json() as Theme[];
 }
 
-const CACHE_VERSION = 2;
-const CACHE_KEY = `cubiclauncher-themes-v${CACHE_VERSION}`;
-
-export function getCachedThemes(): Theme[] | null {
-  try {
-    const raw = localStorage.getItem(CACHE_KEY);
-    if (raw) {
-      const data = JSON.parse(raw) as Theme[];
-      if (Array.isArray(data) && data.length > 0 && data[0].slug && data[0].versions) {
-        return data;
-      }
-    }
-  } catch {
-    /* empty */
-  }
-  return null;
-}
-
-export function setCachedThemes(themes: Theme[]) {
-  try {
-    localStorage.setItem(CACHE_KEY, JSON.stringify(themes));
-  } catch {
-    /* empty */
-  }
-}
+export { getCachedThemes, setCachedThemes } from "./theme-cache";
 
 export function categorizeVariables(
   variables: Record<string, string>

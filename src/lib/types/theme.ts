@@ -39,3 +39,15 @@ export interface ColorGroup {
   label: string;
   vars: { key: string; value: string }[];
 }
+
+export interface AuthorEntry {
+  name: string;
+  slug: string;
+  count: number;
+  themes: Theme[];
+}
+
+export interface SearchIndex {
+  byWord: Map<string, Set<string>>;
+  byId: Map<string, Theme>;
+}

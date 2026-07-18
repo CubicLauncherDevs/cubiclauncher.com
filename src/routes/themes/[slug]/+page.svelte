@@ -4,6 +4,7 @@
   import { t, locale } from "$lib/i18n";
   import type { Theme } from "$lib/types/theme";
   import { fetchAllThemes, getCachedThemes, setCachedThemes } from "$lib/utils/themes";
+  import { slugify } from "$lib/utils/theme-search";
   import { renderMarkdown } from "$lib/utils/markdown";
   import ThemeCard from "$lib/components/themes/ThemeCard.svelte";
   import ThemeDetailHeader from "$lib/components/themes/ThemeDetailHeader.svelte";
@@ -27,6 +28,8 @@
     if (!current) return [];
     return allThemes.filter((t) => t.author === current.author && t.slug !== current.slug);
   });
+
+  let authorUrl = $derived(theme ? `/themes/author/${slugify(theme.author)}` : "/themes");
 
   let descriptionHtml = $derived(
     theme?.description ? renderMarkdown(theme.description) : ""
@@ -72,12 +75,12 @@
     loading = true;
     error = "";
 
-    let themes: Theme[] | null = getCachedThemes();
+    let themes: Theme[] | null = await getCachedThemes();
 
     if (!themes) {
       try {
         themes = await fetchAllThemes();
-        setCachedThemes(themes);
+        await setCachedThemes(themes);
       } catch (e) {
         error = e instanceof Error ? e.message : "Error loading theme";
         loading = false;
@@ -205,9 +208,9 @@
         <!-- Related themes -->
         {#if relatedThemes.length > 0}
           <div class="mt-20 pt-12 border-t border-white/5">
-            <h2 class="text-xl font-bold tracking-tighter mb-6">
+            <a href={authorUrl} class="block text-xl font-bold tracking-tighter mb-6 hover:text-white/80 transition-colors">
               {$t('themeDetail.moreBy', { values: { author: theme.author } })}
-            </h2>
+            </a>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {#each relatedThemes.slice(0, 3) as related}
                 <ThemeCard theme={related} />

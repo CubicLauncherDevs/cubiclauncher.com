@@ -16,6 +16,8 @@
         src={theme.previewUrl}
         alt={theme.name}
         loading="lazy"
+        decoding="async"
+        fetchpriority="low"
         class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 {imgLoaded ? 'opacity-100' : 'opacity-0'}"
         onload={() => (imgLoaded = true)}
       />

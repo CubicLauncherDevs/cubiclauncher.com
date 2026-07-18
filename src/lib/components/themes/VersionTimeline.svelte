@@ -35,6 +35,8 @@
 
       <button
         onclick={() => onToggleVersion(v.version)}
+        aria-label={isExpanded ? "Collapse version details" : "Expand version details"}
+        aria-expanded={isExpanded}
         class="absolute left-0 top-[14px] w-[22px] h-[22px] rounded-full transition-all {isExpanded ? 'bg-white' : 'bg-neutral-950 ring-2 ring-white/20 hover:ring-white/40'}"
       ></button>
 

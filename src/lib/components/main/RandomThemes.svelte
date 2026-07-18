@@ -3,6 +3,7 @@
   import { t } from "$lib/i18n";
   import type { Theme } from "$lib/types/theme";
   import { fetchAllThemes, getCachedThemes, setCachedThemes } from "$lib/utils/themes";
+  import { slugify } from "$lib/utils/theme-search";
   import { fly } from "svelte/transition";
 
   let themes = $state<Theme[]>([]);
@@ -56,11 +57,11 @@
   }
 
   onMount(async () => {
-    let data = getCachedThemes();
+    let data = await getCachedThemes();
     if (!data) {
       try {
         data = await fetchAllThemes();
-        setCachedThemes(data);
+        await setCachedThemes(data);
       } catch {
         loading = false;
         return;
@@ -108,6 +109,9 @@
       </div>
 
       <div
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="Featured themes"
         class="relative bg-neutral-900/50 border border-white/10 rounded-2xl overflow-hidden"
         onmouseenter={stopAuto}
         onmouseleave={startAuto}
@@ -145,7 +149,7 @@
                   <h3 class="text-xl md:text-2xl font-bold text-white group-hover:text-white/80 transition-colors">{theme.name}</h3>
                 </a>
                 <a
-                  href="/themes?author={encodeURIComponent(theme.author)}"
+                  href="/themes/author/{slugify(theme.author)}"
                   class="text-sm text-neutral-400 mt-1 hover:text-neutral-200 transition-colors"
                 >
                   {$t('themeDetail.by')} {theme.author}
@@ -195,7 +199,7 @@
               onclick={() => goTo(i)}
               class="rounded-full transition-all {i === current ? 'w-6 h-2 bg-white' : 'w-2 h-2 bg-white/30 hover:bg-white/50'}"
               aria-label="Go to slide {i + 1}"
-            />
+            ></button>
           {/each}
         </div>
       </div>

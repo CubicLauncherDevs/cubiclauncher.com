@@ -1,6 +1,7 @@
 <script lang="ts">
   import { t, locale } from "$lib/i18n";
   import type { Theme, ThemeVersion } from "$lib/types/theme";
+  import { slugify } from "$lib/utils/theme-search";
 
   let {
     theme,
@@ -15,6 +16,8 @@
     onVersionChange: (ver: string) => void;
     onPreviewClick: () => void;
   } = $props();
+
+  let authorUrl = $derived(`/themes/author/${slugify(theme.author)}`);
 </script>
 
 <a
@@ -41,7 +44,8 @@
         <img
           src={currentVer.previewUrl}
           alt={theme.name}
-          loading="lazy"
+          loading="eager"
+          decoding="async"
           class="w-full aspect-video object-cover"
         />
       </div>
@@ -57,7 +61,7 @@
   <div class="lg:col-span-2">
     <h1 class="text-4xl font-bold tracking-tighter mb-2">{theme.name}</h1>
     <p class="text-lg text-neutral-400 mb-6">
-      {$t('themeDetail.by')} <a href="/themes?author={encodeURIComponent(theme.author)}" class="text-white hover:underline underline-offset-4 decoration-white/30 transition-all">{theme.author}</a>
+      {$t('themeDetail.by')} <a href={authorUrl} class="text-white hover:underline underline-offset-4 decoration-white/30 transition-all">{theme.author}</a>
     </p>
 
     {#if theme.date}

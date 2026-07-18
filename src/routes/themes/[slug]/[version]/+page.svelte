@@ -3,6 +3,7 @@
   import { t, locale } from "$lib/i18n";
   import type { Theme, ThemeVersion } from "$lib/types/theme";
   import { fetchAllThemes, getCachedThemes, setCachedThemes } from "$lib/utils/themes";
+  import { slugify } from "$lib/utils/theme-search";
   import { renderMarkdown } from "$lib/utils/markdown";
 
   let slug = $derived($page.params.slug as string);
@@ -17,6 +18,8 @@
     ver?.changelog ? renderMarkdown(ver.changelog) : ""
   );
 
+  let authorUrl = $derived(theme ? `/themes/author/${slugify(theme.author)}` : "/themes");
+
   $effect(() => {
     loadVersion(slug, version);
   });
@@ -25,12 +28,12 @@
     loading = true;
     error = "";
 
-    let themes: Theme[] | null = getCachedThemes();
+    let themes: Theme[] | null = await getCachedThemes();
 
     if (!themes) {
       try {
         themes = await fetchAllThemes();
-        setCachedThemes(themes);
+        await setCachedThemes(themes);
       } catch (e) {
         error = e instanceof Error ? e.message : "Error loading theme";
         loading = false;
@@ -132,7 +135,7 @@
           <div class="lg:col-span-2">
             <h1 class="text-4xl font-bold tracking-tighter mb-1">{theme.name}</h1>
             <p class="text-base text-neutral-400 mb-1">
-              {$t('themeDetail.by')} <a href="/themes?author={encodeURIComponent(theme.author)}" class="text-white hover:underline underline-offset-4 decoration-white/30 transition-all">{theme.author}</a>
+              {$t('themeDetail.by')} <a href={authorUrl} class="text-white hover:underline underline-offset-4 decoration-white/30 transition-all">{theme.author}</a>
             </p>
             <p class="text-sm text-neutral-500 mb-4">{$t('themeDetail.version')} {ver.version}</p>
 
