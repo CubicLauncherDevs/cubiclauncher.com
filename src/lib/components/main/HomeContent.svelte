@@ -35,6 +35,11 @@
       descKey: "home.feature6Desc",
       icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><path d="M19.439 7.85c-.049.322.059.648.289.878l1.568 1.568c.47.47.706 1.087.706 1.704s-.235 1.233-.706 1.704l-1.611 1.611a.98.98 0 0 1-.837.276c-.47-.047-.899-.277-1.237-.615l-1.501-1.501a2.825 2.825 0 1 0-3.996 3.996l1.501 1.501c.338.338.568.767.615 1.237.028.281-.06.553-.276.837l-1.61 1.61a2.404 2.404 0 0 1-3.408 0l-1.568-1.568a1.245 1.245 0 0 0-.878-.289 1.242 1.242 0 0 0-.81.436L4.038 21.03a2.404 2.404 0 0 1-3.408 0 2.402 2.402 0 0 1 0-3.408l1.545-1.545a1.242 1.242 0 0 0 .436-.81 1.245 1.245 0 0 0-.289-.878l-1.568-1.568a2.402 2.402 0 0 1 0-3.408l1.611-1.611c.284-.216.556-.304.837-.276.47.047.899.277 1.237.615l1.501 1.501a2.825 2.825 0 1 0 3.996-3.996l-1.501-1.501c-.338-.338-.568-.767-.615-1.237-.028-.281.06-.553.276-.837l1.61-1.61a2.404 2.404 0 0 1 3.408 0l1.568 1.568c.23.23.556.338.878.289.282-.043.528-.184.71-.41l1.545-1.545a2.404 2.404 0 0 1 3.408 0 2.402 2.402 0 0 1 0 3.408l-1.545 1.545a1.242 1.242 0 0 0-.41.71z"></path></svg>`,
     },
+    {
+      titleKey: "home.feature7Title",
+      descKey: "home.feature7Desc",
+      icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>`,
+    },
   ];
 </script>
 
@@ -46,13 +51,23 @@
   <!-- Features Grid -->
   <section class="py-24">
     <div class="container mx-auto px-6 max-w-6xl">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-20">
+      <div class="text-center mb-20">
+        <h2 class="text-4xl md:text-6xl font-black tracking-tighter mb-4">
+          {$t('home.featuresTitle')}
+        </h2>
+        <p class="text-neutral-400 text-lg font-light max-w-xl mx-auto">
+          {$t('home.featuresSubtitle')}
+        </p>
+      </div>
+      <div class="flex flex-wrap justify-center gap-8">
         {#each features as feature}
-          <div class="flex flex-col gap-4">
-            <div class="text-white mb-2">
+          <div
+            class="flex flex-col gap-5 w-full max-w-sm bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 hover:border-neutral-600 hover:scale-[1.02] transition-all duration-300"
+          >
+            <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-neutral-800 text-white shrink-0">
               {@html feature.icon}
             </div>
-            <h3 class="text-2xl font-bold tracking-tight">
+            <h3 class="text-2xl font-bold tracking-tight text-white">
               {$t(feature.titleKey)}
             </h3>
             <p class="text-neutral-400 leading-relaxed font-light">

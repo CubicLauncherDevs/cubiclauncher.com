@@ -25,6 +25,8 @@
     "sourceCode": "Quellcode"
   },
   "home": {
+    "featuresTitle": "WARUM CUBIC LAUNCHER?",
+    "featuresSubtitle": "Alles, was du in einem modernen Minecraft-Launcher brauchst.",
     "feature1Title": "Instanzverwaltung",
     "feature1Desc": "Erstelle und trenne mehrere Minecraft-Instanzen mit verschiedenen Versionen, Mods und Konfigurationen. Alles an einem Ort.",
     "feature2Title": "Open Source",
@@ -37,6 +39,8 @@
     "feature5Desc": "CubicLauncher bietet viele Optionen, um das Verhalten des Launchers und die Minecraft-Einstellungen schnell und einfach zu konfigurieren.",
     "feature6Title": "Mod- & Ressourcenverwaltung",
     "feature6Desc": "Verwalte all deine Mods, Modloader, Texture Packs und Logs direkt über die Launcher-Oberfläche.",
+    "feature7Title": "Originalprojekt",
+    "feature7Desc": "CubicLauncher ist ein von Grund auf neu entwickeltes Originalprojekt, kein Fork anderer Launcher. Jede Codezeile ist darauf ausgelegt, ein einzigartiges und optimiertes Erlebnis zu bieten.",
     "openSource": "OPEN SOURCE",
     "mission": "CubicLaunchers Mission ist es, eine kostenlose, hochwertige Lösung für Spieler bereitzustellen, die Minecraft ohne Premium-Account nutzen möchten. Unser Fokus liegt auf Stabilität, Leistung und Zugänglichkeit. Wir verbessern stets das Benutzererlebnis, ohne die Offenheit und Transparenz des Codes zu beeinträchtigen.",
     "featuredThemes": "Ausgewählte Themes",
@@ -64,6 +68,9 @@
     "instructions": "Anleitung",
     "systemRequirements": "Systemanforderungen",
     "retry": "Wiederholen",
+    "totalDownloads": "{count} Downloads insgesamt",
+    "totalDownloadsLabel": "Downloads",
+    "downloads": "Downloads",
     "defaultDownloadsAvailable": "Standard-Downloads sind weiterhin verfügbar",
     "lookingForOther": "Suchst du eine andere Version oder Architektur?",
     "viewAllReleases": "Alle Versionen anzeigen",

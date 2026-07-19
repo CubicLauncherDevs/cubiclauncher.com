@@ -25,6 +25,8 @@
     "sourceCode": "Source Code"
   },
   "home": {
+    "featuresTitle": "WHY CUBIC LAUNCHER?",
+    "featuresSubtitle": "Everything you need in a modern Minecraft launcher.",
     "feature1Title": "Instance Management",
     "feature1Desc": "Create and separate multiple Minecraft instances with different versions, mods, and configurations. All in one place.",
     "feature2Title": "Open Source",
@@ -37,6 +39,8 @@
     "feature5Desc": "CubicLauncher offers many options to configure the launcher behavior and Minecraft settings quickly and easily.",
     "feature6Title": "Mod & Resource Management",
     "feature6Desc": "Easily manage all your mods, modloaders, texture packs, and logs directly from the launcher interface.",
+    "feature7Title": "Original Project",
+    "feature7Desc": "CubicLauncher is an original project built from the ground up, not a fork of other launchers. Every line of code is designed to deliver a unique and optimized experience.",
     "openSource": "OPEN SOURCE",
     "mission": "CubicLauncher's mission is to provide a free, high-quality solution for players who want to access Minecraft without a premium account. Our focus is on stability, performance, and accessibility, always seeking to improve the user experience without compromising openness and code transparency. CubicLauncher is a modern alternative to traditional Minecraft launchers, designed to be lightweight, fast, and accessible, allowing any user to run the game without compromising performance, even on resource-limited machines.",
     "featuredThemes": "Featured Themes",
@@ -64,6 +68,9 @@
     "instructions": "Instructions",
     "systemRequirements": "System Requirements",
     "retry": "Retry",
+    "totalDownloads": "{count} total downloads",
+    "totalDownloadsLabel": "Downloads",
+    "downloads": "downloads",
     "defaultDownloadsAvailable": "Default downloads are still available",
     "lookingForOther": "Looking for another version or architecture?",
     "viewAllReleases": "View all releases",

@@ -25,6 +25,8 @@
     "sourceCode": "Código Fuente"
   },
   "home": {
+    "featuresTitle": "POR QUÉ CUBIC LAUNCHER?",
+    "featuresSubtitle": "Todo lo que necesitás en un launcher de Minecraft moderno.",
     "feature1Title": "Gestión de Instancias",
     "feature1Desc": "Crea y separa múltiples instancias de Minecraft con diferentes versiones, mods y configuraciones. Todo en un solo lugar.",
     "feature2Title": "Código Abierto",
@@ -37,6 +39,8 @@
     "feature5Desc": "CubicLauncher ofrece muchas opciones para configurar el comportamiento del launcher y los ajustes de Minecraft de forma rápida y sencilla.",
     "feature6Title": "Gestión de Mods y Recursos",
     "feature6Desc": "Administra fácilmente todos tus mods, modloaders, paquetes de texturas y logs directamente desde la interfaz del launcher.",
+    "feature7Title": "Proyecto Original",
+    "feature7Desc": "CubicLauncher es un proyecto original desarrollado desde cero, no un fork de otros launchers. Cada línea de código está diseñada para ofrecer una experiencia única y optimizada.",
     "openSource": "OPEN SOURCE",
     "mission": "La misión de CubicLauncher es brindar una solución libre y de alta calidad para aquellos jugadores que desean acceder a Minecraft sin una cuenta premium. Nuestro enfoque está en la estabilidad, el rendimiento y la accesibilidad, buscando siempre mejorar la experiencia del usuario sin comprometer la apertura y transparencia del código. CubicLauncher es una alternativa moderna a los launchers tradicionales de Minecraft. Está diseñado para ser ligero, rápido y accesible, permitiendo a cualquier usuario ejecutar el juego sin comprometer el rendimiento, incluso en equipos con recursos limitados.",
     "featuredThemes": "Temas destacados",
@@ -64,6 +68,9 @@
     "instructions": "Instrucciones",
     "systemRequirements": "Requisitos del sistema",
     "retry": "Reintentar",
+    "totalDownloads": "{count} descargas totales",
+    "totalDownloadsLabel": "Descargas",
+    "downloads": "descargas",
     "defaultDownloadsAvailable": "Las descargas por defecto siguen disponibles",
     "lookingForOther": "¿Buscás otra versión o arquitectura?",
     "viewAllReleases": "Ver todas las releases",

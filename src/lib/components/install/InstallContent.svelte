@@ -1,8 +1,15 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { t } from "$lib/i18n";
+  import { t, currentLocale } from "$lib/i18n";
 
-  type Download = { label: string; url: string };
+  type Download = { label: string; url: string; count?: number };
+
+  let totalDownloads = $state(0);
+  let platformDownloads = $state<Record<string, number>>({ windows: 0, macos: 0, linux: 0 });
+
+  function formatNumber(n: number): string {
+    return n.toLocaleString($currentLocale || "es-ES");
+  }
 
   let selectedOS = $state("windows");
   let releases = $state<Record<string, Download[]>>({
@@ -76,19 +83,25 @@
       const mac: Download[] = [];
       const lin: Download[] = [];
 
+      let totals = { windows: 0, macos: 0, linux: 0 };
+
       assets.forEach((asset: any) => {
         const name = asset.name.toLowerCase();
         if (name.endsWith(".sig")) return;
-        if (name.includes("setup.exe")) win.push({ label: "x64-setup.exe", url: asset.browser_download_url });
-        else if (name.endsWith(".msi")) win.push({ label: ".msi", url: asset.browser_download_url });
-        else if (name.endsWith("x64.dmg")) mac.push({ label: "x64.dmg", url: asset.browser_download_url });
-        else if (name.endsWith("aarch64.dmg") || (name.endsWith(".dmg") && !name.includes("x64"))) mac.push({ label: ".dmg", url: asset.browser_download_url });
-        else if (name.endsWith("x64.app.tar.gz")) mac.push({ label: "x64.app.tar.gz", url: asset.browser_download_url });
-        else if (name.endsWith("aarch64.app.tar.gz") || (name.endsWith(".app.tar.gz") && !name.includes("x64"))) mac.push({ label: ".app.tar.gz", url: asset.browser_download_url });
-        else if (name.endsWith(".rpm")) lin.push({ label: "x86_64.rpm", url: asset.browser_download_url });
-        else if (name.endsWith(".deb")) lin.push({ label: ".deb", url: asset.browser_download_url });
-        else if (name.endsWith(".appimage")) lin.push({ label: ".appimage", url: asset.browser_download_url });
+        const count = asset.download_count || 0;
+        if (name.includes("setup.exe")) { win.push({ label: "x64-setup.exe", url: asset.browser_download_url, count }); totals.windows += count; }
+        else if (name.endsWith(".msi")) { win.push({ label: ".msi", url: asset.browser_download_url, count }); totals.windows += count; }
+        else if (name.endsWith("x64.dmg")) { mac.push({ label: "x64.dmg", url: asset.browser_download_url, count }); totals.macos += count; }
+        else if (name.endsWith("aarch64.dmg") || (name.endsWith(".dmg") && !name.includes("x64"))) { mac.push({ label: ".dmg", url: asset.browser_download_url, count }); totals.macos += count; }
+        else if (name.endsWith("x64.app.tar.gz")) { mac.push({ label: "x64.app.tar.gz", url: asset.browser_download_url, count }); totals.macos += count; }
+        else if (name.endsWith("aarch64.app.tar.gz") || (name.endsWith(".app.tar.gz") && !name.includes("x64"))) { mac.push({ label: ".app.tar.gz", url: asset.browser_download_url, count }); totals.macos += count; }
+        else if (name.endsWith(".rpm")) { lin.push({ label: "x86_64.rpm", url: asset.browser_download_url, count }); totals.linux += count; }
+        else if (name.endsWith(".deb")) { lin.push({ label: ".deb", url: asset.browser_download_url, count }); totals.linux += count; }
+        else if (name.endsWith(".appimage")) { lin.push({ label: ".appimage", url: asset.browser_download_url, count }); totals.linux += count; }
       });
+
+      platformDownloads = totals;
+      totalDownloads = totals.windows + totals.macos + totals.linux;
 
       if (win.length > 0) releases.windows = win;
       if (mac.length > 0) releases.macos = mac;
@@ -134,6 +147,21 @@
       <p class="text-xl text-neutral-400 font-light max-w-2xl mx-auto">
         {$t('install.subtitle')}
       </p>
+      {#if totalDownloads > 0}
+        <div class="flex items-center justify-center gap-2 mt-6">
+          <a
+            href="https://github.com/CubicLauncherDevs/CubicLauncher/releases"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://img.shields.io/github/downloads/CubicLauncherDevs/CubicLauncher/total?style=for-the-badge&label={encodeURIComponent($t('install.totalDownloadsLabel'))}&labelColor=1a1a1a&color=ffffff"
+              alt="{$t('install.totalDownloads', { values: { count: formatNumber(totalDownloads) } })}"
+              class="h-8"
+            />
+          </a>
+        </div>
+      {/if}
     </div>
 
     <!-- OS Selector -->
@@ -271,6 +299,30 @@
             <p class="text-neutral-400 font-light leading-relaxed">
               {$t(activePlatform.descKey)}
             </p>
+            {#if platformDownloads[selectedOS] > 0}
+              <div
+                class="flex items-center gap-1.5 mt-2 text-[11px] text-neutral-500 font-medium"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-3.5 h-3.5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"
+                  />
+                </svg>
+                <span
+                  >{formatNumber(platformDownloads[selectedOS])}
+                  {$t('install.downloads')}</span
+                >
+              </div>
+            {/if}
           </div>
         </div>
 
@@ -317,6 +369,14 @@
                     <div class="text-xl font-bold tracking-tight">
                       {download.label}
                     </div>
+                    {#if download.count !== undefined}
+                      <div
+                        class="text-[10px] text-black/40 font-medium mt-0.5"
+                      >
+                        {formatNumber(download.count)}
+                        {$t('install.downloads')}
+                      </div>
+                    {/if}
                   </div>
                   <div
                     class="ml-auto relative z-10 w-10 h-10 rounded-full bg-black/5 flex items-center justify-center group-hover:bg-black/10 transition-colors"

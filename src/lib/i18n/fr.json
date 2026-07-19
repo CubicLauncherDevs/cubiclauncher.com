@@ -25,6 +25,8 @@
     "sourceCode": "Code source"
   },
   "home": {
+    "featuresTitle": "POURQUOI CUBIC LAUNCHER?",
+    "featuresSubtitle": "Tout ce dont vous avez besoin dans un lanceur Minecraft moderne.",
     "feature1Title": "Gestion d'instances",
     "feature1Desc": "Créez et séparez plusieurs instances Minecraft avec différentes versions, mods et configurations. Tout en un seul endroit.",
     "feature2Title": "Open Source",
@@ -37,6 +39,8 @@
     "feature5Desc": "CubicLauncher offre de nombreuses options pour configurer le comportement du lanceur et les paramètres Minecraft rapidement et facilement.",
     "feature6Title": "Gestion des mods et ressources",
     "feature6Desc": "Gérez facilement tous vos mods, modloaders, packs de textures et logs directement depuis l'interface du lanceur.",
+    "feature7Title": "Projet Original",
+    "feature7Desc": "CubicLauncher est un projet original développé à partir de zéro, pas un fork d'autres lanceurs. Chaque ligne de code est conçue pour offrir une expérience unique et optimisée.",
     "openSource": "OPEN SOURCE",
     "mission": "La mission de CubicLauncher est de fournir une solution gratuite et de haute qualité pour les joueurs qui souhaitent accéder à Minecraft sans compte premium. Notre priorité est la stabilité, les performances et l'accessibilité, en cherchant toujours à améliorer l'expérience utilisateur sans compromettre l'ouverture et la transparence du code. CubicLauncher est une alternative moderne aux lanceurs traditionnels de Minecraft, conçu pour être léger, rapide et accessible, permettant à tout utilisateur d'exécuter le jeu sans compromettre les performances, même sur des machines aux ressources limitées.",
     "featuredThemes": "Thèmes à la une",
@@ -64,6 +68,9 @@
     "instructions": "Instructions",
     "systemRequirements": "Configuration requise",
     "retry": "Réessayer",
+    "totalDownloads": "{count} téléchargements au total",
+    "totalDownloadsLabel": "Téléchargements",
+    "downloads": "téléchargements",
     "defaultDownloadsAvailable": "Les téléchargements par défaut sont toujours disponibles",
     "lookingForOther": "Vous cherchez une autre version ou architecture ?",
     "viewAllReleases": "Voir toutes les versions",
