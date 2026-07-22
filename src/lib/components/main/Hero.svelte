@@ -80,7 +80,7 @@
         </h1>
 
         <p
-            class="max-w-2xl text-lg md:text-xl text-neutral-400 leading-relaxed mb-12 font-light"
+            class="max-w-2xl text-lg md:text-xl text-neutral-400 leading-relaxed mb-8 font-light"
         >
             {$t('hero.description')}
         </p>

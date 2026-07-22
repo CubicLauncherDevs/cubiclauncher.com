@@ -71,7 +71,7 @@
 
     <div class="text-center mt-16 mb-6">
       <h3 class="text-2xl font-black tracking-tighter uppercase">
-        Contribuyentes
+        {$t('developers.contributorsTitle')}
       </h3>
     </div>
 
