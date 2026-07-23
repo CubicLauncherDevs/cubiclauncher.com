@@ -3,12 +3,17 @@
   import { page } from "$app/stores";
   import { goto, pushState } from "$app/navigation";
   import { t } from "$lib/i18n";
-  import type { Theme } from "$lib/types/theme";
+  import type { Theme, ThemePackage } from "$lib/types/theme";
   import {
     fetchAllThemes,
     getCachedThemes,
     setCachedThemes,
   } from "$lib/utils/themes";
+  import {
+    fetchAllPackages,
+    getCachedPackages,
+    setCachedPackages,
+  } from "$lib/utils/theme-packages";
   import {
     buildSearchIndex,
     searchThemes,
@@ -16,15 +21,23 @@
     slugify,
   } from "$lib/utils/theme-search";
   import ThemeCard from "./ThemeCard.svelte";
+  import PackageCard from "./PackageCard.svelte";
   import IconMagnifyingGlass from "~icons/ph/magnifying-glass";
   import IconX from "~icons/ph/x";
   import IconImage from "~icons/ph/image";
   import IconCaretDown from "~icons/ph/caret-down";
 
   let themes = $state<Theme[]>([]);
+  let packages = $state<ThemePackage[]>([]);
   let loading = $state(true);
+  let packagesLoading = $state(true);
   let error = $state("");
+  let packagesError = $state("");
   let hasCached = $state(false);
+  let hasPackagesCached = $state(false);
+
+  type Tab = "themes" | "packages";
+  let activeTab = $state<Tab>("themes");
 
   let searchQuery = $state("");
   let debouncedQuery = $state("");
@@ -89,6 +102,53 @@
     return sorted;
   });
 
+  const filteredPackages = $derived.by(() => {
+    let result = packages;
+
+    if (debouncedQuery.trim()) {
+      const q = debouncedQuery.toLowerCase();
+      result = packages.filter(
+        (p) =>
+          p.name.toLowerCase().includes(q) ||
+          p.author.toLowerCase().includes(q)
+      );
+    }
+
+    const sorted = [...result];
+    switch (sortBy) {
+      case "name-asc":
+        sorted.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case "name-desc":
+        sorted.sort((a, b) => b.name.localeCompare(a.name));
+        break;
+      case "author-asc":
+        sorted.sort((a, b) => a.author.localeCompare(b.author) || a.name.localeCompare(b.name));
+        break;
+      case "author-desc":
+        sorted.sort((a, b) => b.author.localeCompare(a.author) || a.name.localeCompare(b.name));
+        break;
+      case "date-desc":
+        sorted.sort((a, b) => {
+          if (!a.date && !b.date) return a.name.localeCompare(b.name);
+          if (!a.date) return 1;
+          if (!b.date) return -1;
+          return b.date.localeCompare(a.date);
+        });
+        break;
+      case "date-asc":
+        sorted.sort((a, b) => {
+          if (!a.date && !b.date) return a.name.localeCompare(b.name);
+          if (!a.date) return 1;
+          if (!b.date) return -1;
+          return a.date.localeCompare(b.date);
+        });
+        break;
+    }
+
+    return sorted;
+  });
+
   const searchSuggestions = $derived.by(() => {
     if (!searchFocused || !searchQuery.trim()) return [];
     return searchThemes(searchQuery, searchIndex).slice(0, MAX_SEARCH_SUGGESTIONS);
@@ -106,16 +166,27 @@
       .slice(0, MAX_SEARCH_SUGGESTIONS);
   });
 
-  const totalPages = $derived(Math.max(1, Math.ceil(filteredThemes.length / ITEMS_PER_PAGE)));
-
-  const paginatedThemes = $derived(
-    filteredThemes.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
+  const totalPages = $derived(
+    Math.max(
+      1,
+      Math.ceil(
+        (activeTab === "themes" ? filteredThemes.length : filteredPackages.length) / ITEMS_PER_PAGE
+      )
+    )
   );
 
-  const paginationStart = $derived((currentPage - 1) * ITEMS_PER_PAGE + 1);
-  const paginationEnd = $derived(Math.min(currentPage * ITEMS_PER_PAGE, filteredThemes.length));
+  const paginatedItems = $derived(
+    activeTab === "themes"
+      ? filteredThemes.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
+      : filteredPackages.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
+  );
 
-  const hasActiveFilters = $derived(searchQuery || debouncedQuery || sortBy !== "date-desc");
+  const totalItems = $derived(activeTab === "themes" ? filteredThemes.length : filteredPackages.length);
+
+  const paginationStart = $derived((currentPage - 1) * ITEMS_PER_PAGE + 1);
+  const paginationEnd = $derived(Math.min(currentPage * ITEMS_PER_PAGE, totalItems));
+
+  const hasActiveFilters = $derived(debouncedQuery || sortBy !== "date-desc");
 
   const filteredAuthors = $derived.by(() => {
     if (!authorDropdownOpen || !authorQuery.trim()) return [];
@@ -133,6 +204,11 @@
 
   function updateUrlParams() {
     const url = new URL($page.url);
+    if (activeTab === "packages") {
+      url.searchParams.set("tab", "packages");
+    } else {
+      url.searchParams.delete("tab");
+    }
     if (debouncedQuery.trim()) {
       url.searchParams.set("search", debouncedQuery.trim());
     } else {
@@ -162,6 +238,7 @@
     searchQuery = "";
     debouncedQuery = "";
     authorQuery = "";
+    sortBy = "date-desc";
     currentPage = 1;
     updateUrlParams();
   }
@@ -198,14 +275,25 @@
     sortDropdownOpen = false;
   }
 
+  function setTab(tab: Tab) {
+    activeTab = tab;
+    currentPage = 1;
+    updateUrlParams();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   onMount(async () => {
     const url = $page.url;
 
-    // Legacy author query param: redirect to author page
     const urlAuthor = url.searchParams.get("author");
     if (urlAuthor) {
       goto(`/themes/author/${slugify(urlAuthor)}`, { replaceState: true });
       return;
+    }
+
+    const urlTab = url.searchParams.get("tab");
+    if (urlTab === "packages") {
+      activeTab = "packages";
     }
 
     const urlSearch = url.searchParams.get("search");
@@ -219,23 +307,44 @@
       currentPage = Math.max(1, parseInt(urlPage, 10) || 1);
     }
 
-    const cached = await getCachedThemes();
-    if (cached) {
-      themes = cached;
+    // Load themes
+    const cachedThemes = await getCachedThemes();
+    if (cachedThemes) {
+      themes = cachedThemes;
       hasCached = true;
       loading = false;
     }
 
     try {
-      const fresh = await fetchAllThemes();
-      themes = fresh;
-      await setCachedThemes(fresh);
+      const freshThemes = await fetchAllThemes();
+      themes = freshThemes;
+      await setCachedThemes(freshThemes);
     } catch (e) {
-      if (!cached) {
+      if (!cachedThemes) {
         error = e instanceof Error ? e.message : "Error al cargar los temas";
       }
     } finally {
       loading = false;
+    }
+
+    // Load packages
+    const cachedPackages = await getCachedPackages();
+    if (cachedPackages) {
+      packages = cachedPackages;
+      hasPackagesCached = true;
+      packagesLoading = false;
+    }
+
+    try {
+      const freshPackages = await fetchAllPackages();
+      packages = freshPackages;
+      await setCachedPackages(freshPackages);
+    } catch (e) {
+      if (!cachedPackages) {
+        packagesError = e instanceof Error ? e.message : "Error al cargar los paquetes";
+      }
+    } finally {
+      packagesLoading = false;
     }
   });
 
@@ -283,6 +392,24 @@
       </p>
     </div>
 
+    <!-- Tabs -->
+    <div class="flex justify-center mb-8">
+      <div class="inline-flex bg-neutral-900 border border-white/10 rounded-full p-1">
+        <button
+          onclick={() => setTab("themes")}
+          class="px-5 py-2 text-xs font-medium rounded-full transition-all {activeTab === 'themes' ? 'bg-white text-black' : 'text-neutral-400 hover:text-white'}"
+        >
+          {$t('themes.tabThemes')}
+        </button>
+        <button
+          onclick={() => setTab("packages")}
+          class="px-5 py-2 text-xs font-medium rounded-full transition-all {activeTab === 'packages' ? 'bg-white text-black' : 'text-neutral-400 hover:text-white'}"
+        >
+          {$t('themes.tabPackages')}
+        </button>
+      </div>
+    </div>
+
     <!-- Search Bar -->
     <div class="max-w-3xl mx-auto mb-8" bind:this={searchDropdownRef}>
       <div class="group relative">
@@ -308,7 +435,7 @@
         {/if}
 
         <!-- Search suggestions dropdown -->
-        {#if searchFocused}
+        {#if searchFocused && activeTab === "themes"}
           <div class="absolute top-full left-0 right-0 mt-2 z-30 bg-neutral-900/95 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
             {#snippet suggestionRow(theme: Theme)}
               <a
@@ -371,62 +498,64 @@
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
       <div class="flex flex-wrap items-center gap-3">
         <!-- Author search with autocomplete -->
-        <div class="relative" bind:this={authorDropdownRef}>
-          <div class="relative">
-            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <IconMagnifyingGlass class="w-4 h-4 text-neutral-500" />
+        {#if activeTab === "themes"}
+          <div class="relative" bind:this={authorDropdownRef}>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <IconMagnifyingGlass class="w-4 h-4 text-neutral-500" />
+              </div>
+              <input
+                bind:this={authorInputRef}
+                type="text"
+                bind:value={authorQuery}
+                onfocus={() => authorDropdownOpen = true}
+                placeholder={$t('themes.author')}
+                class="inline-flex items-center gap-2 bg-neutral-900 hover:bg-neutral-800 border border-white/10 rounded-lg pl-9 pr-3 py-2 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-white/30 transition-colors w-48"
+              />
+              {#if authorQuery}
+                <button
+                  onclick={() => { authorQuery = ""; authorInputRef?.focus(); }}
+                  class="absolute right-2 top-1/2 -translate-y-1/2 p-0.5 rounded-full text-neutral-500 hover:text-white transition-colors"
+                  aria-label={$t('themes.clearSearch')}
+                >
+                  <IconX class="w-3.5 h-3.5" />
+                </button>
+              {/if}
             </div>
-            <input
-              bind:this={authorInputRef}
-              type="text"
-              bind:value={authorQuery}
-              onfocus={() => authorDropdownOpen = true}
-              placeholder={$t('themes.author')}
-              class="inline-flex items-center gap-2 bg-neutral-900 hover:bg-neutral-800 border border-white/10 rounded-lg pl-9 pr-3 py-2 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-white/30 transition-colors w-48"
-            />
-            {#if authorQuery}
-              <button
-                onclick={() => { authorQuery = ""; authorInputRef?.focus(); }}
-                class="absolute right-2 top-1/2 -translate-y-1/2 p-0.5 rounded-full text-neutral-500 hover:text-white transition-colors"
-                aria-label={$t('themes.clearSearch')}
-              >
-                <IconX class="w-3.5 h-3.5" />
-              </button>
+
+            {#if authorDropdownOpen}
+              <div class="absolute left-0 top-full mt-2 z-20 w-64 bg-neutral-900 border border-white/10 rounded-xl shadow-2xl overflow-hidden">
+                <div class="max-h-64 overflow-y-auto py-1">
+                  {#each filteredAuthors as author}
+                    <button
+                      onclick={() => selectAuthor(author.name)}
+                      class="w-full flex items-center justify-between px-3 py-2 text-xs transition-colors text-neutral-400 hover:text-white hover:bg-white/5"
+                    >
+                      <span>{author.name}</span>
+                      <span class="text-neutral-600">{author.count}</span>
+                    </button>
+                  {:else}
+                    {#if authorQuery.trim()}
+                      <div class="px-3 py-2 text-xs text-neutral-500">
+                        {$t('themes.noResults')}
+                      </div>
+                    {:else}
+                      {#each authorEntries.slice(0, 8) as author}
+                        <button
+                          onclick={() => selectAuthor(author.name)}
+                          class="w-full flex items-center justify-between px-3 py-2 text-xs transition-colors text-neutral-400 hover:text-white hover:bg-white/5"
+                        >
+                          <span>{author.name}</span>
+                          <span class="text-neutral-600">{author.count}</span>
+                        </button>
+                      {/each}
+                    {/if}
+                  {/each}
+                </div>
+              </div>
             {/if}
           </div>
-
-          {#if authorDropdownOpen}
-            <div class="absolute left-0 top-full mt-2 z-20 w-64 bg-neutral-900 border border-white/10 rounded-xl shadow-2xl overflow-hidden">
-              <div class="max-h-64 overflow-y-auto py-1">
-                {#each filteredAuthors as author}
-                  <button
-                    onclick={() => selectAuthor(author.name)}
-                    class="w-full flex items-center justify-between px-3 py-2 text-xs transition-colors text-neutral-400 hover:text-white hover:bg-white/5"
-                  >
-                    <span>{author.name}</span>
-                    <span class="text-neutral-600">{author.count}</span>
-                  </button>
-                {:else}
-                  {#if authorQuery.trim()}
-                    <div class="px-3 py-2 text-xs text-neutral-500">
-                      {$t('themes.noResults')}
-                    </div>
-                  {:else}
-                    {#each authorEntries.slice(0, 8) as author}
-                      <button
-                        onclick={() => selectAuthor(author.name)}
-                        class="w-full flex items-center justify-between px-3 py-2 text-xs transition-colors text-neutral-400 hover:text-white hover:bg-white/5"
-                      >
-                        <span>{author.name}</span>
-                        <span class="text-neutral-600">{author.count}</span>
-                      </button>
-                    {/each}
-                  {/if}
-                {/each}
-              </div>
-            </div>
-          {/if}
-        </div>
+        {/if}
 
         <!-- Sort dropdown -->
         <div class="relative" bind:this={sortDropdownRef}>
@@ -472,7 +601,7 @@
       </div>
 
       <div class="text-xs text-neutral-500">
-        {$t('themes.showing', { values: { start: paginationStart, end: paginationEnd, total: filteredThemes.length } })}
+        {$t('themes.showing', { values: { start: paginationStart, end: paginationEnd, total: totalItems } })}
       </div>
     </div>
 
@@ -492,9 +621,9 @@
 
     <!-- Grid -->
     <div>
-      {#if error && themes.length === 0}
+      {#if (activeTab === "themes" && error && themes.length === 0) || (activeTab === "packages" && packagesError && packages.length === 0)}
         <div class="text-center py-20">
-          <p class="text-neutral-500 mb-6">{error}</p>
+          <p class="text-neutral-500 mb-6">{activeTab === "themes" ? error : packagesError}</p>
           <button
             onclick={() => location.reload()}
             class="bg-white text-black px-6 py-2.5 text-[10px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all"
@@ -502,7 +631,7 @@
             {$t('themeDetail.retry')}
           </button>
         </div>
-      {:else if loading && !hasCached}
+      {:else if (activeTab === "themes" && loading && !hasCached) || (activeTab === "packages" && packagesLoading && !hasPackagesCached)}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {#each Array(6) as _}
             <div class="bg-neutral-900 border border-white/5 rounded-xl overflow-hidden animate-pulse">
@@ -515,7 +644,7 @@
             </div>
           {/each}
         </div>
-      {:else if filteredThemes.length === 0 && !loading}
+      {:else if activeTab === "themes" && filteredThemes.length === 0 && !loading}
         <div class="text-center py-20">
           <p class="text-neutral-400 text-lg mb-2">{$t('themes.noResults')}</p>
           <p class="text-sm text-neutral-600 mb-8">{$t('themes.noResultsHint')}</p>
@@ -528,11 +657,28 @@
             </button>
           {/if}
         </div>
+      {:else if activeTab === "packages" && filteredPackages.length === 0 && !packagesLoading}
+        <div class="text-center py-20">
+          <p class="text-neutral-400 text-lg mb-2">{$t('themes.noPackages')}</p>
+          <p class="text-sm text-neutral-600 mb-8">{$t('themes.noPackagesHint')}</p>
+          {#if hasActiveFilters}
+            <button
+              onclick={clearFilters}
+              class="bg-white text-black px-6 py-2.5 text-[10px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all"
+            >
+              {$t('themes.clearFilters')}
+            </button>
+          {/if}
+        </div>
       {:else}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {#each paginatedThemes as theme, i}
+          {#each paginatedItems as item, i (activeTab === "themes" ? (item as Theme).id : (item as ThemePackage).slug)}
             <div class="card-enter" style="animation-delay: {i * 80}ms">
-              <ThemeCard {theme} />
+              {#if activeTab === "themes"}
+                <ThemeCard theme={item as Theme} />
+              {:else}
+                <PackageCard pkg={item as ThemePackage} />
+              {/if}
             </div>
           {/each}
         </div>
@@ -541,7 +687,7 @@
         {#if totalPages > 1}
           <div class="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="text-xs text-neutral-500 hidden sm:block">
-              {$t('themes.showing', { values: { start: paginationStart, end: paginationEnd, total: filteredThemes.length } })}
+              {$t('themes.showing', { values: { start: paginationStart, end: paginationEnd, total: totalItems } })}
             </div>
             <div class="flex items-center gap-2">
               <button
@@ -580,7 +726,7 @@
     </div>
 
     <!-- Contribute -->
-    {#if !loading || hasCached}
+    {#if activeTab === "themes" && (!loading || hasCached)}
       <div class="mt-20 text-center">
         <p class="text-sm text-neutral-500">
           {$t('themes.createYourOwn')}

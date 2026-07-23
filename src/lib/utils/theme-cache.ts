@@ -1,4 +1,4 @@
-import type { Theme } from "$lib/types/theme";
+import type { Theme, ThemePackage } from "$lib/types/theme";
 
 const DB_NAME = "cubiclauncher-themes";
 const DB_VERSION = 1;
@@ -121,4 +121,16 @@ export async function setCachedThemes(themes: Theme[]) {
 
 export async function getCachedTimestamp(): Promise<number | null> {
   return getItem<number>(KEY_TIMESTAMP);
+}
+
+const KEY_PACKAGES = "packages";
+const KEY_PACKAGES_TIMESTAMP = "packages-timestamp";
+
+export async function getCachedPackages(): Promise<ThemePackage[] | null> {
+  return getItem<ThemePackage[]>(KEY_PACKAGES);
+}
+
+export async function setCachedPackages(packages: ThemePackage[]) {
+  await setItem(KEY_PACKAGES, packages);
+  await setItem(KEY_PACKAGES_TIMESTAMP, Date.now());
 }
