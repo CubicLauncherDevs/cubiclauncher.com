@@ -16,6 +16,10 @@
     slugify,
   } from "$lib/utils/theme-search";
   import ThemeCard from "./ThemeCard.svelte";
+  import IconMagnifyingGlass from "~icons/ph/magnifying-glass";
+  import IconX from "~icons/ph/x";
+  import IconImage from "~icons/ph/image";
+  import IconCaretDown from "~icons/ph/caret-down";
 
   let themes = $state<Theme[]>([]);
   let loading = $state(true);
@@ -283,9 +287,7 @@
     <div class="max-w-3xl mx-auto mb-8" bind:this={searchDropdownRef}>
       <div class="group relative">
         <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-          <svg class="w-6 h-6 text-neutral-400 group-focus-within:text-white transition-colors" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-          </svg>
+          <IconMagnifyingGlass class="w-6 h-6 text-neutral-400 group-focus-within:text-white transition-colors" />
         </div>
         <input
           type="text"
@@ -301,9 +303,7 @@
             class="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-full text-neutral-500 hover:text-white hover:bg-white/10 transition-colors"
             aria-label={$t('themes.clearSearch')}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-            </svg>
+            <IconX class="w-5 h-5" />
           </button>
         {/if}
 
@@ -321,9 +321,7 @@
                     <img src={theme.previewUrl} alt={theme.name} class="w-full h-full object-cover" />
                   {:else}
                     <div class="w-full h-full flex items-center justify-center text-neutral-600">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0 0 22.5 18.75V5.25A2.25 2.25 0 0 0 20.25 3H3.75A2.25 2.25 0 0 0 1.5 5.25v13.5A2.25 2.25 0 0 0 3.75 21Z" />
-                      </svg>
+                      <IconImage class="w-4 h-4" />
                     </div>
                   {/if}
                 </div>
@@ -376,9 +374,7 @@
         <div class="relative" bind:this={authorDropdownRef}>
           <div class="relative">
             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <svg class="w-4 h-4 text-neutral-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-              </svg>
+              <IconMagnifyingGlass class="w-4 h-4 text-neutral-500" />
             </div>
             <input
               bind:this={authorInputRef}
@@ -394,9 +390,7 @@
                 class="absolute right-2 top-1/2 -translate-y-1/2 p-0.5 rounded-full text-neutral-500 hover:text-white transition-colors"
                 aria-label={$t('themes.clearSearch')}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3.5 h-3.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                </svg>
+                <IconX class="w-3.5 h-3.5" />
               </button>
             {/if}
           </div>
@@ -448,9 +442,7 @@
                 <span>{$t(opt.labelKey)}</span>
               {/if}
             {/each}
-            <svg class="w-3.5 h-3.5 text-neutral-500 {sortDropdownOpen ? 'rotate-180' : ''} transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-            </svg>
+            <IconCaretDown class="w-3.5 h-3.5 text-neutral-500 {sortDropdownOpen ? 'rotate-180' : ''} transition-transform" />
           </button>
 
           {#if sortDropdownOpen}
@@ -491,9 +483,7 @@
           <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-xs text-white">
             <span class="text-neutral-400">{$t('themes.search')}:</span> "{debouncedQuery || searchQuery}"
             <button onclick={clearSearch} class="hover:text-white/60 transition-colors ml-0.5" aria-label={$t('themes.clearSearchText')}>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3 h-3">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-              </svg>
+              <IconX class="w-3 h-3" />
             </button>
           </span>
         {/if}

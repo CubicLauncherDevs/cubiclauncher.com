@@ -3,6 +3,8 @@
   import { t, locale } from "$lib/i18n";
   import { renderMarkdown } from "$lib/utils/markdown";
   import type { ThemeVersion } from "$lib/types/theme";
+  import IconDownloadSimple from "~icons/ph/download-simple";
+  import IconCaretDown from "~icons/ph/caret-down";
 
   let {
     versions,
@@ -64,17 +66,12 @@
               class="flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-lg text-xs text-white transition-colors"
               onclick={(e) => e.stopPropagation()}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3.5 h-3.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
-              </svg>
+              <IconDownloadSimple class="w-3.5 h-3.5" />
               ZIP
             </a>
-            <svg
+            <IconCaretDown
               class="w-4 h-4 text-neutral-500 transition-transform {isExpanded ? 'rotate-180' : ''}"
-              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-            </svg>
+            />
           </div>
         </div>
 
@@ -117,9 +114,7 @@
               download={v.zipName}
               class="flex items-center justify-center gap-2 w-full bg-white text-black px-4 py-2.5 font-bold text-[10px] uppercase tracking-[0.2em] rounded-lg hover:bg-neutral-200 transition-all active:scale-95"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
-              </svg>
+              <IconDownloadSimple class="w-4 h-4" />
               {$t('themeDetail.downloadZIP')} ({v.version})
             </a>
           </div>

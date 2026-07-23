@@ -5,6 +5,7 @@
   import { fetchAllThemes, getCachedThemes, setCachedThemes } from "$lib/utils/themes";
   import { findAuthorBySlug } from "$lib/utils/theme-search";
   import ThemeCard from "$lib/components/themes/ThemeCard.svelte";
+  import IconArrowLeft from "~icons/ph/arrow-left";
 
   const slug = $derived($page.params.slug as string);
 
@@ -78,9 +79,7 @@
       href="/themes"
       class="inline-flex items-center gap-2 text-sm text-neutral-500 hover:text-white transition-colors mb-8"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-      </svg>
+      <IconArrowLeft class="w-4 h-4" />
       {$t('themeDetail.allThemes')}
     </a>
 
