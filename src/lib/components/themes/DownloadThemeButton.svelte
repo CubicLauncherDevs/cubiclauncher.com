@@ -24,8 +24,6 @@
   let error = $state("");
   let success = $state(false);
 
-  const defaultLabel = get(t)('themes.downloadTheme');
-
   async function downloadTheme() {
     if (loading) return;
     loading = true;
@@ -100,13 +98,13 @@
   >
     {#if loading}
       <IconSpinner class="w-5 h-5 animate-spin" />
-      <span>{get(t)('packageDetail.downloadingPackage')} ({progress}/{total})</span>
+      <span>{$t('packageDetail.downloadingPackage')} ({progress}/{total})</span>
     {:else if success}
       <IconCheck class="w-5 h-5" />
-      <span>{get(t)('packageDetail.downloaded')}</span>
+      <span>{$t('packageDetail.downloaded')}</span>
     {:else}
       <IconDownload class="w-5 h-5" />
-      <span>{label || defaultLabel}</span>
+      <span>{label ?? $t('themes.downloadTheme')}</span>
     {/if}
   </button>
 

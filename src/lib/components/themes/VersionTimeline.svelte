@@ -1,6 +1,6 @@
 <script lang="ts">
   import { slide } from "svelte/transition";
-  import { t, locale } from "$lib/i18n";
+  import { t, locale, getDateLocale } from "$lib/i18n";
   import { renderMarkdown } from "$lib/utils/markdown";
   import type { ThemeVersion } from "$lib/types/theme";
   import DownloadThemeButton from "./DownloadThemeButton.svelte";
@@ -107,7 +107,7 @@
 
             <div class="flex flex-wrap gap-x-5 gap-y-1 text-xs text-neutral-500">
               {#if v.date}
-                <span>{new Date(v.date).toLocaleDateString($locale === 'en' ? 'en-US' : 'es-ES', {
+                <span>{new Date(v.date).toLocaleDateString(getDateLocale($locale), {
                   year: "numeric", month: "long", day: "numeric"
                 })}</span>
               {/if}
@@ -115,7 +115,7 @@
               <span>{themeAuthor}</span>
             </div>
 
-            <DownloadThemeButton version={v} {themeName} label={`{$t('themeDetail.downloadZIP')} (${v.version})`} />
+            <DownloadThemeButton version={v} {themeName} label={$t('themeDetail.downloadZIP') + ' (' + v.version + ')'} />
           </div>
         {/if}
       </div>

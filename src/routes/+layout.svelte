@@ -3,13 +3,16 @@
   import Navbar from "$lib/components/global/Navbar.svelte";
   import Footer from "$lib/components/global/Footer.svelte";
   import { browser } from '$app/environment';
-  import { currentLocale, initLocale } from "$lib/i18n";
+  import { currentLocale } from "$lib/i18n";
 
   let { children } = $props();
 
+  if (browser) {
+    document.documentElement.lang = $currentLocale ?? 'es';
+  }
+
   $effect(() => {
     if (browser) {
-      initLocale();
       document.documentElement.lang = $currentLocale ?? 'es';
     }
   });

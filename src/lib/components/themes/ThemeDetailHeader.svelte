@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { t, locale } from "$lib/i18n";
+  import { t, locale, getDateLocale } from "$lib/i18n";
   import type { Theme, ThemeVersion } from "$lib/types/theme";
   import { slugify } from "$lib/utils/theme-search";
   import DownloadThemeButton from "./DownloadThemeButton.svelte";
@@ -106,7 +106,7 @@
 
     {#if theme.date}
       <p class="text-xs text-neutral-500 mb-6">
-        {$t('themeDetail.publishedOn')} {new Date(theme.date).toLocaleDateString($locale === 'en' ? 'en-US' : 'es-ES', {
+        {$t('themeDetail.publishedOn')} {new Date(theme.date).toLocaleDateString(getDateLocale($locale), {
           year: "numeric",
           month: "long",
           day: "numeric",
@@ -132,7 +132,7 @@
     </div>
 
     {#if currentVer}
-      <DownloadThemeButton version={currentVer} themeName={theme.name} />
+      <DownloadThemeButton version={currentVer} themeName={theme.name} label={$t('themeDetail.downloadZIP')} />
     {/if}
   </div>
 </div>
