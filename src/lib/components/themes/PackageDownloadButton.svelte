@@ -32,12 +32,21 @@
         const latest = theme.versions.find((v) => v.version === theme.latestVersion) || theme.versions[0];
         if (!latest) continue;
 
-        const res = await fetch(latest.zipUrl);
-        if (!res.ok) {
-          throw new Error(get(t)('packageDetail.downloadThemeFailed', { values: { name: theme.name, status: res.status } }));
+        const files = latest.files ?? [];
+
+        for (const f of files) {
+          const name = typeof f === "string" ? f : f.name;
+          const url = typeof f === "string"
+            ? `https://raw.githubusercontent.com/santiagolxx/asdasd/refs/heads/master/${latest.dirPath}/${f}`
+            : f.url;
+
+          const res = await fetch(url);
+          if (!res.ok) {
+            throw new Error(get(t)('packageDetail.downloadThemeFailed', { values: { name: theme.name, status: res.status } }));
+          }
+          const blob = await res.blob();
+          zip.file(`${theme.slug}/${name}`, blob);
         }
-        const blob = await res.blob();
-        zip.file(latest.zipName, blob);
         progress = i + 1;
       }
 

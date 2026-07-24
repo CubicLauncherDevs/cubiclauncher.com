@@ -3,7 +3,7 @@
   import { t, locale } from "$lib/i18n";
   import { renderMarkdown } from "$lib/utils/markdown";
   import type { ThemeVersion } from "$lib/types/theme";
-  import IconDownloadSimple from "~icons/ph/download-simple";
+  import DownloadThemeButton from "./DownloadThemeButton.svelte";
   import IconCaretDown from "~icons/ph/caret-down";
 
   let {
@@ -60,15 +60,6 @@
             {/if}
           </div>
           <div class="flex items-center gap-2 shrink-0">
-            <a
-              href={v.zipUrl}
-              download={v.zipName}
-              class="flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-lg text-xs text-white transition-colors"
-              onclick={(e) => e.stopPropagation()}
-            >
-              <IconDownloadSimple class="w-3.5 h-3.5" />
-              ZIP
-            </a>
             <IconCaretDown
               class="w-4 h-4 text-neutral-500 transition-transform {isExpanded ? 'rotate-180' : ''}"
             />
@@ -78,10 +69,25 @@
         {#if isExpanded}
           <div class="border-t border-white/5 px-5 py-4 space-y-4" transition:slide>
             <div class="flex flex-col sm:flex-row gap-4">
-              {#if v.previewUrl}
-                <div class="shrink-0 w-full sm:w-auto">
+              {#if v.showcaseUrl && v.previewUrl}
+                <div class="flex flex-col sm:flex-row gap-2 shrink-0 w-full sm:w-auto">
+                  <img
+                    src={v.showcaseUrl}
+                    alt="{themeName} {v.version}"
+                    loading="lazy"
+                    class="w-full sm:w-[400px] aspect-video object-cover rounded-lg border border-white/10"
+                  />
                   <img
                     src={v.previewUrl}
+                    alt="{themeName} {v.version} palette"
+                    loading="lazy"
+                    class="w-full sm:w-[200px] aspect-video object-cover rounded-lg border border-white/10"
+                  />
+                </div>
+              {:else if v.showcaseUrl || v.previewUrl}
+                <div class="shrink-0 w-full sm:w-auto">
+                  <img
+                    src={v.showcaseUrl || v.previewUrl}
                     alt="{themeName} {v.version}"
                     loading="lazy"
                     class="w-full sm:w-[600px] aspect-video object-cover rounded-lg border border-white/10"
@@ -109,14 +115,7 @@
               <span>{themeAuthor}</span>
             </div>
 
-            <a
-              href={v.zipUrl}
-              download={v.zipName}
-              class="flex items-center justify-center gap-2 w-full bg-white text-black px-4 py-2.5 font-bold text-[10px] uppercase tracking-[0.2em] rounded-lg hover:bg-neutral-200 transition-all active:scale-95"
-            >
-              <IconDownloadSimple class="w-4 h-4" />
-              {$t('themeDetail.downloadZIP')} ({v.version})
-            </a>
+            <DownloadThemeButton version={v} {themeName} label={`{$t('themeDetail.downloadZIP')} (${v.version})`} />
           </div>
         {/if}
       </div>

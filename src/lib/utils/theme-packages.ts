@@ -3,10 +3,10 @@ import type { Theme, ThemePackage, ResolvedThemePackage } from "$lib/types/theme
 import { t } from "$lib/i18n";
 import { getCachedPackages, setCachedPackages } from "./theme-cache";
 
-const GITHUB_OWNER = "cubiclauncherdevs";
-const GITHUB_REPO = "Themes";
+const GITHUB_OWNER = "santiagolxx";
+const GITHUB_REPO = "asdasd";
 const GITHUB_BRANCH = "master";
-const RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}`;
+const RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/refs/heads/${GITHUB_BRANCH}`;
 const PACKAGES_JSON_URL = `${RAW_BASE}/packages.json`;
 
 export async function fetchAllPackages(): Promise<ThemePackage[]> {

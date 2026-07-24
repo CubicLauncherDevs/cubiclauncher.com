@@ -19,6 +19,7 @@
   let loading = $state(true);
   let error = $state("");
   let showLightbox = $state(false);
+  let lightboxUrl = $state("");
 
   let activeTab = $state<"description" | "versions">("description");
   let expandedVersion = $state<string | null>(null);
@@ -120,7 +121,17 @@
 
 <svelte:head>
   <title>{docTitle}</title>
-  <meta name="description" content={$t('page.themeDesc')} />
+  <meta name="description" content={theme?.description ? theme.description.slice(0, 160) : $t('page.themeDesc')} />
+  {#if currentVer?.showcaseUrl || currentVer?.previewUrl}
+    {@const ogImage = currentVer.showcaseUrl || currentVer.previewUrl}
+    <meta property="og:title" content={theme?.name ?? ''} />
+    <meta property="og:description" content={$t('page.themeDesc')} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1600" />
+    <meta property="og:image:height" content="900" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+  {/if}
 </svelte:head>
 
 <section class="min-h-screen pt-40 pb-32 bg-neutral-950 text-white overflow-hidden relative">
@@ -162,7 +173,7 @@
           {currentVer}
           {selectedVersion}
           onVersionChange={(ver) => selectedVersion = ver}
-          onPreviewClick={() => showLightbox = true}
+          onPreviewClick={(url: string) => { lightboxUrl = url; showLightbox = true; }}
         />
 
         <!-- Tabs -->
@@ -225,7 +236,7 @@
 
 <ThemeLightbox
   show={showLightbox}
-  imageUrl={currentVer?.previewUrl}
+  imageUrl={lightboxUrl || undefined}
   alt={theme?.name ?? ""}
   onClose={closeLightbox}
 />

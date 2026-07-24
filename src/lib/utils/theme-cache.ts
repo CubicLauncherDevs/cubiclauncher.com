@@ -1,7 +1,7 @@
 import type { Theme, ThemePackage } from "$lib/types/theme";
 
 const DB_NAME = "cubiclauncher-themes";
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 const STORE_NAME = "themes";
 const KEY_THEMES = "themes";
 const KEY_TIMESTAMP = "themes-timestamp";
@@ -71,7 +71,7 @@ async function setItem<T>(key: string, value: T): Promise<void> {
 }
 
 // Legacy localStorage fallback for environments without IndexedDB
-const LEGACY_CACHE_VERSION = 2;
+const LEGACY_CACHE_VERSION = 3;
 const LEGACY_CACHE_KEY = `cubiclauncher-themes-v${LEGACY_CACHE_VERSION}`;
 
 export function getLegacyCachedThemes(): Theme[] | null {

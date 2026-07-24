@@ -1,11 +1,12 @@
 export interface ThemeVersion {
   version: string;
-  previewUrl: string;
-  zipUrl: string;
-  zipName: string;
+  previewUrl: string | null;
+  showcaseUrl: string | null;
   dirPath: string;
-  date?: string;
+  date?: string | null;
   changelog?: string | null;
+  files: { name: string; url: string }[];
+  injectsCss: boolean;
 }
 
 export interface Theme {
@@ -13,14 +14,13 @@ export interface Theme {
   slug: string;
   name: string;
   author: string;
+  tags: string[];
   dirPath: string;
   description?: string | null;
   versions: ThemeVersion[];
   latestVersion: string;
-  previewUrl: string;
-  zipUrl: string;
-  zipName: string;
-  date?: string;
+  previewUrl: string | null;
+  date?: string | null;
 }
 
 export interface ThemeJson {

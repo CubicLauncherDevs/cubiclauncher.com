@@ -6,7 +6,7 @@
   import { slugify } from "$lib/utils/theme-search";
   import { renderMarkdown } from "$lib/utils/markdown";
   import IconImage from "~icons/ph/image";
-  import IconDownloadSimple from "~icons/ph/download-simple";
+  import DownloadThemeButton from "$lib/components/themes/DownloadThemeButton.svelte";
 
   let slug = $derived($page.params.slug as string);
   let version = $derived($page.params.version as string);
@@ -116,10 +116,29 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 mb-10">
           <div class="lg:col-span-3">
-            {#if ver.previewUrl}
+            {#if ver.showcaseUrl && ver.previewUrl}
+              <div class="flex flex-col sm:flex-row gap-3">
+                <div class="rounded-2xl overflow-hidden border border-white/10 bg-neutral-900 flex-1 min-w-0">
+                  <img
+                    src={ver.showcaseUrl}
+                    alt="{theme.name} {ver.version}"
+                    loading="lazy"
+                    class="w-full aspect-video object-cover"
+                  />
+                </div>
+                <div class="rounded-2xl overflow-hidden border border-white/10 bg-neutral-900 flex-1 min-w-0">
+                  <img
+                    src={ver.previewUrl}
+                    alt="{theme.name} {ver.version} palette"
+                    loading="lazy"
+                    class="w-full aspect-video object-cover"
+                  />
+                </div>
+              </div>
+            {:else if ver.showcaseUrl || ver.previewUrl}
               <div class="rounded-2xl overflow-hidden border border-white/10 bg-neutral-900">
                 <img
-                  src={ver.previewUrl}
+                  src={ver.showcaseUrl || ver.previewUrl}
                   alt="{theme.name} {ver.version}"
                   loading="lazy"
                   class="w-full aspect-video object-cover"
@@ -149,14 +168,11 @@
               </p>
             {/if}
 
-            <a
-              href={ver.zipUrl}
-              download={ver.zipName}
-              class="flex items-center justify-center gap-3 w-full bg-white text-black px-8 py-4 font-bold text-[11px] uppercase tracking-[0.2em] rounded-2xl hover:bg-neutral-200 transition-all active:scale-95 shadow-xl shadow-white/5 mb-3"
-            >
-              <IconDownloadSimple class="w-5 h-5" />
-              {$t('themeDetail.downloadZIP')} ({ver.version})
-            </a>
+            <DownloadThemeButton
+              version={ver}
+              themeName={theme.name}
+              label={`{$t('themeDetail.downloadZIP')} (${ver.version})`}
+            />
 
             <div class="flex items-center gap-2 mt-4">
               {#each theme.versions as v}
