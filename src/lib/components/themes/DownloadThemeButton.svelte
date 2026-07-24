@@ -54,7 +54,7 @@
         const f = themeFiles[i];
         const name = typeof f === "string" ? f : f.name;
         const url = typeof f === "string"
-          ? `https://raw.githubusercontent.com/santiagolxx/asdasd/refs/heads/master/${version.dirPath}/${f}`
+          ? `https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/${version.dirPath}/${f}`
           : f.url;
 
         const res = await fetch(url);

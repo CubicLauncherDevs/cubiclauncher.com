@@ -37,7 +37,7 @@
         for (const f of files) {
           const name = typeof f === "string" ? f : f.name;
           const url = typeof f === "string"
-            ? `https://raw.githubusercontent.com/santiagolxx/asdasd/refs/heads/master/${latest.dirPath}/${f}`
+            ? `https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/${latest.dirPath}/${f}`
             : f.url;
 
           const res = await fetch(url);
