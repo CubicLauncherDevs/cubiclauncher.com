@@ -154,7 +154,8 @@
     "previous": "Previous",
     "next": "Next",
     "showing": "Showing {start} to {end} of {total}",
-    "sortBy": "Sort by"
+    "sortBy": "Sort by",
+    "refreshCache": "Refresh"
   },
   "themeDetail": {
     "retry": "Retry",

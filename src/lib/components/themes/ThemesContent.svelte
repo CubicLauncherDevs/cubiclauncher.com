@@ -14,6 +14,7 @@
     getCachedPackages,
     setCachedPackages,
   } from "$lib/utils/theme-packages";
+  import { clearThemeCache } from "$lib/utils/theme-cache";
   import {
     buildSearchIndex,
     searchThemes,
@@ -26,6 +27,7 @@
   import IconX from "~icons/ph/x";
   import IconImage from "~icons/ph/image";
   import IconCaretDown from "~icons/ph/caret-down";
+  import IconArrowsClockwise from "~icons/ph/arrows-clockwise";
 
   let themes = $state<Theme[]>([]);
   let packages = $state<ThemePackage[]>([]);
@@ -35,6 +37,9 @@
   let packagesError = $state("");
   let hasCached = $state(false);
   let hasPackagesCached = $state(false);
+  let refreshing = $state(false);
+  let refreshRotation = $state(0);
+  const REFRESH_SPIN_DURATION_MS = 800;
 
   type Tab = "themes" | "packages";
   let activeTab = $state<Tab>("themes");
@@ -282,6 +287,63 @@
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  async function loadThemes(force = false) {
+    if (force) {
+      loading = true;
+    }
+    const cachedThemes = await getCachedThemes();
+    if (cachedThemes) {
+      themes = cachedThemes;
+      hasCached = true;
+      loading = false;
+    }
+    try {
+      const freshThemes = await fetchAllThemes();
+      themes = freshThemes;
+      await setCachedThemes(freshThemes);
+    } catch (e) {
+      if (!cachedThemes) {
+        error = e instanceof Error ? e.message : "Error al cargar los temas";
+      }
+    } finally {
+      loading = false;
+    }
+  }
+
+  async function loadPackages(force = false) {
+    if (force) {
+      packagesLoading = true;
+    }
+    const cachedPackages = await getCachedPackages();
+    if (cachedPackages) {
+      packages = cachedPackages;
+      hasPackagesCached = true;
+      packagesLoading = false;
+    }
+    try {
+      const freshPackages = await fetchAllPackages();
+      packages = freshPackages;
+      await setCachedPackages(freshPackages);
+    } catch (e) {
+      if (!cachedPackages) {
+        packagesError = e instanceof Error ? e.message : "Error al cargar los paquetes";
+      }
+    } finally {
+      packagesLoading = false;
+    }
+  }
+
+  async function refreshAll() {
+    refreshing = true;
+    refreshRotation += 360;
+    error = "";
+    packagesError = "";
+    await clearThemeCache();
+    await loadThemes(true);
+    await loadPackages(true);
+    refreshing = false;
+  }
+
   onMount(async () => {
     const url = $page.url;
 
@@ -307,45 +369,8 @@
       currentPage = Math.max(1, parseInt(urlPage, 10) || 1);
     }
 
-    // Load themes
-    const cachedThemes = await getCachedThemes();
-    if (cachedThemes) {
-      themes = cachedThemes;
-      hasCached = true;
-      loading = false;
-    }
-
-    try {
-      const freshThemes = await fetchAllThemes();
-      themes = freshThemes;
-      await setCachedThemes(freshThemes);
-    } catch (e) {
-      if (!cachedThemes) {
-        error = e instanceof Error ? e.message : "Error al cargar los temas";
-      }
-    } finally {
-      loading = false;
-    }
-
-    // Load packages
-    const cachedPackages = await getCachedPackages();
-    if (cachedPackages) {
-      packages = cachedPackages;
-      hasPackagesCached = true;
-      packagesLoading = false;
-    }
-
-    try {
-      const freshPackages = await fetchAllPackages();
-      packages = freshPackages;
-      await setCachedPackages(freshPackages);
-    } catch (e) {
-      if (!cachedPackages) {
-        packagesError = e instanceof Error ? e.message : "Error al cargar los paquetes";
-      }
-    } finally {
-      packagesLoading = false;
-    }
+    await loadThemes();
+    await loadPackages();
   });
 
   $effect(() => {
@@ -393,7 +418,7 @@
     </div>
 
     <!-- Tabs -->
-    <div class="flex justify-center mb-8">
+    <div class="flex items-center justify-center gap-3 mb-8">
       <div class="inline-flex bg-neutral-900 border border-white/10 rounded-full p-1">
         <button
           onclick={() => setTab("themes")}
@@ -408,6 +433,19 @@
           {$t('themes.tabPackages')}
         </button>
       </div>
+      <button
+        onclick={refreshAll}
+        disabled={refreshing}
+        class="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium rounded-full border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+        aria-label={$t('themes.refreshCache')}
+        title={$t('themes.refreshCache')}
+      >
+        <IconArrowsClockwise
+          class="w-3.5 h-3.5"
+          style="transform: rotate({refreshRotation}deg); transition: transform {REFRESH_SPIN_DURATION_MS}ms linear;"
+        />
+        <span class="hidden sm:inline">{$t('themes.refreshCache')}</span>
+      </button>
     </div>
 
     <!-- Search Bar -->

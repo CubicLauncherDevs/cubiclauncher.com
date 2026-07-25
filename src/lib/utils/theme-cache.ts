@@ -1,10 +1,14 @@
 import type { Theme, ThemePackage } from "$lib/types/theme";
 
 const DB_NAME = "cubiclauncher-themes";
-const DB_VERSION = 2;
+const DB_VERSION = 3;
 const STORE_NAME = "themes";
+const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
+const CACHE_VERSION = 1; // bump when the source repo/structure changes
+
 const KEY_THEMES = "themes";
 const KEY_TIMESTAMP = "themes-timestamp";
+const KEY_VERSION = "themes-version";
 
 function openDB(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
@@ -71,7 +75,7 @@ async function setItem<T>(key: string, value: T): Promise<void> {
 }
 
 // Legacy localStorage fallback for environments without IndexedDB
-const LEGACY_CACHE_VERSION = 3;
+const LEGACY_CACHE_VERSION = 4;
 const LEGACY_CACHE_KEY = `cubiclauncher-themes-v${LEGACY_CACHE_VERSION}`;
 
 export function getLegacyCachedThemes(): Theme[] | null {
@@ -99,14 +103,26 @@ export function setLegacyCachedThemes(themes: Theme[]) {
   }
 }
 
+function isCacheValid(timestamp: number | null, version: number | null): boolean {
+  if (timestamp === null || version === null) return false;
+  if (version !== CACHE_VERSION) return false;
+  return Date.now() - timestamp <= CACHE_TTL_MS;
+}
+
 export async function getCachedThemes(): Promise<Theme[] | null> {
   const fromIDB = await getItem<Theme[]>(KEY_THEMES);
-  if (fromIDB) return fromIDB;
+  const timestamp = await getItem<number>(KEY_TIMESTAMP);
+  const version = await getItem<number>(KEY_VERSION);
 
+  if (fromIDB && isCacheValid(timestamp, version)) return fromIDB;
+
+  // Always ignore stale legacy cache; the browser version bump/recreate will clean it up.
   const fromLegacy = getLegacyCachedThemes();
   if (fromLegacy) {
     // Migrate to IndexedDB in background
     void setItem(KEY_THEMES, fromLegacy);
+    void setItem(KEY_TIMESTAMP, Date.now());
+    void setItem(KEY_VERSION, CACHE_VERSION);
     return fromLegacy;
   }
 
@@ -116,6 +132,7 @@ export async function getCachedThemes(): Promise<Theme[] | null> {
 export async function setCachedThemes(themes: Theme[]) {
   await setItem(KEY_THEMES, themes);
   await setItem(KEY_TIMESTAMP, Date.now());
+  await setItem(KEY_VERSION, CACHE_VERSION);
   setLegacyCachedThemes(themes);
 }
 
@@ -125,12 +142,52 @@ export async function getCachedTimestamp(): Promise<number | null> {
 
 const KEY_PACKAGES = "packages";
 const KEY_PACKAGES_TIMESTAMP = "packages-timestamp";
+const KEY_PACKAGES_VERSION = "packages-version";
 
 export async function getCachedPackages(): Promise<ThemePackage[] | null> {
-  return getItem<ThemePackage[]>(KEY_PACKAGES);
+  const fromIDB = await getItem<ThemePackage[]>(KEY_PACKAGES);
+  const timestamp = await getItem<number>(KEY_PACKAGES_TIMESTAMP);
+  const version = await getItem<number>(KEY_PACKAGES_VERSION);
+
+  if (fromIDB && isCacheValid(timestamp, version)) return fromIDB;
+  return null;
 }
 
 export async function setCachedPackages(packages: ThemePackage[]) {
   await setItem(KEY_PACKAGES, packages);
   await setItem(KEY_PACKAGES_TIMESTAMP, Date.now());
+  await setItem(KEY_PACKAGES_VERSION, CACHE_VERSION);
+}
+
+/** Clear all theme and package caches from IndexedDB and localStorage. */
+export async function clearThemeCache(): Promise<void> {
+  try {
+    const db = await openDB();
+    await new Promise<void>((resolve, reject) => {
+      const tx = db.transaction(STORE_NAME, "readwrite");
+      const store = tx.objectStore(STORE_NAME);
+      const request = store.clear();
+
+      request.onerror = () => reject(request.error);
+      request.onsuccess = () => {
+        db.close();
+        resolve();
+      };
+
+      tx.onabort = () => {
+        db.close();
+        reject(tx.error);
+      };
+    });
+  } catch {
+    // silent
+  }
+
+  if (typeof localStorage !== "undefined") {
+    try {
+      localStorage.removeItem(LEGACY_CACHE_KEY);
+    } catch {
+      // silent
+    }
+  }
 }

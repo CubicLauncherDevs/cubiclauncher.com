@@ -154,7 +154,8 @@
     "previous": "Précédent",
     "next": "Suivant",
     "showing": "Affichage de {start} à {end} sur {total}",
-    "sortBy": "Trier par"
+    "sortBy": "Trier par",
+    "refreshCache": "Actualiser"
   },
   "themeDetail": {
     "retry": "Réessayer",
