@@ -42,6 +42,10 @@
     theme?.versions.find((v) => v.version === selectedVersion) || theme?.versions[0] || null
   );
 
+  let ogImage = $derived(
+    currentVer?.showcaseUrl || currentVer?.previewUrl || theme?.previewUrl || null
+  );
+
   let sortedVersions = $derived(
     theme ? [...theme.versions].sort((a, b) => {
       const re = /(\d+)|(\D+)/g;
@@ -122,10 +126,11 @@
 <svelte:head>
   <title>{docTitle}</title>
   <meta name="description" content={theme?.description ? theme.description.slice(0, 160) : $t('page.themeDesc')} />
-  {#if currentVer?.showcaseUrl || currentVer?.previewUrl}
-    {@const ogImage = currentVer.showcaseUrl || currentVer.previewUrl}
-    <meta property="og:title" content={theme?.name ?? ''} />
-    <meta property="og:description" content={$t('page.themeDesc')} />
+  <meta property="og:title" content={theme?.name ?? ''} />
+  <meta property="og:description" content={theme?.description ? theme.description.slice(0, 160) : $t('page.themeDesc')} />
+  <meta property="og:url" content={$page.url.href} />
+  <meta property="og:type" content="website" />
+  {#if ogImage}
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1600" />
     <meta property="og:image:height" content="900" />

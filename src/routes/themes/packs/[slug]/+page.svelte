@@ -72,7 +72,18 @@
 
 <svelte:head>
   <title>{docTitle}</title>
-  <meta name="description" content={$t('page.packageDesc')} />
+  <meta name="description" content={resolved?.description ? resolved.description.slice(0, 160) : $t('page.packageDesc')} />
+  <meta property="og:title" content={resolved?.name ?? ''} />
+  <meta property="og:description" content={resolved?.description ? resolved.description.slice(0, 160) : $t('page.packageDesc')} />
+  <meta property="og:url" content={$page.url.href} />
+  <meta property="og:type" content="website" />
+  {#if resolved?.previewUrl}
+    <meta property="og:image" content={resolved.previewUrl} />
+    <meta property="og:image:width" content="1600" />
+    <meta property="og:image:height" content="900" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={resolved.previewUrl} />
+  {/if}
 </svelte:head>
 
 <section class="min-h-screen pt-40 pb-32 bg-neutral-950 text-white overflow-hidden relative">
