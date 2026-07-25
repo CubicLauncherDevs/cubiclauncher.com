@@ -74,7 +74,7 @@
                   <LanguageSwitcher />
                 </div>
                 <a
-                    href="https://ko-fi.com/cubiclauncher"
+                    href="/donate"
                     class="hidden sm:block text-[10px] font-bold text-neutral-500 hover:text-white transition-colors uppercase tracking-[0.2em]">
                     {$t('nav.donate')}
             </a>
@@ -160,12 +160,13 @@
                 on:click={toggleMobileMenu}>{$t('nav.discord')}</a
             >
 
-            <button
+            <a
+                href="/donate"
                 class="mt-4 text-xl font-bold text-neutral-400 hover:text-white transition-colors uppercase tracking-[0.2em]"
                 on:click={toggleMobileMenu}
             >
                 {$t('nav.donate')}
-            </button>
+            </a>
 
             <a
                 href="/install"

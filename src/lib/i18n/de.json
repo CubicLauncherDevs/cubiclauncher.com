@@ -204,6 +204,16 @@
     "documentation": "Dokumentation",
     "docs": "Dokumentation"
   },
+  "donate": {
+    "title": "Unterstütze CubicLauncher",
+    "subtitle": "Deine Unterstützung hält dieses Projekt am Leben.",
+    "description": "CubicLauncher ist völlig kostenlos und Open Source. Jeder Beitrag hilft, Infrastrukturkosten, Entwicklung und die kontinuierliche Verbesserung des Launchers zu decken.",
+    "kofi": "Mit Ko-fi spenden",
+    "impact": "Keine Werbung, keine Abos. Nur du und die Community. Deine Spende hilft, die Download-Server zu betreiben und neue Funktionen zu entwickeln.",
+    "supportTitle": "Andere Möglichkeiten zu unterstützen",
+    "supportDesc": "Du kannst auch einen Beitrag leisten, indem du Bugs meldest, Ideen vorschlägst, Themes erstellst oder auf GitHub am Code mitarbeitest.",
+    "contribute": "Auf GitHub mitwirken"
+  },
   "page": {
     "homeTitle": "Startseite | CubicLauncher",
     "homeDesc": "CubicLauncher ist ein quelloffener, leichter und anpassbarer Minecraft-Launcher mit Unterstützung für Premium-, NoPremium- und Ely.by-Konten.",
@@ -214,7 +224,9 @@
     "themeTitle": "{name} – CubicLauncher",
     "themeDesc": "Themedetails für CubicLauncher.",
     "packageTitle": "{name} – CubicLauncher",
-    "packageDesc": "Theme package for CubicLauncher."
+    "packageDesc": "Theme package for CubicLauncher.",
+    "donateTitle": "Spenden – CubicLauncher",
+    "donateDesc": "Unterstütze CubicLauncher mit einer Spende. Das Projekt ist kostenlos und Open Source, von der Community betrieben."
   },
   "themesUtil": {
     "unknownAuthor": "Unbekannt",
