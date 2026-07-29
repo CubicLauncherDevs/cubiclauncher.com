@@ -54,4 +54,10 @@ export const contributors: Developer[] = [
     roleKey: "developers.role7",
     github: "kittyhos",
   },
+  {
+    name: "nullked",
+    role: "Traductor",
+    roleKey: "developers.role8",
+    github: "nullked",
+  }
 ];
