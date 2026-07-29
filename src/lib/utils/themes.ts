@@ -31,8 +31,8 @@ export function versionFileUrl(version: { dirPath: string }, fileName: string): 
 export function getVersionDownloadFiles(version: { files: (string | { name: string; url: string })[] }): { name: string; url: string }[] {
   return version.files.map((f) => {
     if (typeof f === "string") {
-      const url = rawUrl(`${version.dirPath}/${f}`);
-      (version as any).dirPath; // kept for type compat
+      const dirPath = (version as any).dirPath;
+      const url = rawUrl(`${dirPath}/${f}`);
       return { name: f, url };
     }
     return f;

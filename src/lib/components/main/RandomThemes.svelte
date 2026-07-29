@@ -11,6 +11,7 @@
   import IconCaretRight from "~icons/ph/caret-right";
   import IconUser from "~icons/ph/user";
   import IconImage from "~icons/ph/image";
+  import VerifiedBadge from "$lib/components/themes/VerifiedBadge.svelte";
 
   let themes = $state<Theme[]>([]);
   let selected = $state<Theme[]>([]);
@@ -232,11 +233,16 @@
               out:fade={{ duration: 250 }}
             >
               <a href="/themes/{selected[current].id}" class="group">
-                <h3
-                  class="text-2xl md:text-3xl font-bold tracking-tight text-white group-hover:text-neutral-300 transition-colors leading-tight"
-                >
-                  {selected[current].name}
-                </h3>
+                <div class="flex items-center gap-2">
+                  <h3
+                    class="text-2xl md:text-3xl font-bold tracking-tight text-white group-hover:text-neutral-300 transition-colors leading-tight"
+                  >
+                    {selected[current].name}
+                  </h3>
+                  {#if selected[current].verified}
+                    <VerifiedBadge size="md" />
+                  {/if}
+                </div>
               </a>
 
               <a

@@ -155,7 +155,9 @@
     "next": "Weiter",
     "showing": "{start} bis {end} von {total}",
     "sortBy": "Sortieren nach",
-    "refreshCache": "Aktualisieren"
+    "refreshCache": "Aktualisieren",
+    "verified": "Verifiziert",
+    "verifiedTheme": "Offiziell verifiziertes Theme"
   },
   "themeDetail": {
     "retry": "Wiederholen",

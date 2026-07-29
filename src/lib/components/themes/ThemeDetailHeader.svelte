@@ -3,6 +3,7 @@
   import type { Theme, ThemeVersion } from "$lib/types/theme";
   import { slugify } from "$lib/utils/theme-search";
   import DownloadThemeButton from "./DownloadThemeButton.svelte";
+  import VerifiedBadge from "./VerifiedBadge.svelte";
   import IconArrowLeft from "~icons/ph/arrow-left";
   import IconImage from "~icons/ph/image";
   import IconPalette from "~icons/ph/palette";
@@ -53,7 +54,7 @@
       <div
         class="rounded-2xl overflow-hidden border border-white/10 bg-neutral-900 cursor-pointer relative"
         onclick={() => onPreviewClick(currentImageUrl!)}
-        onkeydown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onPreviewClick(); } }}
+        onkeydown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onPreviewClick(currentImageUrl!); } }}
         role="button"
         tabindex="0"
       >
@@ -91,6 +92,9 @@
   <div class="lg:col-span-2">
     <div class="flex items-start gap-2 mb-2">
       <h1 class="text-4xl font-bold tracking-tighter">{theme.name}</h1>
+      {#if theme.verified}
+        <VerifiedBadge size="lg" />
+      {/if}
     </div>
     <p class="text-lg text-neutral-400 mb-2">
       {$t('themeDetail.by')} <a href={authorUrl} class="text-white hover:underline underline-offset-4 decoration-white/30 transition-all">{theme.author}</a>

@@ -23,6 +23,7 @@
   } from "$lib/utils/theme-search";
   import ThemeCard from "./ThemeCard.svelte";
   import PackageCard from "./PackageCard.svelte";
+  import VerifiedBadge from "./VerifiedBadge.svelte";
   import IconMagnifyingGlass from "~icons/ph/magnifying-glass";
   import IconX from "~icons/ph/x";
   import IconImage from "~icons/ph/image";
@@ -491,7 +492,12 @@
                   {/if}
                 </div>
                 <div class="min-w-0">
-                  <p class="text-sm font-medium text-white truncate">{theme.name}</p>
+                  <div class="flex items-center gap-1.5">
+                    <p class="text-sm font-medium text-white truncate">{theme.name}</p>
+                    {#if theme.verified}
+                      <VerifiedBadge size="sm" />
+                    {/if}
+                  </div>
                   <p class="text-xs text-neutral-500 truncate">{theme.author} · {theme.latestVersion}</p>
                 </div>
               </a>
