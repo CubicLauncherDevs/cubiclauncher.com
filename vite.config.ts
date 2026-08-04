@@ -9,4 +9,7 @@ export default defineConfig({
 		tailwindcss(),
 		Icons({ compiler: 'svelte' })
 	],
+	optimizeDeps: {
+		include: ['jszip']
+	}
 });

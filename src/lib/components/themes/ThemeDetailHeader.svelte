@@ -61,6 +61,8 @@
         <img
           src={currentImageUrl}
           alt={theme.name}
+          width="1600"
+          height="900"
           loading="eager"
           decoding="async"
           class="w-full aspect-video object-cover"

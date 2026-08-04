@@ -2,18 +2,20 @@
   import { page } from "$app/stores";
   import { t, locale } from "$lib/i18n";
   import type { Theme, ThemeVersion } from "$lib/types/theme";
-  import { fetchAllThemes, getCachedThemes, setCachedThemes } from "$lib/utils/themes";
   import { slugify } from "$lib/utils/theme-search";
   import { renderMarkdown } from "$lib/utils/markdown";
   import IconImage from "~icons/ph/image";
   import DownloadThemeButton from "$lib/components/themes/DownloadThemeButton.svelte";
 
-  let slug = $derived($page.params.slug as string);
-  let version = $derived($page.params.version as string);
+  let { data } = $props();
+  let theme = $derived(data.theme);
+  let ver = $derived(data.version);
 
-  let theme = $state<Theme | null>(null);
-  let ver = $state<ThemeVersion | null>(null);
-  let loading = $state(true);
+  let slug = $derived($page.params.slug as string);
+  let versionName = $derived($page.params.version as string);
+  let canonicalUrl = $derived($page.url.href.split('?')[0]);
+
+  let loading = $state(false);
   let error = $state("");
 
   let changelogHtml = $derived(
@@ -22,54 +24,40 @@
 
   let authorUrl = $derived(theme ? `/themes/author/${slugify(theme.author)}` : "/themes");
 
-  $effect(() => {
-    loadVersion(slug, version);
-  });
-
-  async function loadVersion(slugId: string, versionName: string) {
-    loading = true;
-    error = "";
-
-    let themes: Theme[] | null = await getCachedThemes();
-
-    if (!themes) {
-      try {
-        themes = await fetchAllThemes();
-        await setCachedThemes(themes);
-      } catch (e) {
-        error = e instanceof Error ? e.message : "Error loading theme";
-        loading = false;
-        return;
-      }
-    }
-
-    const found = themes.find((t) => t.slug === slugId);
-    if (!found) {
-      error = "Theme not found";
-      loading = false;
-      return;
-    }
-
-    theme = found;
-    const foundVer = found.versions.find((v) => v.version === versionName);
-    if (!foundVer) {
-      error = `Version ${versionName} not found`;
-      loading = false;
-      return;
-    }
-
-    ver = foundVer;
-    loading = false;
-  }
-
   let docTitle = $derived(
-    theme ? `${theme.name} ${version} - CubicLauncher` : "CubicLauncher"
+    theme ? `${theme.name} ${versionName} - CubicLauncher` : "CubicLauncher"
+  );
+
+  let jsonLd = $derived(
+    theme && ver
+      ? JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: `${theme.name} ${ver.version}`,
+          description: ver.changelog
+            ? ver.changelog.replace(/[#*_]/g, '').slice(0, 300)
+            : $t('page.themeDesc'),
+          applicationCategory: "Theme",
+          author: {
+            "@type": "Person",
+            name: theme.author
+          },
+          url: canonicalUrl,
+          image: ver.showcaseUrl || ver.previewUrl || theme.previewUrl || undefined,
+          datePublished: ver.date ?? theme.date ?? undefined,
+          softwareVersion: ver.version
+        })
+      : null
   );
 </script>
 
 <svelte:head>
   <title>{docTitle}</title>
   <meta name="description" content={$t('page.themeDesc')} />
+  <link rel="canonical" href={canonicalUrl} />
+  {#if jsonLd}
+    {@html `<script type="application/ld+json">${jsonLd}</script>`}
+  {/if}
 </svelte:head>
 
 <section class="min-h-screen pt-40 pb-32 bg-neutral-950 text-white overflow-hidden relative">
@@ -90,12 +78,6 @@
       <div class="text-center py-20 max-w-4xl mx-auto">
         <p class="text-neutral-400 text-lg mb-6">{error}</p>
         <div class="flex gap-4 justify-center">
-          <button
-            onclick={() => loadVersion(slug, version)}
-            class="bg-white text-black px-8 py-3 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all active:scale-95"
-          >
-            {$t('themeDetail.retry')}
-          </button>
           <a
             href="/themes"
             class="px-8 py-3 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 transition-all"
@@ -123,6 +105,7 @@
                     src={ver.showcaseUrl}
                     alt="{theme.name} {ver.version}"
                     loading="lazy"
+                    decoding="async"
                     class="w-full aspect-video object-cover"
                   />
                 </div>
@@ -131,6 +114,7 @@
                     src={ver.previewUrl}
                     alt="{theme.name} {ver.version} palette"
                     loading="lazy"
+                    decoding="async"
                     class="w-full aspect-video object-cover"
                   />
                 </div>
@@ -141,6 +125,7 @@
                   src={ver.showcaseUrl || ver.previewUrl}
                   alt="{theme.name} {ver.version}"
                   loading="lazy"
+                  decoding="async"
                   class="w-full aspect-video object-cover"
                 />
               </div>

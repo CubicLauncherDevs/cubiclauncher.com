@@ -1,9 +1,8 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import { pushState } from "$app/navigation";
-  import { t, locale } from "$lib/i18n";
-  import type { Theme } from "$lib/types/theme";
-  import { fetchAllThemes, getCachedThemes, setCachedThemes } from "$lib/utils/themes";
+  import { t } from "$lib/i18n";
+  import type { Theme, ThemeVersion } from "$lib/types/theme";
   import { slugify } from "$lib/utils/theme-search";
   import { renderMarkdown } from "$lib/utils/markdown";
   import ThemeCard from "$lib/components/themes/ThemeCard.svelte";
@@ -11,18 +10,25 @@
   import VersionTimeline from "$lib/components/themes/VersionTimeline.svelte";
   import ThemeLightbox from "$lib/components/themes/ThemeLightbox.svelte";
 
+  let { data } = $props();
+  let theme = $derived(data.theme);
+  let allThemes = $derived(data.allThemes);
+
   let slug = $derived($page.params.slug as string);
   let tabParam = $derived(($page.url.searchParams.get("tab") || "description") as "description" | "versions");
+  let canonicalUrl = $derived($page.url.href.split('?')[0]);
 
-  let theme = $state<Theme | null>(null);
-  let allThemes = $state<Theme[]>([]);
-  let loading = $state(true);
+  let loading = $state(false);
   let error = $state("");
   let showLightbox = $state(false);
   let lightboxUrl = $state("");
 
   let activeTab = $state<"description" | "versions">("description");
   let expandedVersion = $state<string | null>(null);
+
+  $effect(() => {
+    activeTab = tabParam;
+  });
 
   let relatedThemes = $derived.by(() => {
     const current = theme;
@@ -36,7 +42,11 @@
     theme?.description ? renderMarkdown(theme.description) : ""
   );
 
-  let selectedVersion = $state("");
+  let selectedVersion = $state<string>("");
+
+  $effect.pre(() => {
+    selectedVersion = theme.latestVersion;
+  });
 
   let currentVer = $derived(
     theme?.versions.find((v) => v.version === selectedVersion) || theme?.versions[0] || null
@@ -68,43 +78,9 @@
     }) : []
   );
 
-  $effect(() => {
-    activeTab = tabParam;
-  });
-
-  $effect(() => {
-    loadTheme(slug);
-  });
-
-  async function loadTheme(slugId: string) {
-    loading = true;
-    error = "";
-
-    let themes: Theme[] | null = await getCachedThemes();
-
-    if (!themes) {
-      try {
-        themes = await fetchAllThemes();
-        await setCachedThemes(themes);
-      } catch (e) {
-        error = e instanceof Error ? e.message : "Error loading theme";
-        loading = false;
-        return;
-      }
-    }
-
-    allThemes = themes;
-    const found = themes.find((t) => t.slug === slugId);
-    if (!found) {
-      error = "Theme not found";
-      loading = false;
-      return;
-    }
-
-    theme = found;
-    selectedVersion = found.latestVersion;
-    loading = false;
-  }
+  let changelogHtml = $derived(
+    currentVer?.changelog ? renderMarkdown(currentVer.changelog) : ""
+  );
 
   function setTab(tab: "description" | "versions") {
     activeTab = tab;
@@ -121,11 +97,34 @@
     theme ? `${theme.name} - CubicLauncher`
       : slug ? slug : $t('page.themesTitle')
   );
+
+  let jsonLd = $derived(
+    theme
+      ? JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: theme.name,
+          description: theme.description
+            ? theme.description.replace(/[#*_]/g, '').slice(0, 300)
+            : $t('page.themeDesc'),
+          applicationCategory: "Theme",
+          author: {
+            "@type": "Person",
+            name: theme.author
+          },
+          url: canonicalUrl,
+          image: ogImage ?? undefined,
+          datePublished: theme.date ?? undefined,
+          softwareVersion: theme.latestVersion
+        })
+      : null
+  );
 </script>
 
 <svelte:head>
   <title>{docTitle}</title>
   <meta name="description" content={theme?.description ? theme.description.slice(0, 160) : $t('page.themeDesc')} />
+  <link rel="canonical" href={canonicalUrl} />
   <meta property="og:title" content={theme?.name ?? ''} />
   <meta property="og:description" content={theme?.description ? theme.description.slice(0, 160) : $t('page.themeDesc')} />
   <meta property="og:url" content={$page.url.href} />
@@ -136,6 +135,9 @@
     <meta property="og:image:height" content="900" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
+  {/if}
+  {#if jsonLd}
+    {@html `<script type="application/ld+json">${jsonLd}</script>`}
   {/if}
 </svelte:head>
 
@@ -157,12 +159,6 @@
       <div class="text-center py-20 max-w-4xl mx-auto">
         <p class="text-neutral-400 text-lg mb-6">{error}</p>
         <div class="flex gap-4 justify-center">
-          <button
-            onclick={() => loadTheme(slug)}
-            class="bg-white text-black px-8 py-3 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all active:scale-95"
-          >
-            {$t('themeDetail.retry')}
-          </button>
           <a
             href="/themes"
             class="px-8 py-3 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 transition-all"

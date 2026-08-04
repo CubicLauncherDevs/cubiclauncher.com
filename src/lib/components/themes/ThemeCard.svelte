@@ -17,6 +17,8 @@
       <img
         src={theme.previewUrl}
         alt={theme.name}
+        width="400"
+        height="225"
         loading="lazy"
         decoding="async"
         fetchpriority="low"

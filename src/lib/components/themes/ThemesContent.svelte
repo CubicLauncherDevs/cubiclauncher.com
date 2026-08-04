@@ -30,14 +30,22 @@
   import IconCaretDown from "~icons/ph/caret-down";
   import IconArrowsClockwise from "~icons/ph/arrows-clockwise";
 
-  let themes = $state<Theme[]>([]);
-  let packages = $state<ThemePackage[]>([]);
-  let loading = $state(true);
-  let packagesLoading = $state(true);
+  let {
+    initialThemes,
+    initialPackages,
+  }: {
+    initialThemes?: Theme[];
+    initialPackages?: ThemePackage[];
+  } = $props();
+
+  let themes = $state<Theme[]>(initialThemes ?? []);
+  let packages = $state<ThemePackage[]>(initialPackages ?? []);
+  let loading = $state(!initialThemes);
+  let packagesLoading = $state(!initialPackages);
   let error = $state("");
   let packagesError = $state("");
-  let hasCached = $state(false);
-  let hasPackagesCached = $state(false);
+  let hasCached = $state(!!initialThemes);
+  let hasPackagesCached = $state(!!initialPackages);
   let refreshing = $state(false);
   let refreshRotation = $state(0);
   const REFRESH_SPIN_DURATION_MS = 800;
@@ -370,8 +378,12 @@
       currentPage = Math.max(1, parseInt(urlPage, 10) || 1);
     }
 
-    await loadThemes();
-    await loadPackages();
+    if (!initialThemes) {
+      await loadThemes();
+    }
+    if (!initialPackages) {
+      await loadPackages();
+    }
   });
 
   $effect(() => {

@@ -1,8 +1,9 @@
 <script lang="ts">
   import { get } from "svelte/store";
+  import { onDestroy } from "svelte";
   import { t } from "$lib/i18n";
   import type { ThemeVersion } from "$lib/types/theme";
-  import JSZip from "jszip";
+  import type JSZipType from "jszip";
   import IconDownload from "~icons/ph/download-simple";
   import IconSpinner from "~icons/ph/spinner";
   import IconCheck from "~icons/ph/check";
@@ -24,17 +25,38 @@
   let error = $state("");
   let success = $state(false);
 
+  let abortController: AbortController | null = null;
+  let successTimer: ReturnType<typeof setTimeout> | null = null;
+
+  function cleanup() {
+    if (abortController) {
+      abortController.abort();
+      abortController = null;
+    }
+    if (successTimer) {
+      clearTimeout(successTimer);
+      successTimer = null;
+    }
+  }
+
+  onDestroy(cleanup);
+
   async function downloadTheme() {
     if (loading) return;
+    cleanup();
     loading = true;
     error = "";
     success = false;
     progress = 0;
 
-    const zip = new JSZip();
-    const displayName = themeName.replace(/[^a-zA-Z0-9_-]/g, "_");
+    abortController = new AbortController();
+    const signal = abortController.signal;
 
     try {
+      const JSZip = (await import("jszip")).default;
+      const zip = new JSZip();
+      const displayName = themeName.replace(/[^a-zA-Z0-9_-]/g, "_");
+
       const allFiles = version.files ?? [];
       const themeFiles = allFiles.filter((f) => {
         const name = typeof f === "string" ? f : f.name;
@@ -49,13 +71,15 @@
       }
 
       for (let i = 0; i < themeFiles.length; i++) {
+        if (signal.aborted) throw new Error("Download cancelled");
+
         const f = themeFiles[i];
         const name = typeof f === "string" ? f : f.name;
         const url = typeof f === "string"
           ? `https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/${version.dirPath}/${f}`
           : f.url;
 
-        const res = await fetch(url);
+        const res = await fetch(url, { signal });
         if (!res.ok) {
           throw new Error(`Failed to download ${name} (HTTP ${res.status})`);
         }
@@ -81,11 +105,16 @@
       URL.revokeObjectURL(dlUrl);
 
       success = true;
-      setTimeout(() => { success = false; }, 3000);
+      successTimer = setTimeout(() => { success = false; }, 3000);
     } catch (e) {
-      error = e instanceof Error ? e.message : get(t)('packageDetail.downloadFailed');
+      if (e instanceof DOMException && e.name === "AbortError") {
+        // silently ignore cancelled downloads
+      } else {
+        error = e instanceof Error ? e.message : get(t)('packageDetail.downloadFailed');
+      }
     } finally {
       loading = false;
+      abortController = null;
     }
   }
 </script>

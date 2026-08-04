@@ -1,6 +1,8 @@
 import { get } from "svelte/store";
+import { browser } from "$app/environment";
 import type { Theme, ColorGroup } from "$lib/types/theme";
 import { t } from "$lib/i18n";
+import { getCachedThemes, setCachedThemes } from "./theme-cache";
 
 const GITHUB_OWNER = "CubicLauncherDevs";
 const GITHUB_REPO = "Themes";
@@ -8,19 +10,53 @@ const GITHUB_BRANCH = "master";
 const RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/refs/heads/${GITHUB_BRANCH}`;
 const THEMES_JSON_URL = `${RAW_BASE}/themes.json`;
 
+let localThemes: Theme[] | null = null;
+let localThemesPromise: Promise<Theme[]> | null = null;
+
+async function loadLocalThemes(): Promise<Theme[]> {
+  if (localThemes) return localThemes;
+  if (localThemesPromise) return localThemesPromise;
+
+  localThemesPromise = (async () => {
+    try {
+      const mod = await import("$lib/data/themes.json");
+      localThemes = mod.default as Theme[];
+      return localThemes;
+    } catch {
+      throw new Error("Local themes not available");
+    }
+  })();
+
+  return localThemesPromise;
+}
+
 export function rawUrl(path: string): string {
   const segments = path.split("/").map((s) => encodeURIComponent(s));
   return `${RAW_BASE}/${segments.join("/")}`;
 }
 
 export async function fetchAllThemes(): Promise<Theme[]> {
+  if (!browser) {
+    // Server/build: prefer local data prepared by prebuild script
+    try {
+      return await loadLocalThemes();
+    } catch {
+      // fall through to network if local data is missing
+    }
+  }
+
+  const cached = await getCachedThemes();
+  if (cached) return cached;
+
   const url = `${THEMES_JSON_URL}?_=${Date.now()}`;
   const res = await fetch(url);
   if (!res.ok) throw new Error(get(t)('themesUtil.fetchError', { values: { status: res.status } }));
-  return await res.json() as Theme[];
+  const themes = await res.json() as Theme[];
+  await setCachedThemes(themes);
+  return themes;
 }
 
-export { getCachedThemes, setCachedThemes } from "./theme-cache";
+export { getCachedThemes, setCachedThemes };
 
 /** Build a raw GitHub URL for a file inside a theme version directory */
 export function versionFileUrl(version: { dirPath: string }, fileName: string): string {

@@ -13,7 +13,9 @@
     }[] = [];
 
     onMount(() => {
-        fallingLogos = Array.from({ length: 24 }, (_, i) => ({
+        const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches;
+        const count = isMobile ? 12 : 24;
+        fallingLogos = Array.from({ length: count }, (_, i) => ({
             id: i,
             left: Math.random() * 100,
             size: Math.random() * 30 + 15,
