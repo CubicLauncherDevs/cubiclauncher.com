@@ -8,7 +8,7 @@ const STATIC_DIR = join(__dirname, '..', 'static');
 
 const THEMES_URL = 'https://raw.githubusercontent.com/CubicLauncherDevs/Themes/master/themes.json';
 const PACKAGES_URL = 'https://raw.githubusercontent.com/CubicLauncherDevs/Themes/master/packages.json';
-const BASE_URL = 'https://cubiclauncher.com';
+const BASE_URL = 'https://cubiclauncher.org';
 
 async function fetchJson(url) {
   const res = await fetch(url);

@@ -27,7 +27,7 @@ const config = {
 			fallback: '404.html'
 		}),
 		prerender: {
-			origin: 'https://cubiclauncher.com',
+			origin: 'https://cubiclauncher.org',
 			entries: ['*'],
 			handleHttpError: 'warn'
 		}
