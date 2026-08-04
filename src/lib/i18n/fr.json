@@ -60,7 +60,7 @@
     "value4Title": "Personnalisable",
     "value4Desc": "Adaptez l'apparence du lanceur avec des thèmes communautaires et configurez chaque détail selon vos besoins.",
     "value5Title": "Projet original",
-    "value5Desc": "Développé à partir de zéro sans réutiliser le code d'autres lanceurs. Un projet original axé sur l'optimisation.",
+    "value5Desc": "Nous ne descendons d'aucun autre lanceur. Pas de branches héritées : chaque ligne de code est née dans ce dépôt.",
     "quickStartTitle": "Démarrage rapide",
     "quickStartSubtitle": "Sélectionnez votre système d'exploitation, téléchargez l'installateur et lancez CubicLauncher."
   },

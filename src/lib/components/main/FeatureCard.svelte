@@ -4,7 +4,7 @@
   export let index: number;
 </script>
 
-<div class="group py-20 px-12 border border-white/5 hover:border-white/20 transition-all duration-700 rounded-[4rem] hover:bg-white/[0.02]">
+<div class="group py-20 px-12 border border-white/5 hover:border-white/20 transition-all duration-700 rounded-[4rem] hover:bg-white/2">
   <div class="flex flex-col gap-10 items-start">
     <div class="w-12 h-12 bg-neutral-900 rounded-full flex items-center justify-center text-[10px] font-bold text-neutral-500 border border-white/5 group-hover:scale-110 transition-transform duration-700">
       0{index + 1}

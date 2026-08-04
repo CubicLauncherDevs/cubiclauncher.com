@@ -31,18 +31,31 @@ addMessages('en', en);
 addMessages('fr', fr);
 addMessages('de', de);
 
+function detectBrowserLocale(): AppLocale | null {
+  if (!browser) return null;
+
+  try {
+    const candidates = navigator.languages?.length ? navigator.languages : [navigator.language];
+    for (const lang of candidates) {
+      const prefix = lang.split('-')[0].toLowerCase();
+      if (isSupportedLocale(prefix)) return prefix;
+    }
+  } catch {
+    // ignore navigator errors
+  }
+
+  return null;
+}
+
 function detectInitialLocale(): AppLocale {
-  if (!browser) return 'es';
+  const fromBrowser = detectBrowserLocale();
+  if (fromBrowser) return fromBrowser;
 
   try {
     const stored = localStorage.getItem('locale');
     if (stored && isSupportedLocale(stored)) return stored;
-
-    const nav = navigator.language || 'es';
-    const prefix = nav.split('-')[0].toLowerCase();
-    if (isSupportedLocale(prefix)) return prefix;
   } catch {
-    // ignore storage / navigator errors
+    // ignore storage errors
   }
 
   return 'es';
