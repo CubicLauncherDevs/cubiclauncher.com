@@ -60,7 +60,7 @@
     "value4Title": "Personalizable",
     "value4Desc": "Adaptá la apariencia del launcher con temas de la comunidad y configurá cada detalle a tu medida.",
     "value5Title": "Proyecto original",
-    "value5Desc": "Desarrollado desde cero, sin reutilizar código de otros launchers. Un proyecto original orientado a la optimización.",
+    "value5Desc": "No desciende de ningún otro launcher. No heredamos ramas ajenas: cada línea de código nació en este repositorio.",
     "quickStartTitle": "Instalación rápida",
     "quickStartSubtitle": "Seleccioná tu sistema operativo, descargá el instalador e iniciá CubicLauncher."
   },
@@ -155,7 +155,9 @@
     "next": "Siguiente",
     "showing": "Mostrando {start} a {end} de {total}",
     "sortBy": "Ordenar por",
-    "refreshCache": "Actualizar"
+    "refreshCache": "Actualizar",
+    "verified": "Verificado",
+    "verifiedTheme": "Tema verificado oficialmente"
   },
   "themeDetail": {
     "retry": "Reintentar",
@@ -163,7 +165,7 @@
     "allThemes": "Todos los temas",
     "by": "por",
     "publishedOn": "Publicado el",
-    "downloadZIP": "Descargar ZIP",
+    "downloadZIP": "Descargar CBTH",
     "moreBy": "Más temas de {author}",
     "notFound": "Tema no encontrado",
     "version": "Versión",

@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "fetch-themes": "node scripts/fetch-themes.mjs",
+    "prebuild": "npm run fetch-themes",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
@@ -29,6 +31,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.2.4",
     "dompurify": "^3.4.12",
+    "isomorphic-dompurify": "^3.21.0",
     "jszip": "^3.10.1",
     "svelte-i18n": "^4.0.1",
     "tailwindcss": "^4.2.4"

@@ -1,18 +1,14 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import { t } from "$lib/i18n";
-  import type { Theme, AuthorEntry } from "$lib/types/theme";
-  import { fetchAllThemes, getCachedThemes, setCachedThemes } from "$lib/utils/themes";
-  import { findAuthorBySlug } from "$lib/utils/theme-search";
+  import type { AuthorEntry, Theme } from "$lib/types/theme";
   import ThemeCard from "$lib/components/themes/ThemeCard.svelte";
   import IconArrowLeft from "~icons/ph/arrow-left";
 
-  const slug = $derived($page.params.slug as string);
+  let { data } = $props();
+  let author = $derived(data.author);
 
-  let themes = $state<Theme[]>([]);
-  let author = $state<AuthorEntry | null>(null);
-  let loading = $state(true);
-  let error = $state("");
+  let canonicalUrl = $derived($page.url.href.split('?')[0]);
 
   const ITEMS_PER_PAGE = 12;
   let currentPage = $state(1);
@@ -26,51 +22,34 @@
   let paginationStart = $derived((currentPage - 1) * ITEMS_PER_PAGE + 1);
   let paginationEnd = $derived(Math.min(currentPage * ITEMS_PER_PAGE, author?.themes.length ?? 0));
 
-  $effect(() => {
-    loadAuthor(slug);
-  });
-
-  async function loadAuthor(authorSlug: string) {
-    loading = true;
-    error = "";
-
-    let data: Theme[] | null = await getCachedThemes();
-
-    if (!data) {
-      try {
-        data = await fetchAllThemes();
-        await setCachedThemes(data);
-      } catch (e) {
-        error = e instanceof Error ? e.message : "Error loading themes";
-        loading = false;
-        return;
-      }
-    }
-
-    themes = data;
-    const found = findAuthorBySlug(data, authorSlug);
-
-    if (!found) {
-      error = "Author not found";
-      loading = false;
-      return;
-    }
-
-    author = found;
-    currentPage = 1;
-    loading = false;
-  }
-
   function goToPage(pageNum: number) {
     if (pageNum < 1 || pageNum > totalPages) return;
     currentPage = pageNum;
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
+
+  let jsonLd = $derived(
+    author
+      ? JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ProfilePage",
+          mainEntity: {
+            "@type": "Person",
+            name: author.name,
+            url: canonicalUrl
+          }
+        })
+      : null
+  );
 </script>
 
 <svelte:head>
   <title>{author ? `${author.name} - Themes - CubicLauncher` : "Author - CubicLauncher"}</title>
   <meta name="description" content={$t('page.themesDesc')} />
+  <link rel="canonical" href={canonicalUrl} />
+  {#if jsonLd}
+    {@html `<script type="application/ld+json">${jsonLd}</script>`}
+  {/if}
 </svelte:head>
 
 <section class="min-h-screen pt-36 pb-32 bg-neutral-950 text-white">
@@ -83,32 +62,7 @@
       {$t('themeDetail.allThemes')}
     </a>
 
-    {#if loading}
-      <div class="animate-pulse space-y-6 max-w-4xl mx-auto">
-        <div class="h-8 bg-neutral-800 rounded w-64"></div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {#each Array(6) as _}
-            <div class="bg-neutral-900 border border-white/5 rounded-xl overflow-hidden">
-              <div class="aspect-video bg-neutral-800"></div>
-              <div class="p-4 space-y-2">
-                <div class="h-4 bg-neutral-800 rounded w-2/3"></div>
-                <div class="h-3 bg-neutral-800 rounded w-1/3"></div>
-              </div>
-            </div>
-          {/each}
-        </div>
-      </div>
-    {:else if error}
-      <div class="text-center py-20">
-        <p class="text-neutral-400 text-lg mb-2">{error}</p>
-        <a
-          href="/themes"
-          class="inline-block mt-6 bg-white text-black px-6 py-2.5 text-[10px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all"
-        >
-          {$t('themeDetail.viewAll')}
-        </a>
-      </div>
-    {:else if author}
+    {#if author}
       <div class="mb-10">
         <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-2">
           {author.name}

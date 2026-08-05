@@ -13,11 +13,22 @@ const config = {
 
 	extensions: ['.svelte', '.md'],
 
+	onwarn: (warning, handler) => {
+		if (warning.code === 'state_referenced_locally') return;
+		handler(warning);
+	},
+
+	compilerOptions: {
+		warningFilter: (warning) => warning.code !== 'state_referenced_locally'
+	},
+
 	kit: {
 		adapter: adapter({
 			fallback: '404.html'
 		}),
 		prerender: {
+			origin: 'https://cubiclauncher.org',
+			entries: ['*'],
 			handleHttpError: 'warn'
 		}
 	}

@@ -1,78 +1,57 @@
 <script lang="ts">
-  import { get } from "svelte/store";
   import { page } from "$app/stores";
   import { t } from "$lib/i18n";
-  import type { Theme, ThemePackage, ResolvedThemePackage } from "$lib/types/theme";
-  import { fetchAllThemes, getCachedThemes, setCachedThemes } from "$lib/utils/themes";
-  import { fetchAllPackages, getCachedPackages, setCachedPackages, resolvePackage } from "$lib/utils/theme-packages";
+  import type { ResolvedThemePackage } from "$lib/types/theme";
   import { renderMarkdown } from "$lib/utils/markdown";
   import ThemeCard from "$lib/components/themes/ThemeCard.svelte";
   import PackageDownloadButton from "$lib/components/themes/PackageDownloadButton.svelte";
   import IconWarning from "~icons/ph/warning";
   import IconArrowLeft from "~icons/ph/arrow-left";
 
-  let slug = $derived($page.params.slug as string);
+  let { data } = $props();
+  let resolved = $derived(data.resolved);
 
-  let resolved = $state<ResolvedThemePackage | null>(null);
-  let loading = $state(true);
-  let error = $state("");
+  let canonicalUrl = $derived($page.url.href.split('?')[0]);
 
   let descriptionHtml = $derived(
     resolved?.description ? renderMarkdown(resolved.description) : ""
   );
 
   let docTitle = $derived(
-    resolved ? $t('page.packageTitle', { values: { name: resolved.name } })
-      : slug ? slug : $t('page.themesTitle')
+    $t('page.packageTitle', { values: { name: resolved.name } })
   );
 
-  $effect(() => {
-    loadPackage(slug);
-  });
-
-  async function loadPackage(packageSlug: string) {
-    loading = true;
-    error = "";
-
-    let themes: Theme[] | null = await getCachedThemes();
-    if (!themes) {
-      try {
-        themes = await fetchAllThemes();
-        await setCachedThemes(themes);
-      } catch (e) {
-        error = e instanceof Error ? e.message : "Error loading themes";
-        loading = false;
-        return;
-      }
-    }
-
-    let packages: ThemePackage[] | null = await getCachedPackages();
-    if (!packages) {
-      try {
-        packages = await fetchAllPackages();
-        await setCachedPackages(packages);
-      } catch (e) {
-        error = e instanceof Error ? e.message : "Error loading packages";
-        loading = false;
-        return;
-      }
-    }
-
-    const pkg = packages.find((p) => p.slug === packageSlug);
-    if (!pkg) {
-      error = get(t)('packageDetail.notFound');
-      loading = false;
-      return;
-    }
-
-    resolved = resolvePackage(pkg, themes);
-    loading = false;
-  }
+  let jsonLd = $derived(
+    resolved
+      ? JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: resolved.name,
+          description: resolved.description
+            ? resolved.description.replace(/[#*_]/g, '').slice(0, 300)
+            : $t('page.packageDesc'),
+          applicationCategory: "ThemePackage",
+          author: {
+            "@type": "Person",
+            name: resolved.author
+          },
+          url: canonicalUrl,
+          image: resolved.previewUrl || undefined,
+          datePublished: resolved.date ?? undefined,
+          hasPart: resolved.resolvedThemes.map((theme) => ({
+            "@type": "SoftwareApplication",
+            name: theme.name,
+            url: `${$page.url.origin}/themes/${theme.slug}`
+          }))
+        })
+      : null
+  );
 </script>
 
 <svelte:head>
   <title>{docTitle}</title>
   <meta name="description" content={resolved?.description ? resolved.description.slice(0, 160) : $t('page.packageDesc')} />
+  <link rel="canonical" href={canonicalUrl} />
   <meta property="og:title" content={resolved?.name ?? ''} />
   <meta property="og:description" content={resolved?.description ? resolved.description.slice(0, 160) : $t('page.packageDesc')} />
   <meta property="og:url" content={$page.url.href} />
@@ -83,6 +62,9 @@
     <meta property="og:image:height" content="900" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={resolved.previewUrl} />
+  {/if}
+  {#if jsonLd}
+    {@html `<script type="application/ld+json">${jsonLd}</script>`}
   {/if}
 </svelte:head>
 
@@ -99,34 +81,7 @@
       {$t('packageDetail.viewAll')}
     </a>
 
-    {#if loading}
-      <div class="animate-pulse space-y-8 max-w-4xl mx-auto">
-        <div class="h-8 bg-neutral-800 rounded w-48"></div>
-        <div class="aspect-video bg-neutral-800 rounded-2xl"></div>
-        <div class="space-y-3">
-          <div class="h-6 bg-neutral-800 rounded w-64"></div>
-          <div class="h-4 bg-neutral-800 rounded w-96"></div>
-        </div>
-      </div>
-    {:else if error}
-      <div class="text-center py-20 max-w-4xl mx-auto">
-        <p class="text-neutral-400 text-lg mb-6">{error}</p>
-        <div class="flex gap-4 justify-center">
-          <button
-            onclick={() => loadPackage(slug)}
-            class="bg-white text-black px-8 py-3 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all active:scale-95"
-          >
-            {$t('packageDetail.retry')}
-          </button>
-          <a
-            href="/themes?tab=packages"
-            class="px-8 py-3 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 transition-all"
-          >
-            {$t('packageDetail.viewAll')}
-          </a>
-        </div>
-      </div>
-    {:else if resolved}
+    {#if resolved}
       <div class="max-w-5xl mx-auto">
         <!-- Header -->
         <div class="mb-8">
@@ -147,6 +102,8 @@
           <img
             src={resolved.previewUrl}
             alt={resolved.name}
+            loading="eager"
+            decoding="async"
             class="w-full h-full object-cover"
           />
         </div>

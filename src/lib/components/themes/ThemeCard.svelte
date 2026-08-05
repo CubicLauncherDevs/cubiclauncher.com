@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Theme } from "$lib/types/theme";
   import IconImage from "~icons/ph/image";
+  import VerifiedBadge from "./VerifiedBadge.svelte";
 
   let { theme }: { theme: Theme } = $props();
 
@@ -16,6 +17,8 @@
       <img
         src={theme.previewUrl}
         alt={theme.name}
+        width="400"
+        height="225"
         loading="lazy"
         decoding="async"
         fetchpriority="low"
@@ -34,7 +37,12 @@
     <a href="/themes/{theme.id}" class="block group/title">
       <h3 class="text-sm font-semibold text-white truncate group-hover/title:text-white/90 transition-colors">{theme.name}</h3>
     </a>
-    <p class="text-xs text-neutral-500 truncate mt-0.5">{theme.author}</p>
+    <div class="flex items-center gap-1.5 mt-0.5">
+      <p class="text-xs text-neutral-500 truncate">{theme.author}</p>
+      {#if theme.verified}
+        <VerifiedBadge size="sm" />
+      {/if}
+    </div>
 
     <div class="mt-auto pt-4 flex items-center gap-2">
       <span class="text-[10px] font-medium text-neutral-500 bg-white/5 px-2 py-1 rounded-md">

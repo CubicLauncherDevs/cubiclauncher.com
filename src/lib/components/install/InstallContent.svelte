@@ -7,6 +7,7 @@
   import IconDebian from "~icons/simple-icons/debian";
   import IconFedora from "~icons/simple-icons/fedora";
   import IconArchlinux from "~icons/simple-icons/archlinux";
+  import IconNixos from "~icons/simple-icons/nixos";
   import IconDownload from "~icons/ph/download-simple";
   import IconArrowRight from "~icons/ph/arrow-right";
   import IconArrowClockwise from "~icons/ph/arrow-clockwise";
@@ -64,6 +65,11 @@
   const pkgBuildDownload: Download = {
     label: "Arch PKGBUILD",
     url: "https://dev.cubiclauncher.org/docs/es-ES/guias/arch",
+  };
+
+  const nixDownload: Download = {
+    label: "Nix flake",
+    url: "https://dev.cubiclauncher.org/docs/es-ES/guias/nix",
   };
 
   function parseReleaseAssets(assets: any[]) {
@@ -126,6 +132,7 @@
       { label: ".appimage", url: "#" },
       { label: "x86_64.rpm", url: "#" },
       pkgBuildDownload,
+      nixDownload,
     ],
   };
 
@@ -172,6 +179,7 @@
     if (lower.includes("deb")) return IconDebian;
     if (lower.includes("arch") || lower.includes("pkgbuild"))
       return IconArchlinux;
+    if (lower.includes("nix") || lower.includes("flake")) return IconNixos;
     if (lower.includes("rpm")) return IconFedora;
     if (lower.includes("appimage")) return IconLinux;
     if (os === "windows") return IconWindows;
@@ -207,7 +215,7 @@
         macos: macos.length > 0 ? macos : [...defaultReleases.macos],
         linux:
           linux.length > 0
-            ? [...linux, pkgBuildDownload]
+            ? [...linux, pkgBuildDownload, nixDownload]
             : [...defaultReleases.linux],
       };
     } catch (e) {

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cubiclauncher.com/sitemap.xml
+Sitemap: https://cubiclauncher.org/sitemap.xml

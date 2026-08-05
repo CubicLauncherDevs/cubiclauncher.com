@@ -23,20 +23,29 @@
   } from "$lib/utils/theme-search";
   import ThemeCard from "./ThemeCard.svelte";
   import PackageCard from "./PackageCard.svelte";
+  import VerifiedBadge from "./VerifiedBadge.svelte";
   import IconMagnifyingGlass from "~icons/ph/magnifying-glass";
   import IconX from "~icons/ph/x";
   import IconImage from "~icons/ph/image";
   import IconCaretDown from "~icons/ph/caret-down";
   import IconArrowsClockwise from "~icons/ph/arrows-clockwise";
 
-  let themes = $state<Theme[]>([]);
-  let packages = $state<ThemePackage[]>([]);
-  let loading = $state(true);
-  let packagesLoading = $state(true);
+  let {
+    initialThemes,
+    initialPackages,
+  }: {
+    initialThemes?: Theme[];
+    initialPackages?: ThemePackage[];
+  } = $props();
+
+  let themes = $state<Theme[]>(initialThemes ?? []);
+  let packages = $state<ThemePackage[]>(initialPackages ?? []);
+  let loading = $state(!initialThemes);
+  let packagesLoading = $state(!initialPackages);
   let error = $state("");
   let packagesError = $state("");
-  let hasCached = $state(false);
-  let hasPackagesCached = $state(false);
+  let hasCached = $state(!!initialThemes);
+  let hasPackagesCached = $state(!!initialPackages);
   let refreshing = $state(false);
   let refreshRotation = $state(0);
   const REFRESH_SPIN_DURATION_MS = 800;
@@ -369,8 +378,12 @@
       currentPage = Math.max(1, parseInt(urlPage, 10) || 1);
     }
 
-    await loadThemes();
-    await loadPackages();
+    if (!initialThemes) {
+      await loadThemes();
+    }
+    if (!initialPackages) {
+      await loadPackages();
+    }
   });
 
   $effect(() => {
@@ -491,7 +504,12 @@
                   {/if}
                 </div>
                 <div class="min-w-0">
-                  <p class="text-sm font-medium text-white truncate">{theme.name}</p>
+                  <div class="flex items-center gap-1.5">
+                    <p class="text-sm font-medium text-white truncate">{theme.name}</p>
+                    {#if theme.verified}
+                      <VerifiedBadge size="sm" />
+                    {/if}
+                  </div>
                   <p class="text-xs text-neutral-500 truncate">{theme.author} · {theme.latestVersion}</p>
                 </div>
               </a>

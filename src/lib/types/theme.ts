@@ -17,6 +17,7 @@ export interface Theme {
   tags: string[];
   dirPath: string;
   description?: string | null;
+  verified?: boolean;
   versions: ThemeVersion[];
   latestVersion: string;
   previewUrl: string | null;
