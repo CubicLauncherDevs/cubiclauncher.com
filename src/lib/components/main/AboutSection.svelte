@@ -6,9 +6,11 @@
   import IconCaretRight from "~icons/ph/caret-right";
 
   const IMAGES = [
-    "https://i.ibb.co/07gK9mp/imagen.png",
-    "https://i.ibb.co/b5zvXR8h/imagen.png",
-    "https://i.ibb.co/20PhrVgD/imagen.png",
+    "https://iili.io/Cr68EFt.png",
+    "https://iili.io/Cr68YtR.png",
+    "https://iili.io/Cr687wv.png",
+    "https://iili.io/Cr68cnp.png",
+    "https://iili.io/Cr68lMN.png",
   ].filter(Boolean);
 
   let current = $state(0);
