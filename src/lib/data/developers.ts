@@ -21,6 +21,13 @@ export const developers: Developer[] = [
     github: "staFF6773",
     flag: "Nicaragua",
   },
+  {
+    name: "Escarabajoz",
+    role: "Administrador",
+    roleKey: "developers.role9",
+    github: "Escarabajoz",
+    flag: "RD",
+  },
 ];
 
 export const contributors: Developer[] = [

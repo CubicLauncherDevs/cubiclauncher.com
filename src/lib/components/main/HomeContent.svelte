@@ -11,7 +11,6 @@
   import AboutSection from "./AboutSection.svelte";
   import QuickStart from "./QuickStart.svelte";
   import RandomThemes from "./RandomThemes.svelte";
-  import DevelopersSection from "./DevelopersSection.svelte";
 
   const features = [
     {
@@ -93,8 +92,6 @@
   <QuickStart />
 
   <RandomThemes />
-
-  <DevelopersSection />
 
   <!-- Community Section -->
   <section class="py-48 bg-white text-black">

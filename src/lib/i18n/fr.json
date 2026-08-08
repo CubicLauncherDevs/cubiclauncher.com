@@ -2,6 +2,8 @@
   "nav": {
     "docs": "Docs",
     "themes": "Thèmes",
+    "about": "À propos",
+    "more": "Plus",
     "discord": "Discord",
     "donate": "Donner",
     "download": "Télécharger"
@@ -64,6 +66,18 @@
     "quickStartTitle": "Démarrage rapide",
     "quickStartSubtitle": "Sélectionnez votre système d'exploitation, téléchargez l'installateur et lancez CubicLauncher."
   },
+  "about": {
+    "title": "À propos de",
+    "paragraph1": "CubicLauncher est un launcher open source développé en Rust par une équipe hispanophone. L'objectif du launcher est d'offrir une interface attrayante, moderne et peu intrusive, contrairement aux interfaces d'autres launchers, tout en garantissant des performances optimales sans sacrifier les fonctionnalités ni le design.",
+    "paragraph2": "De plus, nous souhaitons que les utilisateurs aient plus de contrôle sur le launcher et puissent le personnaliser grâce à des thèmes créés par la communauté.",
+    "paragraph3": "La sécurité est également l'un de nos principaux objectifs. En tant que projet open source sous licence GNU, chacun peut examiner son code et comprendre comment fonctionne le launcher, offrant ainsi plus de transparence et de confiance aux utilisateurs.",
+    "paragraph4": "CubicLauncher est construit à partir de zéro en Rust, en utilisant des crates personnalisées développées spécifiquement pour le projet et adaptées à ses besoins. Contrairement à de nombreux autres launchers, CubicLauncher n'est pas un fork d'un autre projet, mais une application développée à partir de zéro par notre équipe.",
+    "featuresTitle": "Que propose CubicLauncher ?",
+    "featuresSubtitle": "Idées principales derrière le projet.",
+    "contributeTitle": "Envie de contribuer ?",
+    "contributeDescription": "CubicLauncher est un effort communautaire. Vous pouvez signaler des bugs, suggérer des idées, créer des thèmes ou collaborer au code sur GitHub.",
+    "contributeButton": "Contribuer sur GitHub"
+  },
   "developers": {
     "title": "Développeurs",
     "description": "Équipe derrière CubicLauncher",
@@ -75,6 +89,8 @@
     "role5": "Contributeur",
     "role6": "Contributeur",
     "role7": "Contributeur",
+    "role8": "Traducteur",
+    "role9": "Administrateur",
     "contributorsTitle": "Contributeurs"
   },
   "install": {
@@ -220,6 +236,8 @@
   "page": {
     "homeTitle": "Accueil | CubicLauncher",
     "homeDesc": "CubicLauncher est un lanceur Minecraft open source, léger et personnalisable, compatible avec les comptes Premium, NoPremium et Ely.by.",
+    "aboutTitle": "À propos | CubicLauncher",
+    "aboutDesc": "Découvrez l'équipe de CubicLauncher et les valeurs qui animent le projet.",
     "installTitle": "Installation | CubicLauncher",
     "installDesc": "Téléchargez CubicLauncher, le lanceur Minecraft, et profitez d'une expérience de jeu rapide, sécurisée et riche en fonctionnalités.",
     "themesTitle": "Thèmes - CubicLauncher",

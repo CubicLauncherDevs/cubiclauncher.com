@@ -5,8 +5,8 @@
     import { fade } from "svelte/transition";
     import { t } from "$lib/i18n";
 
-    let scrolled = false;
-    let isMobileMenuOpen = false;
+    let scrolled = $state(false);
+    let isMobileMenuOpen = $state(false);
 
     const toggleMobileMenu = () => {
         isMobileMenuOpen = !isMobileMenuOpen;
@@ -36,10 +36,10 @@
     <div class="pointer-events-auto w-full px-4 sm:px-6 flex justify-center">
         <div
             class="w-full flex items-center justify-between transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-full border {scrolled
-                ? 'max-w-4xl bg-neutral-900/90 backdrop-blur-xs border-white/10 px-4 sm:px-8 py-2 sm:py-3 shadow-2xl'
+                ? 'max-w-5xl bg-neutral-900/90 backdrop-blur-xs border-white/10 px-4 sm:px-8 py-2 sm:py-3 shadow-2xl'
                 : 'max-w-7xl border-transparent px-2 sm:px-4 py-2'}"
         >
-            <div class="flex items-center gap-4 sm:gap-12 shrink-0">
+            <div class="flex items-center {scrolled ? 'gap-3 lg:gap-6' : 'gap-3 sm:gap-6 lg:gap-10'} shrink-0">
                 <a href="/" class="flex items-center gap-3 group">
                     <Logo
                         width="2.5rem"
@@ -53,31 +53,39 @@
                     >
                 </a>
 
-                <nav class="hidden md:flex items-center gap-8">
-                    {#each [["nav.docs", "https://dev.cubiclauncher.org/docs"], ["nav.themes", "/themes"]] as [labelKey, href]}
+                <nav class="hidden md:flex items-center {scrolled ? 'gap-3 lg:gap-5' : 'gap-4 lg:gap-8'}">
+                    {#each [["nav.themes", "/themes"], ["nav.about", "/about"], ["nav.docs", "https://dev.cubiclauncher.org/docs"]] as [labelKey, href]}
                         <a
                             href={href}
                             class="text-[10px] font-bold text-neutral-500 hover:text-white transition-colors uppercase tracking-[0.2em]"
                             >{$t(labelKey)}</a
                         >
                     {/each}
-                    <a
-                        href="https://discord.com/invite/7VaqSrPukm"
-                        class="text-[10px] font-bold text-neutral-500 hover:text-white transition-colors uppercase tracking-[0.2em]"
-                        >{$t('nav.discord')}</a
-                    >
                 </nav>
             </div>
 
-            <div class="flex items-center gap-3 sm:gap-6 shrink-0">
+            <div class="flex items-center {scrolled ? 'gap-2 lg:gap-4' : 'gap-3 lg:gap-6'} shrink-0">
                 <div class="hidden sm:block">
-                  <LanguageSwitcher />
+                    <LanguageSwitcher />
                 </div>
-                <a
-                    href="/donate"
-                    class="hidden sm:block text-[10px] font-bold text-neutral-500 hover:text-white transition-colors uppercase tracking-[0.2em]">
-                    {$t('nav.donate')}
-            </a>
+
+                <nav class="hidden md:flex items-center {scrolled ? 'gap-3 lg:gap-5' : 'gap-4 lg:gap-8'}">
+                    <a
+                        href="https://discord.com/invite/7VaqSrPukm"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-[10px] font-bold text-neutral-500 hover:text-white transition-colors uppercase tracking-[0.2em]"
+                    >
+                        {$t('nav.discord')}
+                    </a>
+                    <a
+                        href="/donate"
+                        class="text-[10px] font-bold text-neutral-500 hover:text-white transition-colors uppercase tracking-[0.2em]"
+                    >
+                        {$t('nav.donate')}
+                    </a>
+                </nav>
+
                 <a
                     href="/install"
                     class="hidden sm:flex bg-white text-black px-6 py-2 sm:px-8 sm:py-3 text-[10px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all active:scale-95"
@@ -86,7 +94,7 @@
                 </a>
                 <button
                     class="md:hidden text-white p-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-colors focus:outline-none flex items-center justify-center"
-                    on:click={toggleMobileMenu}
+                    onclick={toggleMobileMenu}
                     aria-label="Toggle mobile menu"
                 >
                     <svg
@@ -116,7 +124,7 @@
     >
         <button
             class="absolute top-6 right-6 p-4 text-neutral-400 hover:text-white transition-colors focus:outline-none"
-            on:click={toggleMobileMenu}
+            onclick={toggleMobileMenu}
             aria-label="Close mobile menu"
         >
             <svg
@@ -138,7 +146,7 @@
             <a
                 href="/"
                 class="mb-8 flex items-center gap-3"
-                on:click={toggleMobileMenu}
+                onclick={toggleMobileMenu}
             >
                 <Logo width="3rem" height="3rem" color="#ffffff" />
                 <span
@@ -147,23 +155,23 @@
                 >
             </a>
 
-            {#each [["nav.docs", "https://dev.cubiclauncher.org/docs"], ["nav.themes", "/themes"]] as [labelKey, href]}
+            {#each [["nav.themes", "/themes"], ["nav.about", "/about"], ["nav.docs", "https://dev.cubiclauncher.org/docs"]] as [labelKey, href]}
                 <a
                     href={href}
                     class="text-xl font-bold text-neutral-400 hover:text-white transition-colors uppercase tracking-[0.2em]"
-                    on:click={toggleMobileMenu}>{$t(labelKey)}</a
+                    onclick={toggleMobileMenu}>{$t(labelKey)}</a
                 >
             {/each}
             <a
                 href="https://discord.com/invite/7VaqSrPukm"
                 class="text-xl font-bold text-neutral-400 hover:text-white transition-colors uppercase tracking-[0.2em]"
-                on:click={toggleMobileMenu}>{$t('nav.discord')}</a
+                onclick={toggleMobileMenu}>{$t('nav.discord')}</a
             >
 
             <a
                 href="/donate"
                 class="mt-4 text-xl font-bold text-neutral-400 hover:text-white transition-colors uppercase tracking-[0.2em]"
-                on:click={toggleMobileMenu}
+                onclick={toggleMobileMenu}
             >
                 {$t('nav.donate')}
             </a>
@@ -171,7 +179,7 @@
             <a
                 href="/install"
                 class="mt-8 bg-white text-black px-10 py-3 text-sm font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all active:scale-95"
-                on:click={toggleMobileMenu}
+                onclick={toggleMobileMenu}
             >
                 {$t('nav.download')}
             </a>

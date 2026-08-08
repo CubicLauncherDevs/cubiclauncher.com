@@ -54,6 +54,13 @@
           </li>
           <li>
             <a
+              href="/about"
+              class="text-sm text-neutral-400 hover:text-white transition-colors"
+              >{$t('nav.about')}</a
+            >
+          </li>
+          <li>
+            <a
               href="/themes"
               class="text-sm text-neutral-400 hover:text-white transition-colors"
               >{$t('footer.themes')}</a

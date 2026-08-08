@@ -73,6 +73,7 @@ function buildSitemap(themes, packages) {
     { loc: '/', priority: 1.0, changefreq: 'weekly' },
     { loc: '/themes', priority: 0.9, changefreq: 'daily' },
     { loc: '/install', priority: 0.8, changefreq: 'weekly' },
+    { loc: '/about', priority: 0.7, changefreq: 'monthly' },
     { loc: '/donate', priority: 0.5, changefreq: 'monthly' }
   ];
 
