@@ -260,6 +260,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://cubiclauncher.org/themes/notstaff-windows7</loc>
+    <lastmod>2026-08-09T21:03:17.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/notstaff-windows7/V1</loc>
+    <lastmod>2026-08-09T21:03:17.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://cubiclauncher.org/themes/santiagolxx-angel</loc>
     <lastmod>2026-07-25T21:29:05.000Z</lastmod>
     <changefreq>weekly</changefreq>
