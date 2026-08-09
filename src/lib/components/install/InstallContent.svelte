@@ -243,7 +243,7 @@
 
     <div class="container mx-auto px-6 relative z-10 text-center max-w-4xl">
       <h1
-        class="text-6xl md:text-8xl font-black tracking-tighter mb-6 bg-gradient-to-b from-white to-neutral-500 bg-clip-text text-transparent"
+        class="text-6xl md:text-8xl font-black tracking-tighter mb-6 text-white"
       >
         {$t("install.title")}
         {$t("install.titleHighlight")}

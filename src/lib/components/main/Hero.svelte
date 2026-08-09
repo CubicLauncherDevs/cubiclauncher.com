@@ -79,9 +79,9 @@
 
         <!-- Text & Buttons -->
         <h1
-            class="text-6xl md:text-8xl font-bold leading-[0.9] tracking-tighter mb-8 bg-gradient-to-b from-white to-neutral-500 bg-clip-text text-transparent"
+            class="text-6xl md:text-8xl font-bold leading-[0.9] tracking-tighter mb-8 text-white"
         >
-            CUBIC <br class="md:hidden" /> LAUNCHER.
+            CUBIC <br class="md:hidden" /> LAUNCHER
         </h1>
 
         <p

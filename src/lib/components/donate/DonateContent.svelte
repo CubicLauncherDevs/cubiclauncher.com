@@ -19,7 +19,7 @@
     <div class="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-white/5 to-transparent pointer-events-none"></div>
 
     <div class="container mx-auto px-6 relative z-10 text-center max-w-4xl">
-      <h1 class="text-6xl md:text-8xl font-black tracking-tighter mb-6 bg-gradient-to-b from-white to-neutral-500 bg-clip-text text-transparent">
+      <h1 class="text-6xl md:text-8xl font-black tracking-tighter mb-6 text-white">
         {$t("donate.title")}
       </h1>
       <p class="text-lg md:text-xl text-neutral-400 font-light max-w-2xl mx-auto mb-8 leading-relaxed">
@@ -83,29 +83,29 @@
           <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform">
             <IconBug class="w-6 h-6 text-neutral-400" />
           </div>
-          <h3 class="text-sm font-bold uppercase tracking-[0.15em] text-white mb-2">Reportar Bugs</h3>
-          <p class="text-xs text-neutral-500 leading-relaxed">Ayudanos encontrando y reportando errores.</p>
+            <h3 class="text-sm font-bold uppercase tracking-[0.15em] text-white mb-2">{$t('donate.cardReportTitle')}</h3>
+            <p class="text-xs text-neutral-500 leading-relaxed">{$t('donate.cardReportDesc')}</p>
         </div>
         <div class="rounded-2xl border border-white/10 bg-neutral-900/50 p-6 text-center group hover:border-white/20 transition-colors">
           <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform">
             <IconLightbulb class="w-6 h-6 text-neutral-400" />
           </div>
-          <h3 class="text-sm font-bold uppercase tracking-[0.15em] text-white mb-2">Sugerir Ideas</h3>
-          <p class="text-xs text-neutral-500 leading-relaxed">Compartí tus ideas para mejorar el launcher.</p>
+            <h3 class="text-sm font-bold uppercase tracking-[0.15em] text-white mb-2">{$t('donate.cardSuggestTitle')}</h3>
+            <p class="text-xs text-neutral-500 leading-relaxed">{$t('donate.cardSuggestDesc')}</p>
         </div>
         <div class="rounded-2xl border border-white/10 bg-neutral-900/50 p-6 text-center group hover:border-white/20 transition-colors">
           <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform">
             <IconPaintBucket class="w-6 h-6 text-neutral-400" />
           </div>
-          <h3 class="text-sm font-bold uppercase tracking-[0.15em] text-white mb-2">Crear Themes</h3>
-          <p class="text-xs text-neutral-500 leading-relaxed">Diseñá temas para personalizar el launcher.</p>
+            <h3 class="text-sm font-bold uppercase tracking-[0.15em] text-white mb-2">{$t('donate.cardThemesTitle')}</h3>
+            <p class="text-xs text-neutral-500 leading-relaxed">{$t('donate.cardThemesDesc')}</p>
         </div>
         <div class="rounded-2xl border border-white/10 bg-neutral-900/50 p-6 text-center group hover:border-white/20 transition-colors">
           <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform">
             <IconCode class="w-6 h-6 text-neutral-400" />
           </div>
-          <h3 class="text-sm font-bold uppercase tracking-[0.15em] text-white mb-2">Contribuir Código</h3>
-          <p class="text-xs text-neutral-500 leading-relaxed">Colaborá con código en el repositorio.</p>
+            <h3 class="text-sm font-bold uppercase tracking-[0.15em] text-white mb-2">{$t('donate.cardCodeTitle')}</h3>
+            <p class="text-xs text-neutral-500 leading-relaxed">{$t('donate.cardCodeDesc')}</p>
         </div>
       </div>
 
