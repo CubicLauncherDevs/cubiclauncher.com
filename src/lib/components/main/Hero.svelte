@@ -2,6 +2,9 @@
     import { onMount } from "svelte";
     import Logo from "$lib/Logo.svelte";
     import { t } from "$lib/i18n";
+    import IconDownload from "~icons/ph/download-simple";
+    import IconPalette from "~icons/ph/palette";
+    import IconGithub from "~icons/simple-icons/github";
 
     let fallingLogos: {
         id: number;
@@ -92,16 +95,25 @@
         >
             <a
                 href="/install"
-                class="w-full sm:w-auto bg-white text-black px-12 py-5 font-bold text-[11px] uppercase tracking-[0.2em] rounded-2xl hover:scale-105 transition-all shadow-xl shadow-white/5 text-center"
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white text-black px-12 py-5 font-bold text-[11px] uppercase tracking-[0.2em] rounded-2xl hover:scale-105 transition-all shadow-xl shadow-white/5"
             >
+                <IconDownload class="w-4 h-4" />
                 {$t('hero.download')}
+            </a>
+            <a
+                href="/themes"
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-12 py-5 border border-white/10 text-white font-bold text-[11px] uppercase tracking-[0.2em] rounded-2xl hover:bg-white/5 transition-all"
+            >
+                <IconPalette class="w-4 h-4" />
+                {$t('hero.exploreThemes')}
             </a>
             <a
                 href="https://github.com/CubicLauncherDevs/CubicLauncher"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="w-full sm:w-auto px-12 py-5 border border-white/10 text-white font-bold text-[11px] uppercase tracking-[0.2em] rounded-2xl hover:bg-white/5 transition-all"
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-12 py-5 border border-white/10 text-white font-bold text-[11px] uppercase tracking-[0.2em] rounded-2xl hover:bg-white/5 transition-all"
             >
+                <IconGithub class="w-4 h-4" />
                 {$t('hero.sourceCode')}
             </a>
         </div>
