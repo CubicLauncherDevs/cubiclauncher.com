@@ -4,8 +4,10 @@
   import type { Theme, ThemeVersion } from "$lib/types/theme";
   import { slugify } from "$lib/utils/theme-search";
   import { renderMarkdown } from "$lib/utils/markdown";
+  import { getThemeVerification } from "$lib/utils/themes";
   import IconImage from "~icons/ph/image";
   import DownloadThemeButton from "$lib/components/themes/DownloadThemeButton.svelte";
+  import VerifiedBadge from "$lib/components/themes/VerifiedBadge.svelte";
 
   let { data } = $props();
   let theme = $derived(data.theme);
@@ -137,7 +139,12 @@
           </div>
 
           <div class="lg:col-span-2">
-            <h1 class="text-4xl font-bold tracking-tighter mb-1">{theme.name}</h1>
+            <div class="flex items-start gap-2 mb-1">
+              <h1 class="text-4xl font-bold tracking-tighter">{theme.name}</h1>
+              {#if getThemeVerification(theme) !== "none"}
+                <VerifiedBadge size="lg" level={getThemeVerification(theme)} />
+              {/if}
+            </div>
             <p class="text-base text-neutral-400 mb-1">
               {$t('themeDetail.by')} <a href={authorUrl} class="text-white hover:underline underline-offset-4 decoration-white/30 transition-all">{theme.author}</a>
             </p>

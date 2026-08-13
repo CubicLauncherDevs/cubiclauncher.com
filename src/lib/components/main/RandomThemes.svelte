@@ -4,7 +4,7 @@
   import { cubicOut } from "svelte/easing";
   import { t } from "$lib/i18n";
   import type { Theme } from "$lib/types/theme";
-  import { fetchAllThemes, getCachedThemes, setCachedThemes } from "$lib/utils/themes";
+  import { fetchAllThemes, getCachedThemes, setCachedThemes, getThemeVerification } from "$lib/utils/themes";
   import { slugify } from "$lib/utils/theme-search";
   import IconShuffle from "~icons/ph/shuffle";
   import IconCaretLeft from "~icons/ph/caret-left";
@@ -239,8 +239,8 @@
                   >
                     {selected[current].name}
                   </h3>
-                  {#if selected[current].verified}
-                    <VerifiedBadge size="md" />
+                  {#if getThemeVerification(selected[current]) !== "none"}
+                    <VerifiedBadge size="md" level={getThemeVerification(selected[current])} />
                   {/if}
                 </div>
               </a>

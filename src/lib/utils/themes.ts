@@ -1,6 +1,6 @@
 import { get } from "svelte/store";
 import { browser } from "$app/environment";
-import type { Theme, ColorGroup } from "$lib/types/theme";
+import type { Theme, ThemeVerification, ColorGroup } from "$lib/types/theme";
 import { t } from "$lib/i18n";
 import { getCachedThemes, setCachedThemes } from "./theme-cache";
 
@@ -20,7 +20,7 @@ async function loadLocalThemes(): Promise<Theme[]> {
   localThemesPromise = (async () => {
     try {
       const mod = await import("$lib/data/themes.json");
-      localThemes = mod.default as Theme[];
+      localThemes = normalizeThemes(mod.default as Theme[]);
       return localThemes;
     } catch {
       throw new Error("Local themes not available");
@@ -46,17 +46,35 @@ export async function fetchAllThemes(): Promise<Theme[]> {
   }
 
   const cached = await getCachedThemes();
-  if (cached) return cached;
+  if (cached) return normalizeThemes(cached);
 
   const url = `${THEMES_JSON_URL}?_=${Date.now()}`;
   const res = await fetch(url);
   if (!res.ok) throw new Error(get(t)('themesUtil.fetchError', { values: { status: res.status } }));
-  const themes = await res.json() as Theme[];
+  const themes = normalizeThemes(await res.json() as Theme[]);
   await setCachedThemes(themes);
   return themes;
 }
 
 export { getCachedThemes, setCachedThemes };
+
+/** Official author name that grants "golden" verification */
+export const OFFICIAL_AUTHOR = "CubicLauncher";
+
+/** Calculate the verification level for a theme based on its author.
+ *  This is computed locally so the external themes.json repo doesn't need changes. */
+export function getThemeVerification(theme: { author: string; verified?: boolean }): ThemeVerification {
+  if (theme.author === OFFICIAL_AUTHOR) return "official";
+  return theme.verified ? "verified" : "none";
+}
+
+/** Enrich an array of themes with their locally-calculated verification level. */
+export function normalizeThemes(themes: Theme[]): Theme[] {
+  return themes.map((theme) => ({
+    ...theme,
+    verification: getThemeVerification(theme),
+  }));
+}
 
 /** Build a raw GitHub URL for a file inside a theme version directory */
 export function versionFileUrl(version: { dirPath: string }, fileName: string): string {

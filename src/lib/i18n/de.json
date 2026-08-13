@@ -181,7 +181,8 @@
     "sortBy": "Sortieren nach",
     "refreshCache": "Aktualisieren",
     "verified": "Verifiziert",
-    "verifiedTheme": "Offiziell verifiziertes Theme"
+    "verifiedTheme": "Offiziell verifiziertes Theme",
+    "officialTheme": "Offizielles CubicLauncher-Theme"
   },
   "themeDetail": {
     "retry": "Wiederholen",

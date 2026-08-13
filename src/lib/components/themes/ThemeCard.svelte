@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Theme } from "$lib/types/theme";
+  import { getThemeVerification } from "$lib/utils/themes";
   import IconImage from "~icons/ph/image";
   import VerifiedBadge from "./VerifiedBadge.svelte";
 
@@ -39,8 +40,8 @@
     </a>
     <div class="flex items-center gap-1.5 mt-0.5">
       <p class="text-xs text-neutral-500 truncate">{theme.author}</p>
-      {#if theme.verified}
-        <VerifiedBadge size="sm" />
+      {#if getThemeVerification(theme) !== "none"}
+        <VerifiedBadge size="sm" level={getThemeVerification(theme)} />
       {/if}
     </div>
 

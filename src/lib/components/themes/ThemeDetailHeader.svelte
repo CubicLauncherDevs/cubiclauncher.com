@@ -1,6 +1,7 @@
 <script lang="ts">
   import { t, locale, getDateLocale } from "$lib/i18n";
   import type { Theme, ThemeVersion } from "$lib/types/theme";
+  import { getThemeVerification } from "$lib/utils/themes";
   import { slugify } from "$lib/utils/theme-search";
   import DownloadThemeButton from "./DownloadThemeButton.svelte";
   import VerifiedBadge from "./VerifiedBadge.svelte";
@@ -94,8 +95,8 @@
   <div class="lg:col-span-2">
     <div class="flex items-start gap-2 mb-2">
       <h1 class="text-4xl font-bold tracking-tighter">{theme.name}</h1>
-      {#if theme.verified}
-        <VerifiedBadge size="lg" />
+      {#if getThemeVerification(theme) !== "none"}
+        <VerifiedBadge size="lg" level={getThemeVerification(theme)} />
       {/if}
     </div>
     <p class="text-lg text-neutral-400 mb-2">

@@ -8,6 +8,7 @@
     fetchAllThemes,
     getCachedThemes,
     setCachedThemes,
+    getThemeVerification,
   } from "$lib/utils/themes";
   import {
     fetchAllPackages,
@@ -506,8 +507,8 @@
                 <div class="min-w-0">
                   <div class="flex items-center gap-1.5">
                     <p class="text-sm font-medium text-white truncate">{theme.name}</p>
-                    {#if theme.verified}
-                      <VerifiedBadge size="sm" />
+                    {#if getThemeVerification(theme) !== "none"}
+                      <VerifiedBadge size="sm" level={getThemeVerification(theme)} />
                     {/if}
                   </div>
                   <p class="text-xs text-neutral-500 truncate">{theme.author} · {theme.latestVersion}</p>

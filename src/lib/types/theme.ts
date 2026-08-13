@@ -9,6 +9,8 @@ export interface ThemeVersion {
   injectsCss: boolean;
 }
 
+export type ThemeVerification = "none" | "verified" | "official";
+
 export interface Theme {
   id: string;
   slug: string;
@@ -18,6 +20,8 @@ export interface Theme {
   dirPath: string;
   description?: string | null;
   verified?: boolean;
+  /** Calculated locally from the author name; not persisted in themes.json */
+  verification?: ThemeVerification;
   versions: ThemeVersion[];
   latestVersion: string;
   previewUrl: string | null;
