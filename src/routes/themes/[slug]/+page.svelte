@@ -5,6 +5,7 @@
   import type { Theme, ThemeVersion } from "$lib/types/theme";
   import { slugify } from "$lib/utils/theme-search";
   import { renderMarkdown } from "$lib/utils/markdown";
+  import { goToThemesList } from "$lib/utils/theme-history";
   import ThemeCard from "$lib/components/themes/ThemeCard.svelte";
   import ThemeDetailHeader from "$lib/components/themes/ThemeDetailHeader.svelte";
   import VersionTimeline from "$lib/components/themes/VersionTimeline.svelte";
@@ -161,6 +162,7 @@
         <div class="flex gap-4 justify-center">
           <a
             href="/themes"
+            onclick={goToThemesList}
             class="px-8 py-3 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 transition-all"
           >
             {$t('themeDetail.viewAll')}

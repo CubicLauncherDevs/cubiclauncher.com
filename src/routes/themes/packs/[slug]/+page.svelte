@@ -7,6 +7,7 @@
   import PackageDownloadButton from "$lib/components/themes/PackageDownloadButton.svelte";
   import IconWarning from "~icons/ph/warning";
   import IconArrowLeft from "~icons/ph/arrow-left";
+  import { goToThemesList } from "$lib/utils/theme-history";
 
   let { data } = $props();
   let resolved = $derived(data.resolved);
@@ -75,6 +76,7 @@
   <div class="container mx-auto px-6 relative z-10 max-w-6xl">
     <a
       href="/themes?tab=packages"
+      onclick={goToThemesList}
       class="inline-flex items-center gap-2 text-xs text-neutral-500 hover:text-white transition-colors mb-8"
     >
       <IconArrowLeft class="w-4 h-4" />

@@ -3,6 +3,7 @@
   import type { Theme, ThemeVersion } from "$lib/types/theme";
   import { getThemeVerification } from "$lib/utils/themes";
   import { slugify } from "$lib/utils/theme-search";
+  import { goToThemesList } from "$lib/utils/theme-history";
   import DownloadThemeButton from "./DownloadThemeButton.svelte";
   import VerifiedBadge from "./VerifiedBadge.svelte";
   import IconArrowLeft from "~icons/ph/arrow-left";
@@ -43,6 +44,7 @@
 
 <a
   href="/themes"
+  onclick={goToThemesList}
   class="inline-flex items-center gap-2 text-sm text-neutral-500 hover:text-white transition-colors mb-8"
 >
   <IconArrowLeft class="w-4 h-4" />

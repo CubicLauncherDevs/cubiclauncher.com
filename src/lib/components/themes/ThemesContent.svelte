@@ -16,6 +16,7 @@
     setCachedPackages,
   } from "$lib/utils/theme-packages";
   import { clearThemeCache } from "$lib/utils/theme-cache";
+  import { saveThemesListUrl } from "$lib/utils/theme-history";
   import {
     buildSearchIndex,
     searchThemes,
@@ -236,6 +237,7 @@
     }
     url.searchParams.delete("author");
     pushState(url, {});
+    saveThemesListUrl(url.pathname + url.search);
   }
 
   function setSearch(value: string) {
@@ -378,6 +380,8 @@
     if (urlPage) {
       currentPage = Math.max(1, parseInt(urlPage, 10) || 1);
     }
+
+    saveThemesListUrl(url.pathname + url.search);
 
     if (!initialThemes) {
       await loadThemes();

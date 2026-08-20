@@ -5,6 +5,7 @@
   import { slugify } from "$lib/utils/theme-search";
   import { renderMarkdown } from "$lib/utils/markdown";
   import { getThemeVerification } from "$lib/utils/themes";
+  import { goToThemesList } from "$lib/utils/theme-history";
   import IconImage from "~icons/ph/image";
   import DownloadThemeButton from "$lib/components/themes/DownloadThemeButton.svelte";
   import VerifiedBadge from "$lib/components/themes/VerifiedBadge.svelte";
@@ -82,6 +83,7 @@
         <div class="flex gap-4 justify-center">
           <a
             href="/themes"
+            onclick={goToThemesList}
             class="px-8 py-3 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 transition-all"
           >
             {$t('themeDetail.viewAll')}
@@ -91,7 +93,7 @@
     {:else if theme && ver}
       <div class="max-w-4xl mx-auto">
         <div class="flex items-center gap-2 text-sm text-neutral-500 mb-8">
-          <a href="/themes" class="hover:text-white transition-colors">{$t('themeDetail.allThemes')}</a>
+          <a href="/themes" onclick={goToThemesList} class="hover:text-white transition-colors">{$t('themeDetail.allThemes')}</a>
           <span>/</span>
           <a href="/themes/{theme.slug}" class="hover:text-white transition-colors">{theme.name}</a>
           <span>/</span>

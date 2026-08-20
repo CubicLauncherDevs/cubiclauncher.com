@@ -4,6 +4,7 @@
   import type { AuthorEntry, Theme } from "$lib/types/theme";
   import ThemeCard from "$lib/components/themes/ThemeCard.svelte";
   import IconArrowLeft from "~icons/ph/arrow-left";
+  import { goToThemesList } from "$lib/utils/theme-history";
 
   let { data } = $props();
   let author = $derived(data.author);
@@ -56,6 +57,7 @@
   <div class="container mx-auto px-6 max-w-6xl">
     <a
       href="/themes"
+      onclick={goToThemesList}
       class="inline-flex items-center gap-2 text-sm text-neutral-500 hover:text-white transition-colors mb-8"
     >
       <IconArrowLeft class="w-4 h-4" />
