@@ -26,9 +26,9 @@
   });
 </script>
 
-<div class="min-h-screen bg-cl-base text-cl-text selection:bg-white/10 selection:text-white font-sans antialiased text-base">
+<div class="min-h-screen bg-cl-base text-cl-text selection:bg-white/10 selection:text-white font-sans antialiased text-base flex flex-col">
   <Navbar />
-  <main class="pt-[var(--navbar-height)]">
+  <main class="pt-[var(--navbar-height)] flex-1 flex flex-col">
     {@render children()}
   </main>
   <Footer />

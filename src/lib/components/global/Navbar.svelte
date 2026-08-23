@@ -144,7 +144,7 @@
             transition:fade={{ duration: 200, easing: cubicOut }}
         ></button>
         <div
-            class="absolute top-[var(--navbar-height)] left-0 right-0 bg-cl-base border-b border-cl-border shadow-xl overflow-hidden"
+            class="absolute top-[var(--navbar-height)] left-0 right-0 bg-cl-base border-b border-cl-border shadow-xl"
             transition:fly={{ y: -10, duration: 200, easing: cubicOut }}
         >
             <nav class="flex flex-col py-1">
