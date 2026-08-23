@@ -50,33 +50,33 @@
   ];
 </script>
 
-<main class="bg-neutral-950 overflow-x-hidden">
+<main class="bg-cl-base overflow-x-hidden">
   <Hero />
 
   <!-- Features -->
-  <section class="py-16 bg-neutral-900">
-    <div class="mx-auto px-6 lg:px-8" style="max-width: var(--discord-max-width);">
-      <div class="text-center mb-10">
-        <h2 class="text-[22px] sm:text-[26px] font-semibold tracking-tight text-white mb-2">
+  <section class="py-10 bg-cl-surface border-y border-cl-border">
+    <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
+      <div class="mb-6">
+        <h2 class="text-lg sm:text-xl font-semibold text-white mb-1">
           {$t('home.featuresTitle')}
         </h2>
-        <p class="text-[14px] text-neutral-400 max-w-xl mx-auto">
+        <p class="text-xs text-cl-muted max-w-xl">
           {$t('home.featuresSubtitle')}
         </p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         {#each features as feature}
-          <div class="flex items-start gap-3 p-4 rounded-[4px] bg-neutral-950 border border-white/5 hover:border-white/10 transition-colors">
+          <div class="flex items-start gap-2.5 p-3 rounded bg-cl-base border border-cl-border hover:border-cl-border-hover transition-colors">
             <div
-              class="shrink-0 flex items-center justify-center w-9 h-9 rounded-[4px] bg-neutral-900 text-white"
+              class="shrink-0 flex items-center justify-center w-7 h-7 rounded bg-cl-elevated text-cl-text"
             >
-              <feature.Icon class="w-4 h-4" />
+              <feature.Icon class="w-3.5 h-3.5" />
             </div>
             <div>
-              <h3 class="text-[14px] font-semibold text-white mb-0.5">
+              <h3 class="text-xs font-semibold text-white mb-0.5">
                 {$t(feature.titleKey)}
               </h3>
-              <p class="text-[13px] leading-[1.5] text-neutral-400">
+              <p class="text-[11px] leading-[1.5] text-cl-muted">
                 {$t(feature.descKey)}
               </p>
             </div>
@@ -91,31 +91,35 @@
   <RandomThemes />
 
   <!-- Community Section -->
-  <section class="py-16 bg-neutral-950">
-    <div class="mx-auto px-6 lg:px-8 text-center" style="max-width: var(--discord-max-width);">
-      <h2 class="text-[22px] sm:text-[26px] font-semibold tracking-tight text-white mb-3">
-        {$t('home.openSource')}
-      </h2>
-      <p class="max-w-xl mx-auto text-[14px] leading-[1.6] text-neutral-400 mb-6">
-        {$t('home.mission')}
-      </p>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a
-          href="https://discord.com/invite/7VaqSrPukm"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#5865F2] text-white text-[13px] font-medium rounded-[4px] hover:bg-[#4853c5] transition-colors"
-        >
-          {$t('home.joinDiscord')}
-        </a>
-        <a
-          href="https://github.com/CubicLauncherDevs/CubicLauncher"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-5 py-2.5 border border-white/20 text-white text-[13px] font-medium rounded-[4px] hover:bg-white/5 transition-colors"
-        >
-          {$t('home.contributeGitHub')}
-        </a>
+  <section class="py-10 bg-cl-base border-t border-cl-border">
+    <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white mb-1">
+            {$t('home.openSource')}
+          </h2>
+          <p class="text-xs text-cl-muted max-w-md">
+            {$t('home.mission')}
+          </p>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <a
+            href="https://discord.com/invite/7VaqSrPukm"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-cl-elevated text-cl-text text-xs font-medium rounded border border-cl-border hover:border-cl-border-hover hover:bg-cl-hover transition-colors"
+          >
+            {$t('home.joinDiscord')}
+          </a>
+          <a
+            href="https://github.com/CubicLauncherDevs/CubicLauncher"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 text-cl-text text-xs font-medium rounded border border-cl-border hover:border-cl-border-hover hover:bg-cl-elevated transition-colors"
+          >
+            {$t('home.contributeGitHub')}
+          </a>
+        </div>
       </div>
     </div>
   </section>

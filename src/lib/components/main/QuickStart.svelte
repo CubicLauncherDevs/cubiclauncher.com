@@ -11,28 +11,32 @@
   ];
 </script>
 
-<section class="py-12 bg-neutral-900/30 border-y border-white/5">
-  <div class="mx-auto px-6 lg:px-8 text-center" style="max-width: var(--discord-max-width);">
-    <h2 class="text-[20px] sm:text-[24px] font-semibold tracking-tight text-white mb-2">
-      {$t('home.quickStartTitle')}
-    </h2>
-    <p class="text-[13px] text-neutral-400 max-w-2xl mx-auto mb-6">
-      {$t('home.quickStartSubtitle')}
-    </p>
+<section class="py-8 bg-cl-elevated/30 border-y border-cl-border">
+  <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+      <div>
+        <h2 class="text-lg font-semibold text-white mb-0.5">
+          {$t('home.quickStartTitle')}
+        </h2>
+        <p class="text-xs text-cl-muted">
+          {$t('home.quickStartSubtitle')}
+        </p>
+      </div>
+    </div>
 
     <div
-      class="inline-flex flex-wrap items-stretch justify-center border border-white/10 rounded-[4px] overflow-hidden bg-neutral-950"
+      class="inline-flex flex-wrap items-stretch justify-center border border-cl-border rounded bg-cl-base overflow-hidden"
     >
       {#each platforms as platform}
         {@const nameKey = `install.platforms.${platform.key}`}
         <a
           href="/install"
-          class="group flex items-center justify-center gap-2 px-5 py-3 hover:bg-white/5 transition-colors border-b md:border-b-0 md:border-r border-white/10 last:border-0"
+          class="group flex items-center justify-center gap-1.5 px-4 py-2 hover:bg-cl-elevated transition-colors border-b md:border-b-0 md:border-r border-cl-border last:border-0"
         >
-          <span class="text-neutral-400 group-hover:text-white transition-colors">
-            <platform.Icon class="w-4 h-4" />
+          <span class="text-cl-dim group-hover:text-cl-text transition-colors">
+            <platform.Icon class="w-3.5 h-3.5" />
           </span>
-          <span class="text-[13px] font-medium text-white">
+          <span class="text-xs font-medium text-cl-text">
             {$t(nameKey)}
           </span>
         </a>

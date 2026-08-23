@@ -13,59 +13,97 @@ html {
 }
 
 :root {
-  /* CubicLauncher palette (kept) */
-  --cubic-bg: #0a0a0a;
-  --cubic-surface: #18181b;
-  --cubic-surface-elevated: #27272a;
-  --cubic-border: rgba(255, 255, 255, 0.08);
-  --cubic-border-hover: rgba(255, 255, 255, 0.16);
-  --cubic-text: #ffffff;
-  --cubic-text-muted: #a1a1aa;
-  --cubic-text-dim: #71717a;
-  --cubic-accent: #ffffff;
-  --cubic-accent-inverse: #09090b;
+  /* CubicLauncher dense utility palette (estilo propio) */
+  --cl-base: #0a0a0a;
+  --cl-surface: #111113;
+  --cl-elevated: #18181a;
+  --cl-hover: #1f1f22;
+  --cl-border: rgba(255, 255, 255, 0.06);
+  --cl-border-hover: rgba(255, 255, 255, 0.12);
+  --cl-text: #f4f4f5;
+  --cl-muted: #a1a1aa;
+  --cl-dim: #71717a;
+  --cl-accent: #ffffff;
+  --cl-accent-inverse: #09090b;
 
-  /* Discord 2015 layout scale */
-  --discord-radius-sm: 3px;
-  --discord-radius: 4px;
-  --discord-radius-lg: 8px;
-  --discord-radius-pill: 20px;
-  --discord-nav-height: 72px;
-  --discord-max-width: 1000px;
+  /* Functional accents */
+  --cl-success: #22c55e;
+  --cl-warning: #eab308;
+  --cl-danger: #ef4444;
+  --cl-link: #60a5fa;
+
+  /* Layout scale */
+  --navbar-height: 56px;
+  --discord-max-width: 1100px;
+  --radius-sm: 3px;
+  --radius: 4px;
+  --radius-lg: 8px;
 }
 
 @theme {
+  --color-cl-base: #0a0a0a;
+  --color-cl-surface: #111113;
+  --color-cl-elevated: #18181a;
+  --color-cl-hover: #1f1f22;
+  --color-cl-border: rgba(255, 255, 255, 0.06);
+  --color-cl-border-hover: rgba(255, 255, 255, 0.12);
+  --color-cl-text: #f4f4f5;
+  --color-cl-muted: #a1a1aa;
+  --color-cl-dim: #71717a;
+  --color-cl-accent: #ffffff;
+  --color-cl-accent-inverse: #09090b;
+  --color-cl-success: #22c55e;
+  --color-cl-warning: #eab308;
+  --color-cl-danger: #ef4444;
+  --color-cl-link: #60a5fa;
+
   --font-sans: "BIZ UDP Gothic", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --font-size-xs: 12px;
+  --font-size-sm: 13px;
+  --font-size-base: 14px;
+  --font-size-lg: 16px;
+
+  --radius-sm: 3px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
 }
 
-/* Custom prose styles — Discord 2015 inspired, CubicLauncher palette */
+body {
+  background-color: var(--cl-base);
+  color: var(--cl-text);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+/* Custom prose styles — compact, estilo propio */
 .prose h1 {
-  @apply text-3xl md:text-4xl font-bold tracking-tight text-white mb-6;
+  @apply text-xl md:text-2xl font-semibold text-white mb-4;
 }
 
 .prose h2 {
-  @apply text-xl font-semibold tracking-tight mt-10 mb-4 border-b border-white/5 pb-2;
+  @apply text-lg font-semibold mt-8 mb-3 border-b border-cl-border pb-2;
 }
 
 .prose h3 {
-  @apply text-lg font-semibold text-white mt-6 mb-3;
+  @apply text-base font-semibold text-white mt-5 mb-2;
 }
 
 .prose p {
-  @apply text-neutral-400 leading-relaxed font-normal mb-5;
+  @apply text-cl-muted leading-relaxed font-normal mb-4;
 }
 
 .prose ul {
-  @apply list-none pl-0 mb-5;
+  @apply list-none pl-0 mb-4;
 }
 
 .prose li {
-  @apply relative pl-5 mb-2 text-neutral-400 font-normal;
+  @apply relative pl-5 mb-1.5 text-cl-muted font-normal;
 }
 
 .prose li::before {
   content: "";
-  @apply absolute left-0 top-[0.65em] w-1.5 h-1.5 bg-white/20 rounded-full;
+  @apply absolute left-0 top-[0.65em] w-1.5 h-1.5 bg-cl-border-hover rounded-full;
 }
 
 .prose strong {
@@ -73,20 +111,20 @@ html {
 }
 
 .prose code {
-  @apply bg-white/5 px-1.5 py-0.5 rounded text-white font-mono text-sm;
+  @apply bg-cl-elevated px-1.5 py-0.5 rounded text-cl-text font-mono text-xs;
 }
 
 .prose pre {
-  @apply bg-neutral-900 border border-white/10 rounded-lg p-5 overflow-x-auto mb-6;
+  @apply bg-cl-surface border border-cl-border rounded-md p-4 overflow-x-auto mb-4;
 }
 
 .prose pre code {
-  @apply bg-transparent p-0 text-neutral-300;
+  @apply bg-transparent p-0 text-cl-muted;
 }
 
 /* Code blocks with language badge and copy button */
 .code-block {
-  @apply bg-neutral-900 border border-white/5 rounded-2xl mb-8 overflow-hidden;
+  @apply bg-cl-surface border border-cl-border rounded-lg mb-6 overflow-hidden;
 }
 
 .code-block pre {
@@ -94,11 +132,11 @@ html {
 }
 
 .code-block-header {
-  @apply flex items-center justify-between px-6 py-2 border-b border-white/5;
+  @apply flex items-center justify-between px-4 py-1.5 border-b border-cl-border;
 }
 
 .code-block-lang {
-  @apply text-[11px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-md text-white;
+  @apply text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded text-cl-text;
   background-color: #525252;
 }
 
@@ -195,7 +233,7 @@ html {
 }
 
 .code-block-copy {
-  @apply flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest text-neutral-500 hover:text-white transition-colors cursor-pointer bg-transparent border-0 p-0;
+  @apply flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-cl-dim hover:text-cl-text transition-colors cursor-pointer bg-transparent border-0 p-0;
 }
 
 .code-block-copy svg {
@@ -273,23 +311,23 @@ html {
 }
 
 .prose table {
-  @apply w-full mb-6 border-collapse rounded-lg overflow-hidden border border-white/10;
+  @apply w-full mb-4 border-collapse rounded-lg overflow-hidden border border-cl-border;
 }
 
 .prose th {
-  @apply text-left text-xs font-semibold uppercase tracking-wider text-neutral-300 px-4 py-3 bg-neutral-900/60 border-b border-white/10;
+  @apply text-left text-xs font-semibold uppercase tracking-wider text-cl-muted px-3 py-2 bg-cl-elevated border-b border-cl-border;
 }
 
 .prose td {
-  @apply px-4 py-3 text-sm text-neutral-400 border-b border-white/5;
+  @apply px-3 py-2 text-xs text-cl-muted border-b border-cl-border;
 }
 
 .prose tbody tr:hover {
-  @apply bg-white/[0.02];
+  @apply bg-cl-elevated/50;
 }
 
 .prose blockquote {
-  @apply border-l-2 border-white/10 pl-5 text-neutral-400 my-6 bg-white/[0.02] py-3 pr-4 rounded-r-lg;
+  @apply border-l-2 border-cl-border pl-4 text-cl-muted my-4 bg-cl-elevated/30 py-2 pr-3 rounded-r-md;
 }
 
 /* Scrollbar hide */

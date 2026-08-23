@@ -21,13 +21,13 @@
     });
   }
 
-const baseStyles =
-  "inline-flex items-center gap-1 rounded border text-[10px] font-medium uppercase tracking-wide transition-colors";
+  const baseStyles =
+    "inline-flex items-center gap-1 rounded border text-[10px] font-medium uppercase tracking-wide transition-colors";
 
-const variantStyles =
-  variant === "light"
-    ? "border-black/10 text-black/60 hover:bg-black/5 hover:text-black"
-    : "border-white/10 text-neutral-400 hover:border-white/20 hover:text-white";
+  const variantStyles =
+    variant === "light"
+      ? "border-black/10 text-black/60 hover:bg-black/5 hover:text-black"
+      : "border-cl-border text-cl-muted hover:border-cl-border-hover hover:text-cl-text";
 </script>
 
 <button

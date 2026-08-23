@@ -11,26 +11,26 @@
   let { onRetry, message = "" }: Props = $props();
 </script>
 
-<div class="max-w-lg mx-auto text-center py-16 px-6">
+<div class="max-w-lg mx-auto text-center py-10 px-4 border border-cl-border rounded bg-cl-surface">
   <div
-    class="w-14 h-14 mx-auto mb-5 rounded-lg bg-neutral-900 border border-white/10 flex items-center justify-center"
+    class="w-10 h-10 mx-auto mb-3 rounded bg-cl-base border border-cl-border flex items-center justify-center"
   >
-    <IconWarning class="w-6 h-6 text-neutral-400" />
+    <IconWarning class="w-5 h-5 text-cl-muted" />
   </div>
 
-  <p class="text-white font-medium text-[15px] mb-1.5">
+  <p class="text-cl-text font-medium text-sm mb-1">
     {message || $t("install.defaultDownloadsAvailable")}
   </p>
-  <p class="text-neutral-500 text-[13px] mb-6">
+  <p class="text-cl-dim text-xs mb-4">
     {$t("install.defaultDownloadsAvailable")}
   </p>
 
   <button
     type="button"
     onclick={onRetry}
-    class="inline-flex items-center gap-2 bg-white text-black px-6 py-2.5 text-[13px] font-medium rounded-[4px] hover:bg-neutral-200 transition-colors"
+    class="inline-flex items-center gap-1.5 bg-cl-text text-cl-accent-inverse px-4 py-1.5 text-xs font-medium rounded hover:bg-neutral-200 transition-colors"
   >
-    <IconArrowClockwise class="w-4 h-4" />
+    <IconArrowClockwise class="w-3.5 h-3.5" />
     {$t("install.retry")}
   </button>
 </div>

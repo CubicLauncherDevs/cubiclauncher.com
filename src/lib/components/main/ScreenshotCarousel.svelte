@@ -72,7 +72,7 @@
     role="region"
     aria-roledescription="carousel"
     aria-label="CubicLauncher screenshots"
-    class="relative w-full aspect-video rounded-xl overflow-hidden border border-white/20 bg-neutral-900 group/main shadow-2xl shadow-black/40 ring-1 ring-white/10"
+    class="relative w-full aspect-video rounded-lg overflow-hidden border border-cl-border bg-cl-surface group/main shadow-lg shadow-black/20"
     onmouseenter={() => {
       hovered = true;
       if (interval) {
@@ -112,14 +112,14 @@
     {#if IMAGES.length > 1}
       <button
         onclick={prev}
-        class="absolute left-4 top-1/2 -translate-y-1/2 flex items-center justify-center w-10 h-10 rounded-lg bg-black/60 text-white opacity-0 group-hover/main:opacity-100 hover:bg-black/80 transition-all"
+        class="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-8 h-8 rounded bg-black/60 text-cl-text opacity-0 group-hover/main:opacity-100 hover:bg-black/80 transition-all"
         aria-label="Previous screenshot"
       >
         <IconCaretLeft class="w-5 h-5" />
       </button>
       <button
         onclick={next}
-        class="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center w-10 h-10 rounded-lg bg-black/60 text-white opacity-0 group-hover/main:opacity-100 hover:bg-black/80 transition-all"
+        class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-8 h-8 rounded bg-black/60 text-cl-text opacity-0 group-hover/main:opacity-100 hover:bg-black/80 transition-all"
         aria-label="Next screenshot"
       >
         <IconCaretRight class="w-5 h-5" />
@@ -136,9 +136,9 @@
       {#each IMAGES as _, i}
         <button
           onclick={() => goTo(i)}
-          class="h-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-white/30 {i === current
-            ? 'w-5 bg-white'
-            : 'w-2 h-2 bg-white/30 hover:bg-white/50'}"
+          class="h-1.5 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-cl-border-hover {i === current
+            ? 'w-4 bg-cl-text'
+            : 'w-1.5 h-1.5 bg-cl-dim hover:bg-cl-muted'}"
           role="tab"
           aria-selected={i === current}
           aria-label="Go to screenshot {i + 1}"
@@ -148,9 +148,9 @@
   {/if}
 {:else}
   <div
-    class="flex items-center justify-center w-full aspect-video rounded-lg border border-white/10 bg-neutral-900 text-neutral-600"
+    class="flex items-center justify-center w-full aspect-video rounded border border-cl-border bg-cl-surface text-cl-dim"
   >
-    <span class="text-sm font-light tracking-wide">CubicLauncher</span>
+    <span class="text-xs tracking-wide">CubicLauncher</span>
   </div>
 {/if}
 

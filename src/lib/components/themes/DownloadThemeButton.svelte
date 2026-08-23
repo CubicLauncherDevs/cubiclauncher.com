@@ -119,27 +119,27 @@
   }
 </script>
 
-<div class="flex flex-col gap-2">
+<div class="flex flex-col gap-1.5">
   <button
     onclick={downloadTheme}
     disabled={loading}
-    class="flex items-center justify-center gap-2 w-full bg-white text-black px-6 py-3 font-medium text-[14px] rounded-[4px] hover:bg-neutral-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]"
+    class="flex items-center justify-center gap-1.5 w-full bg-cl-text text-cl-accent-inverse px-4 py-2 font-medium text-xs rounded hover:bg-neutral-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
   >
     {#if loading}
-      <IconSpinner class="w-4 h-4 animate-spin" />
+      <IconSpinner class="w-3.5 h-3.5 animate-spin" />
       <span>{$t('packageDetail.downloadingPackage')} ({progress}/{total})</span>
     {:else if success}
-      <IconCheck class="w-4 h-4" />
+      <IconCheck class="w-3.5 h-3.5" />
       <span>{$t('packageDetail.downloaded')}</span>
     {:else}
-      <IconDownload class="w-4 h-4" />
+      <IconDownload class="w-3.5 h-3.5" />
       <span>{label ?? $t('themes.downloadTheme')}</span>
     {/if}
   </button>
 
   {#if error}
-    <div class="flex items-start gap-2 text-[12px] text-red-400">
-      <IconWarning class="w-4 h-4 shrink-0 mt-0.5" />
+    <div class="flex items-start gap-1.5 text-[11px] text-cl-danger">
+      <IconWarning class="w-3.5 h-3.5 shrink-0 mt-0.5" />
       <span>{error}</span>
     </div>
   {/if}

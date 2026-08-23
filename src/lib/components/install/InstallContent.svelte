@@ -63,50 +63,48 @@
   });
 </script>
 
-<main class="bg-neutral-950 overflow-x-hidden">
-  <!-- Hero -->
-  <section
-    class="relative min-h-[45vh] flex items-center justify-center pt-[var(--discord-nav-height)] pb-16 overflow-hidden bg-neutral-950"
-  >
+<main class="bg-cl-base overflow-x-hidden">
+  <!-- Header -->
+  <section class="relative border-b border-cl-border bg-cl-surface/30 overflow-hidden">
     <div
-      class="absolute inset-0 opacity-[0.05] pointer-events-none"
+      class="absolute inset-0 opacity-[0.03] pointer-events-none"
       style="background-image: radial-gradient(circle, #ffffff 1px, transparent 1px); background-size: 40px 40px;"
     ></div>
 
-    <div class="relative z-10 mx-auto px-6 lg:px-8 text-center" style="max-width: var(--discord-max-width);">
-      <h1
-        class="text-[30px] sm:text-[36px] lg:text-[42px] font-semibold tracking-tight mb-4 text-white"
-      >
-        {$t("install.title")}
-        <span class="text-neutral-400">{$t("install.titleHighlight")}</span>
-      </h1>
-      <p
-        class="text-[16px] text-neutral-400 max-w-xl mx-auto mb-8 leading-relaxed"
-      >
-        {$t("install.subtitle")}
-      </p>
-      {#if totalDownloads > 0}
-        <a
-          href="https://github.com/CubicLauncherDevs/CubicLauncher/releases"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex"
-        >
-          <img
-            src="https://img.shields.io/github/downloads/CubicLauncherDevs/CubicLauncher/total?style=for-the-badge&label={encodeURIComponent($t('install.totalDownloadsLabel'))}&labelColor=18181b&color=ffffff"
-            alt={$t("install.totalDownloads", {
-              values: { count: formatNumber(totalDownloads) },
-            })}
-            class="h-7"
-          />
-        </a>
-      {/if}
+    <div class="relative z-10 mx-auto px-4 lg:px-6 py-10" style="max-width: var(--discord-max-width);">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h1 class="text-xl sm:text-2xl font-semibold text-white mb-1">
+            {$t("install.title")}
+            <span class="text-cl-muted">{$t("install.titleHighlight")}</span>
+          </h1>
+          <p class="text-xs text-cl-muted max-w-md">
+            {$t("install.subtitle")}
+          </p>
+        </div>
+        {#if totalDownloads > 0}
+          <a
+            href="https://github.com/CubicLauncherDevs/CubicLauncher/releases"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex shrink-0"
+          >
+            <img
+              src="https://img.shields.io/github/downloads/CubicLauncherDevs/CubicLauncher/total?style=for-the-badge&label={encodeURIComponent($t('install.totalDownloadsLabel'))}&labelColor=0f0f10&color=ffffff"
+              alt={$t("install.totalDownloads", {
+                values: { count: formatNumber(totalDownloads) },
+              })}
+              class="h-6"
+            />
+          </a>
+        {/if}
+      </div>
     </div>
   </section>
 
   <!-- Content -->
-  <section class="py-12">
-    <div class="mx-auto px-6 lg:px-8" style="max-width: var(--discord-max-width);">
+  <section class="py-6">
+    <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
       {#if loading}
         <InstallSkeleton />
       {:else if error}
@@ -122,7 +120,7 @@
       {:else}
         <ReleaseInfo {release} />
 
-        <div class="mb-6">
+        <div class="mb-4">
           <OsTabs
             selected={selectedOS}
             totals={platformDownloads}
@@ -141,25 +139,27 @@
   </section>
 
   <!-- Footer -->
-  <section class="py-20 border-t border-white/5">
-    <div class="mx-auto px-6 lg:px-8 text-center" style="max-width: var(--discord-max-width);">
-      <div
-        class="w-12 h-12 mx-auto mb-5 rounded-lg bg-neutral-900 border border-white/10 flex items-center justify-center"
-      >
-        <IconDownload class="w-5 h-5 text-neutral-400" />
+  <section class="py-8 border-t border-cl-border">
+    <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 rounded border border-cl-border bg-cl-surface p-4">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded bg-cl-base border border-cl-border flex items-center justify-center">
+            <IconDownload class="w-4 h-4 text-cl-muted" />
+          </div>
+          <p class="text-cl-muted text-xs max-w-md">
+            {$t("install.lookingForOther")}
+          </p>
+        </div>
+        <a
+          href="https://github.com/CubicLauncherDevs/CubicLauncher/releases"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-cl-text text-cl-accent-inverse font-medium text-xs rounded hover:bg-neutral-200 transition-colors shrink-0"
+        >
+          {$t("install.viewAllReleases")}
+          <IconArrowRight class="w-3 h-3" />
+        </a>
       </div>
-      <p class="text-neutral-400 text-[16px] max-w-lg mx-auto mb-6">
-        {$t("install.lookingForOther")}
-      </p>
-      <a
-        href="https://github.com/CubicLauncherDevs/CubicLauncher/releases"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-medium text-[14px] rounded-[4px] hover:bg-neutral-200 transition-colors"
-      >
-        {$t("install.viewAllReleases")}
-        <IconArrowRight class="w-4 h-4" />
-      </a>
     </div>
   </section>
 </main>

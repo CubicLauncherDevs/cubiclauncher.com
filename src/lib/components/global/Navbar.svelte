@@ -19,7 +19,7 @@
 
     onMount(() => {
         const handleScroll = () => {
-            scrolled = window.scrollY > 50;
+            scrolled = window.scrollY > 10;
         };
         window.addEventListener("scroll", handleScroll, { passive: true });
         handleScroll();
@@ -42,21 +42,20 @@
 />
 
 <header
-    class="fixed top-0 left-0 right-0 z-50 {scrolled
-        ? 'bg-neutral-950/90 backdrop-blur-md border-b border-white/5'
-        : 'bg-transparent border-b border-transparent'}"
-    style="height: var(--discord-nav-height); transition: background-color 200ms ease-out, border-color 200ms ease-out, backdrop-filter 200ms ease-out;"
+    class="fixed top-0 left-0 right-0 z-50 h-[var(--navbar-height)] border-b transition-colors duration-200 {scrolled
+        ? 'bg-cl-base/95 backdrop-blur-md border-cl-border'
+        : 'bg-cl-base border-transparent'}"
 >
-    <div class="h-full mx-auto px-6 lg:px-8 flex items-center justify-between" style="max-width: var(--discord-max-width);">
-        <div class="flex items-center gap-8">
-            <a href="/" class="flex items-center gap-2.5 group shrink-0">
+    <div class="h-full mx-auto px-4 lg:px-6 flex items-center justify-between" style="max-width: var(--discord-max-width);">
+        <div class="flex items-center gap-6">
+            <a href="/" class="flex items-center gap-2 group shrink-0">
                 <Logo
-                    width="2rem"
-                    height="2rem"
+                    width="1.5rem"
+                    height="1.5rem"
                     color="#ffffff"
                     className="transition-transform duration-200 group-hover:scale-105"
                 />
-                <span class="hidden sm:block font-semibold text-[15px] text-white tracking-tight">
+                <span class="hidden sm:block font-semibold text-sm text-white tracking-tight">
                     CubicLauncher
                 </span>
             </a>
@@ -65,7 +64,7 @@
                 {#each mainLinks as [labelKey, href]}
                     <a
                         href={href}
-                        class="px-3 py-2 text-[14px] font-medium text-white/80 hover:text-white transition-colors duration-150"
+                        class="px-2.5 py-1.5 text-xs font-medium text-cl-muted hover:text-cl-text transition-colors duration-150"
                     >
                         {$t(labelKey)}
                     </a>
@@ -73,7 +72,7 @@
             </nav>
         </div>
 
-        <div class="flex items-center gap-4 shrink-0">
+        <div class="flex items-center gap-3 shrink-0">
             <div class="hidden sm:block">
                 <LanguageSwitcher />
             </div>
@@ -83,13 +82,13 @@
                     href="https://discord.com/invite/7VaqSrPukm"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="px-3 py-2 text-[14px] font-medium text-white/80 hover:text-white transition-colors duration-150"
+                    class="px-2.5 py-1.5 text-xs font-medium text-cl-muted hover:text-cl-text transition-colors duration-150"
                 >
                     {$t('nav.discord')}
                 </a>
                 <a
                     href="/donate"
-                    class="px-3 py-2 text-[14px] font-medium text-white/80 hover:text-white transition-colors duration-150"
+                    class="px-2.5 py-1.5 text-xs font-medium text-cl-muted hover:text-cl-text transition-colors duration-150"
                 >
                     {$t('nav.donate')}
                 </a>
@@ -97,19 +96,19 @@
 
             <a
                 href="/install"
-                class="hidden sm:inline-flex items-center text-[14px] font-medium text-white border border-white/80 rounded-[20px] px-4 py-1.5 hover:bg-white/10 transition-colors duration-150"
+                class="hidden sm:inline-flex items-center text-xs font-medium text-cl-text bg-cl-elevated border border-cl-border hover:border-cl-border-hover hover:bg-cl-hover rounded px-3 py-1.5 transition-colors duration-150"
             >
                 {$t('nav.download')}
             </a>
 
             <button
-                class="md:hidden text-white/80 hover:text-white p-2 focus:outline-none transition-colors duration-150"
+                class="md:hidden text-cl-muted hover:text-cl-text p-1.5 focus:outline-none transition-colors duration-150"
                 onclick={toggleMobileMenu}
                 aria-label="Toggle mobile menu"
                 aria-expanded={isMobileMenuOpen}
             >
                 <svg
-                    class="w-6 h-6 transition-transform duration-200 {isMobileMenuOpen ? 'rotate-90' : ''}"
+                    class="w-5 h-5 transition-transform duration-200 {isMobileMenuOpen ? 'rotate-90' : ''}"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -145,14 +144,14 @@
             transition:fade={{ duration: 200, easing: cubicOut }}
         ></button>
         <div
-            class="absolute top-[var(--discord-nav-height)] left-0 right-0 bg-neutral-950 border-b border-white/5 shadow-xl overflow-hidden"
+            class="absolute top-[var(--navbar-height)] left-0 right-0 bg-cl-base border-b border-cl-border shadow-xl overflow-hidden"
             transition:fly={{ y: -10, duration: 200, easing: cubicOut }}
         >
-            <nav class="flex flex-col">
+            <nav class="flex flex-col py-1">
                 {#each mainLinks as [labelKey, href]}
                     <a
                         href={href}
-                        class="block px-6 py-3.5 text-[14px] font-medium text-white/80 hover:text-white border-b border-white/5 hover:bg-white/[0.02] transition-colors duration-150"
+                        class="block px-4 py-2 text-xs font-medium text-cl-muted hover:text-cl-text hover:bg-cl-elevated transition-colors duration-150"
                         onclick={closeMobileMenu}
                     >
                         {$t(labelKey)}
@@ -162,22 +161,22 @@
                     href="https://discord.com/invite/7VaqSrPukm"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="block px-6 py-3.5 text-[14px] font-medium text-white/80 hover:text-white border-b border-white/5 hover:bg-white/[0.02] transition-colors duration-150"
+                    class="block px-4 py-2 text-xs font-medium text-cl-muted hover:text-cl-text hover:bg-cl-elevated transition-colors duration-150"
                     onclick={closeMobileMenu}
                 >
                     {$t('nav.discord')}
                 </a>
                 <a
                     href="/donate"
-                    class="block px-6 py-3.5 text-[14px] font-medium text-white/80 hover:text-white border-b border-white/5 hover:bg-white/[0.02] transition-colors duration-150"
+                    class="block px-4 py-2 text-xs font-medium text-cl-muted hover:text-cl-text hover:bg-cl-elevated transition-colors duration-150"
                     onclick={closeMobileMenu}
                 >
                     {$t('nav.donate')}
                 </a>
-                <div class="px-6 py-4 flex items-center justify-between">
+                <div class="px-4 py-2 flex items-center justify-between border-t border-cl-border mt-1">
                     <a
                         href="/install"
-                        class="inline-flex items-center text-[14px] font-medium text-white border border-white/80 rounded-[20px] px-5 py-2 hover:bg-white/10 transition-colors duration-150"
+                        class="inline-flex items-center text-xs font-medium text-cl-text bg-cl-elevated border border-cl-border hover:border-cl-border-hover hover:bg-cl-hover rounded px-3 py-1.5 transition-colors duration-150"
                         onclick={closeMobileMenu}
                     >
                         {$t('nav.download')}

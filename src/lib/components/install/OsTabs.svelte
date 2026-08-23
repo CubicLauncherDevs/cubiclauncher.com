@@ -37,7 +37,7 @@
 </script>
 
 <div
-  class="flex border border-white/10 bg-neutral-900 rounded-[4px] overflow-hidden"
+  class="flex border border-cl-border bg-cl-surface rounded overflow-hidden"
   role="tablist"
   aria-label={$t("install.choosePlatform")}
 >
@@ -48,19 +48,14 @@
       role="tab"
       aria-selected={active}
       onclick={() => onSelect(tab.id)}
-      class="relative flex-1 flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 py-3 px-2 text-[13px] font-medium transition-colors {active
-        ? 'bg-white text-black'
-        : 'text-neutral-400 hover:text-white hover:bg-white/5'}"
+      class="relative flex-1 flex items-center justify-center gap-2 py-2 px-2 text-xs font-medium transition-colors {active
+        ? 'bg-cl-elevated text-white border-b border-cl-text'
+        : 'text-cl-muted hover:text-cl-text hover:bg-cl-elevated'}"
     >
-      <span class="relative z-10 flex items-center gap-2">
-        <tab.Icon class="w-5 h-5" />
-        <span>{$t(tab.nameKey)}</span>
-      </span>
-      <span
-        class="relative z-10 text-[11px] opacity-70"
-      >
+      <tab.Icon class="w-4 h-4" />
+      <span>{$t(tab.nameKey)}</span>
+      <span class="text-[10px] text-cl-dim hidden sm:inline">
         {formatCount(totals[tab.id])}
-        {$t("install.downloads")}
       </span>
     </button>
   {/each}

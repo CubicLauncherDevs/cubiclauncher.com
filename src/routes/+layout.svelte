@@ -30,8 +30,10 @@
   });
 </script>
 
-<div class="min-h-screen bg-neutral-950 text-neutral-50 selection:bg-white/10 selection:text-white font-sans antialiased text-[14px]">
+<div class="min-h-screen bg-cl-base text-cl-text selection:bg-white/10 selection:text-white font-sans antialiased text-base">
   <Navbar />
-  {@render children()}
+  <main class="pt-[var(--navbar-height)]">
+    {@render children()}
+  </main>
   <Footer />
 </div>

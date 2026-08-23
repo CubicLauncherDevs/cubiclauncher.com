@@ -10,6 +10,7 @@
   import ThemeDetailHeader from "$lib/components/themes/ThemeDetailHeader.svelte";
   import VersionTimeline from "$lib/components/themes/VersionTimeline.svelte";
   import ThemeLightbox from "$lib/components/themes/ThemeLightbox.svelte";
+  import IconArrowLeft from "~icons/ph/arrow-left";
 
   let { data } = $props();
   let theme = $derived(data.theme);
@@ -138,97 +139,112 @@
     <meta name="twitter:image" content={ogImage} />
   {/if}
   {#if jsonLd}
-    {@html `<script type="application/ld+json">${jsonLd}</script>`}
+    {@html `<script type="application/ld+json">${jsonLd}<\/script>`}
   {/if}
 </svelte:head>
 
-<section class="min-h-screen pt-[calc(var(--discord-nav-height)+40px)] pb-24 bg-neutral-950 text-white">
-  <div class="mx-auto px-6 lg:px-8 relative z-10" style="max-width: var(--discord-max-width);">
+<section class="min-h-screen pb-16 pt-[calc(var(--navbar-height)+24px)] bg-cl-base text-cl-text">
+  <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
+    <a
+      href="/themes"
+      onclick={goToThemesList}
+      class="inline-flex items-center gap-1 text-[11px] text-cl-dim hover:text-cl-text transition-colors mb-4"
+    >
+      <IconArrowLeft class="w-3 h-3" />
+      {$t('themeDetail.allThemes')}
+    </a>
+
     {#if loading}
-      <div class="animate-pulse space-y-6 max-w-4xl mx-auto">
-        <div class="h-7 bg-neutral-800 rounded w-40"></div>
-        <div class="aspect-video bg-neutral-800 rounded-lg"></div>
+      <div class="animate-pulse space-y-4 max-w-4xl">
+        <div class="h-6 bg-cl-elevated rounded w-32"></div>
+        <div class="aspect-video bg-cl-elevated rounded"></div>
         <div class="space-y-2">
-          <div class="h-5 bg-neutral-800 rounded w-56"></div>
-          <div class="h-3.5 bg-neutral-800 rounded w-80"></div>
+          <div class="h-4 bg-cl-elevated rounded w-40"></div>
+          <div class="h-3 bg-cl-elevated rounded w-60"></div>
         </div>
       </div>
     {:else if error}
-      <div class="text-center py-20 max-w-4xl mx-auto">
-        <p class="text-neutral-400 text-[16px] mb-5">{error}</p>
-        <div class="flex gap-4 justify-center">
-          <a
-            href="/themes"
-            onclick={goToThemesList}
-            class="px-5 py-2.5 text-[13px] font-medium rounded-[4px] border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 transition-colors"
-          >
-            {$t('themeDetail.viewAll')}
-          </a>
-        </div>
+      <div class="text-center py-12 max-w-4xl mx-auto rounded border border-cl-border bg-cl-surface">
+        <p class="text-cl-muted text-sm mb-4">{error}</p>
+        <a
+          href="/themes"
+          onclick={goToThemesList}
+          class="px-4 py-1.5 text-xs font-medium rounded border border-cl-border text-cl-muted hover:text-cl-text hover:border-cl-border-hover transition-colors"
+        >
+          {$t('themeDetail.viewAll')}
+        </a>
       </div>
     {:else if theme}
-      <div class="max-w-4xl mx-auto">
-        <ThemeDetailHeader
-          {theme}
-          {currentVer}
-          {selectedVersion}
-          onVersionChange={(ver) => selectedVersion = ver}
-          onPreviewClick={(url: string) => { lightboxUrl = url; showLightbox = true; }}
-        />
-
-        <!-- Tabs -->
-        <div class="border-b border-white/10 mb-6">
-          <div class="flex gap-0">
-            <button
-              onclick={() => setTab("description")}
-              class="px-4 py-2.5 text-[13px] font-medium transition-colors border-b-2 -mb-px {activeTab === 'description' ? 'border-white text-white' : 'border-transparent text-neutral-500 hover:text-white'}"
-            >
-              {$t('themeDetail.description')}
-            </button>
-            <button
-              onclick={() => setTab("versions")}
-              class="px-4 py-2.5 text-[13px] font-medium transition-colors border-b-2 -mb-px {activeTab === 'versions' ? 'border-white text-white' : 'border-transparent text-neutral-500 hover:text-white'}"
-            >
-              {$t('themeDetail.versions')}
-            </button>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <!-- Sidebar info -->
+        <div class="lg:col-span-4 order-2 lg:order-1">
+          <div class="border border-cl-border rounded bg-cl-surface p-4 sticky top-[calc(var(--navbar-height)+16px)]">
+            <ThemeDetailHeader
+              {theme}
+              {currentVer}
+              {selectedVersion}
+              onVersionChange={(ver) => selectedVersion = ver}
+              onPreviewClick={(url: string) => { lightboxUrl = url; showLightbox = true; }}
+            />
           </div>
         </div>
 
-        <!-- Tab Content -->
-        {#if activeTab === "description"}
-          {#if descriptionHtml}
-            <div class="max-w-none">
-              <div class="prose prose-invert prose-neutral max-w-none text-[13px] text-neutral-300">
-                {@html descriptionHtml}
-              </div>
-            </div>
-          {:else}
-            <p class="text-[13px] text-neutral-500 italic">{$t('themeDetail.noDescription')}</p>
-          {/if}
-        {:else if activeTab === "versions"}
-          <VersionTimeline
-            versions={sortedVersions}
-            latestVersion={theme.latestVersion}
-            themeName={theme.name}
-            themeAuthor={theme.author}
-            {expandedVersion}
-            onToggleVersion={toggleVersion}
-          />
-        {/if}
-
-        <!-- Related themes -->
-        {#if relatedThemes.length > 0}
-          <div class="mt-16 pt-10 border-t border-white/5">
-            <a href={authorUrl} class="block text-lg font-semibold tracking-tight mb-5 hover:text-white/80 transition-colors">
-              {$t('themeDetail.moreBy', { values: { author: theme.author } })}
-            </a>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {#each relatedThemes.slice(0, 3) as related}
-                <ThemeCard theme={related} />
-              {/each}
+        <!-- Main content -->
+        <div class="lg:col-span-8 order-1 lg:order-2">
+          <!-- Tabs -->
+          <div class="border-b border-cl-border mb-4">
+            <div class="flex gap-0">
+              <button
+                onclick={() => setTab("description")}
+                class="px-3 py-2 text-xs font-medium transition-colors border-b-2 -mb-px {activeTab === 'description' ? 'border-cl-text text-cl-text' : 'border-transparent text-cl-dim hover:text-cl-text'}"
+              >
+                {$t('themeDetail.description')}
+              </button>
+              <button
+                onclick={() => setTab("versions")}
+                class="px-3 py-2 text-xs font-medium transition-colors border-b-2 -mb-px {activeTab === 'versions' ? 'border-cl-text text-cl-text' : 'border-transparent text-cl-dim hover:text-cl-text'}"
+              >
+                {$t('themeDetail.versions')}
+              </button>
             </div>
           </div>
-        {/if}
+
+          <!-- Tab Content -->
+          <div class="border border-cl-border rounded bg-cl-surface p-4 min-h-[200px]">
+            {#if activeTab === "description"}
+              {#if descriptionHtml}
+                <div class="prose prose-invert prose-neutral max-w-none text-xs text-cl-muted">
+                  {@html descriptionHtml}
+                </div>
+              {:else}
+                <p class="text-xs text-cl-dim italic">{$t('themeDetail.noDescription')}</p>
+              {/if}
+            {:else if activeTab === "versions"}
+              <VersionTimeline
+                versions={sortedVersions}
+                latestVersion={theme.latestVersion}
+                themeName={theme.name}
+                themeAuthor={theme.author}
+                {expandedVersion}
+                onToggleVersion={toggleVersion}
+              />
+            {/if}
+          </div>
+
+          <!-- Related themes -->
+          {#if relatedThemes.length > 0}
+            <div class="mt-6 pt-4 border-t border-cl-border">
+              <a href={authorUrl} class="block text-sm font-semibold mb-3 hover:text-cl-muted transition-colors">
+                {$t('themeDetail.moreBy', { values: { author: theme.author } })}
+              </a>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {#each relatedThemes.slice(0, 4) as related}
+                  <ThemeCard theme={related} />
+                {/each}
+              </div>
+            </div>
+          {/if}
+        </div>
       </div>
     {/if}
   </div>
