@@ -3,29 +3,29 @@
   import { t } from "$lib/i18n";
 </script>
 
-<section class="py-24">
-  <div class="container mx-auto px-6 max-w-6xl">
-    <div class="text-center mb-16">
+<section class="py-20">
+  <div class="mx-auto px-6 lg:px-8" style="max-width: var(--discord-max-width);">
+    <div class="text-center mb-12">
       <h2
-        class="text-4xl md:text-5xl font-black tracking-tighter mb-4 uppercase"
+        class="text-[26px] sm:text-[32px] font-semibold tracking-tight mb-3"
       >
         {$t('developers.title')}
       </h2>
-      <p class="text-neutral-400 max-w-xl mx-auto font-light">
+      <p class="text-[15px] text-neutral-400 max-w-xl mx-auto">
         {$t('developers.description')}
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
       {#each developers as dev}
         <a
           href="https://github.com/{dev.github}"
           target="_blank"
           rel="noopener noreferrer"
-          class="group flex items-center gap-6 bg-neutral-900/50 border border-white/5 rounded-2xl p-6 hover:bg-neutral-900/80 hover:border-white/10 transition-all duration-500"
+          class="group flex items-center gap-5 bg-neutral-900/50 border border-white/5 rounded-lg p-5 hover:bg-neutral-900/80 hover:border-white/10 transition-colors"
         >
           <div
-            class="shrink-0 w-24 h-24 rounded-full overflow-hidden ring-2 ring-white/10 group-hover:ring-white/20 transition-all duration-500"
+            class="shrink-0 w-20 h-20 rounded-full overflow-hidden ring-2 ring-white/10 group-hover:ring-white/20 transition-all"
           >
             <img
               src="https://github.com/{dev.github}.png"
@@ -39,19 +39,19 @@
                 <img
                   src="/flags/{dev.flag}.svg"
                   alt="{dev.flag}"
-                  class="w-5 h-auto"
+                  class="w-4 h-auto"
                 />
               {/if}
-              <h3 class="text-xl font-bold tracking-tight truncate">
+              <h3 class="text-[16px] font-semibold tracking-tight truncate">
                 {dev.name}
               </h3>
             </div>
-            <p class="text-neutral-400 text-sm mb-4">{$t(dev.roleKey)}</p>
+            <p class="text-neutral-400 text-[13px] mb-3">{$t(dev.roleKey)}</p>
             <span
-              class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-neutral-500 group-hover:text-white transition-colors"
+              class="inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wide text-neutral-500 group-hover:text-white transition-colors"
             >
               <svg
-                class="w-4 h-4"
+                class="w-3.5 h-3.5"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -69,24 +69,24 @@
       {/each}
     </div>
 
-    <div class="text-center mt-16 mb-8">
-      <h3 class="text-2xl font-black tracking-tighter uppercase">
+    <div class="text-center mt-14 mb-6">
+      <h3 class="text-lg font-semibold tracking-tight">
         {$t('developers.contributorsTitle')}
       </h3>
     </div>
 
     <div
-      class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-x-6 gap-y-8"
+      class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-x-5 gap-y-6"
     >
       {#each contributors as dev}
         <a
           href="https://github.com/{dev.github}"
           target="_blank"
           rel="noopener noreferrer"
-          class="group flex flex-col items-center gap-3 text-center"
+          class="group flex flex-col items-center gap-2 text-center"
         >
           <div
-            class="w-20 h-20 rounded-full overflow-hidden ring-2 ring-white/10 group-hover:ring-white/30 group-hover:scale-110 transition-all duration-300"
+            class="w-16 h-16 rounded-full overflow-hidden ring-2 ring-white/10 group-hover:ring-white/30 group-hover:scale-110 transition-all"
           >
             <img
               src="https://github.com/{dev.github}.png"
@@ -95,10 +95,13 @@
             />
           </div>
           <span
-            class="text-sm text-neutral-500 group-hover:text-white transition-colors"
+            class="text-[12px] text-neutral-500 group-hover:text-white transition-colors"
           >
             {dev.name}
           </span>
+          {#if dev.suspended}
+            <span class="text-[10px] text-red-400/90 mt-0.5">{$t('developers.suspended')}</span>
+          {/if}
         </a>
       {/each}
     </div>

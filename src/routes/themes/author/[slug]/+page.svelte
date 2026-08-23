@@ -53,43 +53,43 @@
   {/if}
 </svelte:head>
 
-<section class="min-h-screen pt-36 pb-32 bg-neutral-950 text-white">
-  <div class="container mx-auto px-6 max-w-6xl">
+<section class="min-h-screen pt-[calc(var(--discord-nav-height)+40px)] pb-24 bg-neutral-950 text-white">
+  <div class="mx-auto px-6 lg:px-8" style="max-width: var(--discord-max-width);">
     <a
       href="/themes"
       onclick={goToThemesList}
-      class="inline-flex items-center gap-2 text-sm text-neutral-500 hover:text-white transition-colors mb-8"
+      class="inline-flex items-center gap-1.5 text-[13px] text-neutral-500 hover:text-white transition-colors mb-6"
     >
       <IconArrowLeft class="w-4 h-4" />
       {$t('themeDetail.allThemes')}
     </a>
 
     {#if author}
-      <div class="mb-10">
-        <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-2">
+      <div class="mb-8">
+        <h1 class="text-[28px] sm:text-[34px] font-semibold tracking-tight text-white mb-2">
           {author.name}
         </h1>
-        <p class="text-neutral-400">
+        <p class="text-[14px] text-neutral-400">
           {$t('themes.showing', { values: { start: paginationStart, end: paginationEnd, total: author.themes.length } })}
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {#each paginatedThemes as theme}
           <ThemeCard {theme} />
         {/each}
       </div>
 
       {#if totalPages > 1}
-        <div class="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div class="text-xs text-neutral-500 hidden sm:block">
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="text-[12px] text-neutral-500 hidden sm:block">
             {$t('themes.showing', { values: { start: paginationStart, end: paginationEnd, total: author.themes.length } })}
           </div>
-          <div class="flex items-center gap-2">
+          <div class="flex items-center gap-1.5">
             <button
               onclick={() => goToPage(currentPage - 1)}
               disabled={currentPage === 1}
-              class="px-3 py-1.5 rounded-lg text-xs font-medium border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              class="px-2.5 py-1.5 rounded-[4px] text-[12px] font-medium border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
             >
               {$t('themes.previous')}
             </button>
@@ -99,19 +99,19 @@
               {#if pageNum === 1 || pageNum === totalPages || (pageNum >= currentPage - 1 && pageNum <= currentPage + 1)}
                 <button
                   onclick={() => goToPage(pageNum)}
-                  class="w-8 h-8 rounded-lg text-xs font-medium transition-colors {currentPage === pageNum ? 'bg-white text-black' : 'text-neutral-400 hover:text-white hover:bg-white/5'}"
+                  class="w-7 h-7 rounded-[4px] text-[12px] font-medium transition-colors {currentPage === pageNum ? 'bg-white text-black' : 'text-neutral-400 hover:text-white hover:bg-white/5'}"
                 >
                   {pageNum}
                 </button>
               {:else if pageNum === currentPage - 2 || pageNum === currentPage + 2}
-                <span class="text-neutral-600 text-xs px-1">...</span>
+                <span class="text-neutral-600 text-[12px] px-1">...</span>
               {/if}
             {/each}
 
             <button
               onclick={() => goToPage(currentPage + 1)}
               disabled={currentPage === totalPages}
-              class="px-3 py-1.5 rounded-lg text-xs font-medium border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              class="px-2.5 py-1.5 rounded-[4px] text-[12px] font-medium border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
             >
               {$t('themes.next')}
             </button>

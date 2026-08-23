@@ -11,30 +11,28 @@
   ];
 </script>
 
-<section class="py-24 border-y border-white/5 bg-neutral-900/20">
-  <div class="container mx-auto px-6 max-w-5xl text-center">
-    <h2 class="text-4xl md:text-5xl font-black tracking-tighter mb-4">
+<section class="py-12 bg-neutral-900/30 border-y border-white/5">
+  <div class="mx-auto px-6 lg:px-8 text-center" style="max-width: var(--discord-max-width);">
+    <h2 class="text-[20px] sm:text-[24px] font-semibold tracking-tight text-white mb-2">
       {$t('home.quickStartTitle')}
     </h2>
-    <p class="text-neutral-400 text-lg font-light max-w-2xl mx-auto mb-12">
+    <p class="text-[13px] text-neutral-400 max-w-2xl mx-auto mb-6">
       {$t('home.quickStartSubtitle')}
     </p>
 
     <div
-      class="inline-flex flex-col md:flex-row items-stretch border border-white/10 rounded-2xl overflow-hidden"
+      class="inline-flex flex-wrap items-stretch justify-center border border-white/10 rounded-[4px] overflow-hidden bg-neutral-950"
     >
       {#each platforms as platform}
         {@const nameKey = `install.platforms.${platform.key}`}
         <a
           href="/install"
-          class="group flex items-center justify-center md:justify-start gap-3 px-8 py-5 hover:bg-white/5 transition-colors border-b md:border-b-0 md:border-r border-white/10 last:border-0"
+          class="group flex items-center justify-center gap-2 px-5 py-3 hover:bg-white/5 transition-colors border-b md:border-b-0 md:border-r border-white/10 last:border-0"
         >
           <span class="text-neutral-400 group-hover:text-white transition-colors">
-            <platform.Icon class="w-5 h-5" />
+            <platform.Icon class="w-4 h-4" />
           </span>
-          <span
-            class="text-sm font-bold uppercase tracking-[0.15em] text-white"
-          >
+          <span class="text-[13px] font-medium text-white">
             {$t(nameKey)}
           </span>
         </a>

@@ -23,8 +23,8 @@
 </script>
 
 {#if download.sha256}
-  <div class="group flex items-center gap-2 min-w-0" title={download.sha256}>
-    <span class="text-[10px] font-mono truncate max-w-[10rem] {hashColor} transition-colors">
+  <div class="group flex items-center gap-1.5 min-w-0" title={download.sha256}>
+    <span class="text-[11px] font-mono truncate max-w-[10rem] {hashColor} transition-colors">
       {download.sha256.slice(0, 14)}…{download.sha256.slice(-6)}
     </span>
     <CopyHashButton hash={download.sha256} {variant} compact />
@@ -36,7 +36,7 @@
     href={download.sigUrl}
     target="_blank"
     rel="noopener noreferrer"
-    class="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider transition-colors {linkColor}"
+    class="inline-flex items-center gap-1 text-[11px] font-medium uppercase tracking-wide transition-colors {linkColor}"
   >
     {$t("install.signature")}
     <IconArrowSquareOut class="w-3 h-3" />

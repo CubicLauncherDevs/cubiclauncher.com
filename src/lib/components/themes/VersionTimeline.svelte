@@ -30,33 +30,33 @@
     {@const isLatest = v.version === latestVersion}
     {@const isLast = i === versions.length - 1}
 
-    <div class="relative mb-8 last:mb-0 pl-10">
+    <div class="relative mb-6 last:mb-0 pl-9">
       {#if !isLast}
-        <div class="absolute left-[11px] -translate-x-1/2 top-[36px] bottom-[-57px] w-px bg-white/10"></div>
+        <div class="absolute left-[9px] -translate-x-1/2 top-[32px] bottom-[-49px] w-px bg-white/10"></div>
       {/if}
 
       <button
         onclick={() => onToggleVersion(v.version)}
         aria-label={isExpanded ? "Collapse version details" : "Expand version details"}
         aria-expanded={isExpanded}
-        class="absolute left-0 top-[14px] w-[22px] h-[22px] rounded-full transition-all {isExpanded ? 'bg-white' : 'bg-neutral-950 ring-2 ring-white/20 hover:ring-white/40'}"
+        class="absolute left-0 top-[12px] w-[18px] h-[18px] rounded-full transition-all {isExpanded ? 'bg-white' : 'bg-neutral-950 ring-2 ring-white/20 hover:ring-white/40'}"
       ></button>
 
       <div
-        class="rounded-xl border transition-all cursor-pointer {isExpanded ? 'border-white/20 bg-neutral-900/80' : 'border-white/5 bg-neutral-900/30 hover:border-white/10'} overflow-hidden"
+        class="rounded-lg border transition-all cursor-pointer {isExpanded ? 'border-white/20 bg-neutral-900/80' : 'border-white/5 bg-neutral-900/30 hover:border-white/10'} overflow-hidden"
         onclick={() => onToggleVersion(v.version)}
         role="button"
         tabindex="0"
         onkeydown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onToggleVersion(v.version); } }}
       >
-        <div class="flex items-center justify-between px-5 py-4">
-          <div class="flex items-center gap-3 min-w-0">
-            <span class="text-sm font-semibold text-white whitespace-nowrap">{v.version}</span>
+        <div class="flex items-center justify-between px-4 py-3.5">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <span class="text-[13px] font-medium text-white whitespace-nowrap">{v.version}</span>
             {#if isLatest}
-              <span class="text-[10px] font-medium text-neutral-400 bg-white/5 px-2 py-0.5 rounded-full whitespace-nowrap">{$t('themeDetail.latestVersion')}</span>
+              <span class="text-[10px] font-medium text-neutral-400 bg-white/5 px-2 py-0.5 rounded-[3px] whitespace-nowrap">{$t('themeDetail.latestVersion')}</span>
             {/if}
             {#if v.date}
-              <span class="text-xs text-neutral-500 hidden sm:inline whitespace-nowrap">{new Date(v.date).toLocaleDateString($locale === 'en' ? 'en-US' : 'es-ES')}</span>
+              <span class="text-[11px] text-neutral-500 hidden sm:inline whitespace-nowrap">{new Date(v.date).toLocaleDateString($locale === 'en' ? 'en-US' : 'es-ES')}</span>
             {/if}
           </div>
           <div class="flex items-center gap-2 shrink-0">
@@ -67,21 +67,21 @@
         </div>
 
         {#if isExpanded}
-          <div class="border-t border-white/5 px-5 py-4 space-y-4" transition:slide>
-            <div class="flex flex-col sm:flex-row gap-4">
+          <div class="border-t border-white/5 px-4 py-4 space-y-4" transition:slide>
+            <div class="flex flex-col sm:flex-row gap-3">
               {#if v.showcaseUrl && v.previewUrl}
                 <div class="flex flex-col sm:flex-row gap-2 shrink-0 w-full sm:w-auto">
                   <img
                     src={v.showcaseUrl}
                     alt="{themeName} {v.version}"
                     loading="lazy"
-                    class="w-full sm:w-[400px] aspect-video object-cover rounded-lg border border-white/10"
+                    class="w-full sm:w-[320px] aspect-video object-cover rounded-[4px] border border-white/10"
                   />
                   <img
                     src={v.previewUrl}
                     alt="{themeName} {v.version} palette"
                     loading="lazy"
-                    class="w-full sm:w-[200px] aspect-video object-cover rounded-lg border border-white/10"
+                    class="w-full sm:w-[160px] aspect-video object-cover rounded-[4px] border border-white/10"
                   />
                 </div>
               {:else if v.showcaseUrl || v.previewUrl}
@@ -90,22 +90,22 @@
                     src={v.showcaseUrl || v.previewUrl}
                     alt="{themeName} {v.version}"
                     loading="lazy"
-                    class="w-full sm:w-[600px] aspect-video object-cover rounded-lg border border-white/10"
+                    class="w-full sm:w-[480px] aspect-video object-cover rounded-[4px] border border-white/10"
                   />
                 </div>
               {/if}
               <div class="min-w-0 flex-1">
                 {#if changelog}
-                  <div class="prose prose-invert prose-neutral max-w-none text-xs text-neutral-300 [&_p]:mb-2 [&_ul]:mb-2 [&_li]:mb-0.5">
+                  <div class="prose prose-invert prose-neutral max-w-none text-[12px] text-neutral-300 [&_p]:mb-2 [&_ul]:mb-2 [&_li]:mb-0.5">
                     {@html changelog}
                   </div>
                 {:else}
-                  <p class="text-xs text-neutral-500 italic">{$t('themeDetail.noChangelog')}</p>
+                  <p class="text-[12px] text-neutral-500 italic">{$t('themeDetail.noChangelog')}</p>
                 {/if}
               </div>
             </div>
 
-            <div class="flex flex-wrap gap-x-5 gap-y-1 text-xs text-neutral-500">
+            <div class="flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-neutral-500">
               {#if v.date}
                 <span>{new Date(v.date).toLocaleDateString(getDateLocale($locale), {
                   year: "numeric", month: "long", day: "numeric"

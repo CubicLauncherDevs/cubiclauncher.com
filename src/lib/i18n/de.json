@@ -21,7 +21,7 @@
     "copyright": "© {year} CubicLauncher. Open Source unter GPLv3. Nicht verbunden mit Mojang AB."
   },
   "hero": {
-    "title": "CUBIC LAUNCHER",
+    "title": "CubicLauncher",
     "description": "Ein kostenloser, quelloffener Minecraft-Launcher. Leicht, konfigurierbar und darauf ausgelegt, das Beste aus deiner Hardware herauszuholen, ohne sie übermäßig zu fordern.",
     "download": "Stable herunterladen",
     "exploreThemes": "Themes entdecken",
@@ -44,7 +44,7 @@
     "feature6Desc": "Installiere Mods, Modloader, Resource-Packs und prüfe Logs direkt aus dem Launcher.",
     "feature7Title": "Originalprojekt",
     "feature7Desc": "CubicLauncher ist kein Fork. Er wurde von Grund auf entwickelt, mit jeder Komponente passend zum Projekt.",
-    "openSource": "OPEN SOURCE",
+    "openSource": "Open Source",
     "mission": "Unser Ziel ist es, dass jeder Minecraft mit einem stabilen, schnellen Launcher unter eigener Kontrolle spielen kann. CubicLauncher ist kostenlos, quelloffen und kompatibel mit Premium-, NoPremium- und Ely.by-Konten.",
     "featuredThemes": "Ausgewählte Themes",
     "viewAllThemes": "Alle Themes anzeigen",
@@ -83,6 +83,7 @@
     "title": "Entwickler",
     "description": "Team hinter CubicLauncher",
     "github": "GitHub",
+    "suspended": "Konto gesperrt",
     "role1": "Gründer & Lead-Entwickler",
     "role2": "Mitgründer & Lead-Entwickler",
     "role3": "Mitwirkender",

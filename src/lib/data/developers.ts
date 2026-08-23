@@ -4,6 +4,7 @@ export interface Developer {
   roleKey: string;
   github: string;
   flag?: string;
+  suspended?: boolean;
 }
 
 export const developers: Developer[] = [
@@ -60,6 +61,7 @@ export const contributors: Developer[] = [
     role: "Colaborador",
     roleKey: "developers.role7",
     github: "kittyhos",
+    suspended: true,
   },
   {
     name: "nullked",

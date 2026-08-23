@@ -7,69 +7,61 @@
 </script>
 
 <footer
-  class="relative border-t border-white/5 bg-neutral-950 overflow-hidden pt-24 pb-12"
+  class="bg-neutral-950 border-t border-white/5 pt-16 pb-10"
 >
-  <!-- Subtle background glow -->
-  <div
-    class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-px bg-linear-to-r from-transparent via-white/20 to-transparent"
-  ></div>
-  <div
-    class="absolute -top-24 left-1/2 -translate-x-1/2 w-200 h-50 bg-white/2 blur-[100px] rounded-full pointer-events-none"
-  ></div>
-
-  <div class="max-w-7xl mx-auto px-6 relative z-10">
+  <div class="mx-auto px-6 lg:px-8" style="max-width: var(--discord-max-width);">
     <div
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16 lg:gap-8 mb-24"
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 mb-14"
     >
       <!-- Brand Section -->
-      <div class="lg:col-span-2 flex flex-col gap-6">
-        <a href="/" class="flex items-center gap-3 group w-fit">
+      <div class="lg:col-span-2 flex flex-col gap-4">
+        <a href="/" class="flex items-center gap-2.5 group w-fit">
           <Logo
-            width="2.5rem"
-            height="2.5rem"
+            width="2rem"
+            height="2rem"
             color="#ffffff"
-            className="group-hover:scale-110 transition-transform duration-500"
+            className="transition-transform duration-300 group-hover:scale-105"
           />
-          <span class="font-bold text-xl tracking-tighter uppercase text-white"
+          <span class="font-semibold text-[16px] text-white tracking-tight"
             >CubicLauncher</span
           >
         </a>
-        <p class="text-neutral-400 leading-relaxed max-w-sm font-light text-sm">
+        <p class="text-[13px] leading-relaxed max-w-sm text-neutral-400">
           {$t('footer.brand')}
         </p>
       </div>
 
       <!-- Links Column 2 -->
-      <div class="flex flex-col gap-6">
-        <h3 class="text-[10px] font-bold text-white uppercase tracking-[0.2em]">
+      <div class="flex flex-col gap-4">
+        <h3 class="text-[12px] font-semibold text-white">
           {$t('footer.resources')}
         </h3>
-        <ul class="flex flex-col gap-4">
+        <ul class="flex flex-col gap-2.5">
           <li>
             <a
               href="https://dev.cubiclauncher.org/docs"
-              class="text-sm text-neutral-400 hover:text-white transition-colors"
+              class="text-[13px] text-neutral-400 hover:text-white transition-colors"
               >{$t('footer.documentation')}</a
             >
           </li>
           <li>
             <a
               href="/about"
-              class="text-sm text-neutral-400 hover:text-white transition-colors"
+              class="text-[13px] text-neutral-400 hover:text-white transition-colors"
               >{$t('nav.about')}</a
             >
           </li>
           <li>
             <a
               href="/themes"
-              class="text-sm text-neutral-400 hover:text-white transition-colors"
+              class="text-[13px] text-neutral-400 hover:text-white transition-colors"
               >{$t('footer.themes')}</a
             >
           </li>
           <li>
             <a
               href="https://dev.cubiclauncher.org/docs/es-ES/guias/soporte"
-              class="text-sm text-neutral-400 hover:text-white transition-colors"
+              class="text-[13px] text-neutral-400 hover:text-white transition-colors"
               >{$t('footer.support')}</a
             >
           </li>
@@ -77,29 +69,29 @@
       </div>
 
       <!-- Links Column 3 -->
-      <div class="flex flex-col gap-6">
-        <h3 class="text-[10px] font-bold text-white uppercase tracking-[0.2em]">
+      <div class="flex flex-col gap-4">
+        <h3 class="text-[12px] font-semibold text-white">
           {$t('footer.legal')}
         </h3>
-        <ul class="flex flex-col gap-4">
+        <ul class="flex flex-col gap-2.5">
           <li>
             <a
               href="https://dev.cubiclauncher.org/docs/es-ES/Legal/privacy"
-              class="text-sm text-neutral-400 hover:text-white transition-colors"
+              class="text-[13px] text-neutral-400 hover:text-white transition-colors"
               >{$t('footer.privacy')}</a
             >
           </li>
           <li>
             <a
               href="https://dev.cubiclauncher.org/docs/es-ES/Legal/terms"
-              class="text-sm text-neutral-400 hover:text-white transition-colors"
+              class="text-[13px] text-neutral-400 hover:text-white transition-colors"
               >{$t('footer.terms')}</a
             >
           </li>
           <li>
             <a
               href="https://dev.cubiclauncher.org/docs/es-ES/Legal/license"
-              class="text-sm text-neutral-400 hover:text-white transition-colors"
+              class="text-[13px] text-neutral-400 hover:text-white transition-colors"
               >{$t('footer.license')}</a
             >
           </li>
@@ -109,13 +101,13 @@
 
     <!-- Bottom Section -->
     <div
-      class="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/5 gap-4"
+      class="flex flex-col md:flex-row items-center justify-between pt-6 border-t border-white/5 gap-4"
     >
-      <p class="text-xs text-neutral-500">
+      <p class="text-[12px] text-neutral-500">
         {$t('footer.copyright', { values: { year: currentYear } })}
       </p>
 
-      <div class="flex items-center gap-6">
+      <div class="flex items-center gap-5">
         <a
           href="https://discord.com/invite/7VaqSrPukm"
           class="text-neutral-500 hover:text-white transition-colors"

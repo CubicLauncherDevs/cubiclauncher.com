@@ -423,30 +423,30 @@
   });
 </script>
 
-<section class="min-h-screen pt-36 pb-32 bg-neutral-950 text-white">
-  <div class="container mx-auto px-6 max-w-6xl">
+<section class="min-h-screen pt-[calc(var(--discord-nav-height)+40px)] pb-24 bg-neutral-950 text-white">
+  <div class="mx-auto px-6 lg:px-8" style="max-width: var(--discord-max-width);">
     <!-- Header -->
-    <div class="text-center mb-12">
-      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-4">
+    <div class="text-center mb-10">
+      <h1 class="text-[28px] sm:text-[34px] font-semibold tracking-tight text-white mb-3">
         {$t('themes.title')}
       </h1>
-      <p class="text-base text-neutral-400 font-light max-w-lg mx-auto">
+      <p class="text-[15px] text-neutral-400 max-w-lg mx-auto">
         {$t('themes.description')}
       </p>
     </div>
 
     <!-- Tabs -->
-    <div class="flex items-center justify-center gap-3 mb-8">
-      <div class="inline-flex bg-neutral-900 border border-white/10 rounded-full p-1">
+    <div class="flex items-center justify-center gap-3 mb-6">
+      <div class="inline-flex bg-neutral-900 border border-white/10 rounded-[4px] p-0.5">
         <button
           onclick={() => setTab("themes")}
-          class="px-5 py-2 text-xs font-medium rounded-full transition-all {activeTab === 'themes' ? 'bg-white text-black' : 'text-neutral-400 hover:text-white'}"
+          class="px-4 py-1.5 text-[13px] font-medium rounded-[3px] transition-colors {activeTab === 'themes' ? 'bg-white text-black' : 'text-neutral-400 hover:text-white'}"
         >
           {$t('themes.tabThemes')}
         </button>
         <button
           onclick={() => setTab("packages")}
-          class="px-5 py-2 text-xs font-medium rounded-full transition-all {activeTab === 'packages' ? 'bg-white text-black' : 'text-neutral-400 hover:text-white'}"
+          class="px-4 py-1.5 text-[13px] font-medium rounded-[3px] transition-colors {activeTab === 'packages' ? 'bg-white text-black' : 'text-neutral-400 hover:text-white'}"
         >
           {$t('themes.tabPackages')}
         </button>
@@ -454,7 +454,7 @@
       <button
         onclick={refreshAll}
         disabled={refreshing}
-        class="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium rounded-full border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+        class="inline-flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium rounded-[4px] border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         aria-label={$t('themes.refreshCache')}
         title={$t('themes.refreshCache')}
       >
@@ -467,10 +467,10 @@
     </div>
 
     <!-- Search Bar -->
-    <div class="max-w-3xl mx-auto mb-8" bind:this={searchDropdownRef}>
+    <div class="max-w-2xl mx-auto mb-6" bind:this={searchDropdownRef}>
       <div class="group relative">
-        <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-          <IconMagnifyingGlass class="w-6 h-6 text-neutral-400 group-focus-within:text-white transition-colors" />
+        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+          <IconMagnifyingGlass class="w-5 h-5 text-neutral-500 group-focus-within:text-neutral-300 transition-colors" />
         </div>
         <input
           type="text"
@@ -478,73 +478,73 @@
           oninput={(e) => setSearch(e.currentTarget.value)}
           onfocus={() => searchFocused = true}
           placeholder={$t('themes.searchPlaceholder')}
-          class="w-full bg-neutral-900/80 backdrop-blur-sm border border-white/10 rounded-2xl pl-14 pr-12 py-4 text-base text-white placeholder-neutral-500 focus:outline-none focus:border-white/30 focus:bg-neutral-800/90 focus:ring-4 focus:ring-white/5 transition-all shadow-lg shadow-black/20"
+          class="w-full bg-neutral-900 border border-white/10 rounded-[4px] pl-11 pr-10 py-3 text-[14px] text-white placeholder-neutral-500 focus:outline-none focus:border-white/30 focus:bg-neutral-800 transition-all"
         />
         {#if searchQuery}
           <button
             onclick={clearSearch}
-            class="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-full text-neutral-500 hover:text-white hover:bg-white/10 transition-colors"
+            class="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded text-neutral-500 hover:text-white hover:bg-white/10 transition-colors"
             aria-label={$t('themes.clearSearch')}
           >
-            <IconX class="w-5 h-5" />
+            <IconX class="w-4 h-4" />
           </button>
         {/if}
 
         <!-- Search suggestions dropdown -->
         {#if searchFocused && activeTab === "themes"}
-          <div class="absolute top-full left-0 right-0 mt-2 z-30 bg-neutral-900/95 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
+          <div class="absolute top-full left-0 right-0 mt-2 z-30 bg-neutral-900 border border-white/10 rounded-[4px] shadow-xl shadow-black/20 overflow-hidden">
             {#snippet suggestionRow(theme: Theme)}
               <a
                 href="/themes/{theme.id}"
                 onclick={(e) => { e.preventDefault(); selectSearchSuggestion(theme.id); }}
-                class="flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition-colors"
+                class="flex items-center gap-3 px-3 py-2.5 hover:bg-white/5 transition-colors"
               >
-                <div class="w-12 h-8 rounded-md bg-neutral-800 overflow-hidden shrink-0">
+                <div class="w-10 h-7 rounded bg-neutral-800 overflow-hidden shrink-0">
                   {#if theme.previewUrl}
                     <img src={theme.previewUrl} alt={theme.name} class="w-full h-full object-cover" />
                   {:else}
                     <div class="w-full h-full flex items-center justify-center text-neutral-600">
-                      <IconImage class="w-4 h-4" />
+                      <IconImage class="w-3.5 h-3.5" />
                     </div>
                   {/if}
                 </div>
                 <div class="min-w-0">
                   <div class="flex items-center gap-1.5">
-                    <p class="text-sm font-medium text-white truncate">{theme.name}</p>
+                    <p class="text-[13px] font-medium text-white truncate">{theme.name}</p>
                     {#if getThemeVerification(theme) !== "none"}
                       <VerifiedBadge size="sm" level={getThemeVerification(theme)} />
                     {/if}
                   </div>
-                  <p class="text-xs text-neutral-500 truncate">{theme.author} · {theme.latestVersion}</p>
+                  <p class="text-[11px] text-neutral-500 truncate">{theme.author} · {theme.latestVersion}</p>
                 </div>
               </a>
             {/snippet}
 
             {#if searchQuery.trim()}
               {#if searchSuggestions.length > 0}
-                <div class="py-2">
+                <div class="py-1">
                   {#each searchSuggestions as theme}
                     {@render suggestionRow(theme)}
                   {/each}
                 </div>
-                <div class="border-t border-white/5 px-4 py-2">
+                <div class="border-t border-white/5 px-3 py-2">
                   <button
                     onclick={() => searchFocused = false}
-                    class="text-xs text-neutral-500 hover:text-white transition-colors"
+                    class="text-[11px] text-neutral-500 hover:text-white transition-colors"
                   >
                     {$t('themes.results', { values: { count: filteredThemes.length } })} · {$t('themes.clearSearch')}
                   </button>
                 </div>
               {:else}
-                <div class="px-4 py-4 text-sm text-neutral-500">
+                <div class="px-3 py-3 text-[13px] text-neutral-500">
                   {$t('themes.noResults')}
                 </div>
               {/if}
             {:else}
-              <div class="px-4 py-2 text-xs font-medium text-neutral-500 uppercase tracking-wider">
+              <div class="px-3 py-1.5 text-[11px] font-medium text-neutral-500 uppercase tracking-wide">
                 Suggested themes
               </div>
-              <div class="py-2">
+              <div class="py-1">
                 {#each suggestedThemes as theme}
                   {@render suggestionRow(theme)}
                 {/each}
@@ -556,14 +556,14 @@
     </div>
 
     <!-- Filter Bar -->
-    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-5">
       <div class="flex flex-wrap items-center gap-3">
         <!-- Author search with autocomplete -->
         {#if activeTab === "themes"}
           <div class="relative" bind:this={authorDropdownRef}>
             <div class="relative">
               <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <IconMagnifyingGlass class="w-4 h-4 text-neutral-500" />
+                <IconMagnifyingGlass class="w-3.5 h-3.5 text-neutral-500" />
               </div>
               <input
                 bind:this={authorInputRef}
@@ -571,40 +571,40 @@
                 bind:value={authorQuery}
                 onfocus={() => authorDropdownOpen = true}
                 placeholder={$t('themes.author')}
-                class="inline-flex items-center gap-2 bg-neutral-900 hover:bg-neutral-800 border border-white/10 rounded-lg pl-9 pr-3 py-2 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-white/30 transition-colors w-48"
+                class="inline-flex items-center gap-2 bg-neutral-900 hover:bg-neutral-800 border border-white/10 rounded-[4px] pl-8 pr-3 py-2 text-[12px] text-white placeholder-neutral-500 focus:outline-none focus:border-white/30 transition-colors w-44"
               />
               {#if authorQuery}
                 <button
                   onclick={() => { authorQuery = ""; authorInputRef?.focus(); }}
-                  class="absolute right-2 top-1/2 -translate-y-1/2 p-0.5 rounded-full text-neutral-500 hover:text-white transition-colors"
+                  class="absolute right-2 top-1/2 -translate-y-1/2 p-0.5 rounded text-neutral-500 hover:text-white transition-colors"
                   aria-label={$t('themes.clearSearch')}
                 >
-                  <IconX class="w-3.5 h-3.5" />
+                  <IconX class="w-3 h-3" />
                 </button>
               {/if}
             </div>
 
             {#if authorDropdownOpen}
-              <div class="absolute left-0 top-full mt-2 z-20 w-64 bg-neutral-900 border border-white/10 rounded-xl shadow-2xl overflow-hidden">
-                <div class="max-h-64 overflow-y-auto py-1">
+              <div class="absolute left-0 top-full mt-2 z-20 w-56 bg-neutral-900 border border-white/10 rounded-[4px] shadow-xl shadow-black/20 overflow-hidden">
+                <div class="max-h-60 overflow-y-auto py-1">
                   {#each filteredAuthors as author}
                     <button
                       onclick={() => selectAuthor(author.name)}
-                      class="w-full flex items-center justify-between px-3 py-2 text-xs transition-colors text-neutral-400 hover:text-white hover:bg-white/5"
+                      class="w-full flex items-center justify-between px-3 py-2 text-[12px] transition-colors text-neutral-400 hover:text-white hover:bg-white/5"
                     >
                       <span>{author.name}</span>
                       <span class="text-neutral-600">{author.count}</span>
                     </button>
                   {:else}
                     {#if authorQuery.trim()}
-                      <div class="px-3 py-2 text-xs text-neutral-500">
+                      <div class="px-3 py-2 text-[12px] text-neutral-500">
                         {$t('themes.noResults')}
                       </div>
                     {:else}
                       {#each authorEntries.slice(0, 8) as author}
                         <button
                           onclick={() => selectAuthor(author.name)}
-                          class="w-full flex items-center justify-between px-3 py-2 text-xs transition-colors text-neutral-400 hover:text-white hover:bg-white/5"
+                          class="w-full flex items-center justify-between px-3 py-2 text-[12px] transition-colors text-neutral-400 hover:text-white hover:bg-white/5"
                         >
                           <span>{author.name}</span>
                           <span class="text-neutral-600">{author.count}</span>
@@ -622,7 +622,7 @@
         <div class="relative" bind:this={sortDropdownRef}>
           <button
             onclick={() => sortDropdownOpen = !sortDropdownOpen}
-            class="inline-flex items-center gap-2 bg-neutral-900 hover:bg-neutral-800 border border-white/10 rounded-lg px-3 py-2 text-xs text-white transition-colors"
+            class="inline-flex items-center gap-2 bg-neutral-900 hover:bg-neutral-800 border border-white/10 rounded-[4px] px-3 py-2 text-[12px] text-white transition-colors"
             aria-haspopup="listbox"
             aria-expanded={sortDropdownOpen}
           >
@@ -632,16 +632,16 @@
                 <span>{$t(opt.labelKey)}</span>
               {/if}
             {/each}
-            <IconCaretDown class="w-3.5 h-3.5 text-neutral-500 {sortDropdownOpen ? 'rotate-180' : ''} transition-transform" />
+            <IconCaretDown class="w-3 h-3 text-neutral-500 {sortDropdownOpen ? 'rotate-180' : ''} transition-transform" />
           </button>
 
           {#if sortDropdownOpen}
-            <div class="absolute left-0 top-full mt-2 z-20 w-48 bg-neutral-900 border border-white/10 rounded-xl shadow-2xl overflow-hidden">
+            <div class="absolute left-0 top-full mt-2 z-20 w-44 bg-neutral-900 border border-white/10 rounded-[4px] shadow-xl shadow-black/20 overflow-hidden">
               <div class="py-1">
                 {#each sortOptions as opt}
                   <button
                     onclick={() => { sortBy = opt.value; sortDropdownOpen = false; updateUrlParams(); }}
-                    class="w-full text-left px-3 py-2 text-xs transition-colors {sortBy === opt.value ? 'bg-white/10 text-white' : 'text-neutral-400 hover:text-white hover:bg-white/5'}"
+                    class="w-full text-left px-3 py-2 text-[12px] transition-colors {sortBy === opt.value ? 'bg-white/10 text-white' : 'text-neutral-400 hover:text-white hover:bg-white/5'}"
                   >
                     {$t(opt.labelKey)}
                   </button>
@@ -654,23 +654,23 @@
         {#if hasActiveFilters}
           <button
             onclick={clearFilters}
-            class="text-xs text-neutral-500 hover:text-white underline underline-offset-4 decoration-white/20 transition-all"
+            class="text-[12px] text-neutral-500 hover:text-white underline underline-offset-4 decoration-white/20 transition-all"
           >
             {$t('themes.clearAll')}
           </button>
         {/if}
       </div>
 
-      <div class="text-xs text-neutral-500">
+      <div class="text-[12px] text-neutral-500">
         {$t('themes.showing', { values: { start: paginationStart, end: paginationEnd, total: totalItems } })}
       </div>
     </div>
 
     <!-- Active filter chips -->
     {#if hasActiveFilters}
-      <div class="flex flex-wrap items-center gap-2 mb-8">
+      <div class="flex flex-wrap items-center gap-2 mb-6">
         {#if searchQuery || debouncedQuery}
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-xs text-white">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[3px] bg-white/10 text-[12px] text-white">
             <span class="text-neutral-400">{$t('themes.search')}:</span> "{debouncedQuery || searchQuery}"
             <button onclick={clearSearch} class="hover:text-white/60 transition-colors ml-0.5" aria-label={$t('themes.clearSearchText')}>
               <IconX class="w-3 h-3" />
@@ -683,58 +683,58 @@
     <!-- Grid -->
     <div>
       {#if (activeTab === "themes" && error && themes.length === 0) || (activeTab === "packages" && packagesError && packages.length === 0)}
-        <div class="text-center py-20">
-          <p class="text-neutral-500 mb-6">{activeTab === "themes" ? error : packagesError}</p>
+        <div class="text-center py-16">
+          <p class="text-neutral-500 mb-5">{activeTab === "themes" ? error : packagesError}</p>
           <button
             onclick={() => location.reload()}
-            class="bg-white text-black px-6 py-2.5 text-[10px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all"
+            class="bg-white text-black px-5 py-2 text-[12px] font-medium rounded-[4px] hover:bg-neutral-200 transition-colors"
           >
             {$t('themeDetail.retry')}
           </button>
         </div>
       {:else if (activeTab === "themes" && loading && !hasCached) || (activeTab === "packages" && packagesLoading && !hasPackagesCached)}
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {#each Array(6) as _}
-            <div class="bg-neutral-900 border border-white/5 rounded-xl overflow-hidden animate-pulse">
+            <div class="bg-neutral-900 border border-white/5 rounded-lg overflow-hidden animate-pulse">
               <div class="aspect-video bg-neutral-800"></div>
-              <div class="p-4 space-y-2">
-                <div class="h-4 bg-neutral-800 rounded w-2/3"></div>
+              <div class="p-3.5 space-y-2">
+                <div class="h-3.5 bg-neutral-800 rounded w-2/3"></div>
                 <div class="h-3 bg-neutral-800 rounded w-1/3"></div>
-                <div class="h-8 bg-neutral-800 rounded w-full mt-4"></div>
+                <div class="h-7 bg-neutral-800 rounded w-full mt-3"></div>
               </div>
             </div>
           {/each}
         </div>
       {:else if activeTab === "themes" && filteredThemes.length === 0 && !loading}
-        <div class="text-center py-20">
-          <p class="text-neutral-400 text-lg mb-2">{$t('themes.noResults')}</p>
-          <p class="text-sm text-neutral-600 mb-8">{$t('themes.noResultsHint')}</p>
+        <div class="text-center py-16">
+          <p class="text-neutral-400 text-[16px] mb-2">{$t('themes.noResults')}</p>
+          <p class="text-[13px] text-neutral-600 mb-6">{$t('themes.noResultsHint')}</p>
           {#if hasActiveFilters}
             <button
               onclick={clearFilters}
-              class="bg-white text-black px-6 py-2.5 text-[10px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all"
+              class="bg-white text-black px-5 py-2 text-[12px] font-medium rounded-[4px] hover:bg-neutral-200 transition-colors"
             >
               {$t('themes.clearFilters')}
             </button>
           {/if}
         </div>
       {:else if activeTab === "packages" && filteredPackages.length === 0 && !packagesLoading}
-        <div class="text-center py-20">
-          <p class="text-neutral-400 text-lg mb-2">{$t('themes.noPackages')}</p>
-          <p class="text-sm text-neutral-600 mb-8">{$t('themes.noPackagesHint')}</p>
+        <div class="text-center py-16">
+          <p class="text-neutral-400 text-[16px] mb-2">{$t('themes.noPackages')}</p>
+          <p class="text-[13px] text-neutral-600 mb-6">{$t('themes.noPackagesHint')}</p>
           {#if hasActiveFilters}
             <button
               onclick={clearFilters}
-              class="bg-white text-black px-6 py-2.5 text-[10px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all"
+              class="bg-white text-black px-5 py-2 text-[12px] font-medium rounded-[4px] hover:bg-neutral-200 transition-colors"
             >
               {$t('themes.clearFilters')}
             </button>
           {/if}
         </div>
       {:else}
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {#each paginatedItems as item, i (activeTab === "themes" ? (item as Theme).id : (item as ThemePackage).slug)}
-            <div class="card-enter" style="animation-delay: {i * 80}ms">
+            <div class="card-enter" style="animation-delay: {i * 60}ms">
               {#if activeTab === "themes"}
                 <ThemeCard theme={item as Theme} />
               {:else}
@@ -746,15 +746,15 @@
 
         <!-- Pagination -->
         {#if totalPages > 1}
-          <div class="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="text-xs text-neutral-500 hidden sm:block">
+          <div class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="text-[12px] text-neutral-500 hidden sm:block">
               {$t('themes.showing', { values: { start: paginationStart, end: paginationEnd, total: totalItems } })}
             </div>
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-1.5">
               <button
                 onclick={() => goToPage(currentPage - 1)}
                 disabled={currentPage === 1}
-                class="px-3 py-1.5 rounded-lg text-xs font-medium border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                class="px-2.5 py-1.5 rounded-[4px] text-[12px] font-medium border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
                 {$t('themes.previous')}
               </button>
@@ -764,19 +764,19 @@
                 {#if pageNum === 1 || pageNum === totalPages || (pageNum >= currentPage - 1 && pageNum <= currentPage + 1)}
                   <button
                     onclick={() => goToPage(pageNum)}
-                    class="w-8 h-8 rounded-lg text-xs font-medium transition-colors {currentPage === pageNum ? 'bg-white text-black' : 'text-neutral-400 hover:text-white hover:bg-white/5'}"
+                    class="w-7 h-7 rounded-[4px] text-[12px] font-medium transition-colors {currentPage === pageNum ? 'bg-white text-black' : 'text-neutral-400 hover:text-white hover:bg-white/5'}"
                   >
                     {pageNum}
                   </button>
                 {:else if pageNum === currentPage - 2 || pageNum === currentPage + 2}
-                  <span class="text-neutral-600 text-xs px-1">...</span>
+                  <span class="text-neutral-600 text-[12px] px-1">...</span>
                 {/if}
               {/each}
 
               <button
                 onclick={() => goToPage(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                class="px-3 py-1.5 rounded-lg text-xs font-medium border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                class="px-2.5 py-1.5 rounded-[4px] text-[12px] font-medium border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
                 {$t('themes.next')}
               </button>
@@ -788,8 +788,8 @@
 
     <!-- Contribute -->
     {#if activeTab === "themes" && (!loading || hasCached)}
-      <div class="mt-20 text-center">
-        <p class="text-sm text-neutral-500">
+      <div class="mt-16 text-center">
+        <p class="text-[13px] text-neutral-500">
           {$t('themes.createYourOwn')}
           <a href="https://dev.cubiclauncher.org/docs/es-ES/guias/hacer-themes" class="text-white underline underline-offset-4 decoration-white/20 hover:decoration-white/60 transition-all">{$t('themes.followGuide')}</a>
           {$t('themes.shareOn')}
@@ -802,10 +802,10 @@
 
 <style>
   @keyframes card-enter {
-    from { opacity: 0; transform: translateY(12px); }
+    from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
   }
   .card-enter {
-    animation: card-enter 0.4s ease-out both;
+    animation: card-enter 0.3s ease-out both;
   }
 </style>

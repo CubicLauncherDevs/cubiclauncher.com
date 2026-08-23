@@ -21,19 +21,19 @@
     });
   }
 
-  const baseStyles =
-    "inline-flex items-center gap-1.5 rounded-full border text-[10px] font-semibold uppercase tracking-wider transition-colors";
+const baseStyles =
+  "inline-flex items-center gap-1 rounded border text-[10px] font-medium uppercase tracking-wide transition-colors";
 
-  const variantStyles =
-    variant === "light"
-      ? "border-black/10 text-black/60 hover:bg-black/5 hover:text-black"
-      : "border-white/10 text-neutral-400 hover:border-white/20 hover:text-white";
+const variantStyles =
+  variant === "light"
+    ? "border-black/10 text-black/60 hover:bg-black/5 hover:text-black"
+    : "border-white/10 text-neutral-400 hover:border-white/20 hover:text-white";
 </script>
 
 <button
   type="button"
   onclick={copy}
-  class="{baseStyles} {variantStyles} {compact ? 'px-2 py-1' : 'px-2.5 py-1'}"
+  class="{baseStyles} {variantStyles} {compact ? 'px-1.5 py-0.5' : 'px-2 py-1'}"
   aria-label={$t("install.copySha256")}
 >
   {#if copied}

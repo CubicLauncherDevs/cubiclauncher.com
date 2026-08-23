@@ -1,33 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
 @import "tailwindcss";
 
-@theme {
-  --font-sans: "Cantarell", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+html {
+  scroll-behavior: smooth;
 }
 
-/* Custom prose styles */
+:root {
+  /* CubicLauncher palette (kept) */
+  --cubic-bg: #0a0a0a;
+  --cubic-surface: #18181b;
+  --cubic-surface-elevated: #27272a;
+  --cubic-border: rgba(255, 255, 255, 0.08);
+  --cubic-border-hover: rgba(255, 255, 255, 0.16);
+  --cubic-text: #ffffff;
+  --cubic-text-muted: #a1a1aa;
+  --cubic-text-dim: #71717a;
+  --cubic-accent: #ffffff;
+  --cubic-accent-inverse: #09090b;
+
+  /* Discord 2015 layout scale */
+  --discord-radius-sm: 3px;
+  --discord-radius: 4px;
+  --discord-radius-lg: 8px;
+  --discord-radius-pill: 20px;
+  --discord-nav-height: 72px;
+  --discord-max-width: 1000px;
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+/* Custom prose styles — Discord 2015 inspired, CubicLauncher palette */
 .prose h1 {
-  @apply text-4xl md:text-5xl font-black tracking-tighter uppercase mb-8;
+  @apply text-3xl md:text-4xl font-bold tracking-tight text-white mb-6;
 }
 
 .prose h2 {
-  @apply text-2xl font-bold tracking-tight mt-12 mb-4 border-b border-white/5 pb-2;
+  @apply text-xl font-semibold tracking-tight mt-10 mb-4 border-b border-white/5 pb-2;
+}
+
+.prose h3 {
+  @apply text-lg font-semibold text-white mt-6 mb-3;
 }
 
 .prose p {
-  @apply text-neutral-400 leading-relaxed font-light mb-6;
+  @apply text-neutral-400 leading-relaxed font-normal mb-5;
 }
 
 .prose ul {
-  @apply list-none pl-0 mb-6;
+  @apply list-none pl-0 mb-5;
 }
 
 .prose li {
-  @apply relative pl-6 mb-2 text-neutral-400 font-light;
+  @apply relative pl-5 mb-2 text-neutral-400 font-normal;
 }
 
 .prose li::before {
   content: "";
-  @apply absolute left-0 top-[0.6em] w-1.5 h-1.5 bg-white/20 rounded-full;
+  @apply absolute left-0 top-[0.65em] w-1.5 h-1.5 bg-white/20 rounded-full;
 }
 
 .prose strong {
@@ -39,7 +70,7 @@
 }
 
 .prose pre {
-  @apply bg-neutral-900 border border-white/5 rounded-2xl p-6 overflow-x-auto mb-8;
+  @apply bg-neutral-900 border border-white/10 rounded-lg p-5 overflow-x-auto mb-6;
 }
 
 .prose pre code {
@@ -235,11 +266,11 @@
 }
 
 .prose table {
-  @apply w-full mb-8 border-collapse;
+  @apply w-full mb-6 border-collapse rounded-lg overflow-hidden border border-white/10;
 }
 
 .prose th {
-  @apply text-left text-xs font-bold uppercase tracking-wider text-neutral-400 px-4 py-3 border-b border-white/10;
+  @apply text-left text-xs font-semibold uppercase tracking-wider text-neutral-300 px-4 py-3 bg-neutral-900/60 border-b border-white/10;
 }
 
 .prose td {
@@ -251,7 +282,7 @@
 }
 
 .prose blockquote {
-  @apply border-l-2 border-white/10 pl-6 italic text-neutral-500 my-8;
+  @apply border-l-2 border-white/10 pl-5 text-neutral-400 my-6 bg-white/[0.02] py-3 pr-4 rounded-r-lg;
 }
 
 /* Fonts */

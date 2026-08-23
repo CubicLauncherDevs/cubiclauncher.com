@@ -111,7 +111,7 @@
   <button
     onclick={downloadPackage}
     disabled={loading || resolved.resolvedThemes.length === 0}
-    class="inline-flex items-center justify-center gap-2 bg-white text-black px-6 py-3 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
+    class="inline-flex items-center justify-center gap-2 bg-white text-black px-6 py-3 text-[14px] font-medium rounded-[4px] hover:bg-neutral-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]"
   >
     {#if loading}
       <IconSpinner class="w-4 h-4 animate-spin" />
@@ -130,7 +130,7 @@
   </button>
 
   {#if error}
-    <div class="flex items-start gap-2 text-xs text-red-400">
+    <div class="flex items-start gap-2 text-[12px] text-red-400">
       <IconWarning class="w-4 h-4 shrink-0 mt-0.5" />
       <span>{error}</span>
     </div>

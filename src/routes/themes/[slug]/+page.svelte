@@ -142,35 +142,32 @@
   {/if}
 </svelte:head>
 
-<section class="min-h-screen pt-40 pb-32 bg-neutral-950 text-white overflow-hidden relative">
-  <div class="absolute top-0 inset-x-0 h-125 bg-linear-to-b from-white/3 to-transparent pointer-events-none"></div>
-  <div class="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-white/2 blur-[120px] rounded-full pointer-events-none"></div>
-
-  <div class="container mx-auto px-6 relative z-10 max-w-6xl">
+<section class="min-h-screen pt-[calc(var(--discord-nav-height)+40px)] pb-24 bg-neutral-950 text-white">
+  <div class="mx-auto px-6 lg:px-8 relative z-10" style="max-width: var(--discord-max-width);">
     {#if loading}
-      <div class="animate-pulse space-y-8 max-w-4xl mx-auto">
-        <div class="h-8 bg-neutral-800 rounded w-48"></div>
-        <div class="aspect-video bg-neutral-800 rounded-2xl"></div>
-        <div class="space-y-3">
-          <div class="h-6 bg-neutral-800 rounded w-64"></div>
-          <div class="h-4 bg-neutral-800 rounded w-96"></div>
+      <div class="animate-pulse space-y-6 max-w-4xl mx-auto">
+        <div class="h-7 bg-neutral-800 rounded w-40"></div>
+        <div class="aspect-video bg-neutral-800 rounded-lg"></div>
+        <div class="space-y-2">
+          <div class="h-5 bg-neutral-800 rounded w-56"></div>
+          <div class="h-3.5 bg-neutral-800 rounded w-80"></div>
         </div>
       </div>
     {:else if error}
       <div class="text-center py-20 max-w-4xl mx-auto">
-        <p class="text-neutral-400 text-lg mb-6">{error}</p>
+        <p class="text-neutral-400 text-[16px] mb-5">{error}</p>
         <div class="flex gap-4 justify-center">
           <a
             href="/themes"
             onclick={goToThemesList}
-            class="px-8 py-3 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 transition-all"
+            class="px-5 py-2.5 text-[13px] font-medium rounded-[4px] border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 transition-colors"
           >
             {$t('themeDetail.viewAll')}
           </a>
         </div>
       </div>
     {:else if theme}
-      <div class="max-w-5xl mx-auto">
+      <div class="max-w-4xl mx-auto">
         <ThemeDetailHeader
           {theme}
           {currentVer}
@@ -180,17 +177,17 @@
         />
 
         <!-- Tabs -->
-        <div class="border-b border-white/10 mb-8">
+        <div class="border-b border-white/10 mb-6">
           <div class="flex gap-0">
             <button
               onclick={() => setTab("description")}
-              class="px-5 py-3 text-sm font-medium transition-colors border-b-2 -mb-px {activeTab === 'description' ? 'border-white text-white' : 'border-transparent text-neutral-500 hover:text-white'}"
+              class="px-4 py-2.5 text-[13px] font-medium transition-colors border-b-2 -mb-px {activeTab === 'description' ? 'border-white text-white' : 'border-transparent text-neutral-500 hover:text-white'}"
             >
               {$t('themeDetail.description')}
             </button>
             <button
               onclick={() => setTab("versions")}
-              class="px-5 py-3 text-sm font-medium transition-colors border-b-2 -mb-px {activeTab === 'versions' ? 'border-white text-white' : 'border-transparent text-neutral-500 hover:text-white'}"
+              class="px-4 py-2.5 text-[13px] font-medium transition-colors border-b-2 -mb-px {activeTab === 'versions' ? 'border-white text-white' : 'border-transparent text-neutral-500 hover:text-white'}"
             >
               {$t('themeDetail.versions')}
             </button>
@@ -201,12 +198,12 @@
         {#if activeTab === "description"}
           {#if descriptionHtml}
             <div class="max-w-none">
-              <div class="prose prose-invert prose-neutral max-w-none text-sm text-neutral-300">
+              <div class="prose prose-invert prose-neutral max-w-none text-[13px] text-neutral-300">
                 {@html descriptionHtml}
               </div>
             </div>
           {:else}
-            <p class="text-sm text-neutral-500 italic">{$t('themeDetail.noDescription')}</p>
+            <p class="text-[13px] text-neutral-500 italic">{$t('themeDetail.noDescription')}</p>
           {/if}
         {:else if activeTab === "versions"}
           <VersionTimeline
@@ -221,11 +218,11 @@
 
         <!-- Related themes -->
         {#if relatedThemes.length > 0}
-          <div class="mt-20 pt-12 border-t border-white/5">
-            <a href={authorUrl} class="block text-xl font-bold tracking-tighter mb-6 hover:text-white/80 transition-colors">
+          <div class="mt-16 pt-10 border-t border-white/5">
+            <a href={authorUrl} class="block text-lg font-semibold tracking-tight mb-5 hover:text-white/80 transition-colors">
               {$t('themeDetail.moreBy', { values: { author: theme.author } })}
             </a>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {#each relatedThemes.slice(0, 3) as related}
                 <ThemeCard theme={related} />
               {/each}

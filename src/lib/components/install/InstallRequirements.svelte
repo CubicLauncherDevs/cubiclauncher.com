@@ -11,8 +11,8 @@
   const { reqKey } = platformData[platformId];
 </script>
 
-<div class="mt-10 pt-8 border-t border-white/5">
-  <p class="text-sm text-neutral-500 font-light leading-relaxed">
+<div class="mt-8 pt-6 border-t border-white/5">
+  <p class="text-[13px] text-neutral-500 leading-relaxed">
     <span class="text-neutral-300 font-medium"
       >{$t("install.systemRequirements")}:</span
     >

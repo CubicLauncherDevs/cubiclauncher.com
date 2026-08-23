@@ -26,7 +26,7 @@
 <div class="relative">
   <button
     onclick={toggle}
-    class="flex items-center gap-1.5 text-[10px] font-bold text-neutral-500 hover:text-white transition-colors uppercase tracking-[0.2em]"
+    class="flex items-center gap-1 text-[14px] font-medium text-white/80 hover:text-white transition-colors"
     aria-label="Switch language"
   >
     {current.label}
@@ -41,11 +41,11 @@
   </button>
 
   {#if isOpen}
-    <div class="absolute right-0 mt-2 bg-neutral-900 border border-white/10 rounded-xl overflow-hidden shadow-2xl z-50 min-w-32.5">
+    <div class="absolute right-0 top-full mt-2 bg-neutral-900 border border-white/10 rounded-[4px] overflow-hidden shadow-lg shadow-black/20 z-50 min-w-[140px]">
       {#each locales as loc}
         <button
           onclick={() => select(loc.code)}
-          class="w-full text-left px-4 py-2.5 text-sm transition-colors {loc.code === current.code ? 'bg-white/10 text-white' : 'text-neutral-400 hover:text-white hover:bg-white/5'}"
+          class="w-full text-left px-4 py-2 text-[13px] transition-colors {loc.code === current.code ? 'bg-white/10 text-white' : 'text-neutral-400 hover:text-white hover:bg-white/5'}"
         >
           {loc.name}
         </button>

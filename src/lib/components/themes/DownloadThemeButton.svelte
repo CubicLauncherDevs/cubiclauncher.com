@@ -123,22 +123,22 @@
   <button
     onclick={downloadTheme}
     disabled={loading}
-    class="flex items-center justify-center gap-3 w-full bg-white text-black px-8 py-4 font-bold text-[11px] uppercase tracking-[0.2em] rounded-2xl hover:bg-neutral-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 shadow-xl shadow-white/5"
+    class="flex items-center justify-center gap-2 w-full bg-white text-black px-6 py-3 font-medium text-[14px] rounded-[4px] hover:bg-neutral-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]"
   >
     {#if loading}
-      <IconSpinner class="w-5 h-5 animate-spin" />
+      <IconSpinner class="w-4 h-4 animate-spin" />
       <span>{$t('packageDetail.downloadingPackage')} ({progress}/{total})</span>
     {:else if success}
-      <IconCheck class="w-5 h-5" />
+      <IconCheck class="w-4 h-4" />
       <span>{$t('packageDetail.downloaded')}</span>
     {:else}
-      <IconDownload class="w-5 h-5" />
+      <IconDownload class="w-4 h-4" />
       <span>{label ?? $t('themes.downloadTheme')}</span>
     {/if}
   </button>
 
   {#if error}
-    <div class="flex items-start gap-2 text-xs text-red-400">
+    <div class="flex items-start gap-2 text-[12px] text-red-400">
       <IconWarning class="w-4 h-4 shrink-0 mt-0.5" />
       <span>{error}</span>
     </div>

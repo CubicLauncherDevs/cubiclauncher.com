@@ -28,7 +28,7 @@
 <span class="group/tooltip relative inline-flex" aria-label={tooltipText}>
   <IconSealCheck class="{sizeClasses[size]} {iconClass} shrink-0" />
   <span
-    class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 rounded-md bg-neutral-900 border border-white/10 text-[10px] font-medium text-white whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-200 pointer-events-none shadow-lg shadow-black/20 z-50"
+    class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 rounded-[4px] bg-neutral-900 border border-white/10 text-[10px] font-medium text-white whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-200 pointer-events-none shadow-lg shadow-black/20 z-50"
   >
     {tooltipText}
     <span class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-neutral-900"></span>

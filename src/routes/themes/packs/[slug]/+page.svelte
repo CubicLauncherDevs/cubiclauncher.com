@@ -69,28 +69,25 @@
   {/if}
 </svelte:head>
 
-<section class="min-h-screen pt-40 pb-32 bg-neutral-950 text-white overflow-hidden relative">
-  <div class="absolute top-0 inset-x-0 h-125 bg-linear-to-b from-white/3 to-transparent pointer-events-none"></div>
-  <div class="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-white/2 blur-[120px] rounded-full pointer-events-none"></div>
-
-  <div class="container mx-auto px-6 relative z-10 max-w-6xl">
+<section class="min-h-screen pt-[calc(var(--discord-nav-height)+40px)] pb-24 bg-neutral-950 text-white">
+  <div class="mx-auto px-6 lg:px-8 relative z-10" style="max-width: var(--discord-max-width);">
     <a
       href="/themes?tab=packages"
       onclick={goToThemesList}
-      class="inline-flex items-center gap-2 text-xs text-neutral-500 hover:text-white transition-colors mb-8"
+      class="inline-flex items-center gap-1.5 text-[13px] text-neutral-500 hover:text-white transition-colors mb-6"
     >
       <IconArrowLeft class="w-4 h-4" />
       {$t('packageDetail.viewAll')}
     </a>
 
     {#if resolved}
-      <div class="max-w-5xl mx-auto">
+      <div class="max-w-4xl mx-auto">
         <!-- Header -->
-        <div class="mb-8">
-          <h1 class="text-3xl md:text-5xl font-bold tracking-tighter text-white mb-3">
+        <div class="mb-6">
+          <h1 class="text-[28px] sm:text-[34px] font-semibold tracking-tight text-white mb-2">
             {resolved.name}
           </h1>
-          <p class="text-sm text-neutral-400">
+          <p class="text-[13px] text-neutral-400">
             {$t('themeDetail.by')} <span class="text-white">{resolved.author}</span>
             {#if resolved.date}
               <span class="mx-2 text-neutral-600">·</span>
@@ -100,7 +97,7 @@
         </div>
 
         <!-- Preview -->
-        <div class="aspect-video w-full rounded-2xl overflow-hidden bg-neutral-900 border border-white/10 mb-8">
+        <div class="aspect-video w-full rounded-lg overflow-hidden bg-neutral-900 border border-white/10 mb-6">
           <img
             src={resolved.previewUrl}
             alt={resolved.name}
@@ -111,19 +108,19 @@
         </div>
 
         <!-- Info and download -->
-        <div class="flex flex-col lg:flex-row gap-8 mb-12">
+        <div class="flex flex-col lg:flex-row gap-7 mb-10">
           <div class="flex-1">
             {#if descriptionHtml}
-              <div class="prose prose-invert prose-neutral max-w-none text-sm text-neutral-300">
+              <div class="prose prose-invert prose-neutral max-w-none text-[13px] text-neutral-300">
                 {@html descriptionHtml}
               </div>
             {:else}
-              <p class="text-sm text-neutral-500 italic">{$t('packageDetail.noDescription')}</p>
+              <p class="text-[13px] text-neutral-500 italic">{$t('packageDetail.noDescription')}</p>
             {/if}
           </div>
-          <div class="lg:w-72 shrink-0">
-            <div class="bg-neutral-900/50 border border-white/10 rounded-2xl p-6">
-              <p class="text-xs text-neutral-500 uppercase tracking-wider mb-4">
+          <div class="lg:w-64 shrink-0">
+            <div class="bg-neutral-900/50 border border-white/10 rounded-lg p-5">
+              <p class="text-[11px] text-neutral-500 uppercase tracking-wide mb-3">
                 {$t('themes.packageThemesCount', { values: { count: resolved.themes.length } })}
               </p>
               <PackageDownloadButton {resolved} />
@@ -133,22 +130,22 @@
 
         <!-- Missing themes warning -->
         {#if resolved.missingThemes.length > 0}
-          <div class="flex items-start gap-3 p-4 rounded-xl bg-yellow-500/10 border border-yellow-500/20 text-yellow-200 text-sm mb-8">
-            <IconWarning class="w-5 h-5 shrink-0 mt-0.5" />
+          <div class="flex items-start gap-3 p-3.5 rounded-lg bg-yellow-500/10 border border-yellow-500/20 text-yellow-200 text-[13px] mb-6">
+            <IconWarning class="w-4 h-4 shrink-0 mt-0.5" />
             <div>
               <p class="font-medium">{$t('packageDetail.themeMissing')}</p>
-              <p class="text-xs text-yellow-200/70 mt-1">{resolved.missingThemes.join(", ")}</p>
+              <p class="text-[11px] text-yellow-200/70 mt-1">{resolved.missingThemes.join(", ")}</p>
             </div>
           </div>
         {/if}
 
         <!-- Included themes -->
         {#if resolved.resolvedThemes.length > 0}
-          <div class="border-t border-white/10 pt-12">
-            <h2 class="text-xl font-bold tracking-tighter mb-6">
+          <div class="border-t border-white/10 pt-10">
+            <h2 class="text-lg font-semibold tracking-tight mb-5">
               {$t('packageDetail.includedThemes')}
             </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {#each resolved.resolvedThemes as theme}
                 <ThemeCard {theme} />
               {/each}
