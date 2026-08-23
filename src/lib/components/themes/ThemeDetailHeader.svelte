@@ -29,14 +29,16 @@
 
   let currentImageUrl = $derived.by(() => {
     if (!currentVer) return null;
-    if (hasBoth) {
-      return showingShowcase ? currentVer.showcaseUrl : currentVer.previewUrl;
-    }
-    return currentVer.showcaseUrl || currentVer.previewUrl;
+    const useShowcase = !hasBoth || showingShowcase;
+    return useShowcase ? currentVer.showcaseUrl : currentVer.previewUrl;
   });
 
-  $effect(() => {
-    if (!hasBoth) showingShowcase = true;
+  // Reset to showcase when the selected version no longer has a separate palette.
+  $effect.pre(() => {
+    const both = hasBoth;
+    if (!both && showingShowcase !== true) {
+      showingShowcase = true;
+    }
   });
 </script>
 

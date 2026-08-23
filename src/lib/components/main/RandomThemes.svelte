@@ -26,20 +26,26 @@
     selected = shuffle(themes).slice(0, SHOW_COUNT);
   }
 
-  onMount(async () => {
-    let data = await getCachedThemes();
-    if (!data) {
-      try {
-        data = await fetchAllThemes();
-        await setCachedThemes(data);
-      } catch {
-        loading = false;
-        return;
+  onMount(() => {
+    let mounted = true;
+    (async () => {
+      let data = await getCachedThemes();
+      if (!data) {
+        try {
+          data = await fetchAllThemes();
+          await setCachedThemes(data);
+        } catch {
+          if (mounted) loading = false;
+          return;
+        }
       }
-    }
-    themes = data;
-    selected = shuffle(data).slice(0, SHOW_COUNT);
-    loading = false;
+      if (mounted) {
+        themes = data;
+        selected = shuffle(data).slice(0, SHOW_COUNT);
+        loading = false;
+      }
+    })();
+    return () => { mounted = false; };
   });
 </script>
 
@@ -73,6 +79,7 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
         {#each selected as theme (theme.id)}
+          {@const verification = getThemeVerification(theme)}
           <a
             href="/themes/{theme.id}"
             class="group flex gap-3 p-2.5 rounded border border-cl-border bg-cl-surface hover:border-cl-border-hover hover:bg-cl-elevated transition-colors"
@@ -96,8 +103,8 @@
                 <h3 class="text-xs font-semibold text-white group-hover:text-cl-muted transition-colors truncate">
                   {theme.name}
                 </h3>
-                {#if getThemeVerification(theme) !== "none"}
-                  <VerifiedBadge size="sm" level={getThemeVerification(theme)} />
+                {#if verification !== "none"}
+                  <VerifiedBadge size="sm" level={verification} />
                 {/if}
               </div>
               <p class="text-[11px] text-cl-muted truncate">

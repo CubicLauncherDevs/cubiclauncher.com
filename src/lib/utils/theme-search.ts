@@ -1,4 +1,6 @@
-import type { Theme, AuthorEntry, SearchIndex } from "$lib/types/theme";
+import type { Theme, ThemePackage, AuthorEntry, SearchIndex } from "$lib/types/theme";
+
+export type SortOption = "name-asc" | "name-desc" | "author-asc" | "author-desc" | "date-desc" | "date-asc";
 
 export function slugify(text: string): string {
   return text
@@ -178,4 +180,69 @@ export function findAuthorBySlug(
   authorSlug: string
 ): AuthorEntry | null {
   return buildAuthorIndex(themes).get(authorSlug) ?? null;
+}
+
+export const SORT_LABEL_KEYS: Record<SortOption, string> = {
+  "name-asc": "themes.sortByNameAZ",
+  "name-desc": "themes.sortByNameZA",
+  "author-asc": "themes.sortByAuthorAZ",
+  "author-desc": "themes.sortByAuthorDesc",
+  "date-desc": "themes.sortByDateNewest",
+  "date-asc": "themes.sortByDateOldest",
+};
+
+const VERSION_RE = /(\d+)|(\D+)/g;
+
+export function compareVersionsDesc(a: string, b: string): number {
+  const aParts = a.match(VERSION_RE) || [];
+  const bParts = b.match(VERSION_RE) || [];
+  const len = Math.max(aParts.length, bParts.length);
+  for (let i = 0; i < len; i++) {
+    const ap = aParts[i] || "";
+    const bp = bParts[i] || "";
+    const aNum = parseInt(ap, 10);
+    const bNum = parseInt(bp, 10);
+    if (!isNaN(aNum) && !isNaN(bNum)) {
+      if (aNum !== bNum) return bNum - aNum;
+    } else {
+      const cmp = bp.localeCompare(ap);
+      if (cmp !== 0) return cmp;
+    }
+  }
+  return 0;
+}
+
+
+function dateCompare(a: string | null | undefined, b: string | null | undefined, desc: boolean): number {
+  if (!a && !b) return 0;
+  if (!a) return 1;
+  if (!b) return -1;
+  return desc ? b.localeCompare(a) : a.localeCompare(b);
+}
+
+type SortableItem = Pick<Theme | ThemePackage, "name" | "author" | "date">;
+
+export function sortItems<T extends SortableItem>(items: T[], sortBy: SortOption): T[] {
+  const sorted = [...items];
+  switch (sortBy) {
+    case "name-asc":
+      sorted.sort((a, b) => a.name.localeCompare(b.name));
+      break;
+    case "name-desc":
+      sorted.sort((a, b) => b.name.localeCompare(a.name));
+      break;
+    case "author-asc":
+      sorted.sort((a, b) => a.author.localeCompare(b.author) || a.name.localeCompare(b.name));
+      break;
+    case "author-desc":
+      sorted.sort((a, b) => b.author.localeCompare(a.author) || a.name.localeCompare(b.name));
+      break;
+    case "date-desc":
+      sorted.sort((a, b) => dateCompare(a.date, b.date, true) || a.name.localeCompare(b.name));
+      break;
+    case "date-asc":
+      sorted.sort((a, b) => dateCompare(a.date, b.date, false) || a.name.localeCompare(b.name));
+      break;
+  }
+  return sorted;
 }

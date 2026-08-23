@@ -84,13 +84,16 @@
       );
 
       const url = URL.createObjectURL(content);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${resolved.slug}.zip`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+      try {
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${resolved.slug}.zip`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      } finally {
+        queueMicrotask(() => URL.revokeObjectURL(url));
+      }
 
       success = true;
       successTimer = setTimeout(() => { success = false; }, 3000);

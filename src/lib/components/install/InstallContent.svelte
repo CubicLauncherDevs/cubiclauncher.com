@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { browser } from "$app/environment";
   import { onMount } from "svelte";
   import { t, currentLocale } from "$lib/i18n";
   import IconDownload from "~icons/ph/download-simple";
@@ -18,7 +19,12 @@
   import OsTabs from "./OsTabs.svelte";
   import ReleaseInfo from "./ReleaseInfo.svelte";
 
-  let selectedOS = $state<PlatformId>("windows");
+  function getInitialOS(): PlatformId {
+    if (!browser) return "windows";
+    return detectOS(window.navigator.userAgent);
+  }
+
+  let selectedOS = $state<PlatformId>(getInitialOS());
   let release = $state<ReleaseData | null>(null);
   let loading = $state(true);
   let error = $state("");
@@ -46,11 +52,16 @@
   }
 
   onMount(() => {
-    selectedOS = detectOS(window.navigator.userAgent);
+    let mounted = true;
+    const controller = new AbortController();
 
-    fetchLatestRelease()
-      .then((data) => (release = data))
+    fetchLatestRelease(controller.signal)
+      .then((data) => {
+        if (mounted) release = data;
+      })
       .catch((e) => {
+        if (!mounted) return;
+        if (e instanceof DOMException && e.name === "AbortError") return;
         error =
           e instanceof Error
             ? e.message
@@ -58,8 +69,13 @@
         console.error("Error fetching latest release:", e);
       })
       .finally(() => {
-        loading = false;
+        if (mounted) loading = false;
       });
+
+    return () => {
+      mounted = false;
+      controller.abort();
+    };
   });
 </script>
 

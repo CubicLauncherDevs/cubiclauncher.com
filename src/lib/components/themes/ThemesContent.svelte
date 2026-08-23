@@ -22,6 +22,9 @@
     searchThemes,
     getAuthorEntries,
     slugify,
+    sortItems,
+    SORT_LABEL_KEYS,
+    type SortOption,
   } from "$lib/utils/theme-search";
   import ThemeCard from "./ThemeCard.svelte";
   import ThemeListRow from "./ThemeListRow.svelte";
@@ -64,7 +67,6 @@
   let debouncedQuery = $state("");
   let authorQuery = $state("");
   let authorDropdownOpen = $state(false);
-  type SortOption = "name-asc" | "name-desc" | "author-asc" | "author-desc" | "date-desc" | "date-asc";
   let sortBy = $state<SortOption>("date-desc");
 
   let sortDropdownOpen = $state(false);
@@ -90,39 +92,7 @@
       result = searchThemes(debouncedQuery, searchIndex);
     }
 
-    const sorted = [...result];
-    switch (sortBy) {
-      case "name-asc":
-        sorted.sort((a, b) => a.name.localeCompare(b.name));
-        break;
-      case "name-desc":
-        sorted.sort((a, b) => b.name.localeCompare(a.name));
-        break;
-      case "author-asc":
-        sorted.sort((a, b) => a.author.localeCompare(b.author) || a.name.localeCompare(b.name));
-        break;
-      case "author-desc":
-        sorted.sort((a, b) => b.author.localeCompare(a.author) || a.name.localeCompare(b.name));
-        break;
-      case "date-desc":
-        sorted.sort((a, b) => {
-          if (!a.date && !b.date) return a.name.localeCompare(b.name);
-          if (!a.date) return 1;
-          if (!b.date) return -1;
-          return b.date.localeCompare(a.date);
-        });
-        break;
-      case "date-asc":
-        sorted.sort((a, b) => {
-          if (!a.date && !b.date) return a.name.localeCompare(b.name);
-          if (!a.date) return 1;
-          if (!b.date) return -1;
-          return a.date.localeCompare(b.date);
-        });
-        break;
-    }
-
-    return sorted;
+    return sortItems(result, sortBy);
   });
 
   const filteredPackages = $derived.by(() => {
@@ -137,39 +107,7 @@
       );
     }
 
-    const sorted = [...result];
-    switch (sortBy) {
-      case "name-asc":
-        sorted.sort((a, b) => a.name.localeCompare(b.name));
-        break;
-      case "name-desc":
-        sorted.sort((a, b) => b.name.localeCompare(a.name));
-        break;
-      case "author-asc":
-        sorted.sort((a, b) => a.author.localeCompare(b.author) || a.name.localeCompare(b.name));
-        break;
-      case "author-desc":
-        sorted.sort((a, b) => b.author.localeCompare(a.author) || a.name.localeCompare(b.name));
-        break;
-      case "date-desc":
-        sorted.sort((a, b) => {
-          if (!a.date && !b.date) return a.name.localeCompare(b.name);
-          if (!a.date) return 1;
-          if (!b.date) return -1;
-          return b.date.localeCompare(a.date);
-        });
-        break;
-      case "date-asc":
-        sorted.sort((a, b) => {
-          if (!a.date && !b.date) return a.name.localeCompare(b.name);
-          if (!a.date) return 1;
-          if (!b.date) return -1;
-          return a.date.localeCompare(b.date);
-        });
-        break;
-    }
-
-    return sorted;
+    return sortItems(result, sortBy);
   });
 
   const searchSuggestions = $derived.by(() => {
@@ -316,21 +254,23 @@
       loading = true;
     }
     const cachedThemes = await getCachedThemes();
-    if (cachedThemes) {
+    if (cachedThemes && mounted) {
       themes = cachedThemes;
       hasCached = true;
       loading = false;
     }
     try {
       const freshThemes = await fetchAllThemes();
-      themes = freshThemes;
-      await setCachedThemes(freshThemes);
+      if (mounted) {
+        themes = freshThemes;
+        await setCachedThemes(freshThemes);
+      }
     } catch (e) {
-      if (!cachedThemes) {
+      if (!cachedThemes && mounted) {
         error = e instanceof Error ? e.message : "Error al cargar los temas";
       }
     } finally {
-      loading = false;
+      if (mounted) loading = false;
     }
   }
 
@@ -339,25 +279,28 @@
       packagesLoading = true;
     }
     const cachedPackages = await getCachedPackages();
-    if (cachedPackages) {
+    if (cachedPackages && mounted) {
       packages = cachedPackages;
       hasPackagesCached = true;
       packagesLoading = false;
     }
     try {
       const freshPackages = await fetchAllPackages();
-      packages = freshPackages;
-      await setCachedPackages(freshPackages);
+      if (mounted) {
+        packages = freshPackages;
+        await setCachedPackages(freshPackages);
+      }
     } catch (e) {
-      if (!cachedPackages) {
+      if (!cachedPackages && mounted) {
         packagesError = e instanceof Error ? e.message : "Error al cargar los paquetes";
       }
     } finally {
-      packagesLoading = false;
+      if (mounted) packagesLoading = false;
     }
   }
 
   async function refreshAll() {
+    if (refreshing) return;
     refreshing = true;
     refreshRotation += 360;
     error = "";
@@ -368,13 +311,17 @@
     refreshing = false;
   }
 
-  onMount(async () => {
+  let mounted = false;
+
+  onMount(() => {
+    mounted = true;
+
     const url = $page.url;
 
     const urlAuthor = url.searchParams.get("author");
     if (urlAuthor) {
       goto(`/themes/author/${slugify(urlAuthor)}`, { replaceState: true });
-      return;
+      return () => { mounted = false; };
     }
 
     const urlTab = url.searchParams.get("tab");
@@ -395,16 +342,19 @@
 
     saveThemesListUrl(url.pathname + url.search);
 
-    if (!initialThemes) {
-      await loadThemes();
-    }
-    if (!initialPackages) {
-      await loadPackages();
-    }
+    (async () => {
+      if (!initialThemes) {
+        await loadThemes();
+      }
+      if (!initialPackages) {
+        await loadPackages();
+      }
+    })();
+
+    return () => { mounted = false; };
   });
 
   $effect(() => {
-    if (!authorDropdownOpen && !sortDropdownOpen && !searchFocused) return;
     function handleClick(e: MouseEvent) {
       const target = e.target as Node;
       if (sortDropdownRef && !sortDropdownRef.contains(target)) {
@@ -421,13 +371,13 @@
     return () => document.removeEventListener("click", handleClick);
   });
 
-  const sortOptions: { value: SortOption; labelKey: string }[] = [
-    { value: "date-desc", labelKey: "themes.sortByDateNewest" },
-    { value: "date-asc", labelKey: "themes.sortByDateOldest" },
-    { value: "name-asc", labelKey: "themes.sortByNameAZ" },
-    { value: "name-desc", labelKey: "themes.sortByNameZA" },
-    { value: "author-asc", labelKey: "themes.sortByAuthorAZ" },
-    { value: "author-desc", labelKey: "themes.sortByAuthorDesc" },
+  const sortOptions: SortOption[] = [
+    "date-desc",
+    "date-asc",
+    "name-asc",
+    "name-desc",
+    "author-asc",
+    "author-desc",
   ];
 
   onDestroy(() => {
@@ -666,11 +616,9 @@
               aria-expanded={sortDropdownOpen}
             >
               <span class="text-cl-dim">{$t('themes.sortBy')}:</span>
-              {#each sortOptions as opt}
-                {#if sortBy === opt.value}
-                  <span>{$t(opt.labelKey)}</span>
-                {/if}
-              {/each}
+              {#if SORT_LABEL_KEYS[sortBy]}
+                <span>{$t(SORT_LABEL_KEYS[sortBy])}</span>
+              {/if}
               <IconCaretDown class="w-3 h-3 text-cl-dim {sortDropdownOpen ? 'rotate-180' : ''} transition-transform" />
             </button>
 
@@ -679,10 +627,10 @@
                 <div class="py-1">
                   {#each sortOptions as opt}
                     <button
-                      onclick={() => { sortBy = opt.value; sortDropdownOpen = false; updateUrlParams(); }}
-                      class="w-full text-left px-2.5 py-1.5 text-xs transition-colors {sortBy === opt.value ? 'bg-cl-elevated text-white' : 'text-cl-muted hover:text-cl-text hover:bg-cl-elevated'}"
+                      onclick={() => { sortBy = opt; sortDropdownOpen = false; updateUrlParams(); }}
+                      class="w-full text-left px-2.5 py-1.5 text-xs transition-colors {sortBy === opt ? 'bg-cl-elevated text-white' : 'text-cl-muted hover:text-cl-text hover:bg-cl-elevated'}"
                     >
-                      {$t(opt.labelKey)}
+                      {$t(SORT_LABEL_KEYS[opt])}
                     </button>
                   {/each}
                 </div>

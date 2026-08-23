@@ -51,11 +51,6 @@
   }
 
   onMount(() => {
-    for (const src of IMAGES) {
-      const img = new Image();
-      img.src = src;
-      img.decoding = "async";
-    }
     resetAuto();
   });
 

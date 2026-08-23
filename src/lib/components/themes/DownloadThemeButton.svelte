@@ -96,13 +96,16 @@
       );
 
       const dlUrl = URL.createObjectURL(content);
-      const a = document.createElement("a");
-      a.href = dlUrl;
-      a.download = `${displayName}.cbth`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(dlUrl);
+      try {
+        const a = document.createElement("a");
+        a.href = dlUrl;
+        a.download = `${displayName}.cbth`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      } finally {
+        queueMicrotask(() => URL.revokeObjectURL(dlUrl));
+      }
 
       success = true;
       successTimer = setTimeout(() => { success = false; }, 3000);

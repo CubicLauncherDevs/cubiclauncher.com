@@ -177,9 +177,10 @@ export function parseReleaseAssets(assets: any[]): {
   return { downloads: sortDownloads(merged), totals };
 }
 
-export async function fetchLatestRelease(): Promise<ReleaseInfo> {
+export async function fetchLatestRelease(signal?: AbortSignal): Promise<ReleaseInfo> {
   const res = await fetch(
-    "https://api.github.com/repos/CubicLauncherDevs/CubicLauncher/releases/latest"
+    "https://api.github.com/repos/CubicLauncherDevs/CubicLauncher/releases/latest",
+    { signal }
   );
 
   if (!res.ok) throw new Error(`GitHub respondió con ${res.status}`);

@@ -25,7 +25,6 @@
 
 <div>
   {#each versions as v, i}
-    {@const changelog = v.changelog ? renderMarkdown(v.changelog) : ""}
     {@const isExpanded = expandedVersion === v.version}
     {@const isLatest = v.version === latestVersion}
     {@const isLast = i === versions.length - 1}
@@ -56,7 +55,7 @@
               <span class="text-[10px] font-medium text-cl-dim bg-cl-surface border border-cl-border px-1.5 py-0.5 rounded whitespace-nowrap">{$t('themeDetail.latestVersion')}</span>
             {/if}
             {#if v.date}
-              <span class="text-[10px] text-cl-dim hidden sm:inline whitespace-nowrap">{new Date(v.date).toLocaleDateString($locale === 'en' ? 'en-US' : 'es-ES')}</span>
+              <span class="text-[10px] text-cl-dim hidden sm:inline whitespace-nowrap">{new Date(v.date).toLocaleDateString(getDateLocale($locale))}</span>
             {/if}
           </div>
           <div class="flex items-center gap-2 shrink-0">
@@ -95,7 +94,8 @@
                 </div>
               {/if}
               <div class="min-w-0 flex-1">
-                {#if changelog}
+                {#if v.changelog}
+                  {@const changelog = renderMarkdown(v.changelog)}
                   <div class="prose prose-invert prose-neutral max-w-none text-[11px] text-cl-muted [&_p]:mb-2 [&_ul]:mb-2 [&_li]:mb-0.5">
                     {@html changelog}
                   </div>

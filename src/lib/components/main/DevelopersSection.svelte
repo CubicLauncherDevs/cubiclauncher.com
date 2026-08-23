@@ -29,6 +29,8 @@
             <img
               src="https://github.com/{dev.github}.png"
               alt="{dev.name}"
+              loading="lazy"
+              decoding="async"
               class="w-full h-full object-cover"
             />
           </div>
@@ -74,6 +76,8 @@
             <img
               src="https://github.com/{dev.github}.png"
               alt="{dev.name}"
+              loading="lazy"
+              decoding="async"
               class="w-full h-full object-cover"
             />
           </div>

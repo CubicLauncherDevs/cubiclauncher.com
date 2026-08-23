@@ -14,7 +14,9 @@
 
   let { data } = $props();
   let theme = $derived(data.theme);
-  let allThemes = $derived(data.allThemes);
+  let relatedThemes = $derived(data.relatedThemes ?? []);
+  let sortedVersions = $derived(data.sortedVersions ?? []);
+  let authorUrl = $derived(data.authorUrl ?? "/themes");
 
   let slug = $derived($page.params.slug as string);
   let tabParam = $derived(($page.url.searchParams.get("tab") || "description") as "description" | "versions");
@@ -32,14 +34,6 @@
     activeTab = tabParam;
   });
 
-  let relatedThemes = $derived.by(() => {
-    const current = theme;
-    if (!current) return [];
-    return allThemes.filter((t) => t.author === current.author && t.slug !== current.slug);
-  });
-
-  let authorUrl = $derived(theme ? `/themes/author/${slugify(theme.author)}` : "/themes");
-
   let descriptionHtml = $derived(
     theme?.description ? renderMarkdown(theme.description) : ""
   );
@@ -56,28 +50,6 @@
 
   let ogImage = $derived(
     currentVer?.showcaseUrl || currentVer?.previewUrl || theme?.previewUrl || null
-  );
-
-  let sortedVersions = $derived(
-    theme ? [...theme.versions].sort((a, b) => {
-      const re = /(\d+)|(\D+)/g;
-      const aParts = a.version.match(re) || [];
-      const bParts = b.version.match(re) || [];
-      const len = Math.max(aParts.length, bParts.length);
-      for (let i = 0; i < len; i++) {
-        const ap = aParts[i] || "";
-        const bp = bParts[i] || "";
-        const aNum = parseInt(ap, 10);
-        const bNum = parseInt(bp, 10);
-        if (!isNaN(aNum) && !isNaN(bNum)) {
-          if (aNum !== bNum) return bNum - aNum;
-        } else {
-          const cmp = bp.localeCompare(ap);
-          if (cmp !== 0) return cmp;
-        }
-      }
-      return 0;
-    }) : []
   );
 
   let changelogHtml = $derived(

@@ -48,15 +48,16 @@ function detectBrowserLocale(): AppLocale | null {
 }
 
 function detectInitialLocale(): AppLocale {
-  const fromBrowser = detectBrowserLocale();
-  if (fromBrowser) return fromBrowser;
-
+  // Prefer user choice, then browser language, then fallback.
   try {
-    const stored = localStorage.getItem('locale');
+    const stored = browser ? localStorage.getItem('locale') : null;
     if (stored && isSupportedLocale(stored)) return stored;
   } catch {
     // ignore storage errors
   }
+
+  const fromBrowser = detectBrowserLocale();
+  if (fromBrowser) return fromBrowser;
 
   return 'es';
 }

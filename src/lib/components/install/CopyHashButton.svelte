@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onDestroy } from "svelte";
   import { t } from "$lib/i18n";
   import IconCopy from "~icons/ph/copy";
   import IconCheck from "~icons/ph/check";
@@ -12,14 +13,21 @@
   let { hash, variant = "dark", compact = true }: Props = $props();
 
   let copied = $state(false);
+  let timer: ReturnType<typeof setTimeout> | null = null;
 
   function copy() {
     if (!hash || copied) return;
+    if (timer) clearTimeout(timer);
     navigator.clipboard.writeText(hash).then(() => {
+      if (copied) return;
       copied = true;
-      setTimeout(() => (copied = false), 2000);
+      timer = setTimeout(() => { copied = false; timer = null; }, 2000);
     });
   }
+
+  onDestroy(() => {
+    if (timer) clearTimeout(timer);
+  });
 
   const baseStyles =
     "inline-flex items-center gap-1 rounded border text-[10px] font-medium uppercase tracking-wide transition-colors";

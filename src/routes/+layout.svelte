@@ -8,10 +8,6 @@
 
   let { children } = $props();
 
-  if (browser) {
-    document.documentElement.lang = $currentLocale ?? 'es';
-  }
-
   $effect(() => {
     if (browser) {
       document.documentElement.lang = $currentLocale ?? 'es';
