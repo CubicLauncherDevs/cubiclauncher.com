@@ -11,11 +11,20 @@
     loading="eager"
     decoding="async"
     fetchpriority="high"
-    class="w-full h-full object-cover transform-gpu"
-    style="filter: blur(2px) brightness(0.5) saturate(1.5);"
+    class="hero-bg-image w-full h-full object-cover transform-gpu"
   />
-  <div class="absolute inset-0 bg-cl-base/60"></div>
+  <div class="absolute inset-0 bg-cl-base/40"></div>
   <div
-    class="absolute inset-0 bg-gradient-to-b from-cl-base/40 via-transparent to-cl-base/80"
+    class="absolute inset-0 bg-gradient-to-b from-transparent via-cl-base/10 to-cl-base"
   ></div>
 </div>
+
+<style>
+  :global(html.light) .hero-bg-image {
+    filter: blur(1px) brightness(0.95) saturate(1.05);
+  }
+
+  :global(html.dark) .hero-bg-image {
+    filter: blur(1px) brightness(0.7) saturate(1.3);
+  }
+</style>

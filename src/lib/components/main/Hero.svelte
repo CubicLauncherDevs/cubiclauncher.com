@@ -15,24 +15,24 @@
   <HeroBackground />
 
   <div
-    class="relative z-10 w-full mx-auto px-4 lg:px-6 py-16 text-left"
+    class="hero-content relative z-10 w-full mx-auto px-4 lg:px-6 py-16 text-left"
     style="max-width: var(--discord-max-width);"
   >
     <div class="flex items-center gap-2 mb-0 max-w-[600px]">
       <Logo
         width="3.5rem"
         height="3.5rem"
-        color="var(--cl-text)"
+        color="#ffffff"
         className="shrink-0 -ml-1"
       />
       <h1
-        class="text-[28px] sm:text-[34px] lg:text-[40px] font-semibold leading-[1.15] text-cl-text"
+        class="text-[28px] sm:text-[34px] lg:text-[40px] font-semibold leading-[1.15] text-white"
       >
         {$t("hero.title")}
       </h1>
     </div>
 
-    <p class="text-sm leading-[1.6] text-cl-muted mb-6 max-w-[480px]">
+    <p class="text-sm leading-[1.6] text-white/90 mb-6 max-w-[480px]">
       {$t("hero.description")}
     </p>
 
@@ -46,7 +46,7 @@
       </a>
       <a
         href="/themes"
-        class="inline-flex items-center justify-center gap-1.5 px-5 py-2 text-xs font-medium text-cl-text border border-cl-border hover:border-cl-border-hover hover:bg-cl-elevated rounded transition-colors"
+        class="inline-flex items-center justify-center gap-1.5 px-5 py-2 text-xs font-medium text-white border border-white/30 hover:border-white/50 hover:bg-white/10 rounded transition-colors"
       >
         <IconPalette class="w-3.5 h-3.5" />
         {$t("hero.exploreThemes")}
@@ -57,10 +57,16 @@
       href="https://github.com/CubicLauncherDevs/CubicLauncher"
       target="_blank"
       rel="noopener noreferrer"
-      class="inline-flex items-center gap-1.5 text-[11px] text-cl-dim hover:text-cl-text transition-colors"
+      class="inline-flex items-center gap-1.5 text-[11px] text-white/70 hover:text-white transition-colors"
     >
       <IconGithub class="w-3 h-3" />
       {$t("hero.sourceCode")}
     </a>
   </div>
 </section>
+
+<style>
+  .hero-content {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+  }
+</style>
