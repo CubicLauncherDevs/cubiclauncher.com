@@ -114,7 +114,7 @@
   <button
     onclick={downloadPackage}
     disabled={loading || resolved.resolvedThemes.length === 0}
-    class="inline-flex items-center justify-center gap-1.5 bg-cl-text text-cl-accent-inverse px-4 py-2 text-xs font-medium rounded hover:bg-neutral-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+    class="inline-flex items-center justify-center gap-1.5 bg-cl-text text-cl-accent-inverse px-4 py-2 text-xs font-medium rounded hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
   >
     {#if loading}
       <IconSpinner class="w-3.5 h-3.5 animate-spin" />

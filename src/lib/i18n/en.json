@@ -1,4 +1,17 @@
 {
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "switchTheme": "Switch theme"
+  },
+  "language": {
+    "spanish": "Spanish",
+    "english": "English",
+    "french": "French",
+    "german": "German",
+    "switchLanguage": "Switch language"
+  },
   "nav": {
     "docs": "Docs",
     "themes": "Themes",

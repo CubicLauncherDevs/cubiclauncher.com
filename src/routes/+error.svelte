@@ -13,7 +13,7 @@
     <h1 class="text-6xl font-semibold text-cl-border-hover tracking-tight">
       {page.status}
     </h1>
-    <h2 class="text-lg font-semibold text-white mt-2">
+    <h2 class="text-lg font-semibold text-cl-text mt-2">
       {page.status === 404 ? $t('error.notFoundTitle') : $t('error.errorTitle')}
     </h2>
     <p class="text-cl-muted mt-1 text-xs">

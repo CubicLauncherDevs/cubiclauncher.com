@@ -35,7 +35,7 @@
 
   <div class="p-3 flex flex-col flex-1">
     <a href="/themes/{theme.id}" class="block group/title">
-      <h3 class="text-xs font-semibold text-white truncate group-hover/title:text-cl-muted transition-colors">{theme.name}</h3>
+      <h3 class="text-xs font-semibold text-cl-text truncate group-hover/title:text-cl-muted transition-colors">{theme.name}</h3>
     </a>
     <div class="flex items-center gap-1.5 mt-0.5">
       <p class="text-[11px] text-cl-muted truncate">{theme.author}</p>

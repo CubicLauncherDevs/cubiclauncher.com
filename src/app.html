@@ -9,6 +9,20 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 	<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin="anonymous" />
 	<link rel="dns-prefetch" href="https://raw.githubusercontent.com" />
+	<script>
+		(function () {
+			var stored = null;
+			try {
+				stored = localStorage.getItem("theme-mode");
+			} catch (e) {
+				// ignore
+			}
+			var mode = stored === "light" || stored === "dark" || stored === "system" ? stored : "system";
+			var resolved = mode === "system" ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : mode;
+			document.documentElement.classList.add(resolved);
+			document.documentElement.style.colorScheme = resolved;
+		})();
+	</script>
 	%sveltekit.head%
 </head>
 

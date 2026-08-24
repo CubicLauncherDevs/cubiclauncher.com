@@ -70,7 +70,7 @@
     {#if author}
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
         <div>
-          <h1 class="text-lg sm:text-xl font-semibold text-white mb-0.5">
+          <h1 class="text-lg sm:text-xl font-semibold text-cl-text mb-0.5">
             {author.name}
           </h1>
           <p class="text-xs text-cl-muted">
@@ -81,14 +81,14 @@
         <div class="inline-flex bg-cl-surface border border-cl-border rounded p-0.5">
           <button
             onclick={() => viewMode = "grid"}
-            class="p-1 rounded transition-colors {viewMode === 'grid' ? 'bg-cl-elevated text-white' : 'text-cl-dim hover:text-cl-text'}"
+            class="p-1 rounded transition-colors {viewMode === 'grid' ? 'bg-cl-elevated text-cl-text' : 'text-cl-dim hover:text-cl-text'}"
             aria-label="Grid view"
           >
             <IconSquaresFour class="w-3.5 h-3.5" />
           </button>
           <button
             onclick={() => viewMode = "list"}
-            class="p-1 rounded transition-colors {viewMode === 'list' ? 'bg-cl-elevated text-white' : 'text-cl-dim hover:text-cl-text'}"
+            class="p-1 rounded transition-colors {viewMode === 'list' ? 'bg-cl-elevated text-cl-text' : 'text-cl-dim hover:text-cl-text'}"
             aria-label="List view"
           >
             <IconList class="w-3.5 h-3.5" />

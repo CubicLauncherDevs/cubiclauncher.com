@@ -4,7 +4,9 @@
     import { cubicOut } from "svelte/easing";
     import Logo from "$lib/Logo.svelte";
     import LanguageSwitcher from "$lib/i18n/LanguageSwitcher.svelte";
+    import ThemeSwitcher from "$lib/components/global/ThemeSwitcher.svelte";
     import { t } from "$lib/i18n";
+    import { themeStore } from "$lib/stores/theme.svelte";
 
     let scrolled = $state(false);
     let isMobileMenuOpen = $state(false);
@@ -43,7 +45,7 @@
 
 <header
     class="fixed top-0 left-0 right-0 z-50 h-[var(--navbar-height)] border-b transition-colors duration-200 {scrolled
-        ? 'bg-cl-base/95 backdrop-blur-md border-cl-border'
+        ? 'bg-cl-base border-cl-border'
         : 'bg-cl-base border-transparent'}"
 >
     <div class="h-full mx-auto px-4 lg:px-6 flex items-center justify-between" style="max-width: var(--discord-max-width);">
@@ -52,10 +54,10 @@
                 <Logo
                     width="1.5rem"
                     height="1.5rem"
-                    color="#ffffff"
+                    color="var(--cl-text)"
                     className="transition-transform duration-200 group-hover:scale-105"
                 />
-                <span class="hidden sm:block font-semibold text-sm text-white tracking-tight">
+                <span class="hidden sm:block font-semibold text-sm text-cl-text tracking-tight">
                     CubicLauncher
                 </span>
             </a>
@@ -73,7 +75,8 @@
         </div>
 
         <div class="flex items-center gap-3 shrink-0">
-            <div class="hidden sm:block">
+            <div class="hidden sm:flex items-center gap-3">
+                <ThemeSwitcher />
                 <LanguageSwitcher />
             </div>
 
@@ -138,7 +141,7 @@
     <div class="fixed inset-0 z-40 md:hidden">
         <button
             type="button"
-            class="absolute inset-0 block w-full h-full bg-black/40 backdrop-blur-sm"
+            class="absolute inset-0 block w-full h-full bg-cl-accent/40 backdrop-blur-sm"
             aria-label="Close menu"
             onclick={closeMobileMenu}
             transition:fade={{ duration: 200, easing: cubicOut }}
@@ -181,7 +184,10 @@
                     >
                         {$t('nav.download')}
                     </a>
-                    <LanguageSwitcher />
+                    <div class="flex items-center gap-3">
+                        <ThemeSwitcher />
+                        <LanguageSwitcher />
+                    </div>
                 </div>
             </nav>
         </div>

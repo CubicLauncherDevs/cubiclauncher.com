@@ -28,9 +28,10 @@
   let hasBoth = $derived(!!(currentVer?.showcaseUrl && currentVer?.previewUrl));
 
   let currentImageUrl = $derived.by(() => {
-    if (!currentVer) return null;
-    const useShowcase = !hasBoth || showingShowcase;
-    return useShowcase ? currentVer.showcaseUrl : currentVer.previewUrl;
+    if (!currentVer) return theme.previewUrl;
+    if (showingShowcase && currentVer.showcaseUrl) return currentVer.showcaseUrl;
+    if (currentVer.previewUrl) return currentVer.previewUrl;
+    return theme.previewUrl;
   });
 
   // Reset to showcase when the selected version no longer has a separate palette.
@@ -64,13 +65,13 @@
         <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
           <button
             onclick={(e) => { e.stopPropagation(); showingShowcase = true; }}
-            class="px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide rounded transition-colors {showingShowcase ? 'bg-cl-text text-cl-accent-inverse' : 'bg-black/60 text-cl-text hover:bg-black/80'}"
+            class="px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide rounded transition-colors {showingShowcase ? 'bg-cl-text text-cl-accent-inverse' : 'bg-cl-accent/60 text-cl-accent-inverse hover:bg-cl-accent/80'}"
           >
             Showcase
           </button>
           <button
             onclick={(e) => { e.stopPropagation(); showingShowcase = false; }}
-            class="px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide rounded transition-colors {!showingShowcase ? 'bg-cl-text text-cl-accent-inverse' : 'bg-black/60 text-cl-text hover:bg-black/80'}"
+            class="px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide rounded transition-colors {!showingShowcase ? 'bg-cl-text text-cl-accent-inverse' : 'bg-cl-accent/60 text-cl-accent-inverse hover:bg-cl-accent/80'}"
           >
             Palette
           </button>
@@ -87,7 +88,7 @@
 <div class="flex items-start justify-between gap-3 mb-4">
   <div class="min-w-0">
     <div class="flex items-center gap-2 mb-1">
-      <h1 class="text-base sm:text-lg font-semibold text-white truncate">{theme.name}</h1>
+      <h1 class="text-base sm:text-lg font-semibold text-cl-text truncate">{theme.name}</h1>
       {#if getThemeVerification(theme) !== "none"}
         <VerifiedBadge size="md" level={getThemeVerification(theme)} />
       {/if}

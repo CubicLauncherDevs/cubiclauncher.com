@@ -33,7 +33,7 @@
 
   <div class="p-3 flex flex-col flex-1">
     <a href="/themes/packs/{pkg.slug}" class="block group/title">
-      <h3 class="text-xs font-semibold text-white truncate group-hover/title:text-cl-muted transition-colors">{pkg.name}</h3>
+      <h3 class="text-xs font-semibold text-cl-text truncate group-hover/title:text-cl-muted transition-colors">{pkg.name}</h3>
     </a>
     <p class="text-[11px] text-cl-muted truncate mt-0.5">{pkg.author}</p>
 

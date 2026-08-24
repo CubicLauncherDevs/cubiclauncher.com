@@ -9,7 +9,7 @@
 
 <section
   id="hero-section"
-  class="relative min-h-[420px] lg:min-h-[520px] flex items-center overflow-hidden"
+  class="dark relative min-h-[420px] lg:min-h-[520px] flex items-center overflow-hidden"
   style="isolation: isolate;"
 >
   <HeroBackground />
@@ -22,11 +22,11 @@
       <Logo
         width="3.5rem"
         height="3.5rem"
-        color="#ffffff"
+        color="var(--cl-text)"
         className="shrink-0 -ml-1"
       />
       <h1
-        class="text-[28px] sm:text-[34px] lg:text-[40px] font-semibold leading-[1.15] text-white"
+        class="text-[28px] sm:text-[34px] lg:text-[40px] font-semibold leading-[1.15] text-cl-text"
       >
         {$t("hero.title")}
       </h1>
@@ -39,7 +39,7 @@
     <div class="flex flex-col sm:flex-row items-start gap-2.5 mb-4">
       <a
         href="/install"
-        class="inline-flex items-center justify-center gap-1.5 bg-white text-black px-5 py-2 text-xs font-medium rounded hover:bg-neutral-200 transition-colors"
+        class="inline-flex items-center justify-center gap-1.5 bg-cl-text text-cl-accent-inverse px-5 py-2 text-xs font-medium rounded hover:opacity-90 transition-opacity"
       >
         <IconDownload class="w-3.5 h-3.5" />
         {$t("hero.download")}

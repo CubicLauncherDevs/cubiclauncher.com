@@ -53,7 +53,7 @@
   <section class="py-10 bg-cl-base">
     <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
       <div class="flex items-center justify-between mb-4">
-        <h2 class="text-lg font-semibold text-white">
+        <h2 class="text-lg font-semibold text-cl-text">
           {$t("home.featuredThemes")}
         </h2>
         <div class="flex items-center gap-2">
@@ -82,7 +82,7 @@
           {@const verification = getThemeVerification(theme)}
           <a
             href="/themes/{theme.id}"
-            class="group flex gap-3 p-2.5 rounded border border-cl-border bg-cl-surface hover:border-cl-border-hover hover:bg-cl-elevated transition-colors"
+            class="group flex gap-3 p-2.5 rounded border border-cl-border bg-cl-surface hover:border-cl-border-hover hover:bg-cl-elevated transition-colors transform-gpu"
           >
             <div class="relative w-20 h-12 shrink-0 rounded bg-cl-elevated overflow-hidden">
               {#if theme.previewUrl}
@@ -100,7 +100,7 @@
             </div>
             <div class="min-w-0 flex-1 flex flex-col justify-center">
               <div class="flex items-center gap-1.5 mb-0.5">
-                <h3 class="text-xs font-semibold text-white group-hover:text-cl-muted transition-colors truncate">
+                <h3 class="text-xs font-semibold text-cl-text group-hover:text-cl-muted transition-colors truncate">
                   {theme.name}
                 </h3>
                 {#if verification !== "none"}

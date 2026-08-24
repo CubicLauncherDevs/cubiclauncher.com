@@ -15,7 +15,7 @@
 {#if show && imageUrl}
   <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
   <div
-    class="fixed inset-0 z-50 bg-black/85 flex items-center justify-center p-4"
+    class="fixed inset-0 z-50 bg-cl-accent/85 flex items-center justify-center p-4"
     onclick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     role="dialog"
     aria-modal="true"

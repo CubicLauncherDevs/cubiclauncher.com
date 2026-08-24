@@ -57,7 +57,7 @@
   <section class="py-10 bg-cl-surface border-y border-cl-border">
     <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
       <div class="mb-6">
-        <h2 class="text-lg sm:text-xl font-semibold text-white mb-1">
+        <h2 class="text-lg sm:text-xl font-semibold text-cl-text mb-1">
           {$t('home.featuresTitle')}
         </h2>
         <p class="text-xs text-cl-muted max-w-xl">
@@ -73,7 +73,7 @@
               <feature.Icon class="w-3.5 h-3.5" />
             </div>
             <div>
-              <h3 class="text-xs font-semibold text-white mb-0.5">
+              <h3 class="text-xs font-semibold text-cl-text mb-0.5">
                 {$t(feature.titleKey)}
               </h3>
               <p class="text-[11px] leading-[1.5] text-cl-muted">
@@ -95,7 +95,7 @@
     <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 class="text-lg sm:text-xl font-semibold text-white mb-1">
+          <h2 class="text-lg sm:text-xl font-semibold text-cl-text mb-1">
             {$t('home.openSource')}
           </h2>
           <p class="text-xs text-cl-muted max-w-md">

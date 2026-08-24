@@ -13,13 +13,13 @@
   <section class="relative border-b border-cl-border bg-cl-surface/30 overflow-hidden">
     <div
       class="absolute inset-0 opacity-[0.03] pointer-events-none"
-      style="background-image: radial-gradient(circle, #ffffff 1px, transparent 1px); background-size: 40px 40px;"
+      style="background-image: radial-gradient(circle, var(--cl-text) 1px, transparent 1px); background-size: 40px 40px;"
     ></div>
 
     <div class="mx-auto px-4 lg:px-6 py-10 relative z-10" style="max-width: var(--discord-max-width);">
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 class="text-xl sm:text-2xl font-semibold text-white mb-1">
+          <h1 class="text-xl sm:text-2xl font-semibold text-cl-text mb-1">
             {$t("donate.title")}
           </h1>
           <p class="text-xs text-cl-muted max-w-md">
@@ -49,14 +49,14 @@
           </div>
 
           <div class="border border-cl-border rounded bg-cl-surface p-4">
-            <h2 class="text-sm font-semibold text-white mb-3">{$t('donate.supportTitle')}</h2>
+            <h2 class="text-sm font-semibold text-cl-text mb-3">{$t('donate.supportTitle')}</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <div class="flex items-start gap-2 p-2.5 rounded bg-cl-base border border-cl-border">
                 <div class="w-7 h-7 rounded bg-cl-elevated flex items-center justify-center text-cl-muted">
                   <IconBug class="w-3.5 h-3.5" />
                 </div>
                 <div>
-                  <h3 class="text-[11px] font-semibold text-white mb-0.5">{$t('donate.cardReportTitle')}</h3>
+                  <h3 class="text-[11px] font-semibold text-cl-text mb-0.5">{$t('donate.cardReportTitle')}</h3>
                   <p class="text-[10px] text-cl-dim">{$t('donate.cardReportDesc')}</p>
                 </div>
               </div>
@@ -65,7 +65,7 @@
                   <IconLightbulb class="w-3.5 h-3.5" />
                 </div>
                 <div>
-                  <h3 class="text-[11px] font-semibold text-white mb-0.5">{$t('donate.cardSuggestTitle')}</h3>
+                  <h3 class="text-[11px] font-semibold text-cl-text mb-0.5">{$t('donate.cardSuggestTitle')}</h3>
                   <p class="text-[10px] text-cl-dim">{$t('donate.cardSuggestDesc')}</p>
                 </div>
               </div>
@@ -74,7 +74,7 @@
                   <IconPaintBucket class="w-3.5 h-3.5" />
                 </div>
                 <div>
-                  <h3 class="text-[11px] font-semibold text-white mb-0.5">{$t('donate.cardThemesTitle')}</h3>
+                  <h3 class="text-[11px] font-semibold text-cl-text mb-0.5">{$t('donate.cardThemesTitle')}</h3>
                   <p class="text-[10px] text-cl-dim">{$t('donate.cardThemesDesc')}</p>
                 </div>
               </div>
@@ -83,7 +83,7 @@
                   <IconCode class="w-3.5 h-3.5" />
                 </div>
                 <div>
-                  <h3 class="text-[11px] font-semibold text-white mb-0.5">{$t('donate.cardCodeTitle')}</h3>
+                  <h3 class="text-[11px] font-semibold text-cl-text mb-0.5">{$t('donate.cardCodeTitle')}</h3>
                   <p class="text-[10px] text-cl-dim">{$t('donate.cardCodeDesc')}</p>
                 </div>
               </div>
@@ -98,7 +98,7 @@
                 <IconCoffee class="w-4 h-4 text-cl-text" />
               </div>
               <div>
-                <h3 class="text-sm font-semibold text-white">Ko-fi</h3>
+                <h3 class="text-sm font-semibold text-cl-text">Ko-fi</h3>
                 <p class="text-[10px] text-cl-muted">{$t("donate.impact")}</p>
               </div>
             </div>
@@ -106,7 +106,7 @@
               href="https://ko-fi.com/cubiclauncher"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center justify-center gap-1.5 w-full bg-cl-text text-cl-accent-inverse px-4 py-2 font-medium text-xs rounded hover:bg-neutral-200 transition-colors"
+              class="inline-flex items-center justify-center gap-1.5 w-full bg-cl-text text-cl-accent-inverse px-4 py-2 font-medium text-xs rounded hover:opacity-90 transition-opacity"
             >
               <IconCoffee class="w-3.5 h-3.5" />
               {$t("donate.kofi")}

@@ -84,13 +84,13 @@
   <section class="relative border-b border-cl-border bg-cl-surface/30 overflow-hidden">
     <div
       class="absolute inset-0 opacity-[0.03] pointer-events-none"
-      style="background-image: radial-gradient(circle, #ffffff 1px, transparent 1px); background-size: 40px 40px;"
+      style="background-image: radial-gradient(circle, var(--cl-text) 1px, transparent 1px); background-size: 40px 40px;"
     ></div>
 
     <div class="relative z-10 mx-auto px-4 lg:px-6 py-10" style="max-width: var(--discord-max-width);">
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 class="text-xl sm:text-2xl font-semibold text-white mb-1">
+          <h1 class="text-xl sm:text-2xl font-semibold text-cl-text mb-1">
             {$t("install.title")}
             <span class="text-cl-muted">{$t("install.titleHighlight")}</span>
           </h1>
@@ -170,7 +170,7 @@
           href="https://github.com/CubicLauncherDevs/CubicLauncher/releases"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-cl-text text-cl-accent-inverse font-medium text-xs rounded hover:bg-neutral-200 transition-colors shrink-0"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-cl-text text-cl-accent-inverse font-medium text-xs rounded hover:opacity-90 transition-opacity shrink-0"
         >
           {$t("install.viewAllReleases")}
           <IconArrowRight class="w-3 h-3" />

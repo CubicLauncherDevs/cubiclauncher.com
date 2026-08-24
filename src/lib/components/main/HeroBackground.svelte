@@ -4,14 +4,14 @@
   const src = `${base}/hero/bg.webp`;
 </script>
 
-<div class="absolute inset-0 overflow-hidden">
+<div class="absolute inset-0 overflow-hidden transform-gpu">
   <img
     {src}
     alt=""
     loading="eager"
     decoding="async"
     fetchpriority="high"
-    class="w-full h-full object-cover"
+    class="w-full h-full object-cover transform-gpu"
     style="filter: blur(2px) brightness(0.5) saturate(1.5);"
   />
   <div class="absolute inset-0 bg-cl-base/60"></div>

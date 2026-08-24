@@ -126,7 +126,7 @@
   <button
     onclick={downloadTheme}
     disabled={loading}
-    class="flex items-center justify-center gap-1.5 w-full bg-cl-text text-cl-accent-inverse px-4 py-2 font-medium text-xs rounded hover:bg-neutral-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+    class="flex items-center justify-center gap-1.5 w-full bg-cl-text text-cl-accent-inverse px-4 py-2 font-medium text-xs rounded hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
   >
     {#if loading}
       <IconSpinner class="w-3.5 h-3.5 animate-spin" />

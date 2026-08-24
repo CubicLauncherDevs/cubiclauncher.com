@@ -31,7 +31,7 @@
         <span class="px-1.5 py-0.5 rounded border border-cl-border bg-cl-base text-[10px] font-semibold uppercase tracking-wide text-cl-muted">
           {$t("install.latestVersion")}
         </span>
-        <h2 class="text-base font-semibold text-white">
+        <h2 class="text-base font-semibold text-cl-text">
           {release.tag}
         </h2>
       </div>

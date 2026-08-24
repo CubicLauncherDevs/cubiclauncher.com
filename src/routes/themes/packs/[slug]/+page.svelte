@@ -84,7 +84,7 @@
         <div class="lg:col-span-8">
           <!-- Header -->
           <div class="mb-4">
-            <h1 class="text-lg sm:text-xl font-semibold text-white mb-1">
+            <h1 class="text-lg sm:text-xl font-semibold text-cl-text mb-1">
               {resolved.name}
             </h1>
             <p class="text-xs text-cl-muted">

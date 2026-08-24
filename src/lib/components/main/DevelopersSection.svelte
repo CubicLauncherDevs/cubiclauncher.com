@@ -7,7 +7,7 @@
 <section class="py-10 bg-cl-surface border-y border-cl-border">
   <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
     <div class="mb-6">
-      <h2 class="text-lg font-semibold text-white mb-1">
+      <h2 class="text-lg font-semibold text-cl-text mb-1">
         {$t('developers.title')}
       </h2>
       <p class="text-xs text-cl-muted max-w-xl">
@@ -43,7 +43,7 @@
                   class="w-3.5 h-auto"
                 />
               {/if}
-              <h3 class="text-xs font-semibold truncate text-white">
+              <h3 class="text-xs font-semibold truncate text-cl-text">
                 {dev.name}
               </h3>
             </div>

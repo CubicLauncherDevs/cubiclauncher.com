@@ -11,7 +11,7 @@
     </div>
 
     <div>
-      <h3 class="text-lg font-semibold mb-2 text-white group-hover:translate-x-1 transition-transform duration-300">
+      <h3 class="text-lg font-semibold mb-2 text-cl-text group-hover:translate-x-1 transition-transform duration-300">
         {title}
       </h3>
       <p class="max-w-md text-xs text-cl-muted leading-relaxed group-hover:text-cl-muted transition-colors">

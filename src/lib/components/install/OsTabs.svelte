@@ -49,7 +49,7 @@
       aria-selected={active}
       onclick={() => onSelect(tab.id)}
       class="relative flex-1 flex items-center justify-center gap-2 py-2 px-2 text-xs font-medium transition-colors {active
-        ? 'bg-cl-elevated text-white border-b border-cl-text'
+        ? 'bg-cl-elevated text-cl-text border-b border-cl-text'
         : 'text-cl-muted hover:text-cl-text hover:bg-cl-elevated'}"
     >
       <tab.Icon class="w-4 h-4" />

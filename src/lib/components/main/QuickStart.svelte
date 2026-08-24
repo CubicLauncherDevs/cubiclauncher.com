@@ -15,7 +15,7 @@
   <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
       <div>
-        <h2 class="text-lg font-semibold text-white mb-0.5">
+        <h2 class="text-lg font-semibold text-cl-text mb-0.5">
           {$t('home.quickStartTitle')}
         </h2>
         <p class="text-xs text-cl-muted">

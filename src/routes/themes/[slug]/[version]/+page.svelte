@@ -150,7 +150,7 @@
         <div class="lg:col-span-4">
           <div class="border border-cl-border rounded bg-cl-surface p-4 sticky top-[calc(var(--navbar-height)+16px)]">
             <div class="flex items-start gap-2 mb-1">
-              <h1 class="text-base font-semibold text-white">{theme.name}</h1>
+              <h1 class="text-base font-semibold text-cl-text">{theme.name}</h1>
               {#if getThemeVerification(theme) !== "none"}
                 <VerifiedBadge size="md" level={getThemeVerification(theme)} />
               {/if}

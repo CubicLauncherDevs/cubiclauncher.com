@@ -9,11 +9,44 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+  color-scheme: light dark;
 }
 
 :root {
-  /* CubicLauncher dense utility palette (estilo propio) */
+  /* Light mode (default) */
+  --cl-base: #fafafa;
+  --cl-surface: #ffffff;
+  --cl-elevated: #f4f4f5;
+  --cl-hover: #e4e4e7;
+  --cl-border: rgba(0, 0, 0, 0.08);
+  --cl-border-hover: rgba(0, 0, 0, 0.14);
+  --cl-text: #18181b;
+  --cl-muted: #52525b;
+  --cl-dim: #71717a;
+  --cl-accent: #09090b;
+  --cl-accent-inverse: #ffffff;
+
+  /* Functional accents */
+  --cl-success: #16a34a;
+  --cl-warning: #ca8a04;
+  --cl-danger: #dc2626;
+  --cl-link: #2563eb;
+
+  /* Code blocks */
+  --cl-code-bg: #f1f1f1;
+  --cl-code-text: #27272a;
+
+  /* Layout scale */
+  --navbar-height: 56px;
+  --discord-max-width: 1100px;
+  --radius-sm: 3px;
+  --radius: 4px;
+  --radius-lg: 8px;
+}
+
+.dark {
+  /* Dark mode */
   --cl-base: #0a0a0a;
   --cl-surface: #111113;
   --cl-elevated: #18181a;
@@ -26,36 +59,33 @@ html {
   --cl-accent: #ffffff;
   --cl-accent-inverse: #09090b;
 
-  /* Functional accents */
   --cl-success: #22c55e;
   --cl-warning: #eab308;
   --cl-danger: #ef4444;
   --cl-link: #60a5fa;
 
-  /* Layout scale */
-  --navbar-height: 56px;
-  --discord-max-width: 1100px;
-  --radius-sm: 3px;
-  --radius: 4px;
-  --radius-lg: 8px;
+  --cl-code-bg: #111113;
+  --cl-code-text: #f4f4f5;
 }
 
 @theme {
-  --color-cl-base: #0a0a0a;
-  --color-cl-surface: #111113;
-  --color-cl-elevated: #18181a;
-  --color-cl-hover: #1f1f22;
-  --color-cl-border: rgba(255, 255, 255, 0.06);
-  --color-cl-border-hover: rgba(255, 255, 255, 0.12);
-  --color-cl-text: #f4f4f5;
-  --color-cl-muted: #a1a1aa;
-  --color-cl-dim: #71717a;
-  --color-cl-accent: #ffffff;
-  --color-cl-accent-inverse: #09090b;
-  --color-cl-success: #22c55e;
-  --color-cl-warning: #eab308;
-  --color-cl-danger: #ef4444;
-  --color-cl-link: #60a5fa;
+  --color-cl-base: var(--cl-base);
+  --color-cl-surface: var(--cl-surface);
+  --color-cl-elevated: var(--cl-elevated);
+  --color-cl-hover: var(--cl-hover);
+  --color-cl-border: var(--cl-border);
+  --color-cl-border-hover: var(--cl-border-hover);
+  --color-cl-text: var(--cl-text);
+  --color-cl-muted: var(--cl-muted);
+  --color-cl-dim: var(--cl-dim);
+  --color-cl-accent: var(--cl-accent);
+  --color-cl-accent-inverse: var(--cl-accent-inverse);
+  --color-cl-success: var(--cl-success);
+  --color-cl-warning: var(--cl-warning);
+  --color-cl-danger: var(--cl-danger);
+  --color-cl-link: var(--cl-link);
+  --color-cl-code-bg: var(--cl-code-bg);
+  --color-cl-code-text: var(--cl-code-text);
 
   --font-sans: "BIZ UDP Gothic", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
@@ -78,7 +108,7 @@ body {
 
 /* Custom prose styles — compact, estilo propio */
 .prose h1 {
-  @apply text-xl md:text-2xl font-semibold text-white mb-4;
+  @apply text-xl md:text-2xl font-semibold text-cl-text mb-4;
 }
 
 .prose h2 {
@@ -86,7 +116,7 @@ body {
 }
 
 .prose h3 {
-  @apply text-base font-semibold text-white mt-5 mb-2;
+  @apply text-base font-semibold text-cl-text mt-5 mb-2;
 }
 
 .prose p {
@@ -107,7 +137,7 @@ body {
 }
 
 .prose strong {
-  @apply text-white font-medium;
+  @apply text-cl-text font-medium;
 }
 
 .prose code {
@@ -124,11 +154,12 @@ body {
 
 /* Code blocks with language badge and copy button */
 .code-block {
-  @apply bg-cl-surface border border-cl-border rounded-lg mb-6 overflow-hidden;
+  @apply bg-cl-code-bg border border-cl-border rounded-lg mb-6 overflow-hidden;
 }
 
 .code-block pre {
   @apply border-0 mb-0 rounded-none bg-transparent;
+  color: var(--cl-code-text);
 }
 
 .code-block-header {
@@ -197,8 +228,7 @@ body {
   background-color: #0d9488;
 }
 
-.code-block-header[data-lang="rust"] .code-block-lang,
-.code-block-header[data-lang="rs"] .code-block-lang {
+.code-block-header[data-lang="rust"] .code-block-header[data-lang="rs"] .code-block-lang {
   background-color: #ea580c;
 }
 

@@ -21,7 +21,7 @@
   <section>
     <div class="flex items-center gap-2 mb-2">
       <span class="w-1 h-1 rounded-full bg-cl-dim"></span>
-      <h3 class="text-xs font-semibold text-white">
+      <h3 class="text-xs font-semibold text-cl-text">
         {$t("install.downloadsFor", {
           values: { os: $t(platformNameKey) },
         })}

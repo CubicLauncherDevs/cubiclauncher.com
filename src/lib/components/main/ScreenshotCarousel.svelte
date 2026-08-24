@@ -107,14 +107,14 @@
     {#if IMAGES.length > 1}
       <button
         onclick={prev}
-        class="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-8 h-8 rounded bg-black/60 text-cl-text opacity-0 group-hover/main:opacity-100 hover:bg-black/80 transition-all"
+        class="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-8 h-8 rounded bg-cl-accent/60 text-cl-accent-inverse opacity-0 group-hover/main:opacity-100 hover:bg-cl-accent/80 transition-all"
         aria-label="Previous screenshot"
       >
         <IconCaretLeft class="w-5 h-5" />
       </button>
       <button
         onclick={next}
-        class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-8 h-8 rounded bg-black/60 text-cl-text opacity-0 group-hover/main:opacity-100 hover:bg-black/80 transition-all"
+        class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-8 h-8 rounded bg-cl-accent/60 text-cl-accent-inverse opacity-0 group-hover/main:opacity-100 hover:bg-cl-accent/80 transition-all"
         aria-label="Next screenshot"
       >
         <IconCaretRight class="w-5 h-5" />

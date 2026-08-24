@@ -1,4 +1,17 @@
 {
+  "theme": {
+    "light": "Hell",
+    "dark": "Dunkel",
+    "system": "System",
+    "switchTheme": "Thema wechseln"
+  },
+  "language": {
+    "spanish": "Spanisch",
+    "english": "Englisch",
+    "french": "Französisch",
+    "german": "Deutsch",
+    "switchLanguage": "Sprache wechseln"
+  },
   "nav": {
     "docs": "Doku",
     "themes": "Themes",

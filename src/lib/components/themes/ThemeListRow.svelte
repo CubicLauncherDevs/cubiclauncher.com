@@ -29,7 +29,7 @@
 
   <div class="min-w-0 flex-1 flex flex-col">
     <div class="flex items-center gap-1.5">
-      <h3 class="text-xs font-semibold text-white truncate group-hover:text-cl-muted transition-colors">
+      <h3 class="text-xs font-semibold text-cl-text truncate group-hover:text-cl-muted transition-colors">
         {theme.name}
       </h3>
       {#if getThemeVerification(theme) !== "none"}

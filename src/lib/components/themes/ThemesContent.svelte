@@ -390,7 +390,7 @@
     <!-- Header -->
     <div class="mb-5">
       <div class="flex items-center gap-3 mb-1">
-        <h1 class="text-lg sm:text-xl font-semibold text-white">
+        <h1 class="text-lg sm:text-xl font-semibold text-cl-text">
           {$t('themes.title')}
         </h1>
         <span class="text-[11px] text-cl-muted">({totalItems})</span>
@@ -407,13 +407,13 @@
         <div class="inline-flex bg-cl-surface border border-cl-border rounded p-0.5">
           <button
             onclick={() => setTab("themes")}
-            class="px-3 py-1 text-xs font-medium rounded transition-colors {activeTab === 'themes' ? 'bg-cl-elevated text-white border border-cl-border' : 'text-cl-muted hover:text-cl-text'}"
+            class="px-3 py-1 text-xs font-medium rounded transition-colors {activeTab === 'themes' ? 'bg-cl-elevated text-cl-text border border-cl-border' : 'text-cl-muted hover:text-cl-text'}"
           >
             {$t('themes.tabThemes')}
           </button>
           <button
             onclick={() => setTab("packages")}
-            class="px-3 py-1 text-xs font-medium rounded transition-colors {activeTab === 'packages' ? 'bg-cl-elevated text-white border border-cl-border' : 'text-cl-muted hover:text-cl-text'}"
+            class="px-3 py-1 text-xs font-medium rounded transition-colors {activeTab === 'packages' ? 'bg-cl-elevated text-cl-text border border-cl-border' : 'text-cl-muted hover:text-cl-text'}"
           >
             {$t('themes.tabPackages')}
           </button>
@@ -514,14 +514,14 @@
             <div class="inline-flex bg-cl-surface border border-cl-border rounded p-0.5">
               <button
                 onclick={() => setViewMode("grid")}
-                class="p-1 rounded transition-colors {viewMode === 'grid' ? 'bg-cl-elevated text-white' : 'text-cl-dim hover:text-cl-text'}"
+                class="p-1 rounded transition-colors {viewMode === 'grid' ? 'bg-cl-elevated text-cl-text' : 'text-cl-dim hover:text-cl-text'}"
                 aria-label="Grid view"
               >
                 <IconSquaresFour class="w-3.5 h-3.5" />
               </button>
               <button
                 onclick={() => setViewMode("list")}
-                class="p-1 rounded transition-colors {viewMode === 'list' ? 'bg-cl-elevated text-white' : 'text-cl-dim hover:text-cl-text'}"
+                class="p-1 rounded transition-colors {viewMode === 'list' ? 'bg-cl-elevated text-cl-text' : 'text-cl-dim hover:text-cl-text'}"
                 aria-label="List view"
               >
                 <IconList class="w-3.5 h-3.5" />
@@ -628,7 +628,7 @@
                   {#each sortOptions as opt}
                     <button
                       onclick={() => { sortBy = opt; sortDropdownOpen = false; updateUrlParams(); }}
-                      class="w-full text-left px-2.5 py-1.5 text-xs transition-colors {sortBy === opt ? 'bg-cl-elevated text-white' : 'text-cl-muted hover:text-cl-text hover:bg-cl-elevated'}"
+                      class="w-full text-left px-2.5 py-1.5 text-xs transition-colors {sortBy === opt ? 'bg-cl-elevated text-cl-text' : 'text-cl-muted hover:text-cl-text hover:bg-cl-elevated'}"
                     >
                       {$t(SORT_LABEL_KEYS[opt])}
                     </button>
@@ -675,7 +675,7 @@
           <p class="text-cl-muted text-sm mb-3">{activeTab === "themes" ? error : packagesError}</p>
           <button
             onclick={() => location.reload()}
-            class="bg-cl-text text-cl-accent-inverse px-4 py-1.5 text-xs font-medium rounded hover:bg-neutral-200 transition-colors"
+            class="bg-cl-text text-cl-accent-inverse px-4 py-1.5 text-xs font-medium rounded hover:opacity-90 transition-opacity"
           >
             {$t('themeDetail.retry')}
           </button>
@@ -700,7 +700,7 @@
           {#if hasActiveFilters}
             <button
               onclick={clearFilters}
-              class="bg-cl-text text-cl-accent-inverse px-4 py-1.5 text-xs font-medium rounded hover:bg-neutral-200 transition-colors"
+              class="bg-cl-text text-cl-accent-inverse px-4 py-1.5 text-xs font-medium rounded hover:opacity-90 transition-opacity"
             >
               {$t('themes.clearFilters')}
             </button>
@@ -713,7 +713,7 @@
           {#if hasActiveFilters}
             <button
               onclick={clearFilters}
-              class="bg-cl-text text-cl-accent-inverse px-4 py-1.5 text-xs font-medium rounded hover:bg-neutral-200 transition-colors"
+              class="bg-cl-text text-cl-accent-inverse px-4 py-1.5 text-xs font-medium rounded hover:opacity-90 transition-opacity"
             >
               {$t('themes.clearFilters')}
             </button>

@@ -1,4 +1,17 @@
 {
+  "theme": {
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système",
+    "switchTheme": "Changer de thème"
+  },
+  "language": {
+    "spanish": "Espagnol",
+    "english": "Anglais",
+    "french": "Français",
+    "german": "Allemand",
+    "switchLanguage": "Changer de langue"
+  },
   "nav": {
     "docs": "Docs",
     "themes": "Thèmes",
