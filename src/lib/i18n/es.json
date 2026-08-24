@@ -1,4 +1,17 @@
 {
+  "theme": {
+    "light": "Claro",
+    "dark": "Oscuro",
+    "system": "Sistema",
+    "switchTheme": "Cambiar tema"
+  },
+  "language": {
+    "spanish": "Español",
+    "english": "Inglés",
+    "french": "Francés",
+    "german": "Alemán",
+    "switchLanguage": "Cambiar idioma"
+  },
   "nav": {
     "docs": "Docs",
     "themes": "Temas",
@@ -21,7 +34,7 @@
     "copyright": "© {year} CubicLauncher. Código abierto bajo licencia GPLv3. No afiliado a Mojang AB."
   },
   "hero": {
-    "title": "CUBIC LAUNCHER",
+    "title": "CubicLauncher",
     "description": "Launcher de Minecraft libre y de código abierto. Ligero, configurable y pensado para aprovechar el rendimiento sin exigirle demás al equipo.",
     "download": "Descargar Estable",
     "exploreThemes": "Explorar temas",
@@ -44,7 +57,7 @@
     "feature6Desc": "Instalá mods, modloaders, packs de texturas y consultá logs directamente desde el launcher.",
     "feature7Title": "Proyecto Original",
     "feature7Desc": "CubicLauncher no es un fork. Fue desarrollado desde cero, con cada componente pensado para el proyecto.",
-    "openSource": "OPEN SOURCE",
+    "openSource": "Open Source",
     "mission": "Nuestro objetivo es que cualquiera pueda jugar a Minecraft con un launcher estable, rápido y bajo su propio control. CubicLauncher es gratuito, de código abierto y compatible con cuentas Premium, NoPremium y Ely.by.",
     "featuredThemes": "Temas destacados",
     "viewAllThemes": "Ver todos los temas",
@@ -83,6 +96,7 @@
     "title": "Desarrolladores",
     "description": "Equipo detrás de CubicLauncher",
     "github": "GitHub",
+    "suspended": "Cuenta suspendida",
     "role1": "Fundador & Desarrollador principal",
     "role2": "Cofundador & Desarrollador principal",
     "role3": "Colaborador",

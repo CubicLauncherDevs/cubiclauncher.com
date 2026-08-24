@@ -25,26 +25,28 @@
 </script>
 
 {#if release?.tag}
-  <div class="text-center mb-10">
-    <span
-      class="inline-block px-3 py-1 rounded-full border border-white/10 bg-neutral-900/50 text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-3"
-    >
-      {$t("install.latestVersion")}
-    </span>
-    <h2 class="text-3xl md:text-4xl font-black text-white tracking-tight mb-2">
-      {release.tag}
-    </h2>
-    <p class="text-neutral-500 text-sm mb-4">
-      {$t("install.releasedOn", { values: { date: formatDate(release.publishedAt) } })}
-    </p>
+  <div class="flex items-center justify-between gap-3 mb-5 pb-4 border-b border-cl-border">
+    <div>
+      <div class="flex items-center gap-2 mb-0.5">
+        <span class="px-1.5 py-0.5 rounded border border-cl-border bg-cl-base text-[10px] font-semibold uppercase tracking-wide text-cl-muted">
+          {$t("install.latestVersion")}
+        </span>
+        <h2 class="text-base font-semibold text-cl-text">
+          {release.tag}
+        </h2>
+      </div>
+      <p class="text-cl-dim text-[11px]">
+        {$t("install.releasedOn", { values: { date: formatDate(release.publishedAt) } })}
+      </p>
+    </div>
     <a
       href={release.htmlUrl}
       target="_blank"
       rel="noopener noreferrer"
-      class="inline-flex items-center gap-2 text-xs font-semibold text-neutral-400 hover:text-white transition-colors"
+      class="inline-flex items-center gap-1 text-[11px] font-medium text-cl-dim hover:text-cl-text transition-colors"
     >
-      <IconGithubLogo class="w-4 h-4" />
-      {$t("install.viewAllReleases")}
+      <IconGithubLogo class="w-3.5 h-3.5" />
+      <span class="hidden sm:inline">{$t("install.viewAllReleases")}</span>
     </a>
   </div>
 {/if}

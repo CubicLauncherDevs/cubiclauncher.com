@@ -11,30 +11,32 @@
   ];
 </script>
 
-<section class="py-24 border-y border-white/5 bg-neutral-900/20">
-  <div class="container mx-auto px-6 max-w-5xl text-center">
-    <h2 class="text-4xl md:text-5xl font-black tracking-tighter mb-4">
-      {$t('home.quickStartTitle')}
-    </h2>
-    <p class="text-neutral-400 text-lg font-light max-w-2xl mx-auto mb-12">
-      {$t('home.quickStartSubtitle')}
-    </p>
+<section class="py-8 bg-cl-elevated/30 border-y border-cl-border">
+  <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+      <div>
+        <h2 class="text-lg font-semibold text-cl-text mb-0.5">
+          {$t('home.quickStartTitle')}
+        </h2>
+        <p class="text-xs text-cl-muted">
+          {$t('home.quickStartSubtitle')}
+        </p>
+      </div>
+    </div>
 
     <div
-      class="inline-flex flex-col md:flex-row items-stretch border border-white/10 rounded-2xl overflow-hidden"
+      class="inline-flex flex-wrap items-stretch justify-center border border-cl-border rounded bg-cl-base overflow-hidden"
     >
       {#each platforms as platform}
         {@const nameKey = `install.platforms.${platform.key}`}
         <a
           href="/install"
-          class="group flex items-center justify-center md:justify-start gap-3 px-8 py-5 hover:bg-white/5 transition-colors border-b md:border-b-0 md:border-r border-white/10 last:border-0"
+          class="group flex items-center justify-center gap-1.5 px-4 py-2 hover:bg-cl-elevated transition-colors border-b md:border-b-0 md:border-r border-cl-border last:border-0"
         >
-          <span class="text-neutral-400 group-hover:text-white transition-colors">
-            <platform.Icon class="w-5 h-5" />
+          <span class="text-cl-dim group-hover:text-cl-text transition-colors">
+            <platform.Icon class="w-3.5 h-3.5" />
           </span>
-          <span
-            class="text-sm font-bold uppercase tracking-[0.15em] text-white"
-          >
+          <span class="text-xs font-medium text-cl-text">
             {$t(nameKey)}
           </span>
         </a>

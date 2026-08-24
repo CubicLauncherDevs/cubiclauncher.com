@@ -8,7 +8,6 @@
   import IconPackage from "~icons/ph/package";
   import IconSparkle from "~icons/ph/sparkle";
   import Hero from "./Hero.svelte";
-  import AboutSection from "./AboutSection.svelte";
   import QuickStart from "./QuickStart.svelte";
   import RandomThemes from "./RandomThemes.svelte";
 
@@ -51,35 +50,33 @@
   ];
 </script>
 
-<main class="bg-neutral-950 overflow-x-hidden">
+<main class="bg-cl-base overflow-x-hidden">
   <Hero />
 
-  <AboutSection />
-
   <!-- Features -->
-  <section class="py-24">
-    <div class="container mx-auto px-6 max-w-6xl">
-      <div class="text-center mb-20">
-        <h2 class="text-4xl md:text-6xl font-black tracking-tighter mb-4">
+  <section class="py-10 bg-cl-surface border-y border-cl-border">
+    <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
+      <div class="mb-6">
+        <h2 class="text-lg sm:text-xl font-semibold text-cl-text mb-1">
           {$t('home.featuresTitle')}
         </h2>
-        <p class="text-neutral-400 text-lg font-light max-w-xl mx-auto">
+        <p class="text-xs text-cl-muted max-w-xl">
           {$t('home.featuresSubtitle')}
         </p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         {#each features as feature}
-          <div class="flex gap-5">
+          <div class="flex items-start gap-2.5 p-3 rounded bg-cl-base border border-cl-border hover:border-cl-border-hover transition-colors">
             <div
-              class="shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-neutral-900 text-white border border-white/5"
+              class="shrink-0 flex items-center justify-center w-7 h-7 rounded bg-cl-elevated text-cl-text"
             >
-              <feature.Icon class="w-6 h-6" />
+              <feature.Icon class="w-3.5 h-3.5" />
             </div>
             <div>
-              <h3 class="text-xl font-bold tracking-tight text-white mb-1">
+              <h3 class="text-xs font-semibold text-cl-text mb-0.5">
                 {$t(feature.titleKey)}
               </h3>
-              <p class="text-neutral-400 leading-relaxed font-light">
+              <p class="text-[11px] leading-[1.5] text-cl-muted">
                 {$t(feature.descKey)}
               </p>
             </div>
@@ -94,36 +91,35 @@
   <RandomThemes />
 
   <!-- Community Section -->
-  <section class="py-48 bg-white text-black">
-    <div class="container mx-auto px-6 text-center">
-      <h2
-        class="text-6xl md:text-9xl font-black tracking-tighter leading-[0.8] mb-12 uppercase"
-      >
-        OPEN SOURCE
-      </h2>
-      <p class="max-w-2xl mx-auto text-xl mb-16 font-light">
-        {$t('home.mission')}
-      </p>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-8">
-        <a
-          href="https://discord.com/invite/7VaqSrPukm"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <button
-            class="flex items-center gap-3 px-10 py-5 bg-black text-white font-bold text-[11px] uppercase tracking-[0.3em] rounded-2xl hover:scale-105 transition-all"
+  <section class="py-10 bg-cl-base border-t border-cl-border">
+    <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-cl-text mb-1">
+            {$t('home.openSource')}
+          </h2>
+          <p class="text-xs text-cl-muted max-w-md">
+            {$t('home.mission')}
+          </p>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <a
+            href="https://discord.com/invite/7VaqSrPukm"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-cl-elevated text-cl-text text-xs font-medium rounded border border-cl-border hover:border-cl-border-hover hover:bg-cl-hover transition-colors"
           >
             {$t('home.joinDiscord')}
-          </button>
-        </a>
-        <a
-          href="https://github.com/CubicLauncherDevs/CubicLauncher"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex items-center gap-3 px-10 py-5 border border-black/10 text-black font-bold text-[11px] uppercase tracking-[0.3em] rounded-2xl hover:bg-black/5 transition-all"
-        >
-          {$t('home.contributeGitHub')}
-        </a>
+          </a>
+          <a
+            href="https://github.com/CubicLauncherDevs/CubicLauncher"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 text-cl-text text-xs font-medium rounded border border-cl-border hover:border-cl-border-hover hover:bg-cl-elevated transition-colors"
+          >
+            {$t('home.contributeGitHub')}
+          </a>
+        </div>
       </div>
     </div>
   </section>

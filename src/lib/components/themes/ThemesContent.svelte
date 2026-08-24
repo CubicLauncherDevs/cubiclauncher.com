@@ -22,8 +22,12 @@
     searchThemes,
     getAuthorEntries,
     slugify,
+    sortItems,
+    SORT_LABEL_KEYS,
+    type SortOption,
   } from "$lib/utils/theme-search";
   import ThemeCard from "./ThemeCard.svelte";
+  import ThemeListRow from "./ThemeListRow.svelte";
   import PackageCard from "./PackageCard.svelte";
   import VerifiedBadge from "./VerifiedBadge.svelte";
   import IconMagnifyingGlass from "~icons/ph/magnifying-glass";
@@ -31,6 +35,8 @@
   import IconImage from "~icons/ph/image";
   import IconCaretDown from "~icons/ph/caret-down";
   import IconArrowsClockwise from "~icons/ph/arrows-clockwise";
+  import IconSquaresFour from "~icons/ph/squares-four";
+  import IconList from "~icons/ph/list";
 
   let {
     initialThemes,
@@ -54,12 +60,13 @@
 
   type Tab = "themes" | "packages";
   let activeTab = $state<Tab>("themes");
+  type ViewMode = "grid" | "list";
+  let viewMode = $state<ViewMode>("grid");
 
   let searchQuery = $state("");
   let debouncedQuery = $state("");
   let authorQuery = $state("");
   let authorDropdownOpen = $state(false);
-  type SortOption = "name-asc" | "name-desc" | "author-asc" | "author-desc" | "date-desc" | "date-asc";
   let sortBy = $state<SortOption>("date-desc");
 
   let sortDropdownOpen = $state(false);
@@ -69,12 +76,14 @@
   let searchDropdownRef = $state<HTMLDivElement | null>(null);
   let searchFocused = $state(false);
 
-  const ITEMS_PER_PAGE = 6;
-  const MAX_SEARCH_SUGGESTIONS = 5;
+  const ITEMS_PER_PAGE_GRID = 6;
+  const ITEMS_PER_PAGE_LIST = 8;
   let currentPage = $state(1);
 
   const searchIndex = $derived(buildSearchIndex(themes));
   const authorEntries = $derived(getAuthorEntries(themes));
+
+  const itemsPerPage = $derived(activeTab === "packages" || viewMode === "grid" ? ITEMS_PER_PAGE_GRID : ITEMS_PER_PAGE_LIST);
 
   const filteredThemes = $derived.by(() => {
     let result = themes;
@@ -83,39 +92,7 @@
       result = searchThemes(debouncedQuery, searchIndex);
     }
 
-    const sorted = [...result];
-    switch (sortBy) {
-      case "name-asc":
-        sorted.sort((a, b) => a.name.localeCompare(b.name));
-        break;
-      case "name-desc":
-        sorted.sort((a, b) => b.name.localeCompare(a.name));
-        break;
-      case "author-asc":
-        sorted.sort((a, b) => a.author.localeCompare(b.author) || a.name.localeCompare(b.name));
-        break;
-      case "author-desc":
-        sorted.sort((a, b) => b.author.localeCompare(a.author) || a.name.localeCompare(b.name));
-        break;
-      case "date-desc":
-        sorted.sort((a, b) => {
-          if (!a.date && !b.date) return a.name.localeCompare(b.name);
-          if (!a.date) return 1;
-          if (!b.date) return -1;
-          return b.date.localeCompare(a.date);
-        });
-        break;
-      case "date-asc":
-        sorted.sort((a, b) => {
-          if (!a.date && !b.date) return a.name.localeCompare(b.name);
-          if (!a.date) return 1;
-          if (!b.date) return -1;
-          return a.date.localeCompare(b.date);
-        });
-        break;
-    }
-
-    return sorted;
+    return sortItems(result, sortBy);
   });
 
   const filteredPackages = $derived.by(() => {
@@ -130,44 +107,12 @@
       );
     }
 
-    const sorted = [...result];
-    switch (sortBy) {
-      case "name-asc":
-        sorted.sort((a, b) => a.name.localeCompare(b.name));
-        break;
-      case "name-desc":
-        sorted.sort((a, b) => b.name.localeCompare(a.name));
-        break;
-      case "author-asc":
-        sorted.sort((a, b) => a.author.localeCompare(b.author) || a.name.localeCompare(b.name));
-        break;
-      case "author-desc":
-        sorted.sort((a, b) => b.author.localeCompare(a.author) || a.name.localeCompare(b.name));
-        break;
-      case "date-desc":
-        sorted.sort((a, b) => {
-          if (!a.date && !b.date) return a.name.localeCompare(b.name);
-          if (!a.date) return 1;
-          if (!b.date) return -1;
-          return b.date.localeCompare(a.date);
-        });
-        break;
-      case "date-asc":
-        sorted.sort((a, b) => {
-          if (!a.date && !b.date) return a.name.localeCompare(b.name);
-          if (!a.date) return 1;
-          if (!b.date) return -1;
-          return a.date.localeCompare(b.date);
-        });
-        break;
-    }
-
-    return sorted;
+    return sortItems(result, sortBy);
   });
 
   const searchSuggestions = $derived.by(() => {
     if (!searchFocused || !searchQuery.trim()) return [];
-    return searchThemes(searchQuery, searchIndex).slice(0, MAX_SEARCH_SUGGESTIONS);
+    return searchThemes(searchQuery, searchIndex).slice(0, 5);
   });
 
   const suggestedThemes = $derived.by(() => {
@@ -179,28 +124,28 @@
         if (!b.date) return -1;
         return b.date.localeCompare(a.date);
       })
-      .slice(0, MAX_SEARCH_SUGGESTIONS);
+      .slice(0, 5);
   });
 
   const totalPages = $derived(
     Math.max(
       1,
       Math.ceil(
-        (activeTab === "themes" ? filteredThemes.length : filteredPackages.length) / ITEMS_PER_PAGE
+        (activeTab === "themes" ? filteredThemes.length : filteredPackages.length) / itemsPerPage
       )
     )
   );
 
   const paginatedItems = $derived(
     activeTab === "themes"
-      ? filteredThemes.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
-      : filteredPackages.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
+      ? filteredThemes.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+      : filteredPackages.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
   );
 
   const totalItems = $derived(activeTab === "themes" ? filteredThemes.length : filteredPackages.length);
 
-  const paginationStart = $derived((currentPage - 1) * ITEMS_PER_PAGE + 1);
-  const paginationEnd = $derived(Math.min(currentPage * ITEMS_PER_PAGE, totalItems));
+  const paginationStart = $derived((currentPage - 1) * itemsPerPage + 1);
+  const paginationEnd = $derived(Math.min(currentPage * itemsPerPage, totalItems));
 
   const hasActiveFilters = $derived(debouncedQuery || sortBy !== "date-desc");
 
@@ -299,26 +244,33 @@
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  function setViewMode(mode: ViewMode) {
+    viewMode = mode;
+    currentPage = 1;
+  }
+
   async function loadThemes(force = false) {
     if (force) {
       loading = true;
     }
     const cachedThemes = await getCachedThemes();
-    if (cachedThemes) {
+    if (cachedThemes && mounted) {
       themes = cachedThemes;
       hasCached = true;
       loading = false;
     }
     try {
       const freshThemes = await fetchAllThemes();
-      themes = freshThemes;
-      await setCachedThemes(freshThemes);
+      if (mounted) {
+        themes = freshThemes;
+        await setCachedThemes(freshThemes);
+      }
     } catch (e) {
-      if (!cachedThemes) {
+      if (!cachedThemes && mounted) {
         error = e instanceof Error ? e.message : "Error al cargar los temas";
       }
     } finally {
-      loading = false;
+      if (mounted) loading = false;
     }
   }
 
@@ -327,25 +279,28 @@
       packagesLoading = true;
     }
     const cachedPackages = await getCachedPackages();
-    if (cachedPackages) {
+    if (cachedPackages && mounted) {
       packages = cachedPackages;
       hasPackagesCached = true;
       packagesLoading = false;
     }
     try {
       const freshPackages = await fetchAllPackages();
-      packages = freshPackages;
-      await setCachedPackages(freshPackages);
+      if (mounted) {
+        packages = freshPackages;
+        await setCachedPackages(freshPackages);
+      }
     } catch (e) {
-      if (!cachedPackages) {
+      if (!cachedPackages && mounted) {
         packagesError = e instanceof Error ? e.message : "Error al cargar los paquetes";
       }
     } finally {
-      packagesLoading = false;
+      if (mounted) packagesLoading = false;
     }
   }
 
   async function refreshAll() {
+    if (refreshing) return;
     refreshing = true;
     refreshRotation += 360;
     error = "";
@@ -356,13 +311,17 @@
     refreshing = false;
   }
 
-  onMount(async () => {
+  let mounted = false;
+
+  onMount(() => {
+    mounted = true;
+
     const url = $page.url;
 
     const urlAuthor = url.searchParams.get("author");
     if (urlAuthor) {
       goto(`/themes/author/${slugify(urlAuthor)}`, { replaceState: true });
-      return;
+      return () => { mounted = false; };
     }
 
     const urlTab = url.searchParams.get("tab");
@@ -383,16 +342,19 @@
 
     saveThemesListUrl(url.pathname + url.search);
 
-    if (!initialThemes) {
-      await loadThemes();
-    }
-    if (!initialPackages) {
-      await loadPackages();
-    }
+    (async () => {
+      if (!initialThemes) {
+        await loadThemes();
+      }
+      if (!initialPackages) {
+        await loadPackages();
+      }
+    })();
+
+    return () => { mounted = false; };
   });
 
   $effect(() => {
-    if (!authorDropdownOpen && !sortDropdownOpen && !searchFocused) return;
     function handleClick(e: MouseEvent) {
       const target = e.target as Node;
       if (sortDropdownRef && !sortDropdownRef.contains(target)) {
@@ -409,13 +371,13 @@
     return () => document.removeEventListener("click", handleClick);
   });
 
-  const sortOptions: { value: SortOption; labelKey: string }[] = [
-    { value: "date-desc", labelKey: "themes.sortByDateNewest" },
-    { value: "date-asc", labelKey: "themes.sortByDateOldest" },
-    { value: "name-asc", labelKey: "themes.sortByNameAZ" },
-    { value: "name-desc", labelKey: "themes.sortByNameZA" },
-    { value: "author-asc", labelKey: "themes.sortByAuthorAZ" },
-    { value: "author-desc", labelKey: "themes.sortByAuthorDesc" },
+  const sortOptions: SortOption[] = [
+    "date-desc",
+    "date-asc",
+    "name-asc",
+    "name-desc",
+    "author-asc",
+    "author-desc",
   ];
 
   onDestroy(() => {
@@ -423,338 +385,380 @@
   });
 </script>
 
-<section class="min-h-screen pt-36 pb-32 bg-neutral-950 text-white">
-  <div class="container mx-auto px-6 max-w-6xl">
+<section class="min-h-screen pb-16 pt-[calc(var(--navbar-height)+24px)] bg-cl-base text-cl-text">
+  <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
     <!-- Header -->
-    <div class="text-center mb-12">
-      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-4">
-        {$t('themes.title')}
-      </h1>
-      <p class="text-base text-neutral-400 font-light max-w-lg mx-auto">
+    <div class="mb-5">
+      <div class="flex items-center gap-3 mb-1">
+        <h1 class="text-lg sm:text-xl font-semibold text-cl-text">
+          {$t('themes.title')}
+        </h1>
+        <span class="text-[11px] text-cl-muted">({totalItems})</span>
+      </div>
+      <p class="text-xs text-cl-muted max-w-lg">
         {$t('themes.description')}
       </p>
     </div>
 
-    <!-- Tabs -->
-    <div class="flex items-center justify-center gap-3 mb-8">
-      <div class="inline-flex bg-neutral-900 border border-white/10 rounded-full p-1">
-        <button
-          onclick={() => setTab("themes")}
-          class="px-5 py-2 text-xs font-medium rounded-full transition-all {activeTab === 'themes' ? 'bg-white text-black' : 'text-neutral-400 hover:text-white'}"
-        >
-          {$t('themes.tabThemes')}
-        </button>
-        <button
-          onclick={() => setTab("packages")}
-          class="px-5 py-2 text-xs font-medium rounded-full transition-all {activeTab === 'packages' ? 'bg-white text-black' : 'text-neutral-400 hover:text-white'}"
-        >
-          {$t('themes.tabPackages')}
-        </button>
-      </div>
-      <button
-        onclick={refreshAll}
-        disabled={refreshing}
-        class="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium rounded-full border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-        aria-label={$t('themes.refreshCache')}
-        title={$t('themes.refreshCache')}
-      >
-        <IconArrowsClockwise
-          class="w-3.5 h-3.5"
-          style="transform: rotate({refreshRotation}deg); transition: transform {REFRESH_SPIN_DURATION_MS}ms linear;"
-        />
-        <span class="hidden sm:inline">{$t('themes.refreshCache')}</span>
-      </button>
-    </div>
-
-    <!-- Search Bar -->
-    <div class="max-w-3xl mx-auto mb-8" bind:this={searchDropdownRef}>
-      <div class="group relative">
-        <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-          <IconMagnifyingGlass class="w-6 h-6 text-neutral-400 group-focus-within:text-white transition-colors" />
-        </div>
-        <input
-          type="text"
-          value={searchQuery}
-          oninput={(e) => setSearch(e.currentTarget.value)}
-          onfocus={() => searchFocused = true}
-          placeholder={$t('themes.searchPlaceholder')}
-          class="w-full bg-neutral-900/80 backdrop-blur-sm border border-white/10 rounded-2xl pl-14 pr-12 py-4 text-base text-white placeholder-neutral-500 focus:outline-none focus:border-white/30 focus:bg-neutral-800/90 focus:ring-4 focus:ring-white/5 transition-all shadow-lg shadow-black/20"
-        />
-        {#if searchQuery}
+    <!-- Toolbar -->
+    <div class="flex flex-col gap-3 mb-4">
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+        <!-- Tabs -->
+        <div class="inline-flex bg-cl-surface border border-cl-border rounded p-0.5">
           <button
-            onclick={clearSearch}
-            class="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-full text-neutral-500 hover:text-white hover:bg-white/10 transition-colors"
-            aria-label={$t('themes.clearSearch')}
+            onclick={() => setTab("themes")}
+            class="px-3 py-1 text-xs font-medium rounded transition-colors {activeTab === 'themes' ? 'bg-cl-elevated text-cl-text border border-cl-border' : 'text-cl-muted hover:text-cl-text'}"
           >
-            <IconX class="w-5 h-5" />
+            {$t('themes.tabThemes')}
           </button>
-        {/if}
+          <button
+            onclick={() => setTab("packages")}
+            class="px-3 py-1 text-xs font-medium rounded transition-colors {activeTab === 'packages' ? 'bg-cl-elevated text-cl-text border border-cl-border' : 'text-cl-muted hover:text-cl-text'}"
+          >
+            {$t('themes.tabPackages')}
+          </button>
+        </div>
 
-        <!-- Search suggestions dropdown -->
-        {#if searchFocused && activeTab === "themes"}
-          <div class="absolute top-full left-0 right-0 mt-2 z-30 bg-neutral-900/95 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
-            {#snippet suggestionRow(theme: Theme)}
-              <a
-                href="/themes/{theme.id}"
-                onclick={(e) => { e.preventDefault(); selectSearchSuggestion(theme.id); }}
-                class="flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition-colors"
+        <!-- Search Bar -->
+        <div class="flex-1 min-w-0" bind:this={searchDropdownRef}>
+          <div class="group relative">
+            <div class="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none">
+              <IconMagnifyingGlass class="w-3.5 h-3.5 text-cl-dim group-focus-within:text-cl-muted transition-colors" />
+            </div>
+            <input
+              type="text"
+              value={searchQuery}
+              oninput={(e) => setSearch(e.currentTarget.value)}
+              onfocus={() => searchFocused = true}
+              placeholder={$t('themes.searchPlaceholder')}
+              class="w-full h-7 bg-cl-surface border border-cl-border rounded pl-8 pr-7 text-xs text-cl-text placeholder-cl-dim focus:outline-none focus:border-cl-border-hover focus:bg-cl-elevated transition-all"
+            />
+            {#if searchQuery}
+              <button
+                onclick={clearSearch}
+                class="absolute right-2 top-1/2 -translate-y-1/2 p-0.5 rounded text-cl-dim hover:text-cl-text hover:bg-cl-elevated transition-colors"
+                aria-label={$t('themes.clearSearch')}
               >
-                <div class="w-12 h-8 rounded-md bg-neutral-800 overflow-hidden shrink-0">
-                  {#if theme.previewUrl}
-                    <img src={theme.previewUrl} alt={theme.name} class="w-full h-full object-cover" />
+                <IconX class="w-3 h-3" />
+              </button>
+            {/if}
+
+            <!-- Search suggestions dropdown -->
+            {#if searchFocused && activeTab === "themes"}
+              <div class="absolute top-full left-0 right-0 mt-1 z-30 bg-cl-surface border border-cl-border rounded shadow-lg shadow-black/20 overflow-hidden">
+                {#snippet suggestionRow(theme: Theme)}
+                  <a
+                    href="/themes/{theme.id}"
+                    onclick={(e) => { e.preventDefault(); selectSearchSuggestion(theme.id); }}
+                    class="flex items-center gap-2.5 px-2.5 py-2 hover:bg-cl-elevated transition-colors"
+                  >
+                    <div class="w-9 h-6 rounded bg-cl-elevated overflow-hidden shrink-0">
+                      {#if theme.previewUrl}
+                        <img src={theme.previewUrl} alt={theme.name} class="w-full h-full object-cover" />
+                      {:else}
+                        <div class="w-full h-full flex items-center justify-center text-cl-dim">
+                          <IconImage class="w-3 h-3" />
+                        </div>
+                      {/if}
+                    </div>
+                    <div class="min-w-0">
+                      <div class="flex items-center gap-1.5">
+                        <p class="text-xs font-medium text-cl-text truncate">{theme.name}</p>
+                        {#if getThemeVerification(theme) !== "none"}
+                          <VerifiedBadge size="sm" level={getThemeVerification(theme)} />
+                        {/if}
+                      </div>
+                      <p class="text-[10px] text-cl-dim truncate">{theme.author} · {theme.latestVersion}</p>
+                    </div>
+                  </a>
+                {/snippet}
+
+                {#if searchQuery.trim()}
+                  {#if searchSuggestions.length > 0}
+                    <div class="py-1">
+                      {#each searchSuggestions as theme}
+                        {@render suggestionRow(theme)}
+                      {/each}
+                    </div>
+                    <div class="border-t border-cl-border px-2.5 py-1.5">
+                      <button
+                        onclick={() => searchFocused = false}
+                        class="text-[10px] text-cl-dim hover:text-cl-text transition-colors"
+                      >
+                        {$t('themes.results', { values: { count: filteredThemes.length } })} · {$t('themes.clearSearch')}
+                      </button>
+                    </div>
                   {:else}
-                    <div class="w-full h-full flex items-center justify-center text-neutral-600">
-                      <IconImage class="w-4 h-4" />
+                    <div class="px-2.5 py-2 text-xs text-cl-muted">
+                      {$t('themes.noResults')}
                     </div>
                   {/if}
-                </div>
-                <div class="min-w-0">
-                  <div class="flex items-center gap-1.5">
-                    <p class="text-sm font-medium text-white truncate">{theme.name}</p>
-                    {#if getThemeVerification(theme) !== "none"}
-                      <VerifiedBadge size="sm" level={getThemeVerification(theme)} />
-                    {/if}
+                {:else}
+                  <div class="px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-cl-dim">
+                    Suggested themes
                   </div>
-                  <p class="text-xs text-neutral-500 truncate">{theme.author} · {theme.latestVersion}</p>
-                </div>
-              </a>
-            {/snippet}
-
-            {#if searchQuery.trim()}
-              {#if searchSuggestions.length > 0}
-                <div class="py-2">
-                  {#each searchSuggestions as theme}
-                    {@render suggestionRow(theme)}
-                  {/each}
-                </div>
-                <div class="border-t border-white/5 px-4 py-2">
-                  <button
-                    onclick={() => searchFocused = false}
-                    class="text-xs text-neutral-500 hover:text-white transition-colors"
-                  >
-                    {$t('themes.results', { values: { count: filteredThemes.length } })} · {$t('themes.clearSearch')}
-                  </button>
-                </div>
-              {:else}
-                <div class="px-4 py-4 text-sm text-neutral-500">
-                  {$t('themes.noResults')}
-                </div>
-              {/if}
-            {:else}
-              <div class="px-4 py-2 text-xs font-medium text-neutral-500 uppercase tracking-wider">
-                Suggested themes
-              </div>
-              <div class="py-2">
-                {#each suggestedThemes as theme}
-                  {@render suggestionRow(theme)}
-                {/each}
+                  <div class="py-1">
+                    {#each suggestedThemes as theme}
+                      {@render suggestionRow(theme)}
+                    {/each}
+                  </div>
+                {/if}
               </div>
             {/if}
           </div>
-        {/if}
-      </div>
-    </div>
+        </div>
 
-    <!-- Filter Bar -->
-    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-      <div class="flex flex-wrap items-center gap-3">
-        <!-- Author search with autocomplete -->
-        {#if activeTab === "themes"}
-          <div class="relative" bind:this={authorDropdownRef}>
-            <div class="relative">
-              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <IconMagnifyingGlass class="w-4 h-4 text-neutral-500" />
-              </div>
-              <input
-                bind:this={authorInputRef}
-                type="text"
-                bind:value={authorQuery}
-                onfocus={() => authorDropdownOpen = true}
-                placeholder={$t('themes.author')}
-                class="inline-flex items-center gap-2 bg-neutral-900 hover:bg-neutral-800 border border-white/10 rounded-lg pl-9 pr-3 py-2 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-white/30 transition-colors w-48"
-              />
-              {#if authorQuery}
-                <button
-                  onclick={() => { authorQuery = ""; authorInputRef?.focus(); }}
-                  class="absolute right-2 top-1/2 -translate-y-1/2 p-0.5 rounded-full text-neutral-500 hover:text-white transition-colors"
-                  aria-label={$t('themes.clearSearch')}
-                >
-                  <IconX class="w-3.5 h-3.5" />
-                </button>
-              {/if}
+        <!-- View mode / refresh -->
+        <div class="flex items-center gap-1.5">
+          {#if activeTab === "themes"}
+            <div class="inline-flex bg-cl-surface border border-cl-border rounded p-0.5">
+              <button
+                onclick={() => setViewMode("grid")}
+                class="p-1 rounded transition-colors {viewMode === 'grid' ? 'bg-cl-elevated text-cl-text' : 'text-cl-dim hover:text-cl-text'}"
+                aria-label="Grid view"
+              >
+                <IconSquaresFour class="w-3.5 h-3.5" />
+              </button>
+              <button
+                onclick={() => setViewMode("list")}
+                class="p-1 rounded transition-colors {viewMode === 'list' ? 'bg-cl-elevated text-cl-text' : 'text-cl-dim hover:text-cl-text'}"
+                aria-label="List view"
+              >
+                <IconList class="w-3.5 h-3.5" />
+              </button>
             </div>
-
-            {#if authorDropdownOpen}
-              <div class="absolute left-0 top-full mt-2 z-20 w-64 bg-neutral-900 border border-white/10 rounded-xl shadow-2xl overflow-hidden">
-                <div class="max-h-64 overflow-y-auto py-1">
-                  {#each filteredAuthors as author}
-                    <button
-                      onclick={() => selectAuthor(author.name)}
-                      class="w-full flex items-center justify-between px-3 py-2 text-xs transition-colors text-neutral-400 hover:text-white hover:bg-white/5"
-                    >
-                      <span>{author.name}</span>
-                      <span class="text-neutral-600">{author.count}</span>
-                    </button>
-                  {:else}
-                    {#if authorQuery.trim()}
-                      <div class="px-3 py-2 text-xs text-neutral-500">
-                        {$t('themes.noResults')}
-                      </div>
-                    {:else}
-                      {#each authorEntries.slice(0, 8) as author}
-                        <button
-                          onclick={() => selectAuthor(author.name)}
-                          class="w-full flex items-center justify-between px-3 py-2 text-xs transition-colors text-neutral-400 hover:text-white hover:bg-white/5"
-                        >
-                          <span>{author.name}</span>
-                          <span class="text-neutral-600">{author.count}</span>
-                        </button>
-                      {/each}
-                    {/if}
-                  {/each}
-                </div>
-              </div>
-            {/if}
-          </div>
-        {/if}
-
-        <!-- Sort dropdown -->
-        <div class="relative" bind:this={sortDropdownRef}>
+          {/if}
           <button
-            onclick={() => sortDropdownOpen = !sortDropdownOpen}
-            class="inline-flex items-center gap-2 bg-neutral-900 hover:bg-neutral-800 border border-white/10 rounded-lg px-3 py-2 text-xs text-white transition-colors"
-            aria-haspopup="listbox"
-            aria-expanded={sortDropdownOpen}
+            onclick={refreshAll}
+            disabled={refreshing}
+            class="inline-flex items-center gap-1 px-2.5 h-7 text-[11px] font-medium rounded border border-cl-border text-cl-muted hover:text-cl-text hover:border-cl-border-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            aria-label={$t('themes.refreshCache')}
+            title={$t('themes.refreshCache')}
           >
-            <span class="text-neutral-500">{$t('themes.sortBy')}:</span>
-            {#each sortOptions as opt}
-              {#if sortBy === opt.value}
-                <span>{$t(opt.labelKey)}</span>
-              {/if}
-            {/each}
-            <IconCaretDown class="w-3.5 h-3.5 text-neutral-500 {sortDropdownOpen ? 'rotate-180' : ''} transition-transform" />
+            <IconArrowsClockwise
+              class="w-3 h-3"
+              style="transform: rotate({refreshRotation}deg); transition: transform {REFRESH_SPIN_DURATION_MS}ms linear;"
+            />
+            <span class="hidden sm:inline">{$t('themes.refreshCache')}</span>
           </button>
+        </div>
+      </div>
 
-          {#if sortDropdownOpen}
-            <div class="absolute left-0 top-full mt-2 z-20 w-48 bg-neutral-900 border border-white/10 rounded-xl shadow-2xl overflow-hidden">
-              <div class="py-1">
-                {#each sortOptions as opt}
+      <!-- Filter Bar -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div class="flex flex-wrap items-center gap-2">
+          <!-- Author search with autocomplete -->
+          {#if activeTab === "themes"}
+            <div class="relative" bind:this={authorDropdownRef}>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-2 flex items-center pointer-events-none">
+                  <IconMagnifyingGlass class="w-3 h-3 text-cl-dim" />
+                </div>
+                <input
+                  bind:this={authorInputRef}
+                  type="text"
+                  bind:value={authorQuery}
+                  onfocus={() => authorDropdownOpen = true}
+                  placeholder={$t('themes.author')}
+                  class="inline-flex items-center gap-2 bg-cl-surface hover:bg-cl-elevated border border-cl-border rounded pl-7 pr-2 h-7 text-xs text-cl-text placeholder-cl-dim focus:outline-none focus:border-cl-border-hover transition-colors w-40"
+                />
+                {#if authorQuery}
                   <button
-                    onclick={() => { sortBy = opt.value; sortDropdownOpen = false; updateUrlParams(); }}
-                    class="w-full text-left px-3 py-2 text-xs transition-colors {sortBy === opt.value ? 'bg-white/10 text-white' : 'text-neutral-400 hover:text-white hover:bg-white/5'}"
+                    onclick={() => { authorQuery = ""; authorInputRef?.focus(); }}
+                    class="absolute right-1.5 top-1/2 -translate-y-1/2 p-0.5 rounded text-cl-dim hover:text-cl-text transition-colors"
+                    aria-label={$t('themes.clearSearch')}
                   >
-                    {$t(opt.labelKey)}
+                    <IconX class="w-3 h-3" />
                   </button>
-                {/each}
+                {/if}
               </div>
+
+              {#if authorDropdownOpen}
+                <div class="absolute left-0 top-full mt-1 z-20 w-52 bg-cl-surface border border-cl-border rounded shadow-lg shadow-black/20 overflow-hidden">
+                  <div class="max-h-52 overflow-y-auto py-1">
+                    {#each filteredAuthors as author}
+                      <button
+                        onclick={() => selectAuthor(author.name)}
+                        class="w-full flex items-center justify-between px-2.5 py-1.5 text-xs transition-colors text-cl-muted hover:text-cl-text hover:bg-cl-elevated"
+                      >
+                        <span>{author.name}</span>
+                        <span class="text-cl-dim">{author.count}</span>
+                      </button>
+                    {:else}
+                      {#if authorQuery.trim()}
+                        <div class="px-2.5 py-1.5 text-xs text-cl-muted">
+                          {$t('themes.noResults')}
+                        </div>
+                      {:else}
+                        {#each authorEntries.slice(0, 8) as author}
+                          <button
+                            onclick={() => selectAuthor(author.name)}
+                            class="w-full flex items-center justify-between px-2.5 py-1.5 text-xs transition-colors text-cl-muted hover:text-cl-text hover:bg-cl-elevated"
+                          >
+                            <span>{author.name}</span>
+                            <span class="text-cl-dim">{author.count}</span>
+                          </button>
+                        {/each}
+                      {/if}
+                    {/each}
+                  </div>
+                </div>
+              {/if}
             </div>
+          {/if}
+
+          <!-- Sort dropdown -->
+          <div class="relative" bind:this={sortDropdownRef}>
+            <button
+              onclick={() => sortDropdownOpen = !sortDropdownOpen}
+              class="inline-flex items-center gap-2 bg-cl-surface hover:bg-cl-elevated border border-cl-border rounded px-2.5 h-7 text-xs text-cl-text transition-colors"
+              aria-haspopup="listbox"
+              aria-expanded={sortDropdownOpen}
+            >
+              <span class="text-cl-dim">{$t('themes.sortBy')}:</span>
+              {#if SORT_LABEL_KEYS[sortBy]}
+                <span>{$t(SORT_LABEL_KEYS[sortBy])}</span>
+              {/if}
+              <IconCaretDown class="w-3 h-3 text-cl-dim {sortDropdownOpen ? 'rotate-180' : ''} transition-transform" />
+            </button>
+
+            {#if sortDropdownOpen}
+              <div class="absolute left-0 top-full mt-1 z-20 w-40 bg-cl-surface border border-cl-border rounded shadow-lg shadow-black/20 overflow-hidden">
+                <div class="py-1">
+                  {#each sortOptions as opt}
+                    <button
+                      onclick={() => { sortBy = opt; sortDropdownOpen = false; updateUrlParams(); }}
+                      class="w-full text-left px-2.5 py-1.5 text-xs transition-colors {sortBy === opt ? 'bg-cl-elevated text-cl-text' : 'text-cl-muted hover:text-cl-text hover:bg-cl-elevated'}"
+                    >
+                      {$t(SORT_LABEL_KEYS[opt])}
+                    </button>
+                  {/each}
+                </div>
+              </div>
+            {/if}
+          </div>
+
+          {#if hasActiveFilters}
+            <button
+              onclick={clearFilters}
+              class="text-[11px] text-cl-dim hover:text-cl-text underline underline-offset-4 decoration-cl-border-hover transition-all"
+            >
+              {$t('themes.clearAll')}
+            </button>
           {/if}
         </div>
 
-        {#if hasActiveFilters}
-          <button
-            onclick={clearFilters}
-            class="text-xs text-neutral-500 hover:text-white underline underline-offset-4 decoration-white/20 transition-all"
-          >
-            {$t('themes.clearAll')}
-          </button>
-        {/if}
+        <div class="text-[11px] text-cl-dim">
+          {$t('themes.showing', { values: { start: paginationStart, end: paginationEnd, total: totalItems } })}
+        </div>
       </div>
 
-      <div class="text-xs text-neutral-500">
-        {$t('themes.showing', { values: { start: paginationStart, end: paginationEnd, total: totalItems } })}
-      </div>
+      <!-- Active filter chips -->
+      {#if hasActiveFilters}
+        <div class="flex flex-wrap items-center gap-1.5">
+          {#if searchQuery || debouncedQuery}
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-cl-elevated border border-cl-border text-[11px] text-cl-text">
+              <span class="text-cl-dim">{$t('themes.search')}:</span> "{debouncedQuery || searchQuery}"
+              <button onclick={clearSearch} class="hover:text-cl-muted transition-colors" aria-label={$t('themes.clearSearchText')}>
+                <IconX class="w-3 h-3" />
+              </button>
+            </span>
+          {/if}
+        </div>
+      {/if}
     </div>
 
-    <!-- Active filter chips -->
-    {#if hasActiveFilters}
-      <div class="flex flex-wrap items-center gap-2 mb-8">
-        {#if searchQuery || debouncedQuery}
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-xs text-white">
-            <span class="text-neutral-400">{$t('themes.search')}:</span> "{debouncedQuery || searchQuery}"
-            <button onclick={clearSearch} class="hover:text-white/60 transition-colors ml-0.5" aria-label={$t('themes.clearSearchText')}>
-              <IconX class="w-3 h-3" />
-            </button>
-          </span>
-        {/if}
-      </div>
-    {/if}
-
-    <!-- Grid -->
+    <!-- Results -->
     <div>
       {#if (activeTab === "themes" && error && themes.length === 0) || (activeTab === "packages" && packagesError && packages.length === 0)}
-        <div class="text-center py-20">
-          <p class="text-neutral-500 mb-6">{activeTab === "themes" ? error : packagesError}</p>
+        <div class="text-center py-12 rounded border border-cl-border bg-cl-surface">
+          <p class="text-cl-muted text-sm mb-3">{activeTab === "themes" ? error : packagesError}</p>
           <button
             onclick={() => location.reload()}
-            class="bg-white text-black px-6 py-2.5 text-[10px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all"
+            class="bg-cl-text text-cl-accent-inverse px-4 py-1.5 text-xs font-medium rounded hover:opacity-90 transition-opacity"
           >
             {$t('themeDetail.retry')}
           </button>
         </div>
       {:else if (activeTab === "themes" && loading && !hasCached) || (activeTab === "packages" && packagesLoading && !hasPackagesCached)}
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {#each Array(6) as _}
-            <div class="bg-neutral-900 border border-white/5 rounded-xl overflow-hidden animate-pulse">
-              <div class="aspect-video bg-neutral-800"></div>
-              <div class="p-4 space-y-2">
-                <div class="h-4 bg-neutral-800 rounded w-2/3"></div>
-                <div class="h-3 bg-neutral-800 rounded w-1/3"></div>
-                <div class="h-8 bg-neutral-800 rounded w-full mt-4"></div>
+            <div class="bg-cl-surface border border-cl-border rounded overflow-hidden animate-pulse">
+              <div class="aspect-video bg-cl-elevated"></div>
+              <div class="p-3 space-y-2">
+                <div class="h-3 bg-cl-elevated rounded w-2/3"></div>
+                <div class="h-2.5 bg-cl-elevated rounded w-1/3"></div>
+                <div class="h-6 bg-cl-elevated rounded w-full mt-2"></div>
               </div>
             </div>
           {/each}
         </div>
       {:else if activeTab === "themes" && filteredThemes.length === 0 && !loading}
-        <div class="text-center py-20">
-          <p class="text-neutral-400 text-lg mb-2">{$t('themes.noResults')}</p>
-          <p class="text-sm text-neutral-600 mb-8">{$t('themes.noResultsHint')}</p>
+        <div class="text-center py-12 rounded border border-cl-border bg-cl-surface">
+          <p class="text-cl-muted text-sm mb-1">{$t('themes.noResults')}</p>
+          <p class="text-xs text-cl-dim mb-4">{$t('themes.noResultsHint')}</p>
           {#if hasActiveFilters}
             <button
               onclick={clearFilters}
-              class="bg-white text-black px-6 py-2.5 text-[10px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all"
+              class="bg-cl-text text-cl-accent-inverse px-4 py-1.5 text-xs font-medium rounded hover:opacity-90 transition-opacity"
             >
               {$t('themes.clearFilters')}
             </button>
           {/if}
         </div>
       {:else if activeTab === "packages" && filteredPackages.length === 0 && !packagesLoading}
-        <div class="text-center py-20">
-          <p class="text-neutral-400 text-lg mb-2">{$t('themes.noPackages')}</p>
-          <p class="text-sm text-neutral-600 mb-8">{$t('themes.noPackagesHint')}</p>
+        <div class="text-center py-12 rounded border border-cl-border bg-cl-surface">
+          <p class="text-cl-muted text-sm mb-1">{$t('themes.noPackages')}</p>
+          <p class="text-xs text-cl-dim mb-4">{$t('themes.noPackagesHint')}</p>
           {#if hasActiveFilters}
             <button
               onclick={clearFilters}
-              class="bg-white text-black px-6 py-2.5 text-[10px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all"
+              class="bg-cl-text text-cl-accent-inverse px-4 py-1.5 text-xs font-medium rounded hover:opacity-90 transition-opacity"
             >
               {$t('themes.clearFilters')}
             </button>
           {/if}
         </div>
       {:else}
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {#each paginatedItems as item, i (activeTab === "themes" ? (item as Theme).id : (item as ThemePackage).slug)}
-            <div class="card-enter" style="animation-delay: {i * 80}ms">
-              {#if activeTab === "themes"}
-                <ThemeCard theme={item as Theme} />
-              {:else}
-                <PackageCard pkg={item as ThemePackage} />
-              {/if}
+          {#if activeTab === "themes"}
+            {#if viewMode === "grid"}
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {#each paginatedItems as item, i (item.id)}
+                  <div class="card-enter" style="animation-delay: {i * 40}ms">
+                    <ThemeCard theme={item as Theme} />
+                  </div>
+                {/each}
+              </div>
+            {:else}
+              <div class="flex flex-col gap-1.5">
+                {#each paginatedItems as item, i (item.id)}
+                  <div class="card-enter" style="animation-delay: {i * 30}ms">
+                    <ThemeListRow theme={item as Theme} />
+                  </div>
+                {/each}
+              </div>
+            {/if}
+          {:else}
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {#each paginatedItems as item, i (item.slug)}
+                <div class="card-enter" style="animation-delay: {i * 40}ms">
+                  <PackageCard pkg={item as ThemePackage} />
+                </div>
+              {/each}
             </div>
-          {/each}
-        </div>
+          {/if}
 
         <!-- Pagination -->
         {#if totalPages > 1}
-          <div class="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="text-xs text-neutral-500 hidden sm:block">
+          <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="text-[11px] text-cl-dim hidden sm:block">
               {$t('themes.showing', { values: { start: paginationStart, end: paginationEnd, total: totalItems } })}
             </div>
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-1">
               <button
                 onclick={() => goToPage(currentPage - 1)}
                 disabled={currentPage === 1}
-                class="px-3 py-1.5 rounded-lg text-xs font-medium border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                class="px-2 h-7 rounded text-[11px] font-medium border border-cl-border text-cl-muted hover:text-cl-text hover:border-cl-border-hover disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
                 {$t('themes.previous')}
               </button>
@@ -764,19 +768,19 @@
                 {#if pageNum === 1 || pageNum === totalPages || (pageNum >= currentPage - 1 && pageNum <= currentPage + 1)}
                   <button
                     onclick={() => goToPage(pageNum)}
-                    class="w-8 h-8 rounded-lg text-xs font-medium transition-colors {currentPage === pageNum ? 'bg-white text-black' : 'text-neutral-400 hover:text-white hover:bg-white/5'}"
+                    class="w-7 h-7 rounded text-[11px] font-medium transition-colors {currentPage === pageNum ? 'bg-cl-text text-cl-accent-inverse' : 'text-cl-muted hover:text-cl-text hover:bg-cl-elevated'}"
                   >
                     {pageNum}
                   </button>
                 {:else if pageNum === currentPage - 2 || pageNum === currentPage + 2}
-                  <span class="text-neutral-600 text-xs px-1">...</span>
+                  <span class="text-cl-dim text-[11px] px-0.5">...</span>
                 {/if}
               {/each}
 
               <button
                 onclick={() => goToPage(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                class="px-3 py-1.5 rounded-lg text-xs font-medium border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                class="px-2 h-7 rounded text-[11px] font-medium border border-cl-border text-cl-muted hover:text-cl-text hover:border-cl-border-hover disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
                 {$t('themes.next')}
               </button>
@@ -788,12 +792,12 @@
 
     <!-- Contribute -->
     {#if activeTab === "themes" && (!loading || hasCached)}
-      <div class="mt-20 text-center">
-        <p class="text-sm text-neutral-500">
+      <div class="mt-10 pt-4 border-t border-cl-border text-center">
+        <p class="text-[11px] text-cl-dim">
           {$t('themes.createYourOwn')}
-          <a href="https://dev.cubiclauncher.org/docs/es-ES/guias/hacer-themes" class="text-white underline underline-offset-4 decoration-white/20 hover:decoration-white/60 transition-all">{$t('themes.followGuide')}</a>
+          <a href="https://dev.cubiclauncher.org/docs/es-ES/guias/hacer-themes" class="text-cl-text hover:underline underline-offset-4 decoration-cl-border-hover transition-all">{$t('themes.followGuide')}</a>
           {$t('themes.shareOn')}
-          <a href="https://github.com/CubicLauncherDevs/Themes" target="_blank" rel="noopener noreferrer" class="text-white underline underline-offset-4 decoration-white/20 hover:decoration-white/60 transition-all">GitHub</a>.
+          <a href="https://github.com/CubicLauncherDevs/Themes" target="_blank" rel="noopener noreferrer" class="text-cl-text hover:underline underline-offset-4 decoration-cl-border-hover transition-all">GitHub</a>.
         </p>
       </div>
     {/if}
@@ -802,10 +806,10 @@
 
 <style>
   @keyframes card-enter {
-    from { opacity: 0; transform: translateY(12px); }
+    from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
   }
   .card-enter {
-    animation: card-enter 0.4s ease-out both;
+    animation: card-enter 0.25s ease-out both;
   }
 </style>

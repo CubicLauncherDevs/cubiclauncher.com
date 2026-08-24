@@ -1,11 +1,7 @@
-<section class="py-16">
-  <div class="container mx-auto px-6 max-w-6xl">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {#each Array.from({ length: 5 }) as _}
-        <div
-          class="animate-pulse h-44 rounded-2xl bg-neutral-900/40 border border-white/10"
-        ></div>
-      {/each}
-    </div>
+<section class="py-6">
+  <div class="border border-cl-border rounded bg-cl-surface overflow-hidden animate-pulse">
+    {#each Array.from({ length: 5 }) as _}
+      <div class="h-14 border-b border-cl-border last:border-0 bg-cl-surface"></div>
+    {/each}
   </div>
 </section>

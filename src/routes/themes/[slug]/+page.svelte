@@ -10,10 +10,13 @@
   import ThemeDetailHeader from "$lib/components/themes/ThemeDetailHeader.svelte";
   import VersionTimeline from "$lib/components/themes/VersionTimeline.svelte";
   import ThemeLightbox from "$lib/components/themes/ThemeLightbox.svelte";
+  import IconArrowLeft from "~icons/ph/arrow-left";
 
   let { data } = $props();
   let theme = $derived(data.theme);
-  let allThemes = $derived(data.allThemes);
+  let relatedThemes = $derived(data.relatedThemes ?? []);
+  let sortedVersions = $derived(data.sortedVersions ?? []);
+  let authorUrl = $derived(data.authorUrl ?? "/themes");
 
   let slug = $derived($page.params.slug as string);
   let tabParam = $derived(($page.url.searchParams.get("tab") || "description") as "description" | "versions");
@@ -31,14 +34,6 @@
     activeTab = tabParam;
   });
 
-  let relatedThemes = $derived.by(() => {
-    const current = theme;
-    if (!current) return [];
-    return allThemes.filter((t) => t.author === current.author && t.slug !== current.slug);
-  });
-
-  let authorUrl = $derived(theme ? `/themes/author/${slugify(theme.author)}` : "/themes");
-
   let descriptionHtml = $derived(
     theme?.description ? renderMarkdown(theme.description) : ""
   );
@@ -55,28 +50,6 @@
 
   let ogImage = $derived(
     currentVer?.showcaseUrl || currentVer?.previewUrl || theme?.previewUrl || null
-  );
-
-  let sortedVersions = $derived(
-    theme ? [...theme.versions].sort((a, b) => {
-      const re = /(\d+)|(\D+)/g;
-      const aParts = a.version.match(re) || [];
-      const bParts = b.version.match(re) || [];
-      const len = Math.max(aParts.length, bParts.length);
-      for (let i = 0; i < len; i++) {
-        const ap = aParts[i] || "";
-        const bp = bParts[i] || "";
-        const aNum = parseInt(ap, 10);
-        const bNum = parseInt(bp, 10);
-        if (!isNaN(aNum) && !isNaN(bNum)) {
-          if (aNum !== bNum) return bNum - aNum;
-        } else {
-          const cmp = bp.localeCompare(ap);
-          if (cmp !== 0) return cmp;
-        }
-      }
-      return 0;
-    }) : []
   );
 
   let changelogHtml = $derived(
@@ -138,100 +111,112 @@
     <meta name="twitter:image" content={ogImage} />
   {/if}
   {#if jsonLd}
-    {@html `<script type="application/ld+json">${jsonLd}</script>`}
+    {@html `<script type="application/ld+json">${jsonLd}<\/script>`}
   {/if}
 </svelte:head>
 
-<section class="min-h-screen pt-40 pb-32 bg-neutral-950 text-white overflow-hidden relative">
-  <div class="absolute top-0 inset-x-0 h-125 bg-linear-to-b from-white/3 to-transparent pointer-events-none"></div>
-  <div class="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-white/2 blur-[120px] rounded-full pointer-events-none"></div>
+<section class="min-h-screen pb-16 pt-[calc(var(--navbar-height)+24px)] bg-cl-base text-cl-text">
+  <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
+    <a
+      href="/themes"
+      onclick={goToThemesList}
+      class="inline-flex items-center gap-1 text-[11px] text-cl-dim hover:text-cl-text transition-colors mb-4"
+    >
+      <IconArrowLeft class="w-3 h-3" />
+      {$t('themeDetail.allThemes')}
+    </a>
 
-  <div class="container mx-auto px-6 relative z-10 max-w-6xl">
     {#if loading}
-      <div class="animate-pulse space-y-8 max-w-4xl mx-auto">
-        <div class="h-8 bg-neutral-800 rounded w-48"></div>
-        <div class="aspect-video bg-neutral-800 rounded-2xl"></div>
-        <div class="space-y-3">
-          <div class="h-6 bg-neutral-800 rounded w-64"></div>
-          <div class="h-4 bg-neutral-800 rounded w-96"></div>
+      <div class="animate-pulse space-y-4 max-w-4xl">
+        <div class="h-6 bg-cl-elevated rounded w-32"></div>
+        <div class="aspect-video bg-cl-elevated rounded"></div>
+        <div class="space-y-2">
+          <div class="h-4 bg-cl-elevated rounded w-40"></div>
+          <div class="h-3 bg-cl-elevated rounded w-60"></div>
         </div>
       </div>
     {:else if error}
-      <div class="text-center py-20 max-w-4xl mx-auto">
-        <p class="text-neutral-400 text-lg mb-6">{error}</p>
-        <div class="flex gap-4 justify-center">
-          <a
-            href="/themes"
-            onclick={goToThemesList}
-            class="px-8 py-3 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 transition-all"
-          >
-            {$t('themeDetail.viewAll')}
-          </a>
-        </div>
+      <div class="text-center py-12 max-w-4xl mx-auto rounded border border-cl-border bg-cl-surface">
+        <p class="text-cl-muted text-sm mb-4">{error}</p>
+        <a
+          href="/themes"
+          onclick={goToThemesList}
+          class="px-4 py-1.5 text-xs font-medium rounded border border-cl-border text-cl-muted hover:text-cl-text hover:border-cl-border-hover transition-colors"
+        >
+          {$t('themeDetail.viewAll')}
+        </a>
       </div>
     {:else if theme}
-      <div class="max-w-5xl mx-auto">
-        <ThemeDetailHeader
-          {theme}
-          {currentVer}
-          {selectedVersion}
-          onVersionChange={(ver) => selectedVersion = ver}
-          onPreviewClick={(url: string) => { lightboxUrl = url; showLightbox = true; }}
-        />
-
-        <!-- Tabs -->
-        <div class="border-b border-white/10 mb-8">
-          <div class="flex gap-0">
-            <button
-              onclick={() => setTab("description")}
-              class="px-5 py-3 text-sm font-medium transition-colors border-b-2 -mb-px {activeTab === 'description' ? 'border-white text-white' : 'border-transparent text-neutral-500 hover:text-white'}"
-            >
-              {$t('themeDetail.description')}
-            </button>
-            <button
-              onclick={() => setTab("versions")}
-              class="px-5 py-3 text-sm font-medium transition-colors border-b-2 -mb-px {activeTab === 'versions' ? 'border-white text-white' : 'border-transparent text-neutral-500 hover:text-white'}"
-            >
-              {$t('themeDetail.versions')}
-            </button>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <!-- Sidebar info -->
+        <div class="lg:col-span-4 order-2 lg:order-1">
+          <div class="border border-cl-border rounded bg-cl-surface p-4 sticky top-[calc(var(--navbar-height)+16px)]">
+            <ThemeDetailHeader
+              {theme}
+              {currentVer}
+              {selectedVersion}
+              onVersionChange={(ver) => selectedVersion = ver}
+              onPreviewClick={(url: string) => { lightboxUrl = url; showLightbox = true; }}
+            />
           </div>
         </div>
 
-        <!-- Tab Content -->
-        {#if activeTab === "description"}
-          {#if descriptionHtml}
-            <div class="max-w-none">
-              <div class="prose prose-invert prose-neutral max-w-none text-sm text-neutral-300">
-                {@html descriptionHtml}
-              </div>
-            </div>
-          {:else}
-            <p class="text-sm text-neutral-500 italic">{$t('themeDetail.noDescription')}</p>
-          {/if}
-        {:else if activeTab === "versions"}
-          <VersionTimeline
-            versions={sortedVersions}
-            latestVersion={theme.latestVersion}
-            themeName={theme.name}
-            themeAuthor={theme.author}
-            {expandedVersion}
-            onToggleVersion={toggleVersion}
-          />
-        {/if}
-
-        <!-- Related themes -->
-        {#if relatedThemes.length > 0}
-          <div class="mt-20 pt-12 border-t border-white/5">
-            <a href={authorUrl} class="block text-xl font-bold tracking-tighter mb-6 hover:text-white/80 transition-colors">
-              {$t('themeDetail.moreBy', { values: { author: theme.author } })}
-            </a>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {#each relatedThemes.slice(0, 3) as related}
-                <ThemeCard theme={related} />
-              {/each}
+        <!-- Main content -->
+        <div class="lg:col-span-8 order-1 lg:order-2">
+          <!-- Tabs -->
+          <div class="border-b border-cl-border mb-4">
+            <div class="flex gap-0">
+              <button
+                onclick={() => setTab("description")}
+                class="px-3 py-2 text-xs font-medium transition-colors border-b-2 -mb-px {activeTab === 'description' ? 'border-cl-text text-cl-text' : 'border-transparent text-cl-dim hover:text-cl-text'}"
+              >
+                {$t('themeDetail.description')}
+              </button>
+              <button
+                onclick={() => setTab("versions")}
+                class="px-3 py-2 text-xs font-medium transition-colors border-b-2 -mb-px {activeTab === 'versions' ? 'border-cl-text text-cl-text' : 'border-transparent text-cl-dim hover:text-cl-text'}"
+              >
+                {$t('themeDetail.versions')}
+              </button>
             </div>
           </div>
-        {/if}
+
+          <!-- Tab Content -->
+          <div class="border border-cl-border rounded bg-cl-surface p-4 min-h-[200px]">
+            {#if activeTab === "description"}
+              {#if descriptionHtml}
+                <div class="prose prose-invert prose-neutral max-w-none text-xs text-cl-muted">
+                  {@html descriptionHtml}
+                </div>
+              {:else}
+                <p class="text-xs text-cl-dim italic">{$t('themeDetail.noDescription')}</p>
+              {/if}
+            {:else if activeTab === "versions"}
+              <VersionTimeline
+                versions={sortedVersions}
+                latestVersion={theme.latestVersion}
+                themeName={theme.name}
+                themeAuthor={theme.author}
+                {expandedVersion}
+                onToggleVersion={toggleVersion}
+              />
+            {/if}
+          </div>
+
+          <!-- Related themes -->
+          {#if relatedThemes.length > 0}
+            <div class="mt-6 pt-4 border-t border-cl-border">
+              <a href={authorUrl} class="block text-sm font-semibold mb-3 hover:text-cl-muted transition-colors">
+                {$t('themeDetail.moreBy', { values: { author: theme.author } })}
+              </a>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {#each relatedThemes.slice(0, 4) as related}
+                  <ThemeCard theme={related} />
+                {/each}
+              </div>
+            </div>
+          {/if}
+        </div>
       </div>
     {/if}
   </div>

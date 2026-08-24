@@ -4,22 +4,33 @@
   import Footer from "$lib/components/global/Footer.svelte";
   import { browser } from '$app/environment';
   import { currentLocale } from "$lib/i18n";
+  import { onNavigate } from '$app/navigation';
+  import { themeStore } from "$lib/stores/theme.svelte";
 
   let { children } = $props();
-
-  if (browser) {
-    document.documentElement.lang = $currentLocale ?? 'es';
-  }
 
   $effect(() => {
     if (browser) {
       document.documentElement.lang = $currentLocale ?? 'es';
     }
   });
+
+  onNavigate((navigation) => {
+    if (!browser || !document.startViewTransition) return;
+
+    return new Promise((resolve) => {
+      document.startViewTransition(async () => {
+        resolve();
+        await navigation.complete;
+      });
+    });
+  });
 </script>
 
-<div class="min-h-screen bg-neutral-950 text-neutral-50 selection:bg-white/10 selection:text-white font-sans antialiased">
+<div class="min-h-screen bg-cl-base text-cl-text selection:bg-cl-text/10 selection:text-cl-text font-sans antialiased text-base flex flex-col">
   <Navbar />
-  {@render children()}
+  <main class="pt-[var(--navbar-height)] flex-1 flex flex-col">
+    {@render children()}
+  </main>
   <Footer />
 </div>

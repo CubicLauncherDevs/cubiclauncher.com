@@ -84,13 +84,16 @@
       );
 
       const url = URL.createObjectURL(content);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${resolved.slug}.zip`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+      try {
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${resolved.slug}.zip`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      } finally {
+        queueMicrotask(() => URL.revokeObjectURL(url));
+      }
 
       success = true;
       successTimer = setTimeout(() => { success = false; }, 3000);
@@ -107,31 +110,31 @@
   }
 </script>
 
-<div class="flex flex-col gap-2">
+<div class="flex flex-col gap-1.5">
   <button
     onclick={downloadPackage}
     disabled={loading || resolved.resolvedThemes.length === 0}
-    class="inline-flex items-center justify-center gap-2 bg-white text-black px-6 py-3 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
+    class="inline-flex items-center justify-center gap-1.5 bg-cl-text text-cl-accent-inverse px-4 py-2 text-xs font-medium rounded hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
   >
     {#if loading}
-      <IconSpinner class="w-4 h-4 animate-spin" />
+      <IconSpinner class="w-3.5 h-3.5 animate-spin" />
       {#if total > 0}
         <span>{$t('packageDetail.downloadingPackage')} ({progress}/{total})</span>
       {:else}
         <span>{$t('packageDetail.downloadingPackage')}</span>
       {/if}
     {:else if success}
-      <IconCheck class="w-4 h-4" />
+      <IconCheck class="w-3.5 h-3.5" />
       <span>{$t('packageDetail.downloaded')}</span>
     {:else}
-      <IconDownload class="w-4 h-4" />
+      <IconDownload class="w-3.5 h-3.5" />
       <span>{$t('packageDetail.downloadPackage')}</span>
     {/if}
   </button>
 
   {#if error}
-    <div class="flex items-start gap-2 text-xs text-red-400">
-      <IconWarning class="w-4 h-4 shrink-0 mt-0.5" />
+    <div class="flex items-start gap-1.5 text-[11px] text-cl-danger">
+      <IconWarning class="w-3.5 h-3.5 shrink-0 mt-0.5" />
       <span>{error}</span>
     </div>
   {/if}

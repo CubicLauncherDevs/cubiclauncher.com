@@ -1,192 +1,195 @@
 <script lang="ts">
     import { onMount } from "svelte";
+    import { fade, fly } from "svelte/transition";
+    import { cubicOut } from "svelte/easing";
     import Logo from "$lib/Logo.svelte";
     import LanguageSwitcher from "$lib/i18n/LanguageSwitcher.svelte";
-    import { fade } from "svelte/transition";
+    import ThemeSwitcher from "$lib/components/global/ThemeSwitcher.svelte";
     import { t } from "$lib/i18n";
+    import { themeStore } from "$lib/stores/theme.svelte";
 
     let scrolled = $state(false);
     let isMobileMenuOpen = $state(false);
 
     const toggleMobileMenu = () => {
         isMobileMenuOpen = !isMobileMenuOpen;
-        if (typeof document !== "undefined") {
-            if (isMobileMenuOpen) {
-                document.body.style.overflow = "hidden";
-            } else {
-                document.body.style.overflow = "auto";
-            }
-        }
+    };
+
+    const closeMobileMenu = () => {
+        isMobileMenuOpen = false;
     };
 
     onMount(() => {
         const handleScroll = () => {
-            scrolled = window.scrollY > 50;
+            scrolled = window.scrollY > 10;
         };
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        handleScroll();
         return () => window.removeEventListener("scroll", handleScroll);
     });
+
+    const mainLinks: [string, string][] = [
+        ["nav.themes", "/themes"],
+        ["nav.about", "/about"],
+        ["nav.docs", "https://dev.cubiclauncher.org/docs"]
+    ];
 </script>
 
-<header
-    class="fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] {scrolled
-        ? 'py-3 sm:py-4'
-        : 'py-4 sm:py-8'} pointer-events-none flex justify-center"
->
-    <div class="pointer-events-auto w-full px-4 sm:px-6 flex justify-center">
-        <div
-            class="w-full flex items-center justify-between transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-full border {scrolled
-                ? 'max-w-5xl bg-neutral-900/90 backdrop-blur-xs border-white/10 px-4 sm:px-8 py-2 sm:py-3 shadow-2xl'
-                : 'max-w-7xl border-transparent px-2 sm:px-4 py-2'}"
-        >
-            <div class="flex items-center {scrolled ? 'gap-3 lg:gap-6' : 'gap-3 sm:gap-6 lg:gap-10'} shrink-0">
-                <a href="/" class="flex items-center gap-3 group">
-                    <Logo
-                        width="2.5rem"
-                        height="2.5rem"
-                        color="#ffffff"
-                        className="group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <span
-                        class="hidden sm:block font-bold text-lg tracking-tighter uppercase"
-                        >CubicLauncher</span
-                    >
-                </a>
+<svelte:window
+    onkeydown={(e) => {
+        if (e.key === 'Escape' && isMobileMenuOpen) {
+            closeMobileMenu();
+        }
+    }}
+/>
 
-                <nav class="hidden md:flex items-center {scrolled ? 'gap-3 lg:gap-5' : 'gap-4 lg:gap-8'}">
-                    {#each [["nav.themes", "/themes"], ["nav.about", "/about"], ["nav.docs", "https://dev.cubiclauncher.org/docs"]] as [labelKey, href]}
-                        <a
-                            href={href}
-                            class="text-[10px] font-bold text-neutral-500 hover:text-white transition-colors uppercase tracking-[0.2em]"
-                            >{$t(labelKey)}</a
-                        >
-                    {/each}
-                </nav>
+<header
+    class="fixed top-0 left-0 right-0 z-50 h-[var(--navbar-height)] border-b transition-colors duration-200 {scrolled
+        ? 'bg-cl-base border-cl-border'
+        : 'bg-cl-base border-transparent'}"
+>
+    <div class="h-full mx-auto px-4 lg:px-6 flex items-center justify-between" style="max-width: var(--discord-max-width);">
+        <div class="flex items-center gap-6">
+            <a href="/" class="flex items-center gap-2 group shrink-0">
+                <Logo
+                    width="1.5rem"
+                    height="1.5rem"
+                    color="var(--cl-text)"
+                    className="transition-transform duration-200 group-hover:scale-105"
+                />
+                <span class="hidden sm:block font-semibold text-sm text-cl-text tracking-tight">
+                    CubicLauncher
+                </span>
+            </a>
+
+            <nav class="hidden md:flex items-center">
+                {#each mainLinks as [labelKey, href]}
+                    <a
+                        href={href}
+                        class="px-2.5 py-1.5 text-xs font-medium text-cl-muted hover:text-cl-text transition-colors duration-150"
+                    >
+                        {$t(labelKey)}
+                    </a>
+                {/each}
+            </nav>
+        </div>
+
+        <div class="flex items-center gap-3 shrink-0">
+            <div class="hidden sm:flex items-center gap-3">
+                <ThemeSwitcher />
+                <LanguageSwitcher />
             </div>
 
-            <div class="flex items-center {scrolled ? 'gap-2 lg:gap-4' : 'gap-3 lg:gap-6'} shrink-0">
-                <div class="hidden sm:block">
-                    <LanguageSwitcher />
-                </div>
-
-                <nav class="hidden md:flex items-center {scrolled ? 'gap-3 lg:gap-5' : 'gap-4 lg:gap-8'}">
-                    <a
-                        href="https://discord.com/invite/7VaqSrPukm"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="text-[10px] font-bold text-neutral-500 hover:text-white transition-colors uppercase tracking-[0.2em]"
-                    >
-                        {$t('nav.discord')}
-                    </a>
-                    <a
-                        href="/donate"
-                        class="text-[10px] font-bold text-neutral-500 hover:text-white transition-colors uppercase tracking-[0.2em]"
-                    >
-                        {$t('nav.donate')}
-                    </a>
-                </nav>
-
+            <nav class="hidden md:flex items-center">
                 <a
-                    href="/install"
-                    class="hidden sm:flex bg-white text-black px-6 py-2 sm:px-8 sm:py-3 text-[10px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all active:scale-95"
+                    href="https://discord.com/invite/7VaqSrPukm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="px-2.5 py-1.5 text-xs font-medium text-cl-muted hover:text-cl-text transition-colors duration-150"
                 >
-                    {$t('nav.download')}
+                    {$t('nav.discord')}
                 </a>
-                <button
-                    class="md:hidden text-white p-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-colors focus:outline-none flex items-center justify-center"
-                    onclick={toggleMobileMenu}
-                    aria-label="Toggle mobile menu"
+                <a
+                    href="/donate"
+                    class="px-2.5 py-1.5 text-xs font-medium text-cl-muted hover:text-cl-text transition-colors duration-150"
                 >
-                    <svg
-                        class="w-5 h-5 sm:w-6 sm:h-6"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
+                    {$t('nav.donate')}
+                </a>
+            </nav>
+
+            <a
+                href="/install"
+                class="hidden sm:inline-flex items-center text-xs font-medium text-cl-text bg-cl-elevated border border-cl-border hover:border-cl-border-hover hover:bg-cl-hover rounded px-3 py-1.5 transition-colors duration-150"
+            >
+                {$t('nav.download')}
+            </a>
+
+            <button
+                class="md:hidden text-cl-muted hover:text-cl-text p-1.5 focus:outline-none transition-colors duration-150"
+                onclick={toggleMobileMenu}
+                aria-label="Toggle mobile menu"
+                aria-expanded={isMobileMenuOpen}
+            >
+                <svg
+                    class="w-5 h-5 transition-transform duration-200 {isMobileMenuOpen ? 'rotate-90' : ''}"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    {#if isMobileMenuOpen}
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"
+                        />
+                    {:else}
                         <path
                             stroke-linecap="round"
                             stroke-linejoin="round"
                             stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16"
                         />
-                    </svg>
-                </button>
-            </div>
+                    {/if}
+                </svg>
+            </button>
         </div>
     </div>
 </header>
 
 {#if isMobileMenuOpen}
-    <div
-        class="fixed inset-0 z-60 bg-neutral-950/95 backdrop-blur-xl flex flex-col items-center justify-center pointer-events-auto"
-        in:fade={{ duration: 300 }}
-        out:fade={{ duration: 300 }}
-    >
+    <div class="fixed inset-0 z-40 md:hidden">
         <button
-            class="absolute top-6 right-6 p-4 text-neutral-400 hover:text-white transition-colors focus:outline-none"
-            onclick={toggleMobileMenu}
-            aria-label="Close mobile menu"
+            type="button"
+            class="absolute inset-0 block w-full h-full bg-cl-accent/40 backdrop-blur-sm"
+            aria-label="Close menu"
+            onclick={closeMobileMenu}
+            transition:fade={{ duration: 200, easing: cubicOut }}
+        ></button>
+        <div
+            class="absolute top-[var(--navbar-height)] left-0 right-0 bg-cl-base border-b border-cl-border shadow-xl"
+            transition:fly={{ y: -10, duration: 200, easing: cubicOut }}
         >
-            <svg
-                class="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-            >
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M6 18L18 6M6 6l12 12"
-                />
-            </svg>
-        </button>
-
-        <nav class="flex flex-col items-center gap-10">
-            <a
-                href="/"
-                class="mb-8 flex items-center gap-3"
-                onclick={toggleMobileMenu}
-            >
-                <Logo width="3rem" height="3rem" color="#ffffff" />
-                <span
-                    class="font-bold text-2xl tracking-tighter uppercase text-white"
-                    >CubicLauncher</span
-                >
-            </a>
-
-            {#each [["nav.themes", "/themes"], ["nav.about", "/about"], ["nav.docs", "https://dev.cubiclauncher.org/docs"]] as [labelKey, href]}
+            <nav class="flex flex-col py-1">
+                {#each mainLinks as [labelKey, href]}
+                    <a
+                        href={href}
+                        class="block px-4 py-2 text-xs font-medium text-cl-muted hover:text-cl-text hover:bg-cl-elevated transition-colors duration-150"
+                        onclick={closeMobileMenu}
+                    >
+                        {$t(labelKey)}
+                    </a>
+                {/each}
                 <a
-                    href={href}
-                    class="text-xl font-bold text-neutral-400 hover:text-white transition-colors uppercase tracking-[0.2em]"
-                    onclick={toggleMobileMenu}>{$t(labelKey)}</a
+                    href="https://discord.com/invite/7VaqSrPukm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="block px-4 py-2 text-xs font-medium text-cl-muted hover:text-cl-text hover:bg-cl-elevated transition-colors duration-150"
+                    onclick={closeMobileMenu}
                 >
-            {/each}
-            <a
-                href="https://discord.com/invite/7VaqSrPukm"
-                class="text-xl font-bold text-neutral-400 hover:text-white transition-colors uppercase tracking-[0.2em]"
-                onclick={toggleMobileMenu}>{$t('nav.discord')}</a
-            >
-
-            <a
-                href="/donate"
-                class="mt-4 text-xl font-bold text-neutral-400 hover:text-white transition-colors uppercase tracking-[0.2em]"
-                onclick={toggleMobileMenu}
-            >
-                {$t('nav.donate')}
-            </a>
-
-            <a
-                href="/install"
-                class="mt-8 bg-white text-black px-10 py-3 text-sm font-bold uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 transition-all active:scale-95"
-                onclick={toggleMobileMenu}
-            >
-                {$t('nav.download')}
-            </a>
-
-            <div class="mt-6">
-              <LanguageSwitcher />
-            </div>
-        </nav>
+                    {$t('nav.discord')}
+                </a>
+                <a
+                    href="/donate"
+                    class="block px-4 py-2 text-xs font-medium text-cl-muted hover:text-cl-text hover:bg-cl-elevated transition-colors duration-150"
+                    onclick={closeMobileMenu}
+                >
+                    {$t('nav.donate')}
+                </a>
+                <div class="px-4 py-2 flex items-center justify-between border-t border-cl-border mt-1">
+                    <a
+                        href="/install"
+                        class="inline-flex items-center text-xs font-medium text-cl-text bg-cl-elevated border border-cl-border hover:border-cl-border-hover hover:bg-cl-hover rounded px-3 py-1.5 transition-colors duration-150"
+                        onclick={closeMobileMenu}
+                    >
+                        {$t('nav.download')}
+                    </a>
+                    <div class="flex items-center gap-3">
+                        <ThemeSwitcher />
+                        <LanguageSwitcher />
+                    </div>
+                </div>
+            </nav>
+        </div>
     </div>
 {/if}

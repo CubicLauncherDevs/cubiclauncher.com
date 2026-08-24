@@ -96,13 +96,16 @@
       );
 
       const dlUrl = URL.createObjectURL(content);
-      const a = document.createElement("a");
-      a.href = dlUrl;
-      a.download = `${displayName}.cbth`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(dlUrl);
+      try {
+        const a = document.createElement("a");
+        a.href = dlUrl;
+        a.download = `${displayName}.cbth`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      } finally {
+        queueMicrotask(() => URL.revokeObjectURL(dlUrl));
+      }
 
       success = true;
       successTimer = setTimeout(() => { success = false; }, 3000);
@@ -119,27 +122,27 @@
   }
 </script>
 
-<div class="flex flex-col gap-2">
+<div class="flex flex-col gap-1.5">
   <button
     onclick={downloadTheme}
     disabled={loading}
-    class="flex items-center justify-center gap-3 w-full bg-white text-black px-8 py-4 font-bold text-[11px] uppercase tracking-[0.2em] rounded-2xl hover:bg-neutral-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 shadow-xl shadow-white/5"
+    class="flex items-center justify-center gap-1.5 w-full bg-cl-text text-cl-accent-inverse px-4 py-2 font-medium text-xs rounded hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
   >
     {#if loading}
-      <IconSpinner class="w-5 h-5 animate-spin" />
+      <IconSpinner class="w-3.5 h-3.5 animate-spin" />
       <span>{$t('packageDetail.downloadingPackage')} ({progress}/{total})</span>
     {:else if success}
-      <IconCheck class="w-5 h-5" />
+      <IconCheck class="w-3.5 h-3.5" />
       <span>{$t('packageDetail.downloaded')}</span>
     {:else}
-      <IconDownload class="w-5 h-5" />
+      <IconDownload class="w-3.5 h-3.5" />
       <span>{label ?? $t('themes.downloadTheme')}</span>
     {/if}
   </button>
 
   {#if error}
-    <div class="flex items-start gap-2 text-xs text-red-400">
-      <IconWarning class="w-4 h-4 shrink-0 mt-0.5" />
+    <div class="flex items-start gap-1.5 text-[11px] text-cl-danger">
+      <IconWarning class="w-3.5 h-3.5 shrink-0 mt-0.5" />
       <span>{error}</span>
     </div>
   {/if}

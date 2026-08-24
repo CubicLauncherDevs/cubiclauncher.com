@@ -1,9 +1,11 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import { t } from "$lib/i18n";
-  import type { AuthorEntry, Theme } from "$lib/types/theme";
   import ThemeCard from "$lib/components/themes/ThemeCard.svelte";
+  import ThemeListRow from "$lib/components/themes/ThemeListRow.svelte";
   import IconArrowLeft from "~icons/ph/arrow-left";
+  import IconList from "~icons/ph/list";
+  import IconSquaresFour from "~icons/ph/squares-four";
   import { goToThemesList } from "$lib/utils/theme-history";
 
   let { data } = $props();
@@ -13,6 +15,7 @@
 
   const ITEMS_PER_PAGE = 12;
   let currentPage = $state(1);
+  let viewMode = $state<"grid" | "list">("grid");
 
   let totalPages = $derived(Math.max(1, Math.ceil((author?.themes.length ?? 0) / ITEMS_PER_PAGE)));
 
@@ -49,47 +52,74 @@
   <meta name="description" content={$t('page.themesDesc')} />
   <link rel="canonical" href={canonicalUrl} />
   {#if jsonLd}
-    {@html `<script type="application/ld+json">${jsonLd}</script>`}
+    {@html `<script type="application/ld+json">${jsonLd}<\/script>`}
   {/if}
 </svelte:head>
 
-<section class="min-h-screen pt-36 pb-32 bg-neutral-950 text-white">
-  <div class="container mx-auto px-6 max-w-6xl">
+<section class="min-h-screen pb-16 pt-[calc(var(--navbar-height)+24px)] bg-cl-base text-cl-text">
+  <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
     <a
       href="/themes"
       onclick={goToThemesList}
-      class="inline-flex items-center gap-2 text-sm text-neutral-500 hover:text-white transition-colors mb-8"
+      class="inline-flex items-center gap-1 text-[11px] text-cl-dim hover:text-cl-text transition-colors mb-4"
     >
-      <IconArrowLeft class="w-4 h-4" />
+      <IconArrowLeft class="w-3 h-3" />
       {$t('themeDetail.allThemes')}
     </a>
 
     {#if author}
-      <div class="mb-10">
-        <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-2">
-          {author.name}
-        </h1>
-        <p class="text-neutral-400">
-          {$t('themes.showing', { values: { start: paginationStart, end: paginationEnd, total: author.themes.length } })}
-        </p>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+        <div>
+          <h1 class="text-lg sm:text-xl font-semibold text-cl-text mb-0.5">
+            {author.name}
+          </h1>
+          <p class="text-xs text-cl-muted">
+            {$t('themes.showing', { values: { start: paginationStart, end: paginationEnd, total: author.themes.length } })}
+          </p>
+        </div>
+
+        <div class="inline-flex bg-cl-surface border border-cl-border rounded p-0.5">
+          <button
+            onclick={() => viewMode = "grid"}
+            class="p-1 rounded transition-colors {viewMode === 'grid' ? 'bg-cl-elevated text-cl-text' : 'text-cl-dim hover:text-cl-text'}"
+            aria-label="Grid view"
+          >
+            <IconSquaresFour class="w-3.5 h-3.5" />
+          </button>
+          <button
+            onclick={() => viewMode = "list"}
+            class="p-1 rounded transition-colors {viewMode === 'list' ? 'bg-cl-elevated text-cl-text' : 'text-cl-dim hover:text-cl-text'}"
+            aria-label="List view"
+          >
+            <IconList class="w-3.5 h-3.5" />
+          </button>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {#each paginatedThemes as theme}
-          <ThemeCard {theme} />
-        {/each}
-      </div>
+      {#if viewMode === "grid"}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {#each paginatedThemes as theme}
+            <ThemeCard {theme} />
+          {/each}
+        </div>
+      {:else}
+        <div class="flex flex-col gap-1.5">
+          {#each paginatedThemes as theme}
+            <ThemeListRow {theme} />
+          {/each}
+        </div>
+      {/if}
 
       {#if totalPages > 1}
-        <div class="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div class="text-xs text-neutral-500 hidden sm:block">
+        <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div class="text-[11px] text-cl-dim hidden sm:block">
             {$t('themes.showing', { values: { start: paginationStart, end: paginationEnd, total: author.themes.length } })}
           </div>
-          <div class="flex items-center gap-2">
+          <div class="flex items-center gap-1">
             <button
               onclick={() => goToPage(currentPage - 1)}
               disabled={currentPage === 1}
-              class="px-3 py-1.5 rounded-lg text-xs font-medium border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              class="px-2 h-7 rounded text-[11px] font-medium border border-cl-border text-cl-muted hover:text-cl-text hover:border-cl-border-hover disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
             >
               {$t('themes.previous')}
             </button>
@@ -99,19 +129,19 @@
               {#if pageNum === 1 || pageNum === totalPages || (pageNum >= currentPage - 1 && pageNum <= currentPage + 1)}
                 <button
                   onclick={() => goToPage(pageNum)}
-                  class="w-8 h-8 rounded-lg text-xs font-medium transition-colors {currentPage === pageNum ? 'bg-white text-black' : 'text-neutral-400 hover:text-white hover:bg-white/5'}"
+                  class="w-7 h-7 rounded text-[11px] font-medium transition-colors {currentPage === pageNum ? 'bg-cl-text text-cl-accent-inverse' : 'text-cl-muted hover:text-cl-text hover:bg-cl-elevated'}"
                 >
                   {pageNum}
                 </button>
               {:else if pageNum === currentPage - 2 || pageNum === currentPage + 2}
-                <span class="text-neutral-600 text-xs px-1">...</span>
+                <span class="text-cl-dim text-[11px] px-0.5">...</span>
               {/if}
             {/each}
 
             <button
               onclick={() => goToPage(currentPage + 1)}
               disabled={currentPage === totalPages}
-              class="px-3 py-1.5 rounded-lg text-xs font-medium border border-white/10 text-neutral-400 hover:text-white hover:border-white/25 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              class="px-2 h-7 rounded text-[11px] font-medium border border-cl-border text-cl-muted hover:text-cl-text hover:border-cl-border-hover disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
             >
               {$t('themes.next')}
             </button>

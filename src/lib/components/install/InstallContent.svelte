@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { browser } from "$app/environment";
   import { onMount } from "svelte";
   import { t, currentLocale } from "$lib/i18n";
   import IconDownload from "~icons/ph/download-simple";
@@ -18,7 +19,12 @@
   import OsTabs from "./OsTabs.svelte";
   import ReleaseInfo from "./ReleaseInfo.svelte";
 
-  let selectedOS = $state<PlatformId>("windows");
+  function getInitialOS(): PlatformId {
+    if (!browser) return "windows";
+    return detectOS(window.navigator.userAgent);
+  }
+
+  let selectedOS = $state<PlatformId>(getInitialOS());
   let release = $state<ReleaseData | null>(null);
   let loading = $state(true);
   let error = $state("");
@@ -46,11 +52,16 @@
   }
 
   onMount(() => {
-    selectedOS = detectOS(window.navigator.userAgent);
+    let mounted = true;
+    const controller = new AbortController();
 
-    fetchLatestRelease()
-      .then((data) => (release = data))
+    fetchLatestRelease(controller.signal)
+      .then((data) => {
+        if (mounted) release = data;
+      })
       .catch((e) => {
+        if (!mounted) return;
+        if (e instanceof DOMException && e.name === "AbortError") return;
         error =
           e instanceof Error
             ? e.message
@@ -58,58 +69,58 @@
         console.error("Error fetching latest release:", e);
       })
       .finally(() => {
-        loading = false;
+        if (mounted) loading = false;
       });
+
+    return () => {
+      mounted = false;
+      controller.abort();
+    };
   });
 </script>
 
-<main class="bg-neutral-950 overflow-x-hidden">
-  <!-- Hero -->
-  <section
-    class="relative min-h-[55vh] flex items-center justify-center pt-32 pb-20 overflow-hidden bg-neutral-950"
-  >
+<main class="bg-cl-base overflow-x-hidden">
+  <!-- Header -->
+  <section class="relative border-b border-cl-border bg-cl-surface/30 overflow-hidden">
     <div
-      class="absolute inset-0 opacity-[0.07] pointer-events-none"
-      style="background-image: radial-gradient(circle, #ffffff 1px, transparent 1px); background-size: 40px 40px;"
-    ></div>
-    <div
-      class="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-white/5 to-transparent pointer-events-none"
+      class="absolute inset-0 opacity-[0.03] pointer-events-none"
+      style="background-image: radial-gradient(circle, var(--cl-text) 1px, transparent 1px); background-size: 40px 40px;"
     ></div>
 
-    <div class="container mx-auto px-6 relative z-10 text-center max-w-4xl">
-      <h1
-        class="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter mb-6 text-white"
-      >
-        {$t("install.title")}
-        <span class="text-neutral-200">{$t("install.titleHighlight")}</span>
-      </h1>
-      <p
-        class="text-lg md:text-xl text-neutral-400 font-light max-w-2xl mx-auto mb-10 leading-relaxed"
-      >
-        {$t("install.subtitle")}
-      </p>
-      {#if totalDownloads > 0}
-        <a
-          href="https://github.com/CubicLauncherDevs/CubicLauncher/releases"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex"
-        >
-          <img
-            src="https://img.shields.io/github/downloads/CubicLauncherDevs/CubicLauncher/total?style=for-the-badge&label={encodeURIComponent($t('install.totalDownloadsLabel'))}&labelColor=1a1a1a&color=ffffff"
-            alt={$t("install.totalDownloads", {
-              values: { count: formatNumber(totalDownloads) },
-            })}
-            class="h-8"
-          />
-        </a>
-      {/if}
+    <div class="relative z-10 mx-auto px-4 lg:px-6 py-10" style="max-width: var(--discord-max-width);">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h1 class="text-xl sm:text-2xl font-semibold text-cl-text mb-1">
+            {$t("install.title")}
+            <span class="text-cl-muted">{$t("install.titleHighlight")}</span>
+          </h1>
+          <p class="text-xs text-cl-muted max-w-md">
+            {$t("install.subtitle")}
+          </p>
+        </div>
+        {#if totalDownloads > 0}
+          <a
+            href="https://github.com/CubicLauncherDevs/CubicLauncher/releases"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex shrink-0"
+          >
+            <img
+              src="https://img.shields.io/github/downloads/CubicLauncherDevs/CubicLauncher/total?style=for-the-badge&label={encodeURIComponent($t('install.totalDownloadsLabel'))}&labelColor=0f0f10&color=ffffff"
+              alt={$t("install.totalDownloads", {
+                values: { count: formatNumber(totalDownloads) },
+              })}
+              class="h-6"
+            />
+          </a>
+        {/if}
+      </div>
     </div>
   </section>
 
   <!-- Content -->
-  <section class="py-16">
-    <div class="container mx-auto px-6 max-w-6xl">
+  <section class="py-6">
+    <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
       {#if loading}
         <InstallSkeleton />
       {:else if error}
@@ -125,7 +136,7 @@
       {:else}
         <ReleaseInfo {release} />
 
-        <div class="mb-8">
+        <div class="mb-4">
           <OsTabs
             selected={selectedOS}
             totals={platformDownloads}
@@ -144,41 +155,27 @@
   </section>
 
   <!-- Footer -->
-  <section class="py-24 border-t border-white/5">
-    <div class="container mx-auto px-6 max-w-6xl text-center">
-      <div
-        class="w-14 h-14 mx-auto mb-6 rounded-2xl bg-neutral-900 border border-white/10 flex items-center justify-center"
-      >
-        <IconDownload class="w-6 h-6 text-neutral-400" />
+  <section class="py-8 border-t border-cl-border">
+    <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 rounded border border-cl-border bg-cl-surface p-4">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded bg-cl-base border border-cl-border flex items-center justify-center">
+            <IconDownload class="w-4 h-4 text-cl-muted" />
+          </div>
+          <p class="text-cl-muted text-xs max-w-md">
+            {$t("install.lookingForOther")}
+          </p>
+        </div>
+        <a
+          href="https://github.com/CubicLauncherDevs/CubicLauncher/releases"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-cl-text text-cl-accent-inverse font-medium text-xs rounded hover:opacity-90 transition-opacity shrink-0"
+        >
+          {$t("install.viewAllReleases")}
+          <IconArrowRight class="w-3 h-3" />
+        </a>
       </div>
-      <p class="text-neutral-400 text-lg font-light max-w-xl mx-auto mb-8">
-        {$t("install.lookingForOther")}
-      </p>
-      <a
-        href="https://github.com/CubicLauncherDevs/CubicLauncher/releases"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-3 px-10 py-5 bg-white text-black font-bold text-[11px] uppercase tracking-[0.3em] rounded-2xl hover:scale-105 transition-all"
-      >
-        {$t("install.viewAllReleases")}
-        <IconArrowRight class="w-4 h-4" />
-      </a>
     </div>
   </section>
 </main>
-
-<style>
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  :global(.fade-in) {
-    animation: fade-in 0.6s ease-out both;
-  }
-</style>

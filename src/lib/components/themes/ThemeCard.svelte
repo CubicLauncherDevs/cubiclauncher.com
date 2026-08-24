@@ -9,10 +9,10 @@
   let imgLoaded = $state(false);
 </script>
 
-<div class="group flex flex-col bg-neutral-900 border border-white/10 rounded-xl overflow-hidden hover:border-white/25 transition-all h-full cursor-pointer">
+<div class="group flex flex-col bg-cl-surface border border-cl-border rounded overflow-hidden hover:border-cl-border-hover hover:bg-cl-elevated transition-colors h-full cursor-pointer">
   <a
     href="/themes/{theme.id}"
-    class="block aspect-video bg-neutral-800 relative overflow-hidden rounded-t-xl"
+    class="block aspect-video bg-cl-elevated relative overflow-hidden"
   >
     {#if theme.previewUrl}
       <img
@@ -23,30 +23,29 @@
         loading="lazy"
         decoding="async"
         fetchpriority="low"
-        class="w-full h-full object-cover object-center transition-transform duration-500 ease-out will-change-transform group-hover:scale-105 {imgLoaded ? 'opacity-100' : 'opacity-0'}"
+        class="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105 {imgLoaded ? 'opacity-100' : 'opacity-0'}"
         onload={() => (imgLoaded = true)}
       />
     {:else}
-      <div class="w-full h-full flex items-center justify-center text-neutral-600">
-        <IconImage class="w-10 h-10" />
+      <div class="w-full h-full flex items-center justify-center text-cl-dim">
+        <IconImage class="w-7 h-7" />
       </div>
     {/if}
-    <div class="absolute inset-0 bg-linear-to-t from-neutral-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-t-xl"></div>
   </a>
 
-  <div class="p-4 flex flex-col flex-1">
+  <div class="p-3 flex flex-col flex-1">
     <a href="/themes/{theme.id}" class="block group/title">
-      <h3 class="text-sm font-semibold text-white truncate group-hover/title:text-white/90 transition-colors">{theme.name}</h3>
+      <h3 class="text-xs font-semibold text-cl-text truncate group-hover/title:text-cl-muted transition-colors">{theme.name}</h3>
     </a>
     <div class="flex items-center gap-1.5 mt-0.5">
-      <p class="text-xs text-neutral-500 truncate">{theme.author}</p>
+      <p class="text-[11px] text-cl-muted truncate">{theme.author}</p>
       {#if getThemeVerification(theme) !== "none"}
         <VerifiedBadge size="sm" level={getThemeVerification(theme)} />
       {/if}
     </div>
 
-    <div class="mt-auto pt-4 flex items-center gap-2">
-      <span class="text-[10px] font-medium text-neutral-500 bg-white/5 px-2 py-1 rounded-md">
+    <div class="mt-auto pt-2 flex items-center gap-2">
+      <span class="text-[10px] font-medium text-cl-muted bg-cl-base border border-cl-border px-1.5 py-0.5 rounded">
         {theme.latestVersion}
       </span>
     </div>
