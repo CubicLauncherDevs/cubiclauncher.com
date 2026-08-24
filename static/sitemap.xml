@@ -260,6 +260,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://cubiclauncher.org/themes/notstaff-yorha</loc>
+    <lastmod>2026-08-24T03:00:55.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/notstaff-yorha/V1</loc>
+    <lastmod>2026-08-24T03:00:55.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://cubiclauncher.org/themes/notstaff-chill</loc>
     <lastmod>2026-07-24T04:00:59.000Z</lastmod>
     <changefreq>weekly</changefreq>
