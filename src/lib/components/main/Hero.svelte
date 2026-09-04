@@ -22,7 +22,7 @@
       <Logo
         width="3.5rem"
         height="3.5rem"
-        color="#ffffff"
+        // color="#ffffff"
         className="shrink-0 -ml-1"
       />
       <h1
