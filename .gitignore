@@ -11,11 +11,6 @@ lerna-debug.log*
 .svelte-kit
 build
 
-# Generated data (fetched at build time)
-src/lib/data/themes.json
-src/lib/data/packages.json
-static/sitemap.xml
-
 # Dependencies
 node_modules
 
@@ -44,4 +39,3 @@ Thumbs.db
 
 # Bun
 bun.lockb
-bun.lock
