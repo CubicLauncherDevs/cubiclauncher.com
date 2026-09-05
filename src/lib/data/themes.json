@@ -200,6 +200,60 @@
     "date": "2026-07-29T22:15:35-06:00"
   },
   {
+    "id": "cubiclauncher-retrospectrum",
+    "slug": "cubiclauncher-retrospectrum",
+    "name": "Retro Spectrum",
+    "author": "CubicLauncher",
+    "tags": [],
+    "dirPath": "src/CubicLauncher/RetroSpectrum",
+    "description": "# Retro Spectrum\n\nUn tema retro para CubicLauncher con fondos en tono carbón, texto en marfil cálido, detalles en mostaza y rayas vintage en los colores del arcoíris. La tipografía monoespaciada, las esquinas definidas y las sombras desplazadas evocan la informática clásica, al tiempo que mantienen visible el fondo de pantalla original.\n\nIncluye la fuente de estilo terminal VT323, distribuida bajo la licencia SIL Open Font License 1.1 (véase fonts/OFL.txt). No es necesario instalar ninguna fuente por separado.\n",
+    "verified": true,
+    "versions": [
+      {
+        "version": "V1",
+        "previewUrl": "https://themes.cubiclauncher.org/src/CubicLauncher/RetroSpectrum/V1/preview.4c0174a5.png",
+        "showcaseUrl": null,
+        "dirPath": "src/CubicLauncher/RetroSpectrum/V1",
+        "date": "2026-09-05T10:08:37-06:00",
+        "changelog": null,
+        "files": [
+          {
+            "name": "Definition.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/CubicLauncher/RetroSpectrum/V1/Definition.toml"
+          },
+          {
+            "name": "Inject.css",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/CubicLauncher/RetroSpectrum/V1/Inject.css"
+          },
+          {
+            "name": "Meta.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/CubicLauncher/RetroSpectrum/V1/Meta.toml"
+          },
+          {
+            "name": "background.png",
+            "url": "https://themes.cubiclauncher.org/src/CubicLauncher/RetroSpectrum/V1/background.96c6dc96.png"
+          },
+          {
+            "name": "fonts/OFL.txt",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/CubicLauncher/RetroSpectrum/V1/fonts/OFL.txt"
+          },
+          {
+            "name": "fonts/VT323-Regular.ttf",
+            "url": "https://themes.cubiclauncher.org/src/CubicLauncher/RetroSpectrum/V1/fonts/VT323-Regular.cf4de751.ttf"
+          },
+          {
+            "name": "preview.png",
+            "url": "https://themes.cubiclauncher.org/src/CubicLauncher/RetroSpectrum/V1/preview.4c0174a5.png"
+          }
+        ],
+        "injectsCss": true
+      }
+    ],
+    "latestVersion": "V1",
+    "previewUrl": "https://themes.cubiclauncher.org/src/CubicLauncher/RetroSpectrum/V1/preview.4c0174a5.png",
+    "date": "2026-09-05T10:08:37-06:00"
+  },
+  {
     "id": "cubiclauncher-signature-amber",
     "slug": "cubiclauncher-signature-amber",
     "name": "Signature Amber",

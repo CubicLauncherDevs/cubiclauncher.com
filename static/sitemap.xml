@@ -74,6 +74,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://cubiclauncher.org/themes/cubiclauncher-retrospectrum</loc>
+    <lastmod>2026-09-05T16:08:37.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/cubiclauncher-retrospectrum/V1</loc>
+    <lastmod>2026-09-05T16:08:37.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://cubiclauncher.org/themes/cubiclauncher-signature-amber</loc>
     <lastmod>2026-07-24T04:00:59.000Z</lastmod>
     <changefreq>weekly</changefreq>
@@ -489,7 +501,7 @@
   </url>
   <url>
     <loc>https://cubiclauncher.org/themes/author/cubiclauncher</loc>
-    <lastmod>2026-07-24T04:00:59.000Z</lastmod>
+    <lastmod>2026-09-05T16:08:37.000Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
