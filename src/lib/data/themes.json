@@ -230,12 +230,12 @@
             "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/CubicLauncher/RetroSpectrum/V1/Meta.toml"
           },
           {
-            "name": "background.png",
-            "url": "https://themes.cubiclauncher.org/src/CubicLauncher/RetroSpectrum/V1/background.96c6dc96.png"
-          },
-          {
             "name": "fonts/OFL.txt",
             "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/CubicLauncher/RetroSpectrum/V1/fonts/OFL.txt"
+          },
+          {
+            "name": "background.png",
+            "url": "https://themes.cubiclauncher.org/src/CubicLauncher/RetroSpectrum/V1/background.96c6dc96.png"
           },
           {
             "name": "fonts/VT323-Regular.ttf",
@@ -1892,6 +1892,400 @@
     "latestVersion": "V1",
     "previewUrl": "https://themes.cubiclauncher.org/src/Unr4n/Dark Theme/V1/preview.e05db763.png",
     "date": "2026-07-24T02:34:20-04:00"
+  },
+  {
+    "id": "holman-belle-belphine",
+    "slug": "holman-belle-belphine",
+    "name": "Porsche_Gt3_Rs_GIF",
+    "author": "holman",
+    "tags": [],
+    "dirPath": "src/holman/Belle_belphine",
+    "description": "Tema animado del Porsche GT3 RS.",
+    "verified": true,
+    "versions": [
+      {
+        "version": "V1",
+        "previewUrl": "https://themes.cubiclauncher.org/src/holman/Belle_belphine/V1/preview.ba70b2e8.png",
+        "showcaseUrl": null,
+        "dirPath": "src/holman/Belle_belphine/V1",
+        "date": "2026-09-05T19:29:32-05:00",
+        "changelog": null,
+        "files": [
+          {
+            "name": "Definition.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/Belle_belphine/V1/Definition.toml"
+          },
+          {
+            "name": "Meta.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/Belle_belphine/V1/Meta.toml"
+          },
+          {
+            "name": "bg.gif",
+            "url": "https://themes.cubiclauncher.org/src/holman/Belle_belphine/V1/bg.adf30fe1.gif"
+          },
+          {
+            "name": "preview.png",
+            "url": "https://themes.cubiclauncher.org/src/holman/Belle_belphine/V1/preview.ba70b2e8.png"
+          }
+        ],
+        "injectsCss": false
+      }
+    ],
+    "latestVersion": "V1",
+    "previewUrl": "https://themes.cubiclauncher.org/src/holman/Belle_belphine/V1/preview.ba70b2e8.png",
+    "date": "2026-09-05T19:29:32-05:00"
+  },
+  {
+    "id": "holman-gt3-rs-end",
+    "slug": "holman-gt3-rs-end",
+    "name": "Porsche_Gt3_Rs_GIF",
+    "author": "holman",
+    "tags": [],
+    "dirPath": "src/holman/GT3_RS_end",
+    "description": "Tema animado del Porsche GT3 RS.",
+    "verified": true,
+    "versions": [
+      {
+        "version": "V1",
+        "previewUrl": "https://themes.cubiclauncher.org/src/holman/GT3_RS_end/V1/preview.ba70b2e8.png",
+        "showcaseUrl": null,
+        "dirPath": "src/holman/GT3_RS_end/V1",
+        "date": "2026-09-05T19:25:18-05:00",
+        "changelog": null,
+        "files": [
+          {
+            "name": "Definition.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/GT3_RS_end/V1/Definition.toml"
+          },
+          {
+            "name": "Meta.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/GT3_RS_end/V1/Meta.toml"
+          },
+          {
+            "name": "bg.gif",
+            "url": "https://themes.cubiclauncher.org/src/holman/GT3_RS_end/V1/bg.adf30fe1.gif"
+          },
+          {
+            "name": "preview.png",
+            "url": "https://themes.cubiclauncher.org/src/holman/GT3_RS_end/V1/preview.ba70b2e8.png"
+          }
+        ],
+        "injectsCss": false
+      }
+    ],
+    "latestVersion": "V1",
+    "previewUrl": "https://themes.cubiclauncher.org/src/holman/GT3_RS_end/V1/preview.ba70b2e8.png",
+    "date": "2026-09-05T19:25:18-05:00"
+  },
+  {
+    "id": "holman-gwen",
+    "slug": "holman-gwen",
+    "name": "gwen-stacy",
+    "author": "holman",
+    "tags": [],
+    "dirPath": "src/holman/Gwen",
+    "description": "Tema animado de Gwen Stacy con fondo en movimiento.",
+    "verified": true,
+    "versions": [
+      {
+        "version": "V1",
+        "previewUrl": "https://themes.cubiclauncher.org/src/holman/Gwen/V1/preview.9f696b6e.png",
+        "showcaseUrl": null,
+        "dirPath": "src/holman/Gwen/V1",
+        "date": "2026-09-05T19:34:26-05:00",
+        "changelog": null,
+        "files": [
+          {
+            "name": "Definition.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/Gwen/V1/Definition.toml"
+          },
+          {
+            "name": "Meta.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/Gwen/V1/Meta.toml"
+          },
+          {
+            "name": "bg.gif",
+            "url": "https://themes.cubiclauncher.org/src/holman/Gwen/V1/bg.50e09509.gif"
+          },
+          {
+            "name": "preview.png",
+            "url": "https://themes.cubiclauncher.org/src/holman/Gwen/V1/preview.9f696b6e.png"
+          }
+        ],
+        "injectsCss": false
+      }
+    ],
+    "latestVersion": "V1",
+    "previewUrl": "https://themes.cubiclauncher.org/src/holman/Gwen/V1/preview.9f696b6e.png",
+    "date": "2026-09-05T19:34:26-05:00"
+  },
+  {
+    "id": "holman-happy-birthday",
+    "slug": "holman-happy-birthday",
+    "name": "Happy Birhday",
+    "author": "holman",
+    "tags": [],
+    "dirPath": "src/holman/Happy_birthday",
+    "description": "Tema cálido con acentos dorados tipo vela, inspirado en una foto de cumpleaños con ambiente tenue.",
+    "verified": true,
+    "versions": [
+      {
+        "version": "V1",
+        "previewUrl": "https://themes.cubiclauncher.org/src/holman/Happy_birthday/V1/preview.4eabf93a.png",
+        "showcaseUrl": null,
+        "dirPath": "src/holman/Happy_birthday/V1",
+        "date": "2026-09-05T19:31:52-05:00",
+        "changelog": null,
+        "files": [
+          {
+            "name": "Definition.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/Happy_birthday/V1/Definition.toml"
+          },
+          {
+            "name": "Inject.css",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/Happy_birthday/V1/Inject.css"
+          },
+          {
+            "name": "Meta.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/Happy_birthday/V1/Meta.toml"
+          },
+          {
+            "name": "bg.png",
+            "url": "https://themes.cubiclauncher.org/src/holman/Happy_birthday/V1/bg.0d878f06.png"
+          },
+          {
+            "name": "preview.png",
+            "url": "https://themes.cubiclauncher.org/src/holman/Happy_birthday/V1/preview.4eabf93a.png"
+          }
+        ],
+        "injectsCss": true
+      }
+    ],
+    "latestVersion": "V1",
+    "previewUrl": "https://themes.cubiclauncher.org/src/holman/Happy_birthday/V1/preview.4eabf93a.png",
+    "date": "2026-09-05T19:31:52-05:00"
+  },
+  {
+    "id": "holman-invincibles",
+    "slug": "holman-invincibles",
+    "name": "Invincibles Breaking Point",
+    "author": "holman",
+    "tags": [],
+    "dirPath": "src/holman/Invincibles",
+    "description": "Tema con acentos rojo/naranja fuego, inspirado en la animación de fondo con la escena de acción del video.",
+    "verified": true,
+    "versions": [
+      {
+        "version": "V1",
+        "previewUrl": "https://themes.cubiclauncher.org/src/holman/Invincibles/V1/preview.b11cc575.png",
+        "showcaseUrl": null,
+        "dirPath": "src/holman/Invincibles/V1",
+        "date": "2026-09-05T19:37:57-05:00",
+        "changelog": null,
+        "files": [
+          {
+            "name": "Definition.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/Invincibles/V1/Definition.toml"
+          },
+          {
+            "name": "Inject.css",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/Invincibles/V1/Inject.css"
+          },
+          {
+            "name": "Meta.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/Invincibles/V1/Meta.toml"
+          },
+          {
+            "name": "bg.gif",
+            "url": "https://themes.cubiclauncher.org/src/holman/Invincibles/V1/bg.e075f533.gif"
+          },
+          {
+            "name": "preview.png",
+            "url": "https://themes.cubiclauncher.org/src/holman/Invincibles/V1/preview.b11cc575.png"
+          }
+        ],
+        "injectsCss": true
+      }
+    ],
+    "latestVersion": "V1",
+    "previewUrl": "https://themes.cubiclauncher.org/src/holman/Invincibles/V1/preview.b11cc575.png",
+    "date": "2026-09-05T19:37:57-05:00"
+  },
+  {
+    "id": "holman-starlight-kitty",
+    "slug": "holman-starlight-kitty",
+    "name": "Starlight Kitten",
+    "author": "holman",
+    "tags": [],
+    "dirPath": "src/holman/Starlight_kitty",
+    "description": "Tema con fondo celestial rosa/negro y fuente Mojangles",
+    "verified": true,
+    "versions": [
+      {
+        "version": "V1",
+        "previewUrl": "https://themes.cubiclauncher.org/src/holman/Starlight_kitty/V1/preview.b3cc6605.png",
+        "showcaseUrl": null,
+        "dirPath": "src/holman/Starlight_kitty/V1",
+        "date": "2026-09-05T18:48:22-05:00",
+        "changelog": null,
+        "files": [
+          {
+            "name": "Definition.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/Starlight_kitty/V1/Definition.toml"
+          },
+          {
+            "name": "Inject.css",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/Starlight_kitty/V1/Inject.css"
+          },
+          {
+            "name": "Meta.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/Starlight_kitty/V1/Meta.toml"
+          },
+          {
+            "name": "bg.png",
+            "url": "https://themes.cubiclauncher.org/src/holman/Starlight_kitty/V1/bg.17bacd6f.png"
+          },
+          {
+            "name": "preview.png",
+            "url": "https://themes.cubiclauncher.org/src/holman/Starlight_kitty/V1/preview.b3cc6605.png"
+          }
+        ],
+        "injectsCss": true
+      }
+    ],
+    "latestVersion": "V1",
+    "previewUrl": "https://themes.cubiclauncher.org/src/holman/Starlight_kitty/V1/preview.b3cc6605.png",
+    "date": "2026-09-05T18:48:22-05:00"
+  },
+  {
+    "id": "holman-cachorros-del-end",
+    "slug": "holman-cachorros-del-end",
+    "name": "Cachorros del End",
+    "author": "holman",
+    "tags": [],
+    "dirPath": "src/holman/cachorros_del_end",
+    "description": "Tema inspirado en la imagen de los cachorros exploradores en el End",
+    "verified": true,
+    "versions": [
+      {
+        "version": "V1",
+        "previewUrl": "https://themes.cubiclauncher.org/src/holman/cachorros_del_end/V1/preview.6aa3f5a1.png",
+        "showcaseUrl": null,
+        "dirPath": "src/holman/cachorros_del_end/V1",
+        "date": "2026-09-05T18:36:57-05:00",
+        "changelog": null,
+        "files": [
+          {
+            "name": "Definition.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/cachorros_del_end/V1/Definition.toml"
+          },
+          {
+            "name": "Meta.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/cachorros_del_end/V1/Meta.toml"
+          },
+          {
+            "name": "bg.png",
+            "url": "https://themes.cubiclauncher.org/src/holman/cachorros_del_end/V1/bg.90dd7aba.png"
+          },
+          {
+            "name": "preview.png",
+            "url": "https://themes.cubiclauncher.org/src/holman/cachorros_del_end/V1/preview.6aa3f5a1.png"
+          }
+        ],
+        "injectsCss": false
+      }
+    ],
+    "latestVersion": "V1",
+    "previewUrl": "https://themes.cubiclauncher.org/src/holman/cachorros_del_end/V1/preview.6aa3f5a1.png",
+    "date": "2026-09-05T18:36:57-05:00"
+  },
+  {
+    "id": "holman-fox",
+    "slug": "holman-fox",
+    "name": "fox en fogata",
+    "author": "holman",
+    "tags": [],
+    "dirPath": "src/holman/fox",
+    "description": "Tema inspirado en un zorro de Minecraft junto a una fogata.",
+    "verified": true,
+    "versions": [
+      {
+        "version": "V1",
+        "previewUrl": "https://themes.cubiclauncher.org/src/holman/fox/V1/preview.c73d4879.png",
+        "showcaseUrl": null,
+        "dirPath": "src/holman/fox/V1",
+        "date": "2026-09-05T19:43:51-05:00",
+        "changelog": null,
+        "files": [
+          {
+            "name": "Definition.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/fox/V1/Definition.toml"
+          },
+          {
+            "name": "Meta.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/fox/V1/Meta.toml"
+          },
+          {
+            "name": "bg.jpg",
+            "url": "https://themes.cubiclauncher.org/src/holman/fox/V1/bg.3d8445c7.jpg"
+          },
+          {
+            "name": "preview.png",
+            "url": "https://themes.cubiclauncher.org/src/holman/fox/V1/preview.c73d4879.png"
+          }
+        ],
+        "injectsCss": false
+      }
+    ],
+    "latestVersion": "V1",
+    "previewUrl": "https://themes.cubiclauncher.org/src/holman/fox/V1/preview.c73d4879.png",
+    "date": "2026-09-05T19:43:51-05:00"
+  },
+  {
+    "id": "holman-sweetie-fox",
+    "slug": "holman-sweetie-fox",
+    "name": "Sweetie Fox Minecraft",
+    "author": "holman",
+    "tags": [],
+    "dirPath": "src/holman/sweetie_fox",
+    "description": "Un tema cálido y acogedor inspirado en una escena de streaming de Minecraft, con tonos naranjas y ambiente hogareño.",
+    "verified": true,
+    "versions": [
+      {
+        "version": "V1",
+        "previewUrl": "https://themes.cubiclauncher.org/src/holman/sweetie_fox/V1/preview.289e8dd5.png",
+        "showcaseUrl": null,
+        "dirPath": "src/holman/sweetie_fox/V1",
+        "date": "2026-09-05T18:42:53-05:00",
+        "changelog": null,
+        "files": [
+          {
+            "name": "Definition.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/sweetie_fox/V1/Definition.toml"
+          },
+          {
+            "name": "Inject.css",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/sweetie_fox/V1/Inject.css"
+          },
+          {
+            "name": "Meta.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/sweetie_fox/V1/Meta.toml"
+          },
+          {
+            "name": "bg.png",
+            "url": "https://themes.cubiclauncher.org/src/holman/sweetie_fox/V1/bg.4faccb08.png"
+          },
+          {
+            "name": "preview.png",
+            "url": "https://themes.cubiclauncher.org/src/holman/sweetie_fox/V1/preview.289e8dd5.png"
+          }
+        ],
+        "injectsCss": true
+      }
+    ],
+    "latestVersion": "V1",
+    "previewUrl": "https://themes.cubiclauncher.org/src/holman/sweetie_fox/V1/preview.289e8dd5.png",
+    "date": "2026-09-05T18:42:53-05:00"
   },
   {
     "id": "kittyhos-kitty",

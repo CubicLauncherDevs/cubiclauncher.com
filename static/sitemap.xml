@@ -470,6 +470,114 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://cubiclauncher.org/themes/holman-belle-belphine</loc>
+    <lastmod>2026-09-06T00:29:32.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/holman-belle-belphine/V1</loc>
+    <lastmod>2026-09-06T00:29:32.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/holman-gt3-rs-end</loc>
+    <lastmod>2026-09-06T00:25:18.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/holman-gt3-rs-end/V1</loc>
+    <lastmod>2026-09-06T00:25:18.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/holman-gwen</loc>
+    <lastmod>2026-09-06T00:34:26.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/holman-gwen/V1</loc>
+    <lastmod>2026-09-06T00:34:26.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/holman-happy-birthday</loc>
+    <lastmod>2026-09-06T00:31:52.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/holman-happy-birthday/V1</loc>
+    <lastmod>2026-09-06T00:31:52.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/holman-invincibles</loc>
+    <lastmod>2026-09-06T00:37:57.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/holman-invincibles/V1</loc>
+    <lastmod>2026-09-06T00:37:57.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/holman-starlight-kitty</loc>
+    <lastmod>2026-09-05T23:48:22.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/holman-starlight-kitty/V1</loc>
+    <lastmod>2026-09-05T23:48:22.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/holman-cachorros-del-end</loc>
+    <lastmod>2026-09-05T23:36:57.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/holman-cachorros-del-end/V1</loc>
+    <lastmod>2026-09-05T23:36:57.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/holman-fox</loc>
+    <lastmod>2026-09-06T00:43:51.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/holman-fox/V1</loc>
+    <lastmod>2026-09-06T00:43:51.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/holman-sweetie-fox</loc>
+    <lastmod>2026-09-05T23:42:53.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/holman-sweetie-fox/V1</loc>
+    <lastmod>2026-09-05T23:42:53.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://cubiclauncher.org/themes/kittyhos-kitty</loc>
     <lastmod>2026-07-24T06:34:20.000Z</lastmod>
     <changefreq>weekly</changefreq>
@@ -532,6 +640,12 @@
   <url>
     <loc>https://cubiclauncher.org/themes/author/unr4n</loc>
     <lastmod>2026-07-24T06:34:20.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/author/holman</loc>
+    <lastmod>2026-09-06T00:29:32.000Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
