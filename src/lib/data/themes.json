@@ -1855,7 +1855,7 @@
     "tags": [],
     "dirPath": "src/Toritopablo/Mina",
     "description": "# Mina\n\nTema vampírico inspirado en Mina Ha (Deadlock) para CubicLauncher.\n\n## Características\n\n- Fondo animado de murciélagos (GIF) con opacidad ajustada para no distraer.\n- Paleta gótica: negros profundos con acentos en rojo sangre (`#c8102e`) y textos color hueso.\n- Tipografías incluidas: **Cinzel** (texto general) y **UnifrakturCook** (detalles con estilo gótico/blackletter).\n- Intro animada \"MINA\" al abrir el launcher, con resplandor rojo pulsante de fondo.\n- Cursor personalizado con la mira de Mina en todo el launcher (botones, enlaces, checkboxes, etc.).\n- Glow rojo pulsante en elementos de acento y estados (éxito, error, advertencia, info) con su propia identidad de color.\n\n## Autor\n\n[Toritopablo](https://github.com/JuanPG21)\n",
-    "verified": false,
+    "verified": true,
     "versions": [
       {
         "version": "V1",
@@ -1878,12 +1878,12 @@
             "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/Toritopablo/Mina/V1/Meta.toml"
           },
           {
-            "name": "bg.gif",
-            "url": "https://themes.cubiclauncher.org/src/Toritopablo/Mina/V1/bg.f0799ec4.gif"
-          },
-          {
             "name": "changelog.md",
             "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/Toritopablo/Mina/V1/changelog.md"
+          },
+          {
+            "name": "bg.gif",
+            "url": "https://themes.cubiclauncher.org/src/Toritopablo/Mina/V1/bg.f0799ec4.gif"
           },
           {
             "name": "fonts/Cinzel.ttf",
@@ -2174,6 +2174,60 @@
     "date": "2026-09-05T18:48:22-05:00"
   },
   {
+    "id": "holman-belle-delfhine",
+    "slug": "holman-belle-delfhine",
+    "name": "Waguri Theme",
+    "author": "Holman",
+    "tags": [],
+    "dirPath": "src/holman/belle_delfhine",
+    "description": "Tema Creado por Holman",
+    "verified": false,
+    "versions": [
+      {
+        "version": "V1",
+        "previewUrl": "https://themes.cubiclauncher.org/src/holman/belle_delfhine/V1/preview.5e960758.png",
+        "showcaseUrl": null,
+        "dirPath": "src/holman/belle_delfhine/V1",
+        "date": "2026-09-06T13:27:17-06:00",
+        "changelog": null,
+        "files": [
+          {
+            "name": "Definition.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/belle_delfhine/V1/Definition.toml"
+          },
+          {
+            "name": "Meta.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/belle_delfhine/V1/Meta.toml"
+          },
+          {
+            "name": "bg.png",
+            "url": "https://themes.cubiclauncher.org/src/holman/belle_delfhine/V1/bg.e832c146.png"
+          },
+          {
+            "name": "fonts/Mojang-Bold.ttf",
+            "url": "https://themes.cubiclauncher.org/src/holman/belle_delfhine/V1/fonts/Mojang-Bold.90e8f7fe.ttf"
+          },
+          {
+            "name": "fonts/Mojang-Regular.ttf",
+            "url": "https://themes.cubiclauncher.org/src/holman/belle_delfhine/V1/fonts/Mojang-Regular.babe8021.ttf"
+          },
+          {
+            "name": "fonts/minecraft_font.ttf",
+            "url": "https://themes.cubiclauncher.org/src/holman/belle_delfhine/V1/fonts/minecraft_font.df936b7e.ttf"
+          },
+          {
+            "name": "preview.png",
+            "url": "https://themes.cubiclauncher.org/src/holman/belle_delfhine/V1/preview.5e960758.png"
+          }
+        ],
+        "injectsCss": false
+      }
+    ],
+    "latestVersion": "V1",
+    "previewUrl": "https://themes.cubiclauncher.org/src/holman/belle_delfhine/V1/preview.5e960758.png",
+    "date": "2026-09-06T13:27:17-06:00"
+  },
+  {
     "id": "holman-cachorros-del-end",
     "slug": "holman-cachorros-del-end",
     "name": "Cachorros del End",
@@ -2256,6 +2310,60 @@
     "latestVersion": "V1",
     "previewUrl": "https://themes.cubiclauncher.org/src/holman/fox/V1/preview.c73d4879.png",
     "date": "2026-09-05T19:43:51-05:00"
+  },
+  {
+    "id": "holman-hollow-knight-silksong",
+    "slug": "holman-hollow-knight-silksong",
+    "name": "Hollow Knight Silksong",
+    "author": "holman",
+    "tags": [],
+    "dirPath": "src/holman/hollow_knight_silksong",
+    "description": "Tema morado/magenta con tonos de noche, inspirado en Silksong, usando la tipografía Mojang para todo el texto.",
+    "verified": false,
+    "versions": [
+      {
+        "version": "V1",
+        "previewUrl": "https://themes.cubiclauncher.org/src/holman/hollow_knight_silksong/V1/preview.b6066ac1.png",
+        "showcaseUrl": null,
+        "dirPath": "src/holman/hollow_knight_silksong/V1",
+        "date": "2026-09-06T13:16:50-06:00",
+        "changelog": null,
+        "files": [
+          {
+            "name": "Definition.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/hollow_knight_silksong/V1/Definition.toml"
+          },
+          {
+            "name": "Inject.css",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/hollow_knight_silksong/V1/Inject.css"
+          },
+          {
+            "name": "Meta.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/hollow_knight_silksong/V1/Meta.toml"
+          },
+          {
+            "name": "bg.png",
+            "url": "https://themes.cubiclauncher.org/src/holman/hollow_knight_silksong/V1/bg.40391972.png"
+          },
+          {
+            "name": "fonts/Mojang-Bold.ttf",
+            "url": "https://themes.cubiclauncher.org/src/holman/hollow_knight_silksong/V1/fonts/Mojang-Bold.90e8f7fe.ttf"
+          },
+          {
+            "name": "fonts/Mojang-Regular.ttf",
+            "url": "https://themes.cubiclauncher.org/src/holman/hollow_knight_silksong/V1/fonts/Mojang-Regular.babe8021.ttf"
+          },
+          {
+            "name": "preview.png",
+            "url": "https://themes.cubiclauncher.org/src/holman/hollow_knight_silksong/V1/preview.b6066ac1.png"
+          }
+        ],
+        "injectsCss": true
+      }
+    ],
+    "latestVersion": "V1",
+    "previewUrl": "https://themes.cubiclauncher.org/src/holman/hollow_knight_silksong/V1/preview.b6066ac1.png",
+    "date": "2026-09-06T13:16:50-06:00"
   },
   {
     "id": "holman-sweetie-fox",

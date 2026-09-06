@@ -542,6 +542,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://cubiclauncher.org/themes/holman-belle-delfhine</loc>
+    <lastmod>2026-09-06T19:27:17.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/holman-belle-delfhine/V1</loc>
+    <lastmod>2026-09-06T19:27:17.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://cubiclauncher.org/themes/holman-cachorros-del-end</loc>
     <lastmod>2026-09-05T23:36:57.000Z</lastmod>
     <changefreq>weekly</changefreq>
@@ -562,6 +574,18 @@
   <url>
     <loc>https://cubiclauncher.org/themes/holman-fox/V1</loc>
     <lastmod>2026-09-06T00:43:51.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/holman-hollow-knight-silksong</loc>
+    <lastmod>2026-09-06T19:16:50.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/holman-hollow-knight-silksong/V1</loc>
+    <lastmod>2026-09-06T19:16:50.000Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
