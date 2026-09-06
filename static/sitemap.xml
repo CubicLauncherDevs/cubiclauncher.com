@@ -458,6 +458,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://cubiclauncher.org/themes/toritopablo-mina</loc>
+    <lastmod>2026-09-06T14:44:25.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/toritopablo-mina/V1</loc>
+    <lastmod>2026-09-06T14:44:25.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://cubiclauncher.org/themes/unr4n-dark-theme</loc>
     <lastmod>2026-07-24T06:34:20.000Z</lastmod>
     <changefreq>weekly</changefreq>
@@ -622,6 +634,12 @@
   <url>
     <loc>https://cubiclauncher.org/themes/author/santiagolxx</loc>
     <lastmod>2026-07-25T21:29:05.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/author/toritopablo</loc>
+    <lastmod>2026-09-06T14:44:25.000Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

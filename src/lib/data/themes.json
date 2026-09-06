@@ -1848,6 +1848,64 @@
     "date": "2026-07-24T04:24:55-04:00"
   },
   {
+    "id": "toritopablo-mina",
+    "slug": "toritopablo-mina",
+    "name": "Mina",
+    "author": "Toritopablo",
+    "tags": [],
+    "dirPath": "src/Toritopablo/Mina",
+    "description": "# Mina\n\nTema vampírico inspirado en Mina Ha (Deadlock) para CubicLauncher.\n\n## Características\n\n- Fondo animado de murciélagos (GIF) con opacidad ajustada para no distraer.\n- Paleta gótica: negros profundos con acentos en rojo sangre (`#c8102e`) y textos color hueso.\n- Tipografías incluidas: **Cinzel** (texto general) y **UnifrakturCook** (detalles con estilo gótico/blackletter).\n- Intro animada \"MINA\" al abrir el launcher, con resplandor rojo pulsante de fondo.\n- Cursor personalizado con la mira de Mina en todo el launcher (botones, enlaces, checkboxes, etc.).\n- Glow rojo pulsante en elementos de acento y estados (éxito, error, advertencia, info) con su propia identidad de color.\n\n## Autor\n\n[Toritopablo](https://github.com/JuanPG21)\n",
+    "verified": false,
+    "versions": [
+      {
+        "version": "V1",
+        "previewUrl": "https://themes.cubiclauncher.org/src/Toritopablo/Mina/V1/preview.33a85876.png",
+        "showcaseUrl": null,
+        "dirPath": "src/Toritopablo/Mina/V1",
+        "date": "2026-09-06T09:44:25-05:00",
+        "changelog": "# V1\n\n- Primer lanzamiento del tema Mina.\n- Fondo animado de murciélagos, intro \"MINA\", glow rojo pulsante y cursor de mira personalizado.\n",
+        "files": [
+          {
+            "name": "Definition.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/Toritopablo/Mina/V1/Definition.toml"
+          },
+          {
+            "name": "Inject.css",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/Toritopablo/Mina/V1/Inject.css"
+          },
+          {
+            "name": "Meta.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/Toritopablo/Mina/V1/Meta.toml"
+          },
+          {
+            "name": "bg.gif",
+            "url": "https://themes.cubiclauncher.org/src/Toritopablo/Mina/V1/bg.f0799ec4.gif"
+          },
+          {
+            "name": "changelog.md",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/Toritopablo/Mina/V1/changelog.md"
+          },
+          {
+            "name": "fonts/Cinzel.ttf",
+            "url": "https://themes.cubiclauncher.org/src/Toritopablo/Mina/V1/fonts/Cinzel.f4d83d34.ttf"
+          },
+          {
+            "name": "fonts/UnifrakturCook-Bold.ttf",
+            "url": "https://themes.cubiclauncher.org/src/Toritopablo/Mina/V1/fonts/UnifrakturCook-Bold.ea002fa9.ttf"
+          },
+          {
+            "name": "preview.png",
+            "url": "https://themes.cubiclauncher.org/src/Toritopablo/Mina/V1/preview.33a85876.png"
+          }
+        ],
+        "injectsCss": true
+      }
+    ],
+    "latestVersion": "V1",
+    "previewUrl": "https://themes.cubiclauncher.org/src/Toritopablo/Mina/V1/preview.33a85876.png",
+    "date": "2026-09-06T09:44:25-05:00"
+  },
+  {
     "id": "unr4n-dark-theme",
     "slug": "unr4n-dark-theme",
     "name": "Dark Theme",
