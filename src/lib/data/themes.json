@@ -7,7 +7,7 @@
     "tags": [],
     "dirPath": "src/4xnl/Colorful",
     "description": null,
-    "verified": true,
+    "verified": false,
     "versions": [
       {
         "version": "V1",
@@ -53,7 +53,7 @@
     "tags": [],
     "dirPath": "src/4xnl/Jadol",
     "description": null,
-    "verified": true,
+    "verified": false,
     "versions": [
       {
         "version": "V1",
@@ -99,7 +99,7 @@
     "tags": [],
     "dirPath": "src/4xnl/Kayoko",
     "description": null,
-    "verified": true,
+    "verified": false,
     "versions": [
       {
         "version": "V1",
@@ -157,7 +157,7 @@
     "tags": [],
     "dirPath": "src/4xnl/cherry",
     "description": "A cherry blossom garden for your launcher.",
-    "verified": true,
+    "verified": false,
     "versions": [
       {
         "version": "V1",
@@ -461,7 +461,7 @@
     "tags": [],
     "dirPath": "src/Edgajuman/Cyberpunk",
     "description": "Un tema futurista y con animaciones, fondo GIF y fuente personalizada Air Millhouse.",
-    "verified": true,
+    "verified": false,
     "versions": [
       {
         "version": "V3",
@@ -601,7 +601,7 @@
     "tags": [],
     "dirPath": "src/Edgajuman/Shoko",
     "description": "# Shōko\r\n\r\nA Silent Voice Theme\r\n\r\n**Autor:** Edgajuman\r\n**Versión:** 1.0.0\n",
-    "verified": true,
+    "verified": false,
     "versions": [
       {
         "version": "V1",
@@ -643,7 +643,7 @@
     "tags": [],
     "dirPath": "src/Edgajuman/White_Anime",
     "description": "# White Anime\r\n\r\nThema estilo claro\r\n\r\n**Autor:** Edgajuman\r\n**Versión:** 1.0.0\n",
-    "verified": true,
+    "verified": false,
     "versions": [
       {
         "version": "V1",
@@ -693,7 +693,7 @@
     "tags": [],
     "dirPath": "src/MPG/Waguri",
     "description": null,
-    "verified": true,
+    "verified": false,
     "versions": [
       {
         "version": "V1",
@@ -739,7 +739,7 @@
     "tags": [],
     "dirPath": "src/MPG/ZeroTwo",
     "description": null,
-    "verified": true,
+    "verified": false,
     "versions": [
       {
         "version": "V1",
@@ -1855,7 +1855,7 @@
     "tags": [],
     "dirPath": "src/Unr4n/Dark Theme",
     "description": null,
-    "verified": true,
+    "verified": false,
     "versions": [
       {
         "version": "V1",
@@ -1901,7 +1901,7 @@
     "tags": [],
     "dirPath": "src/holman/GT3_RS_end",
     "description": "Tema animado del Porsche GT3 RS.",
-    "verified": true,
+    "verified": false,
     "versions": [
       {
         "version": "V1",
@@ -1943,7 +1943,7 @@
     "tags": [],
     "dirPath": "src/holman/Gwen",
     "description": "Tema animado de Gwen Stacy con fondo en movimiento.",
-    "verified": true,
+    "verified": false,
     "versions": [
       {
         "version": "V1",
@@ -1985,7 +1985,7 @@
     "tags": [],
     "dirPath": "src/holman/Happy_birthday",
     "description": "Tema cálido con acentos dorados tipo vela, inspirado en una foto de cumpleaños con ambiente tenue.",
-    "verified": true,
+    "verified": false,
     "versions": [
       {
         "version": "V1",
@@ -2031,7 +2031,7 @@
     "tags": [],
     "dirPath": "src/holman/Invincibles",
     "description": "Tema con acentos rojo/naranja fuego, inspirado en la animación de fondo con la escena de acción del video.",
-    "verified": true,
+    "verified": false,
     "versions": [
       {
         "version": "V1",
@@ -2077,7 +2077,7 @@
     "tags": [],
     "dirPath": "src/holman/Starlight_kitty",
     "description": "Tema con fondo celestial rosa/negro y fuente Mojangles",
-    "verified": true,
+    "verified": false,
     "versions": [
       {
         "version": "V1",
@@ -2123,7 +2123,7 @@
     "tags": [],
     "dirPath": "src/holman/cachorros_del_end",
     "description": "Tema inspirado en la imagen de los cachorros exploradores en el End",
-    "verified": true,
+    "verified": false,
     "versions": [
       {
         "version": "V1",
@@ -2165,7 +2165,7 @@
     "tags": [],
     "dirPath": "src/holman/fox",
     "description": "Tema inspirado en un zorro de Minecraft junto a una fogata.",
-    "verified": true,
+    "verified": false,
     "versions": [
       {
         "version": "V1",
@@ -2207,7 +2207,7 @@
     "tags": [],
     "dirPath": "src/holman/sweetie_fox",
     "description": "Un tema cálido y acogedor inspirado en una escena de streaming de Minecraft, con tonos naranjas y ambiente hogareño.",
-    "verified": true,
+    "verified": false,
     "versions": [
       {
         "version": "V1",
@@ -2253,7 +2253,7 @@
     "tags": [],
     "dirPath": "src/kittyhos/kitty",
     "description": "Tema minimalista y elegante con acentos rosados suaves. Inspirado en tonos pastel y una estética limpia y calmada.",
-    "verified": true,
+    "verified": false,
     "versions": [
       {
         "version": "V1",
@@ -2303,7 +2303,7 @@
     "tags": [],
     "dirPath": "src/kittyhos/lucky",
     "description": "Este tema fue generado por la herramienta Cubiclauncher-editor creado por kittyhos",
-    "verified": true,
+    "verified": false,
     "versions": [
       {
         "version": "V1",
