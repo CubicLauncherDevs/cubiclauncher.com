@@ -1894,48 +1894,6 @@
     "date": "2026-07-24T02:34:20-04:00"
   },
   {
-    "id": "holman-belle-belphine",
-    "slug": "holman-belle-belphine",
-    "name": "Porsche_Gt3_Rs_GIF",
-    "author": "holman",
-    "tags": [],
-    "dirPath": "src/holman/Belle_belphine",
-    "description": "Tema animado del Porsche GT3 RS.",
-    "verified": true,
-    "versions": [
-      {
-        "version": "V1",
-        "previewUrl": "https://themes.cubiclauncher.org/src/holman/Belle_belphine/V1/preview.ba70b2e8.png",
-        "showcaseUrl": null,
-        "dirPath": "src/holman/Belle_belphine/V1",
-        "date": "2026-09-05T19:29:32-05:00",
-        "changelog": null,
-        "files": [
-          {
-            "name": "Definition.toml",
-            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/Belle_belphine/V1/Definition.toml"
-          },
-          {
-            "name": "Meta.toml",
-            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/Belle_belphine/V1/Meta.toml"
-          },
-          {
-            "name": "bg.gif",
-            "url": "https://themes.cubiclauncher.org/src/holman/Belle_belphine/V1/bg.adf30fe1.gif"
-          },
-          {
-            "name": "preview.png",
-            "url": "https://themes.cubiclauncher.org/src/holman/Belle_belphine/V1/preview.ba70b2e8.png"
-          }
-        ],
-        "injectsCss": false
-      }
-    ],
-    "latestVersion": "V1",
-    "previewUrl": "https://themes.cubiclauncher.org/src/holman/Belle_belphine/V1/preview.ba70b2e8.png",
-    "date": "2026-09-05T19:29:32-05:00"
-  },
-  {
     "id": "holman-gt3-rs-end",
     "slug": "holman-gt3-rs-end",
     "name": "Porsche_Gt3_Rs_GIF",
