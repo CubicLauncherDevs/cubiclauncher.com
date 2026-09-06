@@ -7,7 +7,7 @@
     "tags": [],
     "dirPath": "src/4xnl/Colorful",
     "description": null,
-    "verified": false,
+    "verified": true,
     "versions": [
       {
         "version": "V1",
@@ -53,7 +53,7 @@
     "tags": [],
     "dirPath": "src/4xnl/Jadol",
     "description": null,
-    "verified": false,
+    "verified": true,
     "versions": [
       {
         "version": "V1",
@@ -99,7 +99,7 @@
     "tags": [],
     "dirPath": "src/4xnl/Kayoko",
     "description": null,
-    "verified": false,
+    "verified": true,
     "versions": [
       {
         "version": "V1",
@@ -157,7 +157,7 @@
     "tags": [],
     "dirPath": "src/4xnl/cherry",
     "description": "A cherry blossom garden for your launcher.",
-    "verified": false,
+    "verified": true,
     "versions": [
       {
         "version": "V1",
@@ -2165,7 +2165,7 @@
     "tags": [],
     "dirPath": "src/holman/fox",
     "description": "Tema inspirado en un zorro de Minecraft junto a una fogata.",
-    "verified": false,
+    "verified": true,
     "versions": [
       {
         "version": "V1",
