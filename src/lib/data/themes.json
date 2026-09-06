@@ -1952,6 +1952,52 @@
     "date": "2026-07-24T02:34:20-04:00"
   },
   {
+    "id": "holman-bmw-minecraft-snow",
+    "slug": "holman-bmw-minecraft-snow",
+    "name": "BMW_Minecraft_Snow",
+    "author": "Holman",
+    "tags": [],
+    "dirPath": "src/holman/BMW_Minecraft_Snow",
+    "description": "Tema animado inspirado en un BMW sobre un paisaje nevado de Minecraft, con estética oscura, plata, negro y detalles de iluminación púrpura.",
+    "verified": false,
+    "versions": [
+      {
+        "version": "V1",
+        "previewUrl": "https://themes.cubiclauncher.org/src/holman/BMW_Minecraft_Snow/V1/preview.2a92a3f5.png",
+        "showcaseUrl": null,
+        "dirPath": "src/holman/BMW_Minecraft_Snow/V1",
+        "date": "2026-09-06T15:15:12-05:00",
+        "changelog": null,
+        "files": [
+          {
+            "name": "Definition.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/BMW_Minecraft_Snow/V1/Definition.toml"
+          },
+          {
+            "name": "Meta.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/BMW_Minecraft_Snow/V1/Meta.toml"
+          },
+          {
+            "name": "Showcase.gif",
+            "url": "https://themes.cubiclauncher.org/src/holman/BMW_Minecraft_Snow/V1/Showcase.7eb70257.gif"
+          },
+          {
+            "name": "bg.gif",
+            "url": "https://themes.cubiclauncher.org/src/holman/BMW_Minecraft_Snow/V1/bg.3a0fe5a4.gif"
+          },
+          {
+            "name": "preview.png",
+            "url": "https://themes.cubiclauncher.org/src/holman/BMW_Minecraft_Snow/V1/preview.2a92a3f5.png"
+          }
+        ],
+        "injectsCss": false
+      }
+    ],
+    "latestVersion": "V1",
+    "previewUrl": "https://themes.cubiclauncher.org/src/holman/BMW_Minecraft_Snow/V1/preview.2a92a3f5.png",
+    "date": "2026-09-06T15:15:12-05:00"
+  },
+  {
     "id": "holman-gt3-rs-end",
     "slug": "holman-gt3-rs-end",
     "name": "Porsche_Gt3_Rs_GIF",

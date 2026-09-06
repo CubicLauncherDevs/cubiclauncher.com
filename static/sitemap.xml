@@ -482,6 +482,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://cubiclauncher.org/themes/holman-bmw-minecraft-snow</loc>
+    <lastmod>2026-09-06T20:15:12.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/holman-bmw-minecraft-snow/V1</loc>
+    <lastmod>2026-09-06T20:15:12.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://cubiclauncher.org/themes/holman-gt3-rs-end</loc>
     <lastmod>2026-09-06T00:25:18.000Z</lastmod>
     <changefreq>weekly</changefreq>
@@ -675,7 +687,7 @@
   </url>
   <url>
     <loc>https://cubiclauncher.org/themes/author/holman</loc>
-    <lastmod>2026-09-06T00:25:18.000Z</lastmod>
+    <lastmod>2026-09-06T20:15:12.000Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
