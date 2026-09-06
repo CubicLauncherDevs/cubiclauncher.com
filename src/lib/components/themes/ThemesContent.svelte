@@ -37,6 +37,7 @@
   import IconArrowsClockwise from "~icons/ph/arrows-clockwise";
   import IconSquaresFour from "~icons/ph/squares-four";
   import IconList from "~icons/ph/list";
+  import IconWarning from "~icons/ph/warning";
 
   let {
     initialThemes,
@@ -398,6 +399,12 @@
       <p class="text-xs text-cl-muted max-w-lg">
         {$t('themes.description')}
       </p>
+      <div class="flex items-start gap-2 p-3 rounded bg-cl-warning/10 border border-cl-warning/20 text-cl-warning text-xs mt-3">
+        <IconWarning class="w-3.5 h-3.5 shrink-0 mt-0.5" />
+        <p class="min-w-0">
+          {$t('themes.performanceNotice')}
+        </p>
+      </div>
     </div>
 
     <!-- Toolbar -->

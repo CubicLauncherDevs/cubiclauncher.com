@@ -46,6 +46,34 @@ function escapeXml(str) {
     .replace(/'/g, '&apos;');
 }
 
+function deriveFileUrl(files, baseName) {
+  if (!Array.isArray(files)) return null;
+  const match = files.find((file) => {
+    if (!file || typeof file.name !== 'string') return false;
+    // Skip files inside subfolders to avoid false positives (e.g. icons/preview.png).
+    if (file.name.includes('/')) return false;
+    const stem = file.name.replace(/\.[^/.]+$/, '').toLowerCase();
+    return stem === baseName.toLowerCase();
+  });
+  return match?.url || null;
+}
+
+function patchThemeUrls(theme) {
+  const versions = theme.versions.map((version) => ({
+    ...version,
+    previewUrl: version.previewUrl || deriveFileUrl(version.files, 'preview'),
+    showcaseUrl: version.showcaseUrl || deriveFileUrl(version.files, 'showcase'),
+  }));
+
+  const latestVersion = versions.find((v) => v.version === theme.latestVersion) || versions[0];
+
+  return {
+    ...theme,
+    versions,
+    previewUrl: theme.previewUrl || latestVersion?.previewUrl || null,
+  };
+}
+
 function buildAuthorIndex(themes) {
   const authors = new Map();
   for (const theme of themes) {
@@ -127,7 +155,8 @@ async function main() {
   mkdirSync(DATA_DIR, { recursive: true });
 
   console.log('Fetching themes.json...');
-  const themes = await fetchJson(THEMES_URL);
+  const rawThemes = await fetchJson(THEMES_URL);
+  const themes = rawThemes.map(patchThemeUrls);
   writeFileSync(join(DATA_DIR, 'themes.json'), JSON.stringify(themes, null, 2));
   console.log(`Saved ${themes.length} themes.`);
 

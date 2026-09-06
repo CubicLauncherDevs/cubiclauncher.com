@@ -155,6 +155,7 @@
   "themes": {
     "title": "Personnalisez votre lanceur",
     "description": "Découvrez des thèmes créés par la communauté et donnez un nouveau look à votre lanceur.",
+    "performanceNotice": "Certains thèmes peuvent augmenter la consommation de ressources du launcher. Cela dépend de la façon dont chaque thème est conçu et relève de la responsabilité de son créateur.",
     "searchPlaceholder": "Rechercher par nom ou auteur...",
     "clearSearch": "Effacer la recherche",
     "author": "Auteur",
@@ -215,7 +216,11 @@
     "backToTheme": "Retour au thème",
     "description": "Description",
     "noDescription": "Ce thème n'a pas de description.",
-    "noChangelog": "Cette version n'a pas de journal des modifications."
+    "noChangelog": "Cette version n'a pas de journal des modifications.",
+    "activityTitle": "Activité",
+    "activityTooltip": "{count, plural, one {# version le {date}} other {# versions le {date}}}",
+    "activityLess": "Moins",
+    "activityMore": "Plus"
   },
   "packageDetail": {
     "retry": "Retry",

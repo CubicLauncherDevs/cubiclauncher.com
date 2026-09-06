@@ -1,9 +1,10 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import { t } from "$lib/i18n";
-  import ThemeCard from "$lib/components/themes/ThemeCard.svelte";
-  import ThemeListRow from "$lib/components/themes/ThemeListRow.svelte";
-  import IconArrowLeft from "~icons/ph/arrow-left";
+import ThemeCard from "$lib/components/themes/ThemeCard.svelte";
+import ThemeListRow from "$lib/components/themes/ThemeListRow.svelte";
+import ActivityGraph from "$lib/components/themes/ActivityGraph.svelte";
+import IconArrowLeft from "~icons/ph/arrow-left";
   import IconList from "~icons/ph/list";
   import IconSquaresFour from "~icons/ph/squares-four";
   import { goToThemesList } from "$lib/utils/theme-history";
@@ -21,6 +22,10 @@
 
   let paginatedThemes = $derived(
     (author?.themes ?? []).slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
+  );
+
+  let authorActivityDates = $derived(
+    author?.themes.flatMap((t) => t.versions.flatMap((v) => (v.date ? [v.date] : []))) ?? []
   );
 
   let paginationStart = $derived((currentPage - 1) * ITEMS_PER_PAGE + 1);
@@ -95,6 +100,10 @@
           </button>
         </div>
       </div>
+
+      {#if authorActivityDates.length > 0}
+        <ActivityGraph dates={authorActivityDates} title={$t('themeDetail.activityTitle')} />
+      {/if}
 
       {#if viewMode === "grid"}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">

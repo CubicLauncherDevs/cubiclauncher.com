@@ -155,6 +155,7 @@
   "themes": {
     "title": "Passe deinen Launcher an",
     "description": "Entdecke von der Community erstellte Themes und gib deinem Launcher ein neues Aussehen.",
+    "performanceNotice": "Einige Themes können den Ressourcenverbrauch des Launchers erhöhen. Dies hängt davon ab, wie jedes Theme erstellt wurde, und liegt in der Verantwortung seines Erstellers.",
     "searchPlaceholder": "Suche nach Name oder Autor...",
     "clearSearch": "Suche löschen",
     "author": "Autor",
@@ -215,7 +216,11 @@
     "backToTheme": "Zurück zum Theme",
     "description": "Beschreibung",
     "noDescription": "Dieses Theme hat keine Beschreibung.",
-    "noChangelog": "Diese Version hat keinen Changelog."
+    "noChangelog": "Diese Version hat keinen Changelog.",
+    "activityTitle": "Aktivität",
+    "activityTooltip": "{count, plural, one {# Version am {date}} other {# Versionen am {date}}}",
+    "activityLess": "Weniger",
+    "activityMore": "Mehr"
   },
   "packageDetail": {
     "retry": "Retry",

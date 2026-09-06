@@ -155,6 +155,7 @@
   "themes": {
     "title": "Personalizá tu launcher",
     "description": "Descubrí temas hechos por la comunidad y dale un nuevo look a tu launcher.",
+    "performanceNotice": "Algunos temas pueden aumentar el consumo de recursos del launcher. Esto depende de cómo esté hecho cada tema y es responsabilidad de su creador.",
     "searchPlaceholder": "Buscar por nombre o autor...",
     "clearSearch": "Limpiar búsqueda",
     "author": "Autor",
@@ -215,7 +216,11 @@
     "backToTheme": "Volver al tema",
     "description": "Descripción",
     "noDescription": "Este tema no tiene descripción.",
-    "noChangelog": "Esta versión no tiene registro de cambios."
+    "noChangelog": "Esta versión no tiene registro de cambios.",
+    "activityTitle": "Actividad",
+    "activityTooltip": "{count, plural, one {# versión el {date}} other {# versiones el {date}}}",
+    "activityLess": "Menos",
+    "activityMore": "Más"
   },
   "packageDetail": {
     "retry": "Reintentar",

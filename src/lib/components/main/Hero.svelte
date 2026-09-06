@@ -9,7 +9,7 @@
 
 <section
   id="hero-section"
-  class="dark relative min-h-[420px] lg:min-h-[520px] flex items-center overflow-hidden"
+  class="dark relative min-h-105 lg:min-h-130 flex items-center overflow-hidden"
   style="isolation: isolate;"
 >
   <HeroBackground />
@@ -18,7 +18,7 @@
     class="hero-content relative z-10 w-full mx-auto px-4 lg:px-6 py-16 text-left"
     style="max-width: var(--discord-max-width);"
   >
-    <div class="flex items-center gap-2 mb-0 max-w-[600px]">
+    <div class="flex items-center gap-2 mb-0 max-w-150">
       <Logo
         width="3.5rem"
         height="3.5rem"
@@ -32,7 +32,7 @@
       </h1>
     </div>
 
-    <p class="text-sm leading-[1.6] text-white/90 mb-6 max-w-[480px]">
+    <p class="text-sm leading-[1.6] text-white/90 mb-6 max-w-120">
       {$t("hero.description")}
     </p>
 

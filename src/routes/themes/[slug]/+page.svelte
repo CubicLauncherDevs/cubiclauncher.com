@@ -6,11 +6,12 @@
   import { slugify } from "$lib/utils/theme-search";
   import { renderMarkdown } from "$lib/utils/markdown";
   import { goToThemesList } from "$lib/utils/theme-history";
-  import ThemeCard from "$lib/components/themes/ThemeCard.svelte";
-  import ThemeDetailHeader from "$lib/components/themes/ThemeDetailHeader.svelte";
-  import VersionTimeline from "$lib/components/themes/VersionTimeline.svelte";
-  import ThemeLightbox from "$lib/components/themes/ThemeLightbox.svelte";
-  import IconArrowLeft from "~icons/ph/arrow-left";
+import ThemeCard from "$lib/components/themes/ThemeCard.svelte";
+import ThemeDetailHeader from "$lib/components/themes/ThemeDetailHeader.svelte";
+import VersionTimeline from "$lib/components/themes/VersionTimeline.svelte";
+import ThemeLightbox from "$lib/components/themes/ThemeLightbox.svelte";
+import ActivityGraph from "$lib/components/themes/ActivityGraph.svelte";
+import IconArrowLeft from "~icons/ph/arrow-left";
 
   let { data } = $props();
   let theme = $derived(data.theme);
@@ -46,6 +47,10 @@
 
   let currentVer = $derived(
     theme?.versions.find((v) => v.version === selectedVersion) || theme?.versions[0] || null
+  );
+
+  let versionDates = $derived(
+    theme?.versions.flatMap((v) => (v.date ? [v.date] : [])) ?? []
   );
 
   let ogImage = $derived(
@@ -158,6 +163,10 @@
               onVersionChange={(ver) => selectedVersion = ver}
               onPreviewClick={(url: string) => { lightboxUrl = url; showLightbox = true; }}
             />
+
+            {#if versionDates.length > 0}
+              <ActivityGraph dates={versionDates} title={$t('themeDetail.activityTitle')} />
+            {/if}
           </div>
         </div>
 

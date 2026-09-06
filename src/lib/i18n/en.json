@@ -155,6 +155,7 @@
   "themes": {
     "title": "Customize your launcher",
     "description": "Discover community-made themes and give your launcher a fresh look.",
+    "performanceNotice": "Some themes may increase the launcher's resource usage. This depends on how each theme is built and is the creator's responsibility.",
     "searchPlaceholder": "Search by name or author...",
     "clearSearch": "Clear search",
     "author": "Author",
@@ -215,7 +216,11 @@
     "backToTheme": "Back to theme",
     "description": "Description",
     "noDescription": "This theme has no description.",
-    "noChangelog": "This version has no changelog."
+    "noChangelog": "This version has no changelog.",
+    "activityTitle": "Activity",
+    "activityTooltip": "{count, plural, one {# version on {date}} other {# versions on {date}}}",
+    "activityLess": "Less",
+    "activityMore": "More"
   },
   "packageDetail": {
     "retry": "Retry",

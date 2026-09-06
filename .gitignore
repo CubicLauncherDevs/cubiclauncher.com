@@ -38,4 +38,5 @@ Thumbs.db
 *.sw?
 
 # Bun
-bun.lockb
+bun.lock
+deno.lock

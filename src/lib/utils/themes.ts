@@ -1,6 +1,6 @@
 import { get } from "svelte/store";
 import { browser } from "$app/environment";
-import type { Theme, ThemeVerification, ColorGroup } from "$lib/types/theme";
+import type { Theme, ThemeVerification, ColorGroup, ThemeVersion } from "$lib/types/theme";
 import { t } from "$lib/i18n";
 import { getCachedThemes, setCachedThemes } from "./theme-cache";
 
@@ -68,12 +68,36 @@ export function getThemeVerification(theme: { author: string; verified?: boolean
   return theme.verified ? "verified" : "none";
 }
 
-/** Enrich an array of themes with their locally-calculated verification level. */
+function deriveFileUrl(files: ThemeVersion['files'], baseName: string): string | null {
+  const match = files.find((file) => {
+    if (typeof file === 'string') return false;
+    // Skip files inside subfolders to avoid false positives (e.g. icons/preview.png).
+    if (file.name.includes('/')) return false;
+    const stem = file.name.replace(/\.[^/.]+$/, '').toLowerCase();
+    return stem === baseName.toLowerCase();
+  });
+  return match && typeof match !== 'string' ? match.url : null;
+}
+
+/** Enrich an array of themes with their locally-calculated verification level and
+ *  derive missing preview/showcase URLs from the version's file list. */
 export function normalizeThemes(themes: Theme[]): Theme[] {
-  return themes.map((theme) => ({
-    ...theme,
-    verification: getThemeVerification(theme),
-  }));
+  return themes.map((theme) => {
+    const versions = theme.versions.map((version) => ({
+      ...version,
+      previewUrl: version.previewUrl || deriveFileUrl(version.files, 'preview'),
+      showcaseUrl: version.showcaseUrl || deriveFileUrl(version.files, 'showcase'),
+    }));
+
+    const latestVersion = versions.find((v) => v.version === theme.latestVersion) || versions[0];
+
+    return {
+      ...theme,
+      verification: getThemeVerification(theme),
+      versions,
+      previewUrl: theme.previewUrl || latestVersion?.previewUrl || null,
+    };
+  });
 }
 
 /** Build a raw GitHub URL for a file inside a theme version directory */
