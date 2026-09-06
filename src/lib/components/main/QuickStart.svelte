@@ -11,7 +11,7 @@
   ];
 </script>
 
-<section class="py-8 bg-cl-elevated/30 border-y border-cl-border">
+<section class="py-8 bg-cl-elevated border-y border-cl-border">
   <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
       <div>

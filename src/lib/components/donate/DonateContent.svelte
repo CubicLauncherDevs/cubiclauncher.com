@@ -10,7 +10,7 @@
 </script>
 
 <main class="bg-cl-base overflow-x-hidden">
-  <section class="relative border-b border-cl-border bg-cl-surface/30 overflow-hidden">
+  <section class="relative border-b border-cl-border bg-cl-surface overflow-hidden">
     <div
       class="absolute inset-0 opacity-[0.03] pointer-events-none"
       style="background-image: radial-gradient(circle, var(--cl-text) 1px, transparent 1px); background-size: 40px 40px;"

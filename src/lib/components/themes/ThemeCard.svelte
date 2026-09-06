@@ -9,10 +9,10 @@
   let imgLoaded = $state(false);
 </script>
 
-<div class="group flex flex-col bg-cl-surface border border-cl-border rounded overflow-hidden hover:border-cl-border-hover hover:bg-cl-elevated transition-colors h-full cursor-pointer">
+<div class="group flex flex-col bg-cl-surface border border-cl-border rounded hover:border-cl-border-hover hover:bg-cl-elevated transition-colors h-full cursor-pointer">
   <a
     href="/themes/{theme.id}"
-    class="block aspect-video bg-cl-elevated relative overflow-hidden"
+    class="block aspect-video bg-cl-elevated relative rounded-t overflow-hidden"
   >
     {#if theme.previewUrl}
       <img

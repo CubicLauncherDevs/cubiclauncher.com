@@ -724,7 +724,7 @@
             {#if viewMode === "grid"}
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {#each paginatedItems as item, i (item.id)}
-                  <div class="card-enter" style="animation-delay: {i * 40}ms">
+                  <div class="card-enter relative hover:z-10 focus-within:z-10" style="animation-delay: {i * 40}ms">
                     <ThemeCard theme={item as Theme} />
                   </div>
                 {/each}
@@ -732,7 +732,7 @@
             {:else}
               <div class="flex flex-col gap-1.5">
                 {#each paginatedItems as item, i (item.id)}
-                  <div class="card-enter" style="animation-delay: {i * 30}ms">
+                  <div class="card-enter relative hover:z-10 focus-within:z-10" style="animation-delay: {i * 30}ms">
                     <ThemeListRow theme={item as Theme} />
                   </div>
                 {/each}
