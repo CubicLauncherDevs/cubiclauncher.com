@@ -434,6 +434,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://cubiclauncher.org/themes/santiagolxx-systemofadown</loc>
+    <lastmod>2026-09-08T01:50:19.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/santiagolxx-systemofadown/V1</loc>
+    <lastmod>2026-09-08T01:50:19.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://cubiclauncher.org/themes/santiagolxx-worldcupafa</loc>
     <lastmod>2026-07-24T07:40:25.000Z</lastmod>
     <changefreq>weekly</changefreq>
