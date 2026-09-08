@@ -1964,7 +1964,7 @@
       {
         "version": "V1",
         "previewUrl": "https://themes.cubiclauncher.org/src/holman/BMW_Minecraft_Snow/V1/preview.2a92a3f5.png",
-        "showcaseUrl": "https://themes.cubiclauncher.org/src/holman/BMW_Minecraft_Snow/V1/Showcase.7eb70257.gif",
+        "showcaseUrl": "https://themes.cubiclauncher.org/src/holman/BMW_Minecraft_Snow/V1/Showcase.966935c5.gif",
         "dirPath": "src/holman/BMW_Minecraft_Snow/V1",
         "date": "2026-09-06T15:15:12-05:00",
         "changelog": null,
@@ -1979,7 +1979,7 @@
           },
           {
             "name": "Showcase.gif",
-            "url": "https://themes.cubiclauncher.org/src/holman/BMW_Minecraft_Snow/V1/Showcase.7eb70257.gif"
+            "url": "https://themes.cubiclauncher.org/src/holman/BMW_Minecraft_Snow/V1/Showcase.966935c5.gif"
           },
           {
             "name": "bg.gif",
@@ -2440,7 +2440,7 @@
       {
         "version": "V1",
         "previewUrl": "https://themes.cubiclauncher.org/src/holman/interstellar/V1/preview.b4cd333c.png",
-        "showcaseUrl": "https://themes.cubiclauncher.org/src/holman/interstellar/V1/showcase.966935c5.gif",
+        "showcaseUrl": "https://themes.cubiclauncher.org/src/holman/interstellar/V1/Showcase.8306abc8.gif",
         "dirPath": "src/holman/interstellar/V1",
         "date": "2026-09-06T15:43:01-05:00",
         "changelog": null,
@@ -2454,6 +2454,10 @@
             "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/interstellar/V1/Meta.toml"
           },
           {
+            "name": "Showcase.gif",
+            "url": "https://themes.cubiclauncher.org/src/holman/interstellar/V1/Showcase.8306abc8.gif"
+          },
+          {
             "name": "bg.gif",
             "url": "https://themes.cubiclauncher.org/src/holman/interstellar/V1/bg.3a0fe5a4.gif"
           },
@@ -2464,10 +2468,6 @@
           {
             "name": "showcase.gif",
             "url": "https://themes.cubiclauncher.org/src/holman/interstellar/V1/showcase.966935c5.gif"
-          },
-          {
-            "name": "Showcase.gif",
-            "url": "https://themes.cubiclauncher.org/src/holman/interstellar/V1/Showcase.8306abc8.gif"
           }
         ],
         "injectsCss": false
