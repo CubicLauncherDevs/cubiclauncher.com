@@ -1082,7 +1082,7 @@
     "versions": [
       {
         "version": "V1",
-        "previewUrl": "https://themes.cubiclauncher.org/src/Notstaff/Louise/V1/preview.00c4618f.png",
+        "previewUrl": "https://themes.cubiclauncher.org/src/Notstaff/Louise/V1/preview.0213af5b.png",
         "showcaseUrl": "https://themes.cubiclauncher.org/src/Notstaff/Louise/V1/Showcase.7dbfea1b.png",
         "dirPath": "src/Notstaff/Louise/V1",
         "date": "2026-07-24T00:00:59-04:00",
@@ -1114,15 +1114,61 @@
           },
           {
             "name": "preview.png",
-            "url": "https://themes.cubiclauncher.org/src/Notstaff/Louise/V1/preview.00c4618f.png"
+            "url": "https://themes.cubiclauncher.org/src/Notstaff/Louise/V1/preview.0213af5b.png"
           }
         ],
         "injectsCss": true
       }
     ],
     "latestVersion": "V1",
-    "previewUrl": "https://themes.cubiclauncher.org/src/Notstaff/Louise/V1/preview.00c4618f.png",
+    "previewUrl": "https://themes.cubiclauncher.org/src/Notstaff/Louise/V1/preview.0213af5b.png",
     "date": "2026-07-24T00:00:59-04:00"
+  },
+  {
+    "id": "notstaff-memento",
+    "slug": "notstaff-memento",
+    "name": "Memento",
+    "author": "Notstaff",
+    "tags": [],
+    "dirPath": "src/Notstaff/Memento",
+    "description": "Negro carbón, detalles marfil y un grabado de calavera. Minimalismo oscuro.",
+    "verified": false,
+    "versions": [
+      {
+        "version": "V1",
+        "previewUrl": "https://themes.cubiclauncher.org/src/Notstaff/Memento/V1/preview.5ea932bc.png",
+        "showcaseUrl": null,
+        "dirPath": "src/Notstaff/Memento/V1",
+        "date": "2026-09-09T01:38:28-06:00",
+        "changelog": null,
+        "files": [
+          {
+            "name": "Definition.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/Notstaff/Memento/V1/Definition.toml"
+          },
+          {
+            "name": "Inject.css",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/Notstaff/Memento/V1/Inject.css"
+          },
+          {
+            "name": "Meta.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/Notstaff/Memento/V1/Meta.toml"
+          },
+          {
+            "name": "bg.png",
+            "url": "https://themes.cubiclauncher.org/src/Notstaff/Memento/V1/bg.5d4e5e79.png"
+          },
+          {
+            "name": "preview.png",
+            "url": "https://themes.cubiclauncher.org/src/Notstaff/Memento/V1/preview.5ea932bc.png"
+          }
+        ],
+        "injectsCss": true
+      }
+    ],
+    "latestVersion": "V1",
+    "previewUrl": "https://themes.cubiclauncher.org/src/Notstaff/Memento/V1/preview.5ea932bc.png",
+    "date": "2026-09-09T01:38:28-06:00"
   },
   {
     "id": "notstaff-northern-mist",
@@ -1997,7 +2043,7 @@
     "tags": [],
     "dirPath": "src/StyleSfx/MikuNakano",
     "description": "# MikuNakano\n\nTema inspirado en Miku Nakano, de la serie *Gotoubun no Hanayome* (The Quintessential Quintuplets).\n\nFondo con una ilustración de Miku en vestido de novia, sobre un cielo celeste con pétalos flotando. La paleta acompaña esos tonos: celestes y azules suaves, para un look tranquilo y elegante.\n\nIdeal para fans de la serie o para quienes quieren un launcher con onda anime pastel.\n",
-    "verified": false,
+    "verified": true,
     "versions": [
       {
         "version": "V1",

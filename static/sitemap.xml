@@ -284,6 +284,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://cubiclauncher.org/themes/notstaff-memento</loc>
+    <lastmod>2026-09-09T07:38:28.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/notstaff-memento/V1</loc>
+    <lastmod>2026-09-09T07:38:28.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://cubiclauncher.org/themes/notstaff-northern-mist</loc>
     <lastmod>2026-08-23T00:51:33.000Z</lastmod>
     <changefreq>weekly</changefreq>
