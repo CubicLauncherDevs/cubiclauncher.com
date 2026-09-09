@@ -1132,10 +1132,10 @@
     "versions": [
       {
         "version": "V1",
-        "previewUrl": null,
+        "previewUrl": "https://themes.cubiclauncher.org/src/Notstaff/PetalVeil/V1/preview.53a2dc04.png",
         "showcaseUrl": null,
         "dirPath": "src/Notstaff/PetalVeil/V1",
-        "date": "2026-09-07T20:25:22-06:00",
+        "date": "2026-09-08T20:17:29-06:00",
         "changelog": null,
         "files": [
           {
@@ -1149,14 +1149,26 @@
           {
             "name": "Meta.toml",
             "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/Notstaff/PetalVeil/V1/Meta.toml"
+          },
+          {
+            "name": "background.png",
+            "url": "https://themes.cubiclauncher.org/src/Notstaff/PetalVeil/V1/background.e78b8633.png"
+          },
+          {
+            "name": "icons/preview.svg",
+            "url": "https://themes.cubiclauncher.org/src/Notstaff/PetalVeil/V1/icons/preview.975dd231.svg"
+          },
+          {
+            "name": "preview.png",
+            "url": "https://themes.cubiclauncher.org/src/Notstaff/PetalVeil/V1/preview.53a2dc04.png"
           }
         ],
         "injectsCss": true
       }
     ],
     "latestVersion": "V1",
-    "previewUrl": null,
-    "date": "2026-09-07T20:25:22-06:00"
+    "previewUrl": "https://themes.cubiclauncher.org/src/Notstaff/PetalVeil/V1/preview.53a2dc04.png",
+    "date": "2026-09-08T20:17:29-06:00"
   },
   {
     "id": "notstaff-yorha",
@@ -1820,16 +1832,16 @@
             "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/Santiagolxx/SystemOfADown/V1/Meta.toml"
           },
           {
-            "name": "preview.png",
-            "url": "https://themes.cubiclauncher.org/src/Santiagolxx/SystemOfADown/V1/preview.db7ecc92.png"
-          },
-          {
             "name": "Fonts/Stf.otf",
             "url": "https://themes.cubiclauncher.org/src/Santiagolxx/SystemOfADown/V1/Fonts/Stf.6b879ea3.otf"
           },
           {
             "name": "bg.png",
             "url": "https://themes.cubiclauncher.org/src/Santiagolxx/SystemOfADown/V1/bg.79778d7b.png"
+          },
+          {
+            "name": "preview.png",
+            "url": "https://themes.cubiclauncher.org/src/Santiagolxx/SystemOfADown/V1/preview.db7ecc92.png"
           }
         ],
         "injectsCss": false
@@ -1930,6 +1942,60 @@
     "latestVersion": "V1",
     "previewUrl": "https://themes.cubiclauncher.org/src/Santiagolxx/Yuuki/V1/preview.0f896ae0.png",
     "date": "2026-07-24T04:24:55-04:00"
+  },
+  {
+    "id": "stylesfx-mikunakano",
+    "slug": "stylesfx-mikunakano",
+    "name": "MikuNakano",
+    "author": "StyleSfx",
+    "tags": [],
+    "dirPath": "src/StyleSfx/MikuNakano",
+    "description": "# MikuNakano\n\nTema inspirado en Miku Nakano, de la serie *Gotoubun no Hanayome* (The Quintessential Quintuplets).\n\nFondo con una ilustración de Miku en vestido de novia, sobre un cielo celeste con pétalos flotando. La paleta acompaña esos tonos: celestes y azules suaves, para un look tranquilo y elegante.\n\nIdeal para fans de la serie o para quienes quieren un launcher con onda anime pastel.\n",
+    "verified": false,
+    "versions": [
+      {
+        "version": "V1",
+        "previewUrl": "https://themes.cubiclauncher.org/src/StyleSfx/MikuNakano/V1/preview.f3d93919.png",
+        "showcaseUrl": "https://themes.cubiclauncher.org/src/StyleSfx/MikuNakano/V1/Showcase.6970b370.png",
+        "dirPath": "src/StyleSfx/MikuNakano/V1",
+        "date": "2026-09-08T20:18:55-06:00",
+        "changelog": "# V1\n- Primer lanzamiento del tema\n- Fondo con Miku Nakano (vestido de novia)\n- Paleta en tonos celeste/azul\n",
+        "files": [
+          {
+            "name": "Definition.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/StyleSfx/MikuNakano/V1/Definition.toml"
+          },
+          {
+            "name": "Meta.toml",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/StyleSfx/MikuNakano/V1/Meta.toml"
+          },
+          {
+            "name": "Showcase.png",
+            "url": "https://themes.cubiclauncher.org/src/StyleSfx/MikuNakano/V1/Showcase.6970b370.png"
+          },
+          {
+            "name": "bg.jpg",
+            "url": "https://themes.cubiclauncher.org/src/StyleSfx/MikuNakano/V1/bg.519c89aa.jpg"
+          },
+          {
+            "name": "changelog.md",
+            "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/StyleSfx/MikuNakano/V1/changelog.md"
+          },
+          {
+            "name": "icons/preview.png",
+            "url": "https://themes.cubiclauncher.org/src/StyleSfx/MikuNakano/V1/icons/preview.def7d2ec.png"
+          },
+          {
+            "name": "preview.png",
+            "url": "https://themes.cubiclauncher.org/src/StyleSfx/MikuNakano/V1/preview.f3d93919.png"
+          }
+        ],
+        "injectsCss": false
+      }
+    ],
+    "latestVersion": "V1",
+    "previewUrl": "https://themes.cubiclauncher.org/src/StyleSfx/MikuNakano/V1/preview.f3d93919.png",
+    "date": "2026-09-08T20:18:55-06:00"
   },
   {
     "id": "toritopablo-mina",
@@ -2538,16 +2604,16 @@
             "url": "https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/src/holman/interstellar/V1/Meta.toml"
           },
           {
-            "name": "preview.png",
-            "url": "https://themes.cubiclauncher.org/src/holman/interstellar/V1/preview.fca02bc7.png"
-          },
-          {
             "name": "Showcase.gif",
             "url": "https://themes.cubiclauncher.org/src/holman/interstellar/V1/Showcase.8306abc8.gif"
           },
           {
             "name": "bg.gif",
             "url": "https://themes.cubiclauncher.org/src/holman/interstellar/V1/bg.34117a5a.gif"
+          },
+          {
+            "name": "preview.png",
+            "url": "https://themes.cubiclauncher.org/src/holman/interstellar/V1/preview.fca02bc7.png"
           },
           {
             "name": "showcase.gif",

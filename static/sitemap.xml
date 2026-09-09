@@ -285,13 +285,13 @@
   </url>
   <url>
     <loc>https://cubiclauncher.org/themes/notstaff-petalveil</loc>
-    <lastmod>2026-09-08T02:25:22.000Z</lastmod>
+    <lastmod>2026-09-09T02:17:29.000Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cubiclauncher.org/themes/notstaff-petalveil/V1</loc>
-    <lastmod>2026-09-08T02:25:22.000Z</lastmod>
+    <lastmod>2026-09-09T02:17:29.000Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -478,6 +478,18 @@
   <url>
     <loc>https://cubiclauncher.org/themes/santiagolxx-yuuki/V1</loc>
     <lastmod>2026-07-24T08:24:55.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/stylesfx-mikunakano</loc>
+    <lastmod>2026-09-09T02:18:55.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/stylesfx-mikunakano/V1</loc>
+    <lastmod>2026-09-09T02:18:55.000Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -718,6 +730,12 @@
   <url>
     <loc>https://cubiclauncher.org/themes/author/santiagolxx</loc>
     <lastmod>2026-07-25T21:29:05.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/author/stylesfx</loc>
+    <lastmod>2026-09-09T02:18:55.000Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
