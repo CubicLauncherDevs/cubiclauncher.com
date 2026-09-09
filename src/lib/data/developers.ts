@@ -68,5 +68,35 @@ export const contributors: Developer[] = [
     role: "Traductor",
     roleKey: "developers.role8",
     github: "nullked",
-  }
+  },
+  {
+    name: "Opepodevs",
+    role: "Colaborador",
+    roleKey: "developers.role9",
+    github: "Opepodevs",
+  },
+  {
+    name: "LainLife",
+    role: "Colaborador",
+    roleKey: "developers.role10",
+    github: "LainLife",
+  },
+  {
+    name: "holman2chila-droid",
+    role: "Colaborador",
+    roleKey: "developers.role11",
+    github: "holman2chila-droid",
+  },
+  {
+    name: "StyleSfx",
+    role: "Colaborador",
+    roleKey: "developers.role12",
+    github: "StyleSfx",
+  },
+  {
+    name: "JuanPG21",
+    role: "Colaborador",
+    roleKey: "developers.role13",
+    github: "JuanPG21",
+  },
 ];
