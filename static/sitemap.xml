@@ -602,6 +602,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://cubiclauncher.org/themes/holman-ios-glass</loc>
+    <lastmod>2026-09-10T17:15:13.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/holman-ios-glass/V1</loc>
+    <lastmod>2026-09-10T17:15:13.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://cubiclauncher.org/themes/holman-invincibles</loc>
     <lastmod>2026-09-06T00:37:57.000Z</lastmod>
     <changefreq>weekly</changefreq>
