@@ -1,4 +1,15 @@
 {
+  "downloadLog": {
+    "title": "Download log and file sources",
+    "started": "Starting download…",
+    "request": "Downloading {name} from",
+    "redirect": "{name} redirected to",
+    "received": "{name} received from",
+    "packing": "Creating {name} in your browser…",
+    "ready": "{name} is ready; download handed to the browser.",
+    "error": "Error downloading {name}",
+    "noFiles": "No files found in the theme directory."
+  },
   "theme": {
     "light": "Light",
     "dark": "Dark",

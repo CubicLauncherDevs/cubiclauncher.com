@@ -1,4 +1,15 @@
 {
+  "downloadLog": {
+    "title": "Journal de téléchargement et origine des fichiers",
+    "started": "Démarrage du téléchargement…",
+    "request": "Téléchargement de {name} depuis",
+    "redirect": "Redirection de {name} vers",
+    "received": "{name} reçu depuis",
+    "packing": "Création de {name} dans votre navigateur…",
+    "ready": "{name} est prêt ; téléchargement transmis au navigateur.",
+    "error": "Erreur lors du téléchargement de {name}",
+    "noFiles": "Aucun fichier trouvé dans le répertoire du thème."
+  },
   "theme": {
     "light": "Clair",
     "dark": "Sombre",

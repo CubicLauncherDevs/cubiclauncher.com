@@ -1,4 +1,15 @@
 {
+  "downloadLog": {
+    "title": "Download-Protokoll und Dateiquellen",
+    "started": "Download wird gestartet…",
+    "request": "{name} wird heruntergeladen von",
+    "redirect": "{name} wird weitergeleitet zu",
+    "received": "{name} empfangen von",
+    "packing": "{name} wird in deinem Browser erstellt…",
+    "ready": "{name} ist bereit; Download an den Browser übergeben.",
+    "error": "Fehler beim Herunterladen von {name}",
+    "noFiles": "Keine Dateien im Theme-Verzeichnis gefunden."
+  },
   "theme": {
     "light": "Hell",
     "dark": "Dunkel",

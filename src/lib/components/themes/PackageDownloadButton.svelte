@@ -3,7 +3,9 @@
   import { onDestroy } from "svelte";
   import { t } from "$lib/i18n";
   import type { ResolvedThemePackage } from "$lib/types/theme";
-  import type JSZipType from "jszip";
+  import DownloadLog from "./DownloadLog.svelte";
+  import { fetchLoggedThemeFile, type DownloadLogEntry } from "$lib/utils/download-log";
+  import { versionFileUrl } from "$lib/utils/themes";
   import IconDownload from "~icons/ph/download-simple";
   import IconSpinner from "~icons/ph/spinner";
   import IconWarning from "~icons/ph/warning";
@@ -16,6 +18,12 @@
   let total = $state(0);
   let error = $state("");
   let success = $state(false);
+  let logs = $state<DownloadLogEntry[]>([]);
+  let attempt = $state(0);
+
+  function log(entry: DownloadLogEntry) {
+    logs.push(entry);
+  }
 
   let abortController: AbortController | null = null;
   let successTimer: ReturnType<typeof setTimeout> | null = null;
@@ -41,16 +49,19 @@
     success = false;
     progress = 0;
     total = resolved.resolvedThemes.length;
+    logs = [{ kind: "started" }];
+    attempt += 1;
 
     abortController = new AbortController();
     const signal = abortController.signal;
 
     try {
       const JSZip = (await import("jszip")).default;
+      signal.throwIfAborted();
       const zip = new JSZip();
 
       for (let i = 0; i < resolved.resolvedThemes.length; i++) {
-        if (signal.aborted) throw new Error("Download cancelled");
+        signal.throwIfAborted();
 
         const theme = resolved.resolvedThemes[i];
         const latest = theme.versions.find((v) => v.version === theme.latestVersion) || theme.versions[0];
@@ -59,23 +70,20 @@
         const files = latest.files ?? [];
 
         for (const f of files) {
-          if (signal.aborted) throw new Error("Download cancelled");
+          signal.throwIfAborted();
 
           const name = typeof f === "string" ? f : f.name;
           const url = typeof f === "string"
-            ? `https://raw.githubusercontent.com/CubicLauncherDevs/Themes/refs/heads/master/${latest.dirPath}/${f}`
+            ? versionFileUrl(latest, f)
             : f.url;
 
-          const res = await fetch(url, { signal });
-          if (!res.ok) {
-            throw new Error(get(t)('packageDetail.downloadThemeFailed', { values: { name: theme.name, status: res.status } }));
-          }
-          const blob = await res.blob();
+          const blob = await fetchLoggedThemeFile(`${theme.slug}/${name}`, url, signal, log);
           zip.file(`${theme.slug}/${name}`, blob);
         }
         progress = i + 1;
       }
 
+      log({ kind: "packing", name: `${resolved.slug}.zip` });
       const content = await zip.generateAsync(
         { type: "blob" },
         (metadata) => {
@@ -83,6 +91,7 @@
         }
       );
 
+      signal.throwIfAborted();
       const url = URL.createObjectURL(content);
       try {
         const a = document.createElement("a");
@@ -96,12 +105,14 @@
       }
 
       success = true;
+      log({ kind: "ready", name: `${resolved.slug}.zip` });
       successTimer = setTimeout(() => { success = false; }, 3000);
     } catch (e) {
       if (e instanceof DOMException && e.name === "AbortError") {
         // silently ignore cancelled downloads
       } else {
         error = e instanceof Error ? e.message : get(t)('packageDetail.downloadFailed');
+        if (logs.at(-1)?.kind !== "error") log({ kind: "error", detail: error });
       }
     } finally {
       loading = false;
@@ -110,7 +121,7 @@
   }
 </script>
 
-<div class="flex flex-col gap-1.5">
+<div class="flex min-w-0 flex-col gap-1.5">
   <button
     onclick={downloadPackage}
     disabled={loading || resolved.resolvedThemes.length === 0}
@@ -138,4 +149,5 @@
       <span>{error}</span>
     </div>
   {/if}
+  <DownloadLog entries={logs} {attempt} />
 </div>

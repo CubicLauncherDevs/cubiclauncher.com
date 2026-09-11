@@ -1,4 +1,15 @@
 {
+  "downloadLog": {
+    "title": "Registro de descarga y origen de archivos",
+    "started": "Iniciando descarga…",
+    "request": "Descargando {name} desde",
+    "redirect": "Redirección de {name} a",
+    "received": "{name} recibido desde",
+    "packing": "Generando {name} en tu navegador…",
+    "ready": "{name} listo; descarga enviada al navegador.",
+    "error": "Error al descargar {name}",
+    "noFiles": "No se encontraron archivos en el directorio del tema."
+  },
   "theme": {
     "light": "Claro",
     "dark": "Oscuro",
