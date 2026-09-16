@@ -97,6 +97,10 @@
           <p class="text-xs text-cl-muted max-w-md">
             {$t("install.subtitle")}
           </p>
+          <a href="/changelogs" class="mt-3 inline-flex items-center gap-1 text-xs text-cl-muted hover:text-cl-text transition-colors">
+            {$t('changelogs.viewChanges')}
+            <IconArrowRight class="h-3 w-3" />
+          </a>
         </div>
         {#if totalDownloads > 0}
           <a

@@ -1,0 +1,35 @@
+name: Sync launcher changelogs
+
+on:
+  schedule:
+    - cron: '23 * * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: sync-changelogs
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Fetch release history
+        run: node scripts/fetch-changelogs.mjs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Commit updated feed
+        run: |
+          git add static/api/v1/changelogs.json
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "Actualizar changelogs del launcher"
+            git pull --rebase origin main
+            git push origin main
+          fi

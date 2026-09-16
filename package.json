@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "fetch-themes": "node scripts/fetch-themes.mjs",
-    "prebuild": "npm run fetch-themes",
+    "fetch-changelogs": "node scripts/fetch-changelogs.mjs",
+    "test:changelogs": "node --test scripts/fetch-changelogs.test.mjs",
+    "prebuild": "npm run fetch-themes && npm run fetch-changelogs",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",

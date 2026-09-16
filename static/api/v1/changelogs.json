@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 1,
+  "repository": "CubicLauncherDevs/CubicLauncher",
+  "source": "https://github.com/CubicLauncherDevs/CubicLauncher/releases",
+  "generatedAt": "2026-09-16T01:04:26.946Z",
+  "notesFormat": "markdown",
+  "releases": [
+    {
+      "id": 385264860,
+      "tag": "v34.0.1",
+      "name": "CubicLauncher v34.0.1",
+      "body": "# CubicLauncher 34.0.1\r\n\r\nEsta es una actualización parche enfocada principalmente en corregir algunos problemas de la versión anterior.\r\n\r\nArreglamos las fugas de memoria que podían ocurrir al usar temas, además de hacer algunas optimizaciones para que carguen mejor.\r\n\r\nTambién mejoramos el renderizado del visor 3D de skins, ya que antes los colores y la iluminación podían verse demasiado pálidos.\r\n\r\nPor último, corregimos algunos bugs menores y hicimos pequeños ajustes de rendimiento.",
+      "publishedAt": "2026-09-10T00:48:53Z",
+      "updatedAt": "2026-09-10T00:48:53Z",
+      "prerelease": false,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v34.0.1"
+    },
+    {
+      "id": 383673455,
+      "tag": "v34",
+      "name": "CubicLauncher v34",
+      "body": "# CubicLauncher 34.0.0\r\n\r\nCubicLauncher 34.0.0 reúne **90 commits desde la versión 33.0.0**, con mejoras en la organización de instancias, la instalación de mods, los perfiles y el rendimiento de la interfaz.\r\n\r\nEntre las novedades destacan la exportación e importación de instancias, el anclaje de favoritos, la revisión de dependencias antes de instalar mods y una consola más sencilla. También se corrigen problemas de descargas, listas del Market y ventanas de autenticación.\r\n\r\n## Instancias\r\n\r\n- **Exportación a ZIP desde el menú contextual.** Las instancias se pueden exportar con una estructura compatible con MultiMC, PolyMC y Prism Launcher, junto con metadatos propios de CubicLauncher.\r\n- **Importación de instancias exportadas por CubicLauncher.** Se recuperan la versión de Minecraft, el cargador y el icono, además de los archivos incluidos en la exportación.\r\n- **Traslado de los datos de juego.** Las exportaciones pueden incluir mods, mundos, configuraciones, resource packs, shaders, capturas y archivos como `options.txt`, `optionsof.txt` y `servers.dat`. Java y los componentes compartidos del juego se instalan por separado.\r\n- **Mejor compatibilidad con importaciones de MultiMC y Prism.** Ahora se reconoce `cachedVersion` cuando un componente no declara una versión válida en el campo habitual.\r\n- **Corrección de instancias fantasma.** Al eliminar una instancia, se actualizan la lista y la selección de la interfaz, y se evita que el guardado periódico vuelva a guardar una instancia retirada.\r\n- **Validación anticipada de nombres al instalar modpacks.** Si el nombre ya existe o contiene caracteres no permitidos, se solicita corregirlo antes de continuar.\r\n\r\n## Barra lateral\r\n\r\n- **Instancias ancladas.** Puedes fijar tus favoritas desde el menú contextual para mantenerlas al principio de la lista. El anclaje se conserva entre sesiones.\r\n- **Indicadores más claros.** Se distinguen las instancias ancladas y en ejecución; la vista expandida muestra también la versión de Minecraft y el cargador.\r\n- **Listas virtualizadas en ambos modos.** La barra lateral renderiza las filas visibles y un pequeño margen adicional, reduciendo el trabajo necesario cuando hay muchas instancias.\r\n- **Actualizaciones sin recargar toda la lista.** Operaciones como anclar una instancia actualizan su estado de forma puntual y recuperan el estado anterior si fallan.\r\n- **Contador de descargas activas en la barra compacta.** El seguimiento continúa al alternar entre los modos de la barra.\r\n- Corregida la visualización del lápiz de edición de instancias.\r\n\r\n## Market y dependencias\r\n\r\n- **Revisión de dependencias antes de instalar mods.** Un nuevo cuadro de confirmación muestra el árbol de dependencias de Modrinth o CurseForge y los archivos previstos para la descarga.\r\n- **Dependencias obligatorias e integradas resueltas de forma recursiva.** Cuando no hay una versión fijada, se buscan candidatos para la versión de Minecraft y el cargador seleccionados.\r\n- **Dependencias opcionales seleccionables.** Puedes decidir cuáles incluir antes de confirmar la instalación.\r\n- **Detección de proyectos ya instalados y archivos repetidos.** Se evita volver a añadirlos innecesariamente a la cola.\r\n- **Avisos de versiones contradictorias.** La revisión identifica solicitudes de distintas versiones de un mismo proyecto y diferencia las dependencias obligatorias, opcionales, integradas e incompatibles.\r\n- **Instalación desde el detalle del proyecto.** El botón de las tarjetas abre primero el detalle para elegir una versión y revisar sus dependencias.\r\n- **Filtros de procedencia para contenido local.** Se puede filtrar por Modrinth, CurseForge o archivos locales; las tarjetas incorporan una insignia de origen.\r\n- **Descripciones completas de CurseForge.** El detalle muestra su contenido HTML saneado dentro del launcher.\r\n- **Corrección de entradas duplicadas.** Distintos archivos de un mismo proyecto, incluidas varias versiones de un shader, mantienen entradas independientes.\r\n- **Operaciones locales más precisas.** Activar, desactivar o desinstalar un archivo ya no altera indiscriminadamente otras entradas del mismo proyecto.\r\n- **Correcciones al cambiar de fuente durante una búsqueda.** Las respuestas de peticiones anteriores dejan de sobrescribir los resultados y estados de la nueva fuente.\r\n- **Buscador dividido en campo y botón de limpieza.** La X tiene su propio espacio lateral, sin superponerse al texto ni aumentar el tamaño del control.\r\n- El estado vacío del Market utiliza el nuevo icono de pieza de rompecabezas.\r\n\r\n## Modpacks y descargas\r\n\r\n- **Detalle de modpacks rediseñado.** La información del proyecto, la selección de versión y la instalación quedan mejor agrupadas.\r\n- **Progreso y errores dentro de la tarjeta de instalación.** Se evita repartir el estado de la operación entre bloques separados.\r\n- **Controles acordes al estado de instalación.** No se permite instalar mientras las versiones siguen cargándose y se bloquea el regreso durante una instalación activa.\r\n- **Buscador editable mientras llegan los resultados.** Es posible modificar la consulta sin esperar a que termine la carga anterior.\r\n- **Transiciones de tamaño más suaves.** El asistente y las tarjetas se adaptan a los cambios de contenido y a las preferencias de movimiento reducido.\r\n- **Corrección de listas invisibles.** Desactivar las animaciones continuas ya no deja ocultas las listas y los detalles de modpacks.\r\n- **Descargador de versiones reorganizado.** Los cargadores se presentan en una columna lateral y las listas de versiones utilizan virtualización.\r\n- Las búsquedas de versiones ignoran espacios al principio y al final.\r\n- **Corregido un bloqueo tras errores de descarga.** La tarea que retransmite el progreso termina correctamente cuando falla una descarga obligatoria, evitando que otros procesos queden esperando.\r\n\r\n## Java y lanzamiento\r\n\r\n- **Detección de Java mediante su versión real.** Se consulta `java -version` en lugar de depender del nombre de la carpeta.\r\n- **Búsqueda ampliada de instalaciones.** Se prioriza `JAVA_HOME` y se contemplan más ubicaciones habituales en Windows, Linux y macOS.\r\n- **Selección de Java cuando faltan datos del manifiesto.** Se incorpora una inferencia basada en la versión de Minecraft, en lugar de recurrir siempre a Java 25.\r\n- **Descargas de Java con reintentos y archivos temporales.** La extracción ya no depende de que la carpeta interna tenga el mismo nombre que el archivo descargado.\r\n- **Proveedor alternativo al buscar Java.** Se incorpora Eclipse Adoptium como alternativa cuando no se puede resolver el paquete mediante Azul Zulu.\r\n- **Mejor distinción entre errores de arranque y crashes.** La falta de Java o un fallo al crear el proceso no se tratan como un cierre inesperado de Minecraft.\r\n- **Detener el juego desde el launcher deja de provocar falsos avisos de crash**, incluso cuando la orden de cierre y la salida del proceso ocurren casi simultáneamente.\r\n\r\n## Perfiles y apariencia\r\n\r\n- **Vista de perfiles reorganizada**, con una cabecera más compacta y las acciones de cuenta mejor agrupadas.\r\n- **Editor de skins y capas renovado para cuentas Microsoft.** La previsualización 3D ocupa el centro de la experiencia, con selección de modelo Classic/Slim, capas y controles de guardado.\r\n- **Cambio de modelo sin volver a elegir la skin.** Alternar entre Classic y Slim puede reutilizar la apariencia activa.\r\n- **Selección de capas más clara.** Se distingue la capa seleccionada de la equipada y se ofrece una opción explícita para desequiparla.\r\n- **Avatares procesados localmente.** El launcher genera la imagen de la cabeza a partir de la skin descargada, incluyendo la segunda capa, con soporte para skins modernas, antiguas y HD.\r\n- **Mejor carga de avatares de Microsoft y Yggdrasil.** Las cuentas offline utilizan el logo de Cubic como imagen predeterminada.\r\n- **Caché de perfiles y avatares.** Se reutilizan consultas recientes y se coordinan peticiones simultáneas para evitar solicitudes repetidas.\r\n- **Mejor tratamiento de errores al cambiar la apariencia**, incluidos los límites de peticiones del servicio.\r\n- Se retira de la interfaz la opción de introducir manualmente una URL de skin.\r\n\r\n## Consola\r\n\r\n- **Una barra compacta** reúne el nombre de la instancia, la búsqueda, el filtro y el menú de acciones.\r\n- **Tres filtros sencillos:** todos los mensajes, avisos y errores, o solo errores.\r\n- **Copiar, subir a mclo.gs y limpiar** quedan agrupados en el menú de acciones.\r\n- **Texto más legible y menos ruido visual.** Se retiran elementos decorativos y la animación de entrada de cada línea.\r\n- **Historial configurable entre 100 y 5.000 líneas**, con 3.000 como valor predeterminado.\r\n- **Seguimiento del final corregido.** La consola conserva el seguimiento al recibir nuevos mensajes si ya estabas al final y ofrece un botón para regresar cuando revisas líneas anteriores.\r\n- **Apertura automática reservada a crashes reales.** Se mantienen la apertura manual y la opción de mostrar la consola al iniciar el juego.\r\n- Corregidos los permisos y la configuración necesarios para crear las ventanas de logs.\r\n\r\n## Rendimiento y temas\r\n\r\n- **Ajustes de rendimiento reorganizados**, con controles para reducir animaciones, desenfoques y efectos continuos.\r\n- **Visor 3D con menos actividad innecesaria.** Se pausa cuando queda fuera de pantalla, cuando la ventana está oculta o después de un periodo sin interacción.\r\n- **Renderizado bajo demanda y limitación de fotogramas** en situaciones que no requieren una actualización continua.\r\n- Mejor limpieza de temporizadores, observadores y recursos gráficos al cerrar componentes.\r\n- **Nuevos temas Rosé Pine y Rosé Pine Dawn.**\r\n- **Mejor herencia de fuentes personalizadas** en botones, campos de texto, selectores y encabezados.\r\n- Se evita reaplicar innecesariamente un tema que ya está activo.\r\n- **Correcciones en el sistema de iconos.** Los estilos adicionales dejan de sobrescribir el tamaño y la máscara del icono, y más componentes utilizan el registro compartido de iconos.\r\n\r\n## Seguridad y mantenimiento\r\n\r\n- **Validación reforzada de rutas y nombres de archivo** en instalaciones, descargas, eliminación de contenido e importación de temas.\r\n- **Protecciones adicionales al extraer archivos comprimidos**, para impedir que entradas con rutas no válidas escriban fuera de su destino.\r\n- **Política de contenido web más restrictiva** en producción.\r\n- **Correcciones en la ventana de inicio de sesión Microsoft.** Las ventanas secundarias comparten las opciones necesarias del entorno WebView de la ventana principal.\r\n- **Botón para copiar mensajes de error** desde las notificaciones.\r\n- Eliminada la notificación adicional de éxito al terminar de instalar Java.\r\n- Actualización de dependencias del frontend y herramientas de desarrollo.\r\n- **Empaquetado Nix descontinuado.** Deja de mantenerse como opción oficial de distribución.\r\n- Nuevas pruebas de regresión para el Market, animaciones, avatares, importaciones, dependencias, ventanas y clasificación de cierres del juego.\r\n",
+      "publishedAt": "2026-09-06T18:54:51Z",
+      "updatedAt": "2026-09-06T18:54:51Z",
+      "prerelease": false,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v34"
+    },
+    {
+      "id": 372308338,
+      "tag": "v33.0.0",
+      "name": "CubicLauncher v33.0.0",
+      "body": "# CubicLauncher 33.0.0\r\n\r\nDespués de 84 commits y varias semanas de trabajo, ya está disponible **CubicLauncher 33.0.0**.\r\n\r\nEsta actualización incluye cambios importantes en el launcher, con mejoras en la experiencia de usuario, gestión de perfiles, modpacks, logs, temas y rendimiento general.\r\n\r\n### Perfiles y skins\r\n\r\n* Nuevo sistema de perfiles con **ProfileView**, reemplazando el antiguo UserMenu.\r\n* Gestión renovada de skins y capas.\r\n* Integración de **skin3d** para visualizar skins en 3D.\r\n* Sincronización de avatares mediante UUID.\r\n\r\n### Nuevas funciones\r\n\r\n* Opción para **abrir automáticamente la consola** al iniciar una instancia.\r\n* Nuevo buscador de **CurseForge**.\r\n* Importación de instancias de **MultiMC y sus forks**.\r\n* Explorador de temas.\r\n* RAM recomendada automáticamente según el sistema.\r\n* Soporte para habilitar loaders inestables.\r\n* Nuevos iconos personalizados y elementos de interfaz adaptados al tema.\r\n\r\n### Logs y estabilidad\r\n\r\n* Nuevo sistema **LogRing asíncrono**.\r\n* Sanitización de datos sensibles.\r\n* Contador de logs no leídos.\r\n* Apertura automática de los logs cuando ocurre un crash.\r\n* Mejoras en filtros, historial y rendimiento de la consola.\r\n\r\n### Market y modpacks\r\n\r\n* Búsqueda unificada entre **Modrinth y CurseForge**.\r\n* Mejoras de rendimiento y caché en el Market.\r\n* Soporte para **Fabric, Quilt, Forge y NeoForge** con un formato de versiones unificado.\r\n* Mejoras en la importación y gestión de modpacks.\r\n\r\n### Idiomas\r\n\r\n* Nuevo sistema de internacionalización con una API optimizada.\r\n* Añadido soporte para **japonés (`ja-JP`)**.\r\n\r\n### Interfaz\r\n\r\n* Nuevos logos de Cubic.\r\n* Actualización y reorganización de los iconos SVG.\r\n* Mejoras en la sidebar y el menú contextual.\r\n* Correcciones en el selector de versiones.\r\n* Soporte para **NixPackages**.\r\n* Actualización de dependencias y correcciones de CSP/devCSP.\r\n\r\n**CubicLauncher 33.0.0** es una actualización centrada en mejorar la estabilidad, el rendimiento y la experiencia general del launcher.",
+      "publishedAt": "2026-08-18T12:02:26Z",
+      "updatedAt": "2026-08-18T12:02:26Z",
+      "prerelease": false,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v33.0.0"
+    },
+    {
+      "id": 359717725,
+      "tag": "v32",
+      "name": "CubicLauncher v32",
+      "body": "# CubicLauncher 32\r\n\r\nDespués de una larga semana de trabajo, ya está disponible **CubicLauncher 32**, que incluye las siguientes novedades:\r\n\r\n## Mejoras en la interfaz (UI)\r\n\r\nSe implementó la posibilidad de **colapsar y expandir la barra lateral (sidebar)**. Además, se rediseñó el apartado para seleccionar temas y se renovó por completo la sección de descarga de versiones.\r\n\r\n## Mejoras en el sistema de temas\r\n\r\nSe mejoró el método para crear **Temas**, ofreciendo mucha más libertad para personalizar colores, la barra lateral y otros elementos de la interfaz.\r\n\r\nPara obtener más información, consulta la documentación:\r\nhttps://dev.cubiclauncher.org/docs/es-ES/guias/hacer-themes\r\n\r\n## Corrección de errores\r\n\r\nHemos corregido diversos errores reportados por nuestra comunidad, además de otros que fuimos encontrando con el tiempo, incluyendo problemas relacionados con **Forge**, **NeoForge** y otros componentes.\r\n\r\n## Mods y paquetes de recursos\r\n\r\nSe optimizó la carga de las versiones de los mods, así como la gestión de los propios mods. Estas mejoras también se aplican a los **shaders** y **paquetes de texturas (texture packs)**.\r\n\r\nAdemás, se restauró la compatibilidad con las descargas desde **CurseForge** tras los recientes cambios en su API:\r\nhttps://blog.curseforge.com/introducing-api-key-authentication-for-curseforge-file-downloads/",
+      "publishedAt": "2026-07-25T09:28:41Z",
+      "updatedAt": "2026-07-25T09:28:41Z",
+      "prerelease": false,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v32"
+    },
+    {
+      "id": 354799619,
+      "tag": "v31.0.0",
+      "name": "CubicLauncher 31",
+      "body": "Esta nueva version de CubicLauncher incluye:\r\n\r\n1. Nueva UI en el apartado de instancias\r\n2. Marketplace de addons (Mods, shaders, resourcepacks)\r\n3. Optimizaciones de memoria\r\n4. Mejor soporte a modpacks\r\n5. Soporte a QuiltMC y a NeoForged\r\n\r\n\r\n## Comunidad\r\n> Sitio web: http://www.cubiclauncher.org/\r\n> Discord: https://discord.com/invite/7VaqSrPukm\r\n> Reddit: https://www.reddit.com/r/CubicLauncher/",
+      "publishedAt": "2026-07-16T00:23:56Z",
+      "updatedAt": "2026-07-16T01:31:14Z",
+      "prerelease": false,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v31.0.0"
+    },
+    {
+      "id": 354213755,
+      "tag": "v12-dev",
+      "name": "CubicLauncher DEV Build #12",
+      "body": "⚠️ **Esta es una versión de desarrollo**\r\nBuild automático desde la rama develop.\r\n## Cambios en esta versión\r\nVer los commits para más detalles.",
+      "publishedAt": "2026-07-15T05:39:10Z",
+      "updatedAt": "2026-07-15T05:39:10Z",
+      "prerelease": true,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v12-dev"
+    },
+    {
+      "id": 354190395,
+      "tag": "v11-dev",
+      "name": "CubicLauncher DEV Build #11",
+      "body": "⚠️ **Esta es una versión de desarrollo**\r\nBuild automático desde la rama develop.\r\n## Cambios en esta versión\r\nVer los commits para más detalles.",
+      "publishedAt": "2026-07-15T03:45:45Z",
+      "updatedAt": "2026-07-15T03:45:45Z",
+      "prerelease": true,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v11-dev"
+    },
+    {
+      "id": 352873208,
+      "tag": "v10-dev",
+      "name": "CubicLauncher DEV Build #10",
+      "body": "⚠️ **Esta es una versión de desarrollo**\r\nBuild automático desde la rama develop.\r\n## Cambios en esta versión\r\nVer los commits para más detalles.",
+      "publishedAt": "2026-07-13T00:22:15Z",
+      "updatedAt": "2026-07-13T00:22:15Z",
+      "prerelease": true,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v10-dev"
+    },
+    {
+      "id": 351150372,
+      "tag": "v6-dev",
+      "name": "CubicLauncher DEV Build #6",
+      "body": "⚠️ **Esta es una versión de desarrollo**\nBuild automático desde la rama develop.\n## Cambios en esta versión\nVer los commits para más detalles.",
+      "publishedAt": "2026-07-08T19:56:47Z",
+      "updatedAt": "2026-07-08T20:04:30Z",
+      "prerelease": true,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v6-dev"
+    },
+    {
+      "id": 349114068,
+      "tag": "v30",
+      "name": "CubicLauncher 30",
+      "body": "Después de un tiempo, hemos finalizado CubicLauncher 30, que incluye los siguientes cambios:\r\n\r\n- Mejor optimización para el launcher.\r\n- Soporte para Quilt Loader.\r\n- Se corrigió un error en las descargas de Forge.\r\n- Soporte para los Modpacks de Quilt.\r\n- Se corrigió un problema por el que los temas V2 se - detectaban como modpacks.\r\n- En los logs se agregó soporte para subir tus registros a https://mclo.gs/.\r\n- Pagina de temas mejorada\r\n  |- Debido al nuevo sistema de themes hay que renovar, hemos mejorado la pagina de themes con versiones, changelogs, descripciones y mas.\r\n \r\n## Comunidad\r\n> Sitio web: http://www.cubiclauncher.org/\r\n> Discord: https://discord.com/invite/7VaqSrPukm\r\n> Reddit: https://www.reddit.com/r/CubicLauncher/",
+      "publishedAt": "2026-07-05T07:38:29Z",
+      "updatedAt": "2026-07-15T05:46:01Z",
+      "prerelease": false,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v30"
+    },
+    {
+      "id": 346586701,
+      "tag": "v29.5",
+      "name": "v29.5",
+      "body": "Esta revision agrega bugfixes y una caracteristica experimental\r\n\r\n - Ahora las sesiones se refrescan para evitar el error de sesion invalida\r\n - Nuevo sistema de temas experimental (CBTH)\r\n |-  este permite inyectar CSS custom y variables mejor definidas, daremos documentacion pronto. \r\n\r\n> ## Comunidad\r\n> Sitio web: http://www.cubiclauncher.org/\r\n> Discord: https://discord.com/invite/7VaqSrPukm\r\n> Reddit: https://www.reddit.com/r/CubicLauncher/",
+      "publishedAt": "2026-06-30T02:28:18Z",
+      "updatedAt": "2026-06-30T02:42:08Z",
+      "prerelease": false,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v29.5"
+    },
+    {
+      "id": 345668115,
+      "tag": "v29.4",
+      "name": "CubicLauncher 29 Rev 4",
+      "body": "Esta revision incluye mejoras en la UI y mejoras en la experiencia de usuario.\r\n\r\n> - Fix de bug de resolucion de librerias para versiones post 1.21.1\r\n> - Ahora se pueden reinstalar versiones de instancias\r\n> - Mejoras de UI y experiencia de usuario en el panel de descargas de shaders/resourcepacks\r\n> - Ahora se pueden borrar mods\r\n\r\nAutores: @staFF6773 @santiagolxx",
+      "publishedAt": "2026-06-27T09:57:54Z",
+      "updatedAt": "2026-06-27T10:11:31Z",
+      "prerelease": false,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v29.4"
+    },
+    {
+      "id": 344496561,
+      "tag": "v29.3",
+      "name": "CubicLauncher 29 Rev 3",
+      "body": "Bueno, esta revisión fue un dolor de huevos para lanzar xd, incluye fixes y una nueva funcion que han pedido mucho.\r\n\r\n> - Fixes para Forge Legacy\r\n> - Ahora se pueden descargar resource packs y shaders desde el launcher\r\n> - Ahora envés de iniciar sesión con código, se usa una ventana que muestra el login de Microsoft directamente\r\n> - Traduccion completa al Alemán\r\n\r\nAutores: @staFF6773 @santiagolxx @4xnl ",
+      "publishedAt": "2026-06-25T05:26:05Z",
+      "updatedAt": "2026-06-25T05:39:23Z",
+      "prerelease": false,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v29.3"
+    },
+    {
+      "id": 343835688,
+      "tag": "v29.2",
+      "name": "CubicLauncher 29 Rev 2",
+      "body": "Esta revisión incluye optimizaciones y bugfixes generales.\r\n\r\n- Optimizacion de la libreria de descargas\r\n- Opcion de ocultar el launcher al lanzar\r\n- Mantener tamaño original de la ventana al cerrar:\r\n- Bugfix en el resolvedor de argumentos en windows (Error al lanzar al tener muchas versiones instaladas) \r\nSi encuentran bugs por favor reportarlos a #:globe_with_meridians:｜soporte-general o a #:ticket:｜tickets \r\n\r\n> ## Comunidad\r\n> Sitio web: http://www.cubiclauncher.org/\r\n> Discord: https://discord.com/invite/7VaqSrPukm\r\n> Reddit: https://www.reddit.com/r/CubicLauncher/",
+      "publishedAt": "2026-06-24T01:14:10Z",
+      "updatedAt": "2026-06-24T01:27:11Z",
+      "prerelease": false,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v29.2"
+    },
+    {
+      "id": 343282743,
+      "tag": "v29.1",
+      "name": "CubicLauncher 29 Rev 1",
+      "body": "Este pequeño hotfix arregla un bug de split package en forge 1.20.1, lo subo ahora ya que es un error importante.\r\n\r\nSi encuentran bugs por favor reportarlos al discord oficial\r\n\r\n> ## Comunidad\r\n> Sitio web: http://www.cubiclauncher.org/\r\n> Discord: https://discord.com/invite/7VaqSrPukm\r\n> Reddit: https://www.reddit.com/r/CubicLauncher/\r\n",
+      "publishedAt": "2026-06-23T05:00:24Z",
+      "updatedAt": "2026-06-23T05:14:15Z",
+      "prerelease": false,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v29.1"
+    },
+    {
+      "id": 343244590,
+      "tag": "v29",
+      "name": "CubicLauncher 29",
+      "body": "El tiempo nunca deja de seguir por lo cual hay que seguir actualizando, esta actualizacion incluye bugfixes y ayudas para hacer mas simple el uso del launcher\r\n\r\nEste nuevo lanzamiento incluye:\r\n> - Nueva interfaz para el editor de instancias\r\n> - Sistema de overrides para instancias\r\n> - Soporte completo para el idioma Aleman\r\n> - Fix para el bug de que no dejaba descargar mods\r\n> - Mas animaciones en el launcher (para que sea mas bonito unu)\r\n> - Mejoras de estabilidad en el sistema de descargas\r\n> - Panel de sobre nosotros en settings\r\n\r\nSi encuentran bugs por favor reportarlos al discord oficial\r\n\r\n> ## Comunidad\r\n> Sitio web: http://www.cubiclauncher.org/\r\n> Discord: https://discord.com/invite/7VaqSrPukm\r\n> Reddit: https://www.reddit.com/r/CubicLauncher/\r\n\r\n",
+      "publishedAt": "2026-06-23T02:10:42Z",
+      "updatedAt": "2026-06-23T02:21:34Z",
+      "prerelease": false,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v29"
+    },
+    {
+      "id": 342386467,
+      "tag": "v28.2",
+      "name": "CubicLauncher 28 Rev 2",
+      "body": "Con el nuevo lanzamiento de CubicLauncher 28 se han presentado algunos errores que, gracias a los usuarios que los reportaron, ya fueron arreglados.\r\n\r\nEste nuevo lanzamiento incluye:\r\n> - Se corrigieron diversos problemas de compatibilidad y estabilidad en Windows.\r\n> \r\n> - Se optimizó el rendimiento general de la interfaz de usuario, reduciendo tiempos de carga y mejorando la fluidez.\r\n> \r\n> - Se añadió soporte para fuentes personalizadas, facilitando una mayor capacidad de personalización para desarrolladores de temas.\r\n> \r\n> - Se implementó soporte de arrastrar y soltar (Drag & Drop) para la importación y administración de temas.\r\n> \r\n> - Se agregó compatibilidad con imágenes de skins de Ely.by.\r\n\r\nSi encuentran bugs por favor reportarlos al discord oficial: https://discord.gg/fQnPZpDWMb\r\n\r\nhttps://www.cubiclauncher.org/install\r\n\r\nEste lanzamiento cambia las keys para firmar lanzamientos debido a que las anteriores fueron perdidas, tambien cambia los endpoints del updater para revisar la organizacion antigua que se encuentra suspendida y esta.",
+      "publishedAt": "2026-06-20T19:10:56Z",
+      "updatedAt": "2026-06-21T19:36:05Z",
+      "prerelease": false,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v28.2"
+    }
+  ]
+}

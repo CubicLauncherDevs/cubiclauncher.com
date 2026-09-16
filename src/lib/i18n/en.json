@@ -1,4 +1,23 @@
 {
+  "changelogs": {
+    "nav": "Changelogs",
+    "title": "Launcher updates",
+    "pageTitle": "Changelogs — CubicLauncher",
+    "subtitle": "New features, improvements and fixes for CubicLauncher. Browse the release history published on GitHub.",
+    "originalNotes": "Original notes for each release.",
+    "source": "Source: GitHub Releases",
+    "stable": "Stable",
+    "prerelease": "Pre-release",
+    "viewRelease": "View release and downloads on GitHub",
+    "viewChanges": "View launcher updates",
+    "noNotes": "This release has no changelog notes.",
+    "loading": "Loading releases…",
+    "loadMore": "Load older releases",
+    "empty": "No releases have been published yet.",
+    "fetchError": "Could not load the release history. Try again or check the original source on GitHub.",
+    "retry": "Try again",
+    "noScript": "Enable JavaScript to load the history here, or use the GitHub Releases link to browse releases."
+  },
   "downloadLog": {
     "title": "Download log and file sources",
     "started": "Starting download…",

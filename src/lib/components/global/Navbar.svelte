@@ -30,6 +30,7 @@
 
     const mainLinks: [string, string][] = [
         ["nav.themes", "/themes"],
+        ["changelogs.nav", "/changelogs"],
         ["nav.about", "/about"],
         ["nav.docs", "https://dev.cubiclauncher.org/docs"]
     ];
