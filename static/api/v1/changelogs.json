@@ -2,9 +2,19 @@
   "schemaVersion": 1,
   "repository": "CubicLauncherDevs/CubicLauncher",
   "source": "https://github.com/CubicLauncherDevs/CubicLauncher/releases",
-  "generatedAt": "2026-09-17T07:48:08.348Z",
+  "generatedAt": "2026-09-18T19:32:05.523Z",
   "notesFormat": "markdown",
   "releases": [
+    {
+      "id": 391731043,
+      "tag": "v35.0.0-beta.2",
+      "name": "CubicLauncher 35 Beta 2",
+      "body": "Segunda beta de CubicLauncher 35, con nuevas opciones de personalización y mejoras de rendimiento en el arranque, las consolas, las capturas y los idiomas.\r\n\r\n## Personalización\r\n\r\n- Nuevos controles de escala y densidad de la interfaz, compatibles con los temas y con preferencias guardadas entre sesiones.\r\n- Personalización opcional de las notificaciones: posición, tamaño, tipografía y duración, con vista de prueba y restablecimiento.\r\n- Menos guardados y actualizaciones redundantes al cambiar ajustes. Los deslizadores guardan al terminar la interacción y las notificaciones conservan sus temporizadores durante los cambios visuales.\r\n\r\n## Arranque y consolas\r\n\r\n- Ajustes y descargador de versiones se cargan al abrirlos por primera vez.\r\n- Las ventanas de consola evitan inicializar servicios y datos exclusivos de la ventana principal.\r\n- Mejor coordinación del cierre y la reapertura del launcher al jugar, incluidas varias instancias en ejecución y salidas rápidas.\r\n- Distribución selectiva de logs: cada consola recibe los de su instancia y la cabecera recibe únicamente la última línea. Sin vistas suscritas se conserva un historial acotado sin enviar lotes de logs a la interfaz.\r\n- Sincronización del historial y los eventos en vivo para evitar duplicados al abrir una consola.\r\n\r\n## Capturas e idiomas\r\n\r\n- Galería de capturas virtualizada, con miniaturas generadas y cargadas bajo demanda para las filas visibles.\r\n- Cachés de miniaturas acotadas y descarte de solicitudes obsoletas al cambiar de instancia o cerrar la galería.\r\n- Diccionarios de idioma cargados bajo demanda, con caché limitada y comprobaciones de actualización compartidas entre ventanas.\r\n- Conservación de las traducciones locales cuando no hay conexión o falla una actualización.\r\n\r\n## Descargas\r\n\r\n| Sistema | Descarga |\r\n| --- | --- |\r\n| Windows x64 | [Instalador EXE](https://github.com/CubicLauncherDevs/CubicLauncher/releases/download/v35.0.0-beta.2/cubiclauncher_35.0.0-beta.2_x64-setup.exe) |\r\n| Linux x86_64 | [AppImage](https://github.com/CubicLauncherDevs/CubicLauncher/releases/download/v35.0.0-beta.2/cubiclauncher_35.0.0-beta.2_amd64.AppImage) · [DEB](https://github.com/CubicLauncherDevs/CubicLauncher/releases/download/v35.0.0-beta.2/cubiclauncher_35.0.0-beta.2_amd64.deb) · [RPM](https://github.com/CubicLauncherDevs/CubicLauncher/releases/download/v35.0.0-beta.2/cubiclauncher-35.0.0-beta.2-1.x86_64.rpm) |\r\n| macOS Apple Silicon | [DMG ARM64](https://github.com/CubicLauncherDevs/CubicLauncher/releases/download/v35.0.0-beta.2/cubiclauncher_35.0.0-beta.2_aarch64.dmg) |\r\n| macOS Intel | [DMG x64](https://github.com/CubicLauncherDevs/CubicLauncher/releases/download/v35.0.0-beta.2/cubiclauncher_35.0.0-beta.2_x64.dmg) |\r\n\r\nEsta publicación está marcada como **prerelease**. Para comunicar problemas, abre un [issue](https://github.com/CubicLauncherDevs/CubicLauncher/issues) e indica tu sistema operativo y los pasos para reproducirlos.\r\n\r\n**Cambios desde Beta 1:** https://github.com/CubicLauncherDevs/CubicLauncher/compare/v35.0.0-beta.1...v35.0.0-beta.2\r\n",
+      "publishedAt": "2026-09-18T19:28:03Z",
+      "updatedAt": "2026-09-18T19:28:43Z",
+      "prerelease": true,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v35.0.0-beta.2"
+    },
     {
       "id": 390493216,
       "tag": "v35.0.0-beta.1",
