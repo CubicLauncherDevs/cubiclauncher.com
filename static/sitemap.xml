@@ -361,6 +361,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://cubiclauncher.org/themes/notstaff-starlit02</loc>
+    <lastmod>2026-09-19T05:33:17.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/notstaff-starlit02/V1</loc>
+    <lastmod>2026-09-19T05:33:17.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://cubiclauncher.org/themes/notstaff-yorha</loc>
     <lastmod>2026-08-24T03:00:55.000Z</lastmod>
     <changefreq>weekly</changefreq>
@@ -807,6 +819,12 @@
   <url>
     <loc>https://cubiclauncher.org/themes/author/notstaff</loc>
     <lastmod>2026-09-05T12:36:28.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/author/staff6773</loc>
+    <lastmod>2026-09-19T05:33:17.000Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
