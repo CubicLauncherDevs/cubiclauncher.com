@@ -512,9 +512,15 @@
   </url>
   <url>
     <loc>https://cubiclauncher.org/themes/santiagolxx-systemofadown</loc>
-    <lastmod>2026-09-08T01:50:19.000Z</lastmod>
+    <lastmod>2026-09-19T05:06:30.000Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/santiagolxx-systemofadown/V2</loc>
+    <lastmod>2026-09-19T05:06:30.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://cubiclauncher.org/themes/santiagolxx-systemofadown/V1</loc>
