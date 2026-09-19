@@ -307,6 +307,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://cubiclauncher.org/themes/notstaff-inkwitch</loc>
+    <lastmod>2026-09-19T18:55:03.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/notstaff-inkwitch/V1</loc>
+    <lastmod>2026-09-19T18:55:03.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://cubiclauncher.org/themes/notstaff-lain-theme</loc>
     <lastmod>2026-07-24T04:00:59.000Z</lastmod>
     <changefreq>weekly</changefreq>
@@ -836,7 +848,7 @@
   </url>
   <url>
     <loc>https://cubiclauncher.org/themes/author/staff6773</loc>
-    <lastmod>2026-09-19T05:33:17.000Z</lastmod>
+    <lastmod>2026-09-19T18:55:03.000Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
