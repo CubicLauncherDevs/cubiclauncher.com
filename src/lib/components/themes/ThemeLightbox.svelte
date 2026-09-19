@@ -1,30 +1,31 @@
 <script lang="ts">
-  let {
-    show,
-    imageUrl,
-    alt,
-    onClose,
-  }: {
+  import { t } from "$lib/i18n";
+  import IconX from "~icons/ph/x";
+
+  let { show, imageUrl, alt, onClose }: {
     show: boolean;
     imageUrl: string | undefined;
     alt: string;
     onClose: () => void;
   } = $props();
+  let dialog: HTMLDialogElement;
+
+  $effect(() => {
+    if (show && imageUrl) {
+      dialog.showModal();
+      const overflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => { dialog.close(); document.body.style.overflow = overflow; };
+    }
+  });
 </script>
 
-{#if show && imageUrl}
-  <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
-  <div
-    class="fixed inset-0 z-50 bg-cl-accent/85 flex items-center justify-center p-4"
-    onclick={(e) => { if (e.target === e.currentTarget) onClose(); }}
-    role="dialog"
-    aria-modal="true"
-    tabindex="-1"
-  >
-    <img
-      src={imageUrl}
-      alt={alt}
-      class="max-w-full max-h-full w-auto h-auto object-contain rounded-lg shadow-2xl"
-    />
-  </div>
-{/if}
+<dialog bind:this={dialog} aria-label={alt} oncancel={(event) => { event.preventDefault(); onClose(); }} onclick={(event) => { if (event.target === dialog) onClose(); }} onclose={() => { if (show) onClose(); }} class="fixed inset-0 m-auto h-full max-h-none w-full max-w-none bg-transparent p-4 text-white backdrop:bg-black/90 sm:p-10">
+  {#if show && imageUrl}
+    <div class="pointer-events-none flex h-full flex-col items-center justify-center gap-3">
+      <button type="button" onclick={onClose} aria-label={$t('themeDetail.closePreview')} class="pointer-events-auto absolute right-4 top-4 rounded-full border border-white/20 bg-black/70 p-3 hover:bg-black"><IconX class="size-5" /></button>
+      <img src={imageUrl} {alt} class="pointer-events-auto max-h-[85vh] max-w-full rounded-md object-contain" />
+      <p class="text-xs text-white/70">{alt}</p>
+    </div>
+  {/if}
+</dialog>

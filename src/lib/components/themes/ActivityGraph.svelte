@@ -1,206 +1,153 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import { t, locale, getDateLocale } from "$lib/i18n";
+  import { activityDay, buildActivityYear, type ThemeActivityEvent } from "$lib/utils/theme-activity";
+  import IconPulse from "~icons/ph/pulse";
+  import IconArrowUpRight from "~icons/ph/arrow-up-right";
 
-  type Props = {
-    dates: string[];
-    title: string;
-  };
-
-  let { dates, title }: Props = $props();
-
-  const DAY_MS = 1000 * 60 * 60 * 24;
-  const WEEKS = 53;
-
-  const validDates = $derived(
-    dates
-      .map((d) => {
-        const parsed = new Date(d);
-        if (isNaN(parsed.getTime())) return null;
-        return new Date(parsed.getFullYear(), parsed.getMonth(), parsed.getDate());
-      })
-      .filter((d): d is Date => d !== null)
+  let { events, title }: { events: ThemeActivityEvent[]; title: string } = $props();
+  const id = $props.id();
+  let currentYear = $state(new Date().getUTCFullYear());
+  onMount(() => { currentYear = new Date().getUTCFullYear(); });
+  let chosenYear = $state<number | null>(null);
+  let chosenDay = $state<string | null>(null);
+  let calendarViewport: HTMLDivElement;
+  let eventYears = $derived([...new Set(events.flatMap((event) => {
+    const day = activityDay(event.date);
+    return day ? [Number(day.slice(0, 4))] : [];
+  }))].sort((a, b) => b - a));
+  let years = $derived([...new Set([currentYear, ...eventYears])].sort((a, b) => b - a));
+  let year = $derived(chosenYear !== null && years.includes(chosenYear) ? chosenYear : (eventYears[0] ?? currentYear));
+  let graph = $derived(buildActivityYear(events, year));
+  let selectedDay = $derived(
+    graph.days.find((day) => day.key === chosenDay && day.events.length > 0)
+      ?? graph.days.findLast((day) => day.events.length > 0)
   );
+  let months = $derived(Array.from({ length: 12 }, (_, month) => {
+    const index = graph.days.findIndex((day) => day.inYear && day.date.getUTCMonth() === month);
+    return {
+      column: Math.floor(index / 7) + 1,
+      label: new Date(Date.UTC(year, month, 1)).toLocaleDateString(getDateLocale($locale), { month: "short", timeZone: "UTC" }),
+    };
+  }));
 
-  type DayCell = {
-    date: Date;
-    count: number;
-    dayIndex: number;
-    weekIndex: number;
-  };
-
-  type GraphData = {
-    weeks: DayCell[][];
-    monthLabels: { weekIndex: number; label: string }[];
-  };
-
-  const graph = $derived.by<GraphData>(() => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    let latest = today;
-    for (const d of validDates) {
-      if (d.getTime() > latest.getTime()) latest = d;
+  $effect(() => {
+    // Keep the selected release visible when the year overflows on mobile.
+    const key = selectedDay?.key;
+    if (!calendarViewport) return;
+    const cell = key ? calendarViewport.querySelector<HTMLButtonElement>('[aria-pressed="true"]') : null;
+    if (cell) {
+      const viewport = calendarViewport.getBoundingClientRect();
+      const bounds = cell.getBoundingClientRect();
+      calendarViewport.scrollLeft += bounds.left - viewport.left - viewport.width / 2 + bounds.width / 2;
+    } else {
+      calendarViewport.scrollLeft = 0;
     }
-
-    // Align end to the next Saturday so the grid always starts on Sunday.
-    const end = new Date(latest.getFullYear(), latest.getMonth(), latest.getDate());
-    end.setDate(end.getDate() + ((6 + 7 - end.getDay()) % 7));
-
-    const totalDays = WEEKS * 7;
-    const start = new Date(end.getTime() - (totalDays - 1) * DAY_MS);
-
-    const dayCounts = new Map<number, number>();
-    for (const d of validDates) {
-      const diff = Math.floor((d.getTime() - start.getTime()) / DAY_MS);
-      if (diff >= 0 && diff < totalDays) {
-        dayCounts.set(diff, (dayCounts.get(diff) ?? 0) + 1);
-      }
-    }
-
-    const days: DayCell[] = [];
-    const monthLabels: { weekIndex: number; label: string }[] = [];
-    let lastMonthLabel = "";
-
-    for (let i = 0; i < totalDays; i++) {
-      const date = new Date(start.getTime() + i * DAY_MS);
-      const dayIndex = date.getDay();
-      const weekIndex = Math.floor(i / 7);
-      const count = dayCounts.get(i) ?? 0;
-
-      if (dayIndex === 0 || i === 0) {
-        const label = date.toLocaleDateString(getDateLocale($locale), { month: "short" });
-        if (label !== lastMonthLabel) {
-          monthLabels.push({ weekIndex, label });
-          lastMonthLabel = label;
-        }
-      }
-
-      days.push({ date, count, dayIndex, weekIndex });
-    }
-
-    const weeks: DayCell[][] = [];
-    for (let w = 0; w < WEEKS; w++) {
-      weeks.push(days.slice(w * 7, (w + 1) * 7));
-    }
-
-    return { weeks, monthLabels };
   });
 
-  function opacity(count: number) {
-    if (count === 0) return 0.1;
-    if (count === 1) return 0.35;
-    if (count === 2) return 0.6;
-    if (count === 3) return 0.85;
-    return 1;
-  }
-
   function formatDate(date: Date) {
-    return date.toLocaleDateString(getDateLocale($locale), {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+    return date.toLocaleDateString(getDateLocale($locale), { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
   }
 
-  type TooltipState = {
-    x: number;
-    y: number;
-    count: number;
-    date: Date;
-    visible: boolean;
-  } | null;
-
-  let tooltip = $state<TooltipState>(null);
-
-  function tooltipText(count: number, date: Date) {
-    return $t('themeDetail.activityTooltip', {
-      values: { count, date: formatDate(date) },
-    });
+  function dayLabel(count: number, date: Date) {
+    return $t('themeDetail.activityTooltip', { values: { count, date: formatDate(date) } });
   }
 
-  function showTooltipAtCursor(e: MouseEvent, count: number, date: Date) {
-    tooltip = { x: e.clientX, y: e.clientY, count, date, visible: true };
-  }
-
-  function showTooltipAtCell(el: Element, count: number, date: Date) {
-    const r = el.getBoundingClientRect();
-    tooltip = { x: r.left + r.width / 2, y: r.top, count, date, visible: true };
-  }
-
-  function moveTooltip(e: MouseEvent) {
-    if (!tooltip) return;
-    tooltip.x = e.clientX;
-    tooltip.y = e.clientY;
-  }
-
-  function hideTooltip() {
-    tooltip = null;
+  function level(count: number) {
+    return count === 0 ? 0 : Math.max(1, Math.ceil((count / Math.max(1, graph.peak)) * 4));
   }
 </script>
 
-<div class="mb-5">
-  <p class="text-[10px] font-semibold uppercase tracking-wide text-cl-dim mb-2">{title}</p>
-  <div class="overflow-x-auto -mx-1 px-1">
-    <svg
-      width="676"
-      height="110"
-      viewBox="0 0 676 110"
-      role="img"
-      aria-label={title}
-      class="block"
-    >
-      <g transform="translate(24, 18)">
-        {#each graph.monthLabels as { weekIndex, label }}
-          <text x={weekIndex * 12 + 5} y="-4" font-size="9" fill="var(--cl-dim)">{label}</text>
-        {/each}
-
-        {#each graph.weeks as week, w}
-          {#each week as day}
-            {@const x = w * 12}
-            {@const y = day.dayIndex * 12}
-            <rect
-              {x}
-              {y}
-              width="10"
-              height="10"
-              rx="2"
-              fill="var(--cl-text)"
-              style="opacity: {opacity(day.count)}"
-              aria-label={tooltipText(day.count, day.date)}
-              role="button"
-              tabindex="0"
-              onmouseenter={(e) => showTooltipAtCursor(e, day.count, day.date)}
-              onmousemove={moveTooltip}
-              onmouseleave={hideTooltip}
-              onfocus={(e) => { const t = e.currentTarget; if (t) showTooltipAtCell(t, day.count, day.date); }}
-              onblur={hideTooltip}
-            />
-          {/each}
-        {/each}
-      </g>
-    </svg>
-  </div>
-  <div class="flex items-center gap-2 mt-2 text-[10px] text-cl-dim">
-    <span>{$t('themeDetail.activityLess')}</span>
-    <div class="flex gap-0.5">
-      {#each [0.1, 0.35, 0.6, 0.85, 1] as op}
-        <div
-          class="w-3 h-3 rounded-sm"
-          style="background-color: var(--cl-text); opacity: {op};"
-          aria-hidden="true"
-        ></div>
-      {/each}
+<section class="activity mb-5 min-w-0 rounded-lg border border-cl-border bg-cl-surface p-4 sm:p-5" aria-labelledby={`${id}-title`}>
+  <div class="flex flex-wrap items-start justify-between gap-3">
+    <div>
+      <h2 id={`${id}-title`} class="flex items-center gap-2 text-sm font-semibold"><IconPulse class="size-4 text-cl-dim" />{title}</h2>
+      <p class="mt-1 text-xs text-cl-dim">{$t('themeDetail.activitySubtitle')}</p>
     </div>
-    <span>{$t('themeDetail.activityMore')}</span>
+    <label class="flex items-center gap-2 text-xs text-cl-dim">
+      {$t('themeDetail.activityYear')}
+      <select value={year} onchange={(event) => { chosenYear = Number(event.currentTarget.value); chosenDay = null; }} class="rounded-md border border-cl-border bg-cl-base px-2 py-1.5 text-xs text-cl-text">
+        {#each years as option}<option value={option}>{option}</option>{/each}
+      </select>
+    </label>
   </div>
-</div>
 
-{#if tooltip}
-  <div
-    class="fixed z-50 pointer-events-none px-2 py-1.5 rounded bg-cl-surface border border-cl-border text-xs text-cl-text shadow-lg shadow-black/20 whitespace-nowrap transition-opacity duration-150"
-    style="left: {tooltip.x}px; top: {tooltip.y}px; transform: translate(-50%, -130%);"
-    role="tooltip"
-  >
-    {tooltipText(tooltip.count, tooltip.date)}
+  <dl class="my-5 grid grid-cols-3 gap-3 rounded-md bg-cl-base p-3">
+    {#each [{ value: graph.total, key: 'activityReleases' }, { value: graph.activeDays, key: 'activityDays' }, { value: graph.peak, key: 'activityPeak' }] as stat}
+      <div><dd class="text-xl font-semibold tabular-nums">{stat.value}</dd><dt class="mt-1 text-[11px] text-cl-dim">{$t(`themeDetail.${stat.key}`)}</dt></div>
+    {/each}
+  </dl>
+
+  <div bind:this={calendarViewport} class="overflow-x-auto pb-2">
+    <div class="calendar" style={`--weeks: ${graph.weeks}`}>
+      <div class="months" aria-hidden="true">
+        {#each months as month}<span style={`grid-column: ${month.column} / span 3`}>{month.label}</span>{/each}
+      </div>
+      <div class="calendar-body">
+        <div class="weekdays" aria-hidden="true">
+          {#each [0, 1, 2, 3, 4, 5, 6] as day}
+            <span>{day % 2 === 0 ? new Date(Date.UTC(2024, 0, 1 + day)).toLocaleDateString(getDateLocale($locale), { weekday: 'short', timeZone: 'UTC' }) : ''}</span>
+          {/each}
+        </div>
+        <div class="days" role="group" aria-label={`${title} ${year}`}>
+          {#each graph.days as day}
+            {#if day.inYear && day.events.length > 0}
+              <button
+                class="day"
+                class:selected={selectedDay?.key === day.key}
+                data-level={level(day.events.length)}
+                title={dayLabel(day.events.length, day.date)}
+                aria-label={dayLabel(day.events.length, day.date)}
+                aria-pressed={selectedDay?.key === day.key}
+                aria-controls={`${id}-events`}
+                onclick={() => chosenDay = day.key}
+              ></button>
+            {:else}
+              <span class="day" class:outside={!day.inYear} data-level="0" title={day.inYear ? dayLabel(0, day.date) : undefined}></span>
+            {/if}
+          {/each}
+        </div>
+      </div>
+    </div>
   </div>
-{/if}
+
+  <div class="mt-2 flex flex-wrap items-center justify-between gap-2 text-[10px] text-cl-dim">
+    <span>{$t('themeDetail.activityHint')}</span>
+    <div class="flex items-center gap-1.5" aria-hidden="true">
+      <span>{$t('themeDetail.activityLess')}</span>
+      {#each [0, 1, 2, 3, 4] as value}<span class="day legend" data-level={value}></span>{/each}
+      <span>{$t('themeDetail.activityMore')}</span>
+    </div>
+  </div>
+
+  <div id={`${id}-events`} class="mt-4 border-t border-cl-border pt-4" aria-live="polite">
+    {#if selectedDay}
+      <p class="mb-2 text-xs font-medium">{dayLabel(selectedDay.events.length, selectedDay.date)}</p>
+      <ul class="flex max-h-48 flex-col gap-1 overflow-y-auto">
+        {#each selectedDay.events as event}
+          <li><a href={event.href} class="flex items-center justify-between gap-3 rounded-md bg-cl-base px-3 py-2 text-xs text-cl-muted transition-colors hover:bg-cl-elevated hover:text-cl-text"><span class="break-words min-w-0">{event.label}</span><IconArrowUpRight class="size-3.5 shrink-0" /></a></li>
+        {/each}
+      </ul>
+    {:else}
+      <p class="text-xs text-cl-dim">{$t('themeDetail.activityEmpty', { values: { year } })}</p>
+    {/if}
+  </div>
+</section>
+
+<style>
+  .calendar { min-width: 620px; }
+  .months { display: grid; grid-template-columns: repeat(var(--weeks), minmax(0, 1fr)); margin-left: 32px; margin-bottom: 8px; font-size: 10px; color: var(--cl-dim); }
+  .calendar-body { display: flex; gap: 6px; }
+  .weekdays { width: 26px; flex-shrink: 0; display: grid; grid-template-rows: repeat(7, 1fr); font-size: 9px; color: var(--cl-dim); }
+  .days { display: grid; flex: 1; grid-auto-flow: column; grid-template-rows: repeat(7, 1fr); grid-template-columns: repeat(var(--weeks), minmax(0, 1fr)); gap: 3px; }
+  .day { display: block; aspect-ratio: 1; border-radius: 2px; background: var(--cl-elevated); border: 1px solid var(--cl-border); }
+  button.day { cursor: pointer; }
+  .day[data-level="1"] { background: color-mix(in srgb, var(--cl-success) 25%, var(--cl-surface)); }
+  .day[data-level="2"] { background: color-mix(in srgb, var(--cl-success) 45%, var(--cl-surface)); }
+  .day[data-level="3"] { background: color-mix(in srgb, var(--cl-success) 70%, var(--cl-surface)); }
+  .day[data-level="4"] { background: var(--cl-success); }
+  button.day:hover, .day.selected { outline: 1px solid var(--cl-text); outline-offset: 1px; }
+  button.day:focus-visible { outline: 2px solid var(--cl-text); outline-offset: 2px; }
+  .outside { visibility: hidden; }
+  .legend { width: 10px; }
+</style>

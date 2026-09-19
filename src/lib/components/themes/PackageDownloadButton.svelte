@@ -16,13 +16,14 @@
   let loading = $state(false);
   let progress = $state(0);
   let total = $state(0);
+  let packingProgress = $state<number | null>(null);
   let error = $state("");
   let success = $state(false);
   let logs = $state<DownloadLogEntry[]>([]);
   let attempt = $state(0);
 
   function log(entry: DownloadLogEntry) {
-    logs.push(entry);
+    logs.push({ ...entry, timestamp: Date.now() });
   }
 
   let abortController: AbortController | null = null;
@@ -48,8 +49,14 @@
     error = "";
     success = false;
     progress = 0;
-    total = resolved.resolvedThemes.length;
-    logs = [{ kind: "started" }];
+    const versions = resolved.resolvedThemes.map((theme) => ({
+      theme,
+      version: theme.versions.find((version) => version.version === theme.latestVersion) || theme.versions[0],
+    }));
+    total = versions.reduce((sum, { version }) => sum + (version?.files.length ?? 0), 0);
+    packingProgress = null;
+    logs = [];
+    log({ kind: "started" });
     attempt += 1;
 
     abortController = new AbortController();
@@ -59,12 +66,11 @@
       const JSZip = (await import("jszip")).default;
       signal.throwIfAborted();
       const zip = new JSZip();
+      if (total === 0) throw new Error(get(t)('downloadLog.noFiles'));
 
-      for (let i = 0; i < resolved.resolvedThemes.length; i++) {
+      for (const { theme, version: latest } of versions) {
         signal.throwIfAborted();
 
-        const theme = resolved.resolvedThemes[i];
-        const latest = theme.versions.find((v) => v.version === theme.latestVersion) || theme.versions[0];
         if (!latest) continue;
 
         const files = latest.files ?? [];
@@ -79,15 +85,16 @@
 
           const blob = await fetchLoggedThemeFile(`${theme.slug}/${name}`, url, signal, log);
           zip.file(`${theme.slug}/${name}`, blob);
+          progress += 1;
         }
-        progress = i + 1;
       }
 
+      packingProgress = 0;
       log({ kind: "packing", name: `${resolved.slug}.zip` });
       const content = await zip.generateAsync(
         { type: "blob" },
         (metadata) => {
-          progress = Math.round(metadata.percent / 100 * total);
+          packingProgress = Math.round(metadata.percent);
         }
       );
 
@@ -129,11 +136,7 @@
   >
     {#if loading}
       <IconSpinner class="w-3.5 h-3.5 animate-spin" />
-      {#if total > 0}
-        <span>{$t('packageDetail.downloadingPackage')} ({progress}/{total})</span>
-      {:else}
-        <span>{$t('packageDetail.downloadingPackage')}</span>
-      {/if}
+      <span>{packingProgress !== null ? $t('downloadLog.packingProgress', { values: { percent: packingProgress } }) : $t('downloadLog.fileProgress', { values: { done: progress, total } })}</span>
     {:else if success}
       <IconCheck class="w-3.5 h-3.5" />
       <span>{$t('packageDetail.downloaded')}</span>
@@ -149,5 +152,5 @@
       <span>{error}</span>
     </div>
   {/if}
-  <DownloadLog entries={logs} {attempt} />
+  <DownloadLog entries={logs} {attempt} {total} {packingProgress} />
 </div>

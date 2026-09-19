@@ -17,6 +17,8 @@
 
   onNavigate((navigation) => {
     if (!browser || !document.startViewTransition) return;
+    // Tabs and filters update in place, without animating the entire page.
+    if (navigation.from?.url.pathname === navigation.to?.url.pathname) return;
 
     return new Promise((resolve) => {
       document.startViewTransition(async () => {

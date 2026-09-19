@@ -62,7 +62,7 @@
   {/if}
 </svelte:head>
 
-<section class="min-h-screen pb-16 pt-[calc(var(--navbar-height)+24px)] bg-cl-base text-cl-text">
+<section class="min-h-screen pb-16 pt-6 bg-cl-base text-cl-text">
   <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
     {#if loading}
       <div class="animate-pulse space-y-4 max-w-4xl">

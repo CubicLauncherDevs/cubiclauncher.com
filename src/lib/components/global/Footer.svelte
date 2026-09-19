@@ -14,7 +14,6 @@
           <Logo
             width="1.25rem"
             height="1.25rem"
-            color="var(--cl-text)"
             className="transition-transform duration-200 group-hover:scale-105"
           />
           <span class="font-semibold text-sm text-cl-text tracking-tight">CubicLauncher</span>

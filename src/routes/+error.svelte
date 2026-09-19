@@ -8,7 +8,7 @@
   <meta name="robots" content="noindex" />
 </svelte:head>
 
-<div class="pt-[calc(var(--navbar-height)+64px)] pb-16">
+<div class="pt-16 pb-16">
   <div class="mx-auto px-4 lg:px-6 text-center" style="max-width: var(--discord-max-width);">
     <h1 class="text-6xl font-semibold text-cl-border-hover tracking-tight">
       {page.status}

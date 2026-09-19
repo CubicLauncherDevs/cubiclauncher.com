@@ -24,8 +24,12 @@ import IconArrowLeft from "~icons/ph/arrow-left";
     (author?.themes ?? []).slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
   );
 
-  let authorActivityDates = $derived(
-    author?.themes.flatMap((t) => t.versions.flatMap((v) => (v.date ? [v.date] : []))) ?? []
+  let authorActivity = $derived(
+    author?.themes.flatMap((theme) => theme.versions.flatMap((version) => version.date ? [{
+      date: version.date,
+      label: `${theme.name} · ${version.version}`,
+      href: `/themes/${theme.slug}/${encodeURIComponent(version.version)}`,
+    }] : [])) ?? []
   );
 
   let paginationStart = $derived((currentPage - 1) * ITEMS_PER_PAGE + 1);
@@ -61,7 +65,7 @@ import IconArrowLeft from "~icons/ph/arrow-left";
   {/if}
 </svelte:head>
 
-<section class="min-h-screen pb-16 pt-[calc(var(--navbar-height)+24px)] bg-cl-base text-cl-text">
+<section class="min-h-screen pb-16 pt-6 bg-cl-base text-cl-text">
   <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
     <a
       href="/themes"
@@ -101,9 +105,7 @@ import IconArrowLeft from "~icons/ph/arrow-left";
         </div>
       </div>
 
-      {#if authorActivityDates.length > 0}
-        <ActivityGraph dates={authorActivityDates} title={$t('themeDetail.activityTitle')} />
-      {/if}
+      <ActivityGraph events={authorActivity} title={$t('themeDetail.activityTitle')} />
 
       {#if viewMode === "grid"}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">

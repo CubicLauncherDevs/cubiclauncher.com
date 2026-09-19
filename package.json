@@ -7,6 +7,8 @@
     "fetch-themes": "node scripts/fetch-themes.mjs",
     "fetch-changelogs": "node scripts/fetch-changelogs.mjs",
     "test:changelogs": "node --test scripts/fetch-changelogs.test.mjs",
+    "test:theme-activity": "node --test scripts/theme-activity.test.mjs",
+    "test:download-log": "node --test scripts/download-log.test.mjs",
     "prebuild": "npm run fetch-themes && npm run fetch-changelogs",
     "dev": "vite",
     "build": "vite build",

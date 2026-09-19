@@ -11,7 +11,7 @@
 
 <main class="bg-cl-base overflow-x-hidden">
   <!-- Intro -->
-  <section class="pt-[calc(var(--navbar-height)+12px)] pb-10">
+  <section class="pt-3 pb-10">
     <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
       <div class="max-w-2xl mx-auto">
         <h1 class="text-[24px] sm:text-[28px] font-semibold text-cl-text mb-6 text-center tracking-tight">

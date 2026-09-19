@@ -55,7 +55,6 @@
                 <Logo
                     width="1.5rem"
                     height="1.5rem"
-                    color="var(--cl-text)"
                     className="transition-transform duration-200 group-hover:scale-105"
                 />
                 <span class="hidden sm:block font-semibold text-sm text-cl-text tracking-tight">

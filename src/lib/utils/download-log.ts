@@ -3,6 +3,9 @@ export interface DownloadLogEntry {
   name?: string;
   url?: string;
   detail?: string;
+  timestamp?: number;
+  bytes?: number;
+  durationMs?: number;
 }
 
 export type DownloadLogger = (entry: DownloadLogEntry) => void;
@@ -15,6 +18,7 @@ export async function fetchLoggedThemeFile(
   log: DownloadLogger,
 ): Promise<Blob> {
   log({ kind: "request", name, url });
+  const started = performance.now();
   let source = url;
   try {
     const response = await fetch(url, { signal });
@@ -24,7 +28,7 @@ export async function fetchLoggedThemeFile(
     }
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const blob = await response.blob();
-    log({ kind: "received", name, url: source });
+    log({ kind: "received", name, url: source, bytes: blob.size, durationMs: performance.now() - started });
     return blob;
   } catch (error) {
     if (!signal.aborted) {

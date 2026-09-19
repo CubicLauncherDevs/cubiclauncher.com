@@ -24,13 +24,14 @@
   let loading = $state(false);
   let progress = $state(0);
   let total = $state(0);
+  let packingProgress = $state<number | null>(null);
   let error = $state("");
   let success = $state(false);
   let logs = $state<DownloadLogEntry[]>([]);
   let attempt = $state(0);
 
   function log(entry: DownloadLogEntry) {
-    logs.push(entry);
+    logs.push({ ...entry, timestamp: Date.now() });
   }
 
   let abortController: AbortController | null = null;
@@ -57,7 +58,9 @@
     success = false;
     progress = 0;
     total = 0;
-    logs = [{ kind: "started" }];
+    packingProgress = null;
+    logs = [];
+    log({ kind: "started" });
     attempt += 1;
 
     abortController = new AbortController();
@@ -96,11 +99,12 @@
         progress = i + 1;
       }
 
+      packingProgress = 0;
       log({ kind: "packing", name: `${displayName}.cbth` });
       const content = await zip.generateAsync(
         { type: "blob" },
         (metadata) => {
-          progress = Math.round((metadata.percent / 100) * total);
+          packingProgress = Math.round(metadata.percent);
         }
       );
 
@@ -142,7 +146,7 @@
   >
     {#if loading}
       <IconSpinner class="w-3.5 h-3.5 animate-spin" />
-      <span>{$t('packageDetail.downloadingPackage')} ({progress}/{total})</span>
+      <span>{packingProgress !== null ? $t('downloadLog.packingProgress', { values: { percent: packingProgress } }) : $t('downloadLog.fileProgress', { values: { done: progress, total } })}</span>
     {:else if success}
       <IconCheck class="w-3.5 h-3.5" />
       <span>{$t('packageDetail.downloaded')}</span>
@@ -158,5 +162,5 @@
       <span>{error}</span>
     </div>
   {/if}
-  <DownloadLog entries={logs} {attempt} />
+  <DownloadLog entries={logs} {attempt} {total} {packingProgress} />
 </div>
