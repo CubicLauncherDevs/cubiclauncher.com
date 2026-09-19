@@ -2,9 +2,19 @@
   "schemaVersion": 1,
   "repository": "CubicLauncherDevs/CubicLauncher",
   "source": "https://github.com/CubicLauncherDevs/CubicLauncher/releases",
-  "generatedAt": "2026-09-18T19:32:05.523Z",
+  "generatedAt": "2026-09-19T04:30:13.054Z",
   "notesFormat": "markdown",
   "releases": [
+    {
+      "id": 391910451,
+      "tag": "v35.0.0-beta.3",
+      "name": "CubicLauncher 35 Beta 3",
+      "body": "## CubicLauncher 35 — Beta 3\r\n\r\n- Nuevo panel de actualizaciones con novedades y control sobre cuándo descargar y reiniciar.\r\n- Instalación de modpacks con elección de nombre y progreso visible desde la instancia.\r\n- Más información de los mods en la tienda, con enlaces útiles y nuevas animaciones.\r\n- Corregida la identidad de las cuentas offline para conservar el progreso entre sesiones.\r\n- Mejor calidad y rendimiento del visor 3D de skins.\r\n- Notificaciones y selectores más pulidos; IP de servidores oculta hasta pasar el cursor.\r\n- Mejoras en la sincronización al eliminar instancias.",
+      "publishedAt": "2026-09-19T04:20:34Z",
+      "updatedAt": "2026-09-19T04:28:30Z",
+      "prerelease": true,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v35.0.0-beta.3"
+    },
     {
       "id": 391731043,
       "tag": "v35.0.0-beta.2",
