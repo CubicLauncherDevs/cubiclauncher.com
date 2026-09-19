@@ -8,6 +8,7 @@
   import IconImage from "~icons/ph/image";
   import DownloadThemeButton from "$lib/components/themes/DownloadThemeButton.svelte";
   import VerifiedBadge from "$lib/components/themes/VerifiedBadge.svelte";
+  import ThemeSocialMeta from "$lib/components/themes/ThemeSocialMeta.svelte";
 
   let { data } = $props();
   let theme = $derived(data.theme);
@@ -15,7 +16,11 @@
 
   let slug = $derived($page.params.slug as string);
   let versionName = $derived($page.params.version as string);
-  let canonicalUrl = $derived($page.url.href.split('?')[0]);
+  let canonicalUrl = $derived($page.url.href.split(/[?#]/)[0]);
+  let ogImage = $derived(ver.previewUrl || ver.showcaseUrl || theme.previewUrl || null);
+  let shareDescription = $derived($t('themeDetail.shareDescription', {
+    values: { name: theme.name, author: theme.author, version: ver.version },
+  }));
 
   let loading = $state(false);
   let error = $state("");
@@ -45,7 +50,7 @@
             name: theme.author
           },
           url: canonicalUrl,
-          image: ver.showcaseUrl || ver.previewUrl || theme.previewUrl || undefined,
+          image: ogImage ?? undefined,
           datePublished: ver.date ?? theme.date ?? undefined,
           softwareVersion: ver.version
         })
@@ -55,12 +60,19 @@
 
 <svelte:head>
   <title>{docTitle}</title>
-  <meta name="description" content={$t('page.themeDesc')} />
-  <link rel="canonical" href={canonicalUrl} />
   {#if jsonLd}
     {@html `<script type="application/ld+json">${jsonLd}<\/script>`}
   {/if}
 </svelte:head>
+
+<ThemeSocialMeta
+  title={`${theme.name} ${ver.version} — ${theme.author}`}
+  description={shareDescription}
+  author={theme.author}
+  url={canonicalUrl}
+  image={ogImage}
+  imageAlt={`${theme.name} · ${ver.version} · ${$t('themeDetail.preview')}`}
+/>
 
 <section class="min-h-screen pb-16 pt-6 bg-cl-base text-cl-text">
   <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">

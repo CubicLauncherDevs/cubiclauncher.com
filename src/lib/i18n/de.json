@@ -245,6 +245,7 @@
     "officialTheme": "Offizielles CubicLauncher-Theme"
   },
   "themeDetail": {
+    "shareDescription": "{name}, ein CubicLauncher-Theme von {author}. Version {version}. Entdecke die Farbpalette und lade es herunter, um deinen Launcher anzupassen.",
     "retry": "Wiederholen",
     "viewAll": "Alle Themes anzeigen",
     "allThemes": "Alle Themes",

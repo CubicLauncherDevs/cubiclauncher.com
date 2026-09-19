@@ -11,6 +11,7 @@
   import ThemeLightbox from "$lib/components/themes/ThemeLightbox.svelte";
   import ActivityGraph from "$lib/components/themes/ActivityGraph.svelte";
   import ThemeFiles from "$lib/components/themes/ThemeFiles.svelte";
+  import ThemeSocialMeta from "$lib/components/themes/ThemeSocialMeta.svelte";
   import IconArrowLeft from "~icons/ph/arrow-left";
   import IconArrowRight from "~icons/ph/arrow-right";
   import IconDownload from "~icons/ph/download-simple";
@@ -56,9 +57,12 @@
     }] : [])
   );
 
-  let ogImage = $derived(
-    currentVer?.showcaseUrl || currentVer?.previewUrl || theme?.previewUrl || null
-  );
+  // The theme URL always shares the latest palette, regardless of the UI selection.
+  let latestVer = $derived(theme.versions.find((version) => version.version === theme.latestVersion) ?? theme.versions[0]);
+  let ogImage = $derived(latestVer?.previewUrl || theme.previewUrl || latestVer?.showcaseUrl || null);
+  let shareDescription = $derived($t('themeDetail.shareDescription', {
+    values: { name: theme.name, author: theme.author, version: theme.latestVersion },
+  }));
 
   let changelogHtml = $derived(
     currentVer?.changelog ? renderMarkdown(currentVer.changelog) : ""
@@ -107,23 +111,19 @@
 
 <svelte:head>
   <title>{docTitle}</title>
-  <meta name="description" content={theme?.description ? theme.description.slice(0, 160) : $t('page.themeDesc')} />
-  <link rel="canonical" href={canonicalUrl} />
-  <meta property="og:title" content={theme?.name ?? ''} />
-  <meta property="og:description" content={theme?.description ? theme.description.slice(0, 160) : $t('page.themeDesc')} />
-  <meta property="og:url" content={canonicalUrl} />
-  <meta property="og:type" content="website" />
-  {#if ogImage}
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:image:width" content="1600" />
-    <meta property="og:image:height" content="900" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content={ogImage} />
-  {/if}
   {#if jsonLd}
     {@html `<script type="application/ld+json">${jsonLd}<\/script>`}
   {/if}
 </svelte:head>
+
+<ThemeSocialMeta
+  title={`${theme.name} — ${theme.author}`}
+  description={shareDescription}
+  author={theme.author}
+  url={canonicalUrl}
+  image={ogImage}
+  imageAlt={`${theme.name} · ${theme.latestVersion} · ${$t('themeDetail.preview')}`}
+/>
 
 <section class="min-h-screen pb-16 pt-6 bg-cl-base text-cl-text">
   <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
