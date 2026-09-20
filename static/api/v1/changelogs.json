@@ -2,9 +2,19 @@
   "schemaVersion": 1,
   "repository": "CubicLauncherDevs/CubicLauncher",
   "source": "https://github.com/CubicLauncherDevs/CubicLauncher/releases",
-  "generatedAt": "2026-09-19T04:30:13.054Z",
+  "generatedAt": "2026-09-20T22:32:27.394Z",
   "notesFormat": "markdown",
   "releases": [
+    {
+      "id": 392583293,
+      "tag": "v35.0.0-beta.4",
+      "name": "CubicLauncher 35 Beta 4",
+      "body": "## CubicLauncher 35 — Beta 4\n\n- Nuevo asistente para migrar desde el launcher oficial y **MultiMC (Forks)**, incluyendo Prism Launcher y PolyMC: detección de instalaciones, selección de varias instancias, progreso y cancelación, conservando los archivos originales.\n- Detección de Fabric y NeoForge durante la migración, incluidos Intermediary, los argumentos del instalador de NeoForge y los metadatos locales de loaders conocidos.\n- Selector de idiomas renovado, compartido entre ajustes y bienvenida, con nombres más claros y estados de descarga integrados con el tema.\n- Nueva gestión de **Minecraft.jar** para agregar mods al JAR o seleccionar un JAR personalizado, con una interfaz más clara en el editor de instancia.\n- Mejoras en los perfiles y skins de cuentas offline y Ely.by, y proveedores de cuentas unificados entre el tutorial y los perfiles.\n- Mejoras en el tutorial, en los selectores de versiones y en la reproducibilidad y verificación de los paquetes Nix.\n\n**Nota sobre la migración:** las versiones y loaders se instalan mediante la cola de descargas de CubicLauncher. Los cambios locales de bibliotecas y argumentos de los parches de loaders no se copian; el asistente lo indica antes de migrar.\n\n### Problema conocido\n\nEl paquete Nix de este tag tiene desactualizado el hash de dependencias de Cargo y su verificación en CI falla. Este problema afecta a la compilación mediante Nix; los binarios adjuntos de Windows, Linux y macOS se generan por separado.\n\n**Cambios completos:** https://github.com/CubicLauncherDevs/CubicLauncher/compare/v35.0.0-beta.3...v35.0.0-beta.4\n",
+      "publishedAt": "2026-09-20T21:49:57Z",
+      "updatedAt": "2026-09-20T21:49:57Z",
+      "prerelease": true,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v35.0.0-beta.4"
+    },
     {
       "id": 391910451,
       "tag": "v35.0.0-beta.3",
