@@ -223,6 +223,66 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://cubiclauncher.org/themes/jhojan-crimsoneyeinverted</loc>
+    <lastmod>2026-09-20T23:05:33.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/jhojan-crimsoneyeinverted/V1</loc>
+    <lastmod>2026-09-20T23:05:33.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/jhojan-crimsonmoon</loc>
+    <lastmod>2026-09-20T23:05:33.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/jhojan-crimsonmoon/V1</loc>
+    <lastmod>2026-09-20T23:05:33.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/jhojan-goldenhour</loc>
+    <lastmod>2026-09-20T23:05:33.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/jhojan-goldenhour/V1</loc>
+    <lastmod>2026-09-20T23:05:33.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/jhojan-mistyforest</loc>
+    <lastmod>2026-09-20T23:05:33.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/jhojan-mistyforest/V1</loc>
+    <lastmod>2026-09-20T23:05:33.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/jhojan-starliteyes</loc>
+    <lastmod>2026-09-20T23:05:33.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/jhojan-starliteyes/V1</loc>
+    <lastmod>2026-09-20T23:05:33.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://cubiclauncher.org/themes/mpg-shizukayoshimoto</loc>
     <lastmod>2026-09-13T17:57:24.000Z</lastmod>
     <changefreq>weekly</changefreq>
@@ -831,6 +891,12 @@
   <url>
     <loc>https://cubiclauncher.org/themes/author/edgajuman</loc>
     <lastmod>2026-07-24T04:00:59.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cubiclauncher.org/themes/author/jhojan</loc>
+    <lastmod>2026-09-20T23:05:33.000Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
