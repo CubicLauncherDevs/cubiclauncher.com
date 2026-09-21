@@ -9,7 +9,7 @@
 
 <section
   id="hero-section"
-  class="dark relative min-h-105 lg:min-h-130 flex items-center overflow-hidden"
+  class="relative min-h-105 lg:min-h-130 flex items-center overflow-hidden"
   style="isolation: isolate;"
 >
   <HeroBackground />
@@ -32,7 +32,7 @@
       </h1>
     </div>
 
-    <p class="text-sm leading-[1.6] text-white/90 mb-6 max-w-120">
+    <p class="text-sm leading-[1.6] text-cl-muted mb-6 max-w-120">
       {$t("hero.description")}
     </p>
 
@@ -46,7 +46,7 @@
       </a>
       <a
         href="/themes"
-        class="inline-flex items-center justify-center gap-1.5 px-5 py-2 text-xs font-medium text-white border border-white/30 hover:border-white/50 hover:bg-white/10 rounded transition-colors"
+        class="inline-flex items-center justify-center gap-1.5 px-5 py-2 text-xs font-medium text-cl-text border border-cl-border hover:border-cl-border-hover hover:bg-cl-elevated rounded transition-colors"
       >
         <IconPalette class="w-3.5 h-3.5" />
         {$t("hero.exploreThemes")}
@@ -57,7 +57,7 @@
       href="https://github.com/CubicLauncherDevs/CubicLauncher"
       target="_blank"
       rel="noopener noreferrer"
-      class="inline-flex items-center gap-1.5 text-[11px] text-white/70 hover:text-white transition-colors"
+      class="inline-flex items-center gap-1.5 text-[11px] text-cl-dim hover:text-cl-text transition-colors"
     >
       <IconGithub class="w-3 h-3" />
       {$t("hero.sourceCode")}
