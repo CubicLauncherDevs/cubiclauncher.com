@@ -2,9 +2,19 @@
   "schemaVersion": 1,
   "repository": "CubicLauncherDevs/CubicLauncher",
   "source": "https://github.com/CubicLauncherDevs/CubicLauncher/releases",
-  "generatedAt": "2026-09-20T22:32:27.394Z",
+  "generatedAt": "2026-09-21T14:19:23.951Z",
   "notesFormat": "markdown",
   "releases": [
+    {
+      "id": 392736395,
+      "tag": "v35.0.0-beta.5",
+      "name": "CubicLauncher v35.0.0-beta.5",
+      "body": "CubicLauncher 35 — Beta 5\r\n- Selector de canal de actualización (Estable / Beta) en Ajustes, con progreso visible de descarga y reinicio automático.\r\n- Detección de instancias de PineconeMC y ElyPrismLauncher durante la migración, incluyendo Flatpak.\r\n- Notificaciones de éxito y error al importar temas.\r\n- Se oculta la Tienda de Mods cuando OptiFine está instalado en la instancia.\r\n- Versión normalizada para shaders y resource packs en la tienda.\r\n- Icono por defecto de la instancia ahora usa el color de texto del tema.",
+      "publishedAt": "2026-09-21T06:34:46Z",
+      "updatedAt": "2026-09-21T06:43:44Z",
+      "prerelease": true,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v35.0.0-beta.5"
+    },
     {
       "id": 392583293,
       "tag": "v35.0.0-beta.4",
