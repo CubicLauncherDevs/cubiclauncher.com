@@ -96,6 +96,14 @@
                 >
                     {$t('nav.donate')}
                 </a>
+                <a
+                    href="https://accounts.cubiclauncher.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="px-2.5 py-1.5 text-xs font-medium text-cl-muted hover:text-cl-text transition-colors duration-150"
+                >
+                    {$t('nav.accounts')}
+                </a>
             </nav>
 
             <a
@@ -176,6 +184,15 @@
                     onclick={closeMobileMenu}
                 >
                     {$t('nav.donate')}
+                </a>
+                <a
+                    href="https://accounts.cubiclauncher.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="block px-4 py-2 text-xs font-medium text-cl-muted hover:text-cl-text hover:bg-cl-elevated transition-colors duration-150"
+                    onclick={closeMobileMenu}
+                >
+                    {$t('nav.accounts')}
                 </a>
                 <div class="px-4 py-2 flex items-center justify-between border-t border-cl-border mt-1">
                     <a
