@@ -2,9 +2,19 @@
   "schemaVersion": 1,
   "repository": "CubicLauncherDevs/CubicLauncher",
   "source": "https://github.com/CubicLauncherDevs/CubicLauncher/releases",
-  "generatedAt": "2026-09-21T14:19:23.951Z",
+  "generatedAt": "2026-09-22T07:47:06.626Z",
   "notesFormat": "markdown",
   "releases": [
+    {
+      "id": 393409218,
+      "tag": "v35.0.0",
+      "name": "CubicLauncher 35",
+      "body": "# CubicLauncher 35.0.0\r\n \r\nDespués de 5 betas, ya está la versión final de Cubic35. Estos son los cambios más importantes:\r\n \r\n**Migración desde otros launchers**\r\nNuevo asistente para migrar desde el launcher oficial, MultiMC, Prism Launcher y PolyMC. Detecta tus instancias, podés elegir cuáles migrar, y no toca los archivos originales. También detecta PineconeMC y ElyPrismLauncher (incluido Flatpak), y reconoce Fabric y NeoForge en el proceso.\r\n \r\n**Gestión de mods, texture packs y shaders**\r\nVista nueva de Instalados (lista o tarjetas, a gusto), selección múltiple, eliminación por lotes, búsqueda por nombre/archivo/autor y filtros. Se puede importar varios archivos a la vez. Todo esto ahora anda mucho más rápido, sobre todo con modpacks grandes.\r\n \r\n**Actualizaciones**\r\nPodés elegir entre canal Estable o Beta desde Ajustes, con progreso de descarga y reinicio automático. También hay un panel nuevo que muestra las novedades antes de actualizar.\r\n \r\n**Cuentas y skins**\r\nMejoras en perfiles de cuentas offline y Ely.by, visor de skins en 3D más fluido, y se arregló un bug que hacía perder el progreso de las cuentas offline entre sesiones.\r\n \r\n**Personalización**\r\nControl de escala y densidad de la interfaz, notificaciones personalizables (posición, tamaño, tipografía, duración), y selector de idiomas renovado.\r\n \r\n**Rendimiento general**\r\nConsolas, capturas de pantalla e idiomas cargan bajo demanda en vez de todo de una. Menos guardados innecesarios al tocar ajustes. Coordinación más prolija al abrir/cerrar el launcher jugando en varias instancias a la vez.\r\n \r\n**Otros arreglos**\r\nSe oculta la tienda de mods si tenés OptiFine instalado, versión normalizada en shaders/resource packs de la tienda, ícono de instancia usa el color del tema, y varios fixes menores de sincronización.\r\n \r\n### Descargas\r\n \r\n| Sistema | Descarga |\r\n|---|---|\r\n| Windows x64 | [Instalador EXE](https://api.github.com/repos/CubicLauncherDevs/CubicLauncher/releases/assets/580345171) |\r\n| Linux x86_64 | [AppImage](https://api.github.com/repos/CubicLauncherDevs/CubicLauncher/releases/assets/580342220) · [DEB](https://api.github.com/repos/CubicLauncherDevs/CubicLauncher/releases/assets/580342145) · [RPM](https://api.github.com/repos/CubicLauncherDevs/CubicLauncher/releases/assets/580342170) |\r\n| macOS Apple Silicon | [DMG ARM64](https://api.github.com/repos/CubicLauncherDevs/CubicLauncher/releases/assets/580338438) |\r\n| macOS Intel | [DMG x64](https://api.github.com/repos/CubicLauncherDevs/CubicLauncher/releases/assets/580344943) |\r\n \r\nCambios completos: v34.0.1...v35.0.0",
+      "publishedAt": "2026-09-22T02:19:17Z",
+      "updatedAt": "2026-09-22T02:40:48Z",
+      "prerelease": false,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v35.0.0"
+    },
     {
       "id": 392736395,
       "tag": "v35.0.0-beta.5",
