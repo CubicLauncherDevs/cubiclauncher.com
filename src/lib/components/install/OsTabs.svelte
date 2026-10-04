@@ -48,7 +48,7 @@
       role="tab"
       aria-selected={active}
       onclick={() => onSelect(tab.id)}
-      class="relative flex-1 flex items-center justify-center gap-2 py-2 px-2 text-xs font-medium transition-colors {active
+      class="relative flex min-h-11 flex-1 items-center justify-center gap-1.5 px-1 py-2 text-[11px] font-medium transition-colors sm:gap-2 sm:px-2 sm:text-xs {active
         ? 'bg-cl-elevated text-cl-text border-b border-cl-text'
         : 'text-cl-muted hover:text-cl-text hover:bg-cl-elevated'}"
     >

@@ -19,9 +19,9 @@
 
 {#if downloads.length > 0}
   <section>
-    <div class="flex items-center gap-2 mb-2">
+    <div class="mb-2 flex min-w-0 items-center gap-2">
       <span class="w-1 h-1 rounded-full bg-cl-dim"></span>
-      <h3 class="text-xs font-semibold text-cl-text">
+      <h3 class="min-w-0 text-xs font-semibold text-cl-text">
         {$t("install.downloadsFor", {
           values: { os: $t(platformNameKey) },
         })}
@@ -30,7 +30,7 @@
 
     <div class="border border-cl-border rounded bg-cl-surface overflow-hidden">
       {#each downloads as download, i}
-        <div class="flex items-center gap-3 px-3 py-2.5 {i !== downloads.length - 1 ? 'border-b border-cl-border' : ''} hover:bg-cl-elevated transition-colors">
+        <div class="grid grid-cols-[1.75rem_minmax(0,1fr)] items-center gap-x-3 gap-y-2 px-3 py-3 transition-colors hover:bg-cl-elevated sm:grid-cols-[1.75rem_minmax(0,1fr)_auto] sm:py-2.5 {i !== downloads.length - 1 ? 'border-b border-cl-border' : ''}">
           <div
             class="w-7 h-7 rounded bg-cl-base border border-cl-border flex items-center justify-center shrink-0"
           >
@@ -52,13 +52,13 @@
             {/if}
           </div>
 
-          <div class="flex items-center gap-2 shrink-0">
+          <div class="col-span-2 flex min-w-0 items-center justify-between gap-2 sm:col-span-1 sm:justify-end">
             <VerificationRow {download} variant="dark" />
             <a
               href={download.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center justify-center w-6 h-6 rounded bg-cl-base border border-cl-border text-cl-muted hover:bg-cl-text hover:text-cl-accent-inverse hover:border-cl-text transition-colors"
+              class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded border border-cl-border bg-cl-base text-cl-muted transition-colors hover:border-cl-text hover:bg-cl-text hover:text-cl-accent-inverse sm:h-6 sm:w-6"
               aria-label={$t("install.download")}
             >
               <IconDownload class="w-3 h-3" />

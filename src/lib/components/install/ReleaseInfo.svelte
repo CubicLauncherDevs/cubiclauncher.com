@@ -25,13 +25,13 @@
 </script>
 
 {#if release?.tag}
-  <div class="flex items-center justify-between gap-3 mb-5 pb-4 border-b border-cl-border">
-    <div>
-      <div class="flex items-center gap-2 mb-0.5">
-        <span class="px-1.5 py-0.5 rounded border border-cl-border bg-cl-base text-[10px] font-semibold uppercase tracking-wide text-cl-muted">
+  <div class="mb-4 flex flex-col items-start gap-2 border-b border-cl-border pb-4 sm:mb-5 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
+    <div class="min-w-0 max-w-full">
+      <div class="mb-0.5 flex flex-wrap items-center gap-x-2 gap-y-1">
+        <span class="shrink-0 rounded border border-cl-border bg-cl-base px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-cl-muted">
           {$t("install.latestVersion")}
         </span>
-        <h2 class="text-base font-semibold text-cl-text">
+        <h2 class="min-w-0 text-sm font-semibold text-cl-text [overflow-wrap:anywhere] sm:text-base">
           {release.tag}
         </h2>
       </div>
@@ -43,7 +43,8 @@
       href={release.htmlUrl}
       target="_blank"
       rel="noopener noreferrer"
-      class="inline-flex items-center gap-1 text-[11px] font-medium text-cl-dim hover:text-cl-text transition-colors"
+      aria-label={$t("install.viewAllReleases")}
+      class="inline-flex min-h-10 min-w-10 items-center justify-center gap-1 text-[11px] font-medium text-cl-dim transition-colors hover:text-cl-text sm:min-h-0 sm:min-w-0 sm:justify-start"
     >
       <IconGithubLogo class="w-3.5 h-3.5" />
       <span class="hidden sm:inline">{$t("install.viewAllReleases")}</span>

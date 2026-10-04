@@ -22,10 +22,10 @@
       : "text-cl-muted hover:text-cl-text";
 </script>
 
-<div class="flex items-center gap-2">
+<div class="flex min-w-0 flex-wrap items-center gap-2">
   {#if download.sha256}
     <div class="group flex items-center gap-1 min-w-0" title={download.sha256}>
-      <span class="text-[10px] font-mono truncate max-w-[8rem] {hashColor} transition-colors">
+      <span class="hidden max-w-[8rem] truncate font-mono text-[10px] {hashColor} transition-colors sm:inline">
         {download.sha256.slice(0, 12)}…{download.sha256.slice(-4)}
       </span>
       <CopyHashButton hash={download.sha256} {variant} compact />

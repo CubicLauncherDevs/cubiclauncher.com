@@ -41,7 +41,7 @@
 <button
   type="button"
   onclick={copy}
-  class="{baseStyles} {variantStyles} {compact ? 'px-1.5 py-0.5' : 'px-2 py-1'}"
+  class="{baseStyles} {variantStyles} {compact ? 'min-h-9 min-w-9 justify-center px-2 py-1 sm:min-h-0 sm:min-w-0 sm:px-1.5 sm:py-0.5' : 'min-h-10 px-3 py-2 sm:min-h-0 sm:px-2 sm:py-1'}"
   aria-label={$t("install.copySha256")}
 >
   {#if copied}

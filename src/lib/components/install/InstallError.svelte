@@ -28,7 +28,7 @@
   <button
     type="button"
     onclick={onRetry}
-    class="inline-flex items-center gap-1.5 bg-cl-text text-cl-accent-inverse px-4 py-1.5 text-xs font-medium rounded hover:opacity-90 transition-opacity"
+    class="inline-flex min-h-10 items-center gap-1.5 rounded bg-cl-text px-4 py-2 text-xs font-medium text-cl-accent-inverse transition-opacity hover:opacity-90 sm:min-h-0 sm:py-1.5"
   >
     <IconArrowClockwise class="w-3.5 h-3.5" />
     {$t("install.retry")}

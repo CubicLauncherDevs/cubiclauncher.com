@@ -125,7 +125,7 @@
   </section>
 
   <!-- Content -->
-  <section class="py-6">
+  <section class="py-4 sm:py-6">
     <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
       {#if loading}
         <InstallSkeleton />
@@ -200,12 +200,12 @@
   <!-- Footer -->
   <section class="py-8 border-t border-cl-border">
     <div class="mx-auto px-4 lg:px-6" style="max-width: var(--discord-max-width);">
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 rounded border border-cl-border bg-cl-surface p-4">
-        <div class="flex items-center gap-3">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 rounded border border-cl-border bg-cl-surface p-3 sm:p-4">
+        <div class="flex min-w-0 items-center gap-3">
           <div class="w-8 h-8 rounded bg-cl-base border border-cl-border flex items-center justify-center">
             <IconDownload class="w-4 h-4 text-cl-muted" />
           </div>
-          <p class="text-cl-muted text-xs max-w-md">
+          <p class="min-w-0 text-cl-muted text-xs max-w-md">
             {$t("install.lookingForOther")}
           </p>
         </div>
@@ -213,7 +213,7 @@
           href="https://github.com/CubicLauncherDevs/CubicLauncher/releases"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-cl-text text-cl-accent-inverse font-medium text-xs rounded hover:opacity-90 transition-opacity shrink-0"
+          class="inline-flex min-h-10 w-full items-center justify-center gap-1.5 px-3 py-1.5 bg-cl-text text-cl-accent-inverse font-medium text-xs rounded hover:opacity-90 transition-opacity sm:min-h-0 sm:w-auto sm:shrink-0"
         >
           {$t("install.viewAllReleases")}
           <IconArrowRight class="w-3 h-3" />
