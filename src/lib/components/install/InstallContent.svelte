@@ -4,6 +4,8 @@
   import { t, currentLocale } from "$lib/i18n";
   import IconDownload from "~icons/ph/download-simple";
   import IconArrowRight from "~icons/ph/arrow-right";
+  import IconWarningCircle from "~icons/ph/warning-circle";
+  import IconGithubLogo from "~icons/ph/github-logo";
   import {
     detectOS,
     fetchLatestRelease,
@@ -147,6 +149,43 @@
             onSelect={(os) => (selectedOS = os)}
           />
         </div>
+
+        {#if selectedOS === "windows"}
+          <aside class="mb-4 rounded border border-amber-400/30 bg-amber-400/[0.06] p-3 sm:p-4" aria-labelledby="windows-warning-title">
+            <div class="flex items-start gap-3">
+              <IconWarningCircle class="mt-0.5 h-5 w-5 shrink-0 text-amber-400" />
+              <div class="min-w-0">
+                <h3 id="windows-warning-title" class="text-sm font-semibold text-cl-text">
+                  {$t("install.windowsWarning.bannerTitle")}
+                </h3>
+                <p class="mt-1 text-xs leading-relaxed text-cl-muted">
+                  {$t("install.windowsWarning.bannerText")}
+                </p>
+                <p class="mt-1 text-xs leading-relaxed text-cl-muted">
+                  {$t("install.windowsWarning.bannerCost")}
+                </p>
+                <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+                  <a
+                    href="/install/windows-smartscreen"
+                    class="inline-flex items-center gap-1 text-xs font-medium text-cl-text underline decoration-cl-border underline-offset-4 hover:decoration-cl-text"
+                  >
+                    {$t("install.windowsWarning.readGuide")}
+                    <IconArrowRight class="h-3 w-3" />
+                  </a>
+                  <a
+                    href="https://github.com/CubicLauncherDevs/CubicLauncher"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 text-xs font-medium text-cl-text underline decoration-cl-border underline-offset-4 hover:decoration-cl-text"
+                  >
+                    <IconGithubLogo class="h-3.5 w-3.5" />
+                    {$t("install.windowsWarning.reviewCode")}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        {/if}
 
         <DownloadList
           downloads={activeDownloads}
