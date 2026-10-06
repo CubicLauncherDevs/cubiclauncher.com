@@ -2,9 +2,19 @@
   "schemaVersion": 1,
   "repository": "CubicLauncherDevs/CubicLauncher",
   "source": "https://github.com/CubicLauncherDevs/CubicLauncher/releases",
-  "generatedAt": "2026-09-22T07:47:06.626Z",
+  "generatedAt": "2026-10-06T10:31:49.216Z",
   "notesFormat": "markdown",
   "releases": [
+    {
+      "id": 404234250,
+      "tag": "v36.0.0-beta.1",
+      "name": "CubicLauncher v36.0.0-beta.1",
+      "body": "",
+      "publishedAt": "2026-10-06T03:18:10Z",
+      "updatedAt": "2026-10-06T03:18:10Z",
+      "prerelease": true,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v36.0.0-beta.1"
+    },
     {
       "id": 393409218,
       "tag": "v35.0.0",
