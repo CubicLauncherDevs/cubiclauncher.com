@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import { t } from "$lib/i18n";
+  import { getCanonicalUrl } from "$lib/utils/site.js";
 import ThemeCard from "$lib/components/themes/ThemeCard.svelte";
 import ThemeListRow from "$lib/components/themes/ThemeListRow.svelte";
 import ActivityGraph from "$lib/components/themes/ActivityGraph.svelte";
@@ -12,7 +13,7 @@ import IconArrowLeft from "~icons/ph/arrow-left";
   let { data } = $props();
   let author = $derived(data.author);
 
-  let canonicalUrl = $derived($page.url.href.split('?')[0]);
+  let canonicalUrl = $derived(getCanonicalUrl($page.url.pathname));
 
   const ITEMS_PER_PAGE = 12;
   let currentPage = $state(1);

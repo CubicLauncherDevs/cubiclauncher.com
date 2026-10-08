@@ -1,6 +1,7 @@
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { SITE_ORIGIN } from '../src/lib/utils/site.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = join(__dirname, '..', 'src', 'lib', 'data');
@@ -8,7 +9,6 @@ const STATIC_DIR = join(__dirname, '..', 'static');
 
 const THEMES_URL = 'https://raw.githubusercontent.com/CubicLauncherDevs/Themes/master/themes.json';
 const PACKAGES_URL = 'https://raw.githubusercontent.com/CubicLauncherDevs/Themes/master/packages.json';
-const BASE_URL = 'https://cubiclauncher.org';
 
 async function fetchJson(url) {
   const res = await fetch(url);
@@ -145,7 +145,7 @@ function buildSitemap(themes, packages) {
   const urlBlocks = entries
     .map((entry) => {
       const lastmod = entry.lastmod ? `    <lastmod>${entry.lastmod}</lastmod>\n` : '';
-      return `  <url>\n    <loc>${escapeXml(BASE_URL + entry.loc)}</loc>\n${lastmod}    <changefreq>${entry.changefreq}</changefreq>\n    <priority>${entry.priority.toFixed(1)}</priority>\n  </url>`;
+      return `  <url>\n    <loc>${escapeXml(SITE_ORIGIN + entry.loc)}</loc>\n${lastmod}    <changefreq>${entry.changefreq}</changefreq>\n    <priority>${entry.priority.toFixed(1)}</priority>\n  </url>`;
     })
     .join('\n');
 

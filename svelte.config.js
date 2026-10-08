@@ -1,6 +1,7 @@
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { mdsvex } from 'mdsvex';
+import { SITE_ORIGIN } from './src/lib/utils/site.js';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -27,7 +28,7 @@ const config = {
 			fallback: '404.html'
 		}),
 		prerender: {
-			origin: 'https://cubiclauncher.org',
+			origin: SITE_ORIGIN,
 			entries: ['*'],
 			handleHttpError: 'warn'
 		}

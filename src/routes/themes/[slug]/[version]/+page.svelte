@@ -3,6 +3,7 @@
   import { t, locale } from "$lib/i18n";
   import { slugify } from "$lib/utils/theme-search";
   import { renderMarkdown } from "$lib/utils/markdown";
+  import { getCanonicalUrl } from "$lib/utils/site.js";
   import { getThemeVerification } from "$lib/utils/themes";
   import { goToThemesList } from "$lib/utils/theme-history";
   import IconImage from "~icons/ph/image";
@@ -16,7 +17,7 @@
 
   let slug = $derived($page.params.slug as string);
   let versionName = $derived($page.params.version as string);
-  let canonicalUrl = $derived($page.url.href.split(/[?#]/)[0]);
+  let canonicalUrl = $derived(getCanonicalUrl($page.url.pathname));
   let ogImage = $derived(ver.previewUrl || ver.showcaseUrl || theme.previewUrl || null);
   let shareDescription = $derived($t('themeDetail.shareDescription', {
     values: { name: theme.name, author: theme.author, version: ver.version },

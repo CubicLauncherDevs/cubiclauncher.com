@@ -2,6 +2,7 @@
   import { page } from "$app/stores";
   import { t } from "$lib/i18n";
   import { renderMarkdown } from "$lib/utils/markdown";
+  import { getCanonicalUrl } from "$lib/utils/site.js";
   import ThemeCard from "$lib/components/themes/ThemeCard.svelte";
   import PackageDownloadButton from "$lib/components/themes/PackageDownloadButton.svelte";
   import IconWarning from "~icons/ph/warning";
@@ -11,7 +12,7 @@
   let { data } = $props();
   let resolved = $derived(data.resolved);
 
-  let canonicalUrl = $derived($page.url.href.split('?')[0]);
+  let canonicalUrl = $derived(getCanonicalUrl($page.url.pathname));
 
   let descriptionHtml = $derived(
     resolved?.description ? renderMarkdown(resolved.description) : ""
@@ -41,7 +42,7 @@
           hasPart: resolved.resolvedThemes.map((theme) => ({
             "@type": "SoftwareApplication",
             name: theme.name,
-            url: `${$page.url.origin}/themes/${theme.slug}`
+            url: getCanonicalUrl(`/themes/${theme.slug}`)
           }))
         })
       : null
@@ -54,7 +55,7 @@
   <link rel="canonical" href={canonicalUrl} />
   <meta property="og:title" content={resolved?.name ?? ''} />
   <meta property="og:description" content={resolved?.description ? resolved.description.slice(0, 160) : $t('page.packageDesc')} />
-  <meta property="og:url" content={$page.url.href} />
+  <meta property="og:url" content={canonicalUrl} />
   <meta property="og:type" content="website" />
   {#if resolved?.previewUrl}
     <meta property="og:image" content={resolved.previewUrl} />

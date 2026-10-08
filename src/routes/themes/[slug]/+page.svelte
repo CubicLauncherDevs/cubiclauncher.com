@@ -4,6 +4,7 @@
   import { goto } from "$app/navigation";
   import { t, locale, getDateLocale } from "$lib/i18n";
   import { renderMarkdown } from "$lib/utils/markdown";
+  import { getCanonicalUrl } from "$lib/utils/site.js";
   import { goToThemesList } from "$lib/utils/theme-history";
   import ThemeCard from "$lib/components/themes/ThemeCard.svelte";
   import ThemeDetailHeader from "$lib/components/themes/ThemeDetailHeader.svelte";
@@ -30,7 +31,7 @@
   onMount(() => { mounted = true; });
   let tabParam = $derived(mounted ? page.url.searchParams.get("tab") : null);
   let activeTab = $derived(tabs.includes(tabParam as DetailTab) ? tabParam as DetailTab : "description");
-  let canonicalUrl = $derived(page.url.href.split(/[?#]/)[0]);
+  let canonicalUrl = $derived(getCanonicalUrl(page.url.pathname));
 
   let showLightbox = $state(false);
   let lightboxUrl = $state("");

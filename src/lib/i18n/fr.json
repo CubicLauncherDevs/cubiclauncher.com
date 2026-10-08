@@ -87,6 +87,41 @@
     "sourceCode": "Code source"
   },
   "home": {
+    "screenshots": {
+      "title": "Découvrez CubicLauncher en images",
+      "subtitle": "Explorez l’interface, organisez vos instances et découvrez les possibilités avant de jouer.",
+      "expand": "Agrandir la capture",
+      "open": "Agrandir la capture : {name}",
+      "previous": "Capture précédente",
+      "next": "Capture suivante",
+      "choose": "Captures du launcher",
+      "select": "Voir la capture : {name}",
+      "store": {
+        "title": "Catalogue de mods",
+        "description": "Trouvez des mods, consultez leurs détails et choisissez une version pour votre instance depuis le launcher.",
+        "alt": "Catalogue de mods de CubicLauncher affichant les résultats Modrinth et les détails de Fabric API."
+      },
+      "installed": {
+        "title": "Mods installés",
+        "description": "Consultez les mods de chaque instance et gérez ceux que vous souhaitez garder actifs.",
+        "alt": "Gestion des mods installés dans CubicLauncher, avec les options pour activer ou désinstaller Iris."
+      },
+      "instances": {
+        "title": "Créer une instance",
+        "description": "Donnez un nom et une icône à votre prochaine aventure, avec des options d’importation de modpacks.",
+        "alt": "Assistant de création d’instance de CubicLauncher avec nom, icône et options de modpacks."
+      },
+      "overview": {
+        "title": "Votre espace de jeu",
+        "description": "Une interface simple avec vos instances toujours à portée de main dans la barre latérale.",
+        "alt": "Écran d’accueil de CubicLauncher avec les instances organisées dans la barre latérale."
+      },
+      "settings": {
+        "title": "À votre façon",
+        "description": "Réglez la langue, les thèmes et le comportement du launcher au même endroit.",
+        "alt": "Panneau de paramètres de CubicLauncher avec les options de langue, de thèmes et de mises à jour."
+      }
+    },
     "featuresTitle": "POURQUOI CUBIC LAUNCHER?",
     "featuresSubtitle": "Ce qui le différencie.",
     "feature1Title": "Gestion d'instances",
@@ -176,6 +211,34 @@
     "defaultDownloadsAvailable": "Les téléchargements par défaut sont toujours disponibles",
     "lookingForOther": "Vous cherchez une autre version ou architecture ?",
     "viewAllReleases": "Voir toutes les versions",
+    "virusTotalWarning": {
+      "bannerTitle": "VirusTotal ou un autre antivirus détecte quelque chose dans CubicLauncher ?",
+      "bannerText": "VirusTotal peut donner de faux positifs avec CubicLauncher. Tout ce que VirusTotal ou un autre analyseur de virus affiche ne confirme pas que le fichier est malveillant.",
+      "bannerSource": "C’est là que le code source intervient : le launcher est compilé à partir de ce code, publié sur GitHub et consultable par tous.",
+      "reviewCode": "Voir le code source sur GitHub",
+      "readGuide": "Que signifie cet avertissement, que faire ?",
+      "pageTitle": "Avertissements VirusTotal et autres antivirus lors de l’installation de CubicLauncher",
+      "pageDescription": "Ce que signifie un avertissement VirusTotal ou d’un autre antivirus sur CubicLauncher et pourquoi il s’agit généralement d’un faux positif.",
+      "intro": "VirusTotal et d’autres analyseurs peuvent signaler CubicLauncher comme malveillant. Voici ce que disent les rapports officiels de Tauri à ce sujet et comment le vérifier vous-même.",
+      "whatTitle": "Ce que dit un avertissement VirusTotal",
+      "whatText": "VirusTotal rassemble les résultats de dizaines d’antivirus dans un seul rapport. Quand un ou deux moteurs signalent un fichier et pas les autres, le signal est faible : les analyseurs travaillent avec des motifs et de l’heuristique, pas avec des preuves. Un avertissement isolé ne prouve pas que le fichier est malveillant ; c’est pourquoi le rapport complet compte plus que le nombre d’alertes.",
+      "whyTitle": "Pourquoi CubicLauncher apparaît dans les analyseurs",
+      "whyText": "CubicLauncher est construit avec Tauri v2 (Rust et SvelteKit) et sur Windows il est distribué en installateur NSIS : la combinaison que les analyseurs signalent le plus souvent. C’est un problème connu du projet Tauri, signalé dans son dépôt officiel par des développeurs d’autres applications dont les builds récents sont détectés comme des trojans.",
+      "sourcesTitle": "Sources et rapports officiels de Tauri",
+      "sourcesText": "Documentation officielle et rapports publics du projet Tauri sur les faux positifs et les avertissements d’antivirus :",
+      "src4749Text": "Rapport fermé dans lequel un développeur téléverse son installateur sur VirusTotal et obtient des détections Trojan.Heur sur le .msi, le .exe principal et ses sidecars, même en compilant dans un environnement isolé.",
+      "src2486Text": "Rapport ouvert, étiqueté type: bug et platform: Windows, sur les alertes de Windows Defender et d’autres antivirus dans les applications Tauri.",
+      "src10649Text": "Rapport fermé d’un développeur dont les paquets Tauri 2 étaient constamment signalés par Windows Defender sans contenir de malware.",
+      "srcDocsText": "La documentation officielle explique que la signature numérique et la réputation se construisent dans le temps : un avertissement ne prouve pas que l’application est malveillante.",
+      "whatToDoTitle": "Comment le vérifier vous-même",
+      "stepOne": "Comparez le SHA256 du fichier téléchargé à celui publié sur cette page et dans les GitHub Releases.",
+      "stepTwo": "Lisez le rapport complet : un ou deux antivirus sur des dizaines correspondent généralement à de faux positifs.",
+      "stepThree": "Consultez le code source : le launcher est compilé à partir de ce code sur GitHub et chacun peut refaire la compilation.",
+      "openSourceTitle": "Le code source est publié",
+      "openSourceText": "Le code à partir duquel CubicLauncher a été compilé est sur GitHub. Tout le monde peut le consulter, le vérifier et le reconstruire.",
+      "viewSource": "Voir le code sur GitHub",
+      "backToDownloads": "Retour aux téléchargements"
+    },
     "windowsWarning": {
       "bannerTitle": "Windows affiche un avertissement à l’ouverture de CubicLauncher ?",
       "bannerText": "Windows ne peut pas confirmer qui a publié l’installateur, car nous n’avons pas de signature numérique pour l’identifier.",

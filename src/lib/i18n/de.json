@@ -87,6 +87,41 @@
     "sourceCode": "Quellcode"
   },
   "home": {
+    "screenshots": {
+      "title": "Ein Blick in CubicLauncher",
+      "subtitle": "Entdecke die Oberfläche, organisiere deine Instanzen und lerne die Möglichkeiten vor dem Spielen kennen.",
+      "expand": "Screenshot vergrößern",
+      "open": "Screenshot vergrößern: {name}",
+      "previous": "Vorheriger Screenshot",
+      "next": "Nächster Screenshot",
+      "choose": "Launcher-Screenshots",
+      "select": "Screenshot ansehen: {name}",
+      "store": {
+        "title": "Mod-Katalog",
+        "description": "Finde Mods, lies ihre Details und wähle direkt im Launcher eine Version für deine Instanz.",
+        "alt": "Mod-Katalog von CubicLauncher mit Modrinth-Ergebnissen und Details zu Fabric API."
+      },
+      "installed": {
+        "title": "Installierte Mods",
+        "description": "Sieh dir die Mods jeder Instanz an und verwalte, welche du aktiviert lassen möchtest.",
+        "alt": "Verwaltung installierter Mods in CubicLauncher mit Optionen zum Aktivieren oder Deinstallieren von Iris."
+      },
+      "instances": {
+        "title": "Instanz erstellen",
+        "description": "Gib deinem nächsten Abenteuer einen Namen und ein Symbol oder importiere ein Modpack.",
+        "alt": "Assistent zum Erstellen einer CubicLauncher-Instanz mit Name, Symbol und Modpack-Optionen."
+      },
+      "overview": {
+        "title": "Dein Spielbereich",
+        "description": "Eine übersichtliche Oberfläche mit deinen Instanzen stets griffbereit in der Seitenleiste.",
+        "alt": "Startbildschirm von CubicLauncher mit Instanzen in der Seitenleiste."
+      },
+      "settings": {
+        "title": "Nach deinen Wünschen",
+        "description": "Passe Sprache, Themes und das Verhalten des Launchers an einem Ort an.",
+        "alt": "Einstellungsbereich von CubicLauncher mit Optionen für Sprache, Themes und Updates."
+      }
+    },
     "featuresTitle": "WARUM CUBIC LAUNCHER?",
     "featuresSubtitle": "Was ihn unterscheidet.",
     "feature1Title": "Instanzverwaltung",
@@ -176,6 +211,34 @@
     "defaultDownloadsAvailable": "Standard-Downloads sind weiterhin verfügbar",
     "lookingForOther": "Suchst du eine andere Version oder Architektur?",
     "viewAllReleases": "Alle Versionen anzeigen",
+    "virusTotalWarning": {
+      "bannerTitle": "VirusTotal oder ein anderer Virenschutz meldet etwas bei CubicLauncher?",
+      "bannerText": "VirusTotal kann bei CubicLauncher Fehlalarme (False Positives) auslösen. Nicht alles, was VirusTotal oder ein anderer Virenschutz meldet, bestätigt, dass die Datei schädlich ist.",
+      "bannerSource": "Dafür gibt es den Quellcode: Der Launcher wird aus diesem Code kompiliert, der auf GitHub veröffentlicht ist und von jedem überprüft werden kann.",
+      "reviewCode": "Quellcode auf GitHub ansehen",
+      "readGuide": "Was bedeutet das, und was soll ich tun?",
+      "pageTitle": "VirusTotal- und andere Virenschutz-Warnungen bei der Installation von CubicLauncher",
+      "pageDescription": "Was eine VirusTotal- oder andere Virenschutz-Warnung bei CubicLauncher bedeutet und warum sie meist ein Fehlalarm ist.",
+      "intro": "VirusTotal und andere Scanner können CubicLauncher als schädlich markieren. Hier erfährst du, was die offiziellen Reports des Tauri-Projekts dazu sagen und wie du es selbst prüfst.",
+      "whatTitle": "Was eine VirusTotal-Warnung aussagt",
+      "whatText": "VirusTotal sammelt die Ergebnisse von Dutzenden Virenschutz-Programmen in einem einzigen Bericht. Wenn ein oder zwei Engines eine Datei markieren und die übrigen nicht, ist das Signal schwach: Scanner arbeiten mit Mustern und Heuristiken, nicht mit Beweisen. Eine einzelne Warnung bestätigt nicht, dass die Datei schädlich ist – der vollständige Bericht wiegt deshalb schwerer als die Zahl der Meldungen.",
+      "whyTitle": "Warum CubicLauncher in Scannern auftaucht",
+      "whyText": "CubicLauncher ist mit Tauri v2 (Rust und SvelteKit) gebaut und wird unter Windows als NSIS-Installer verteilt: die Kombination, die Scanner am häufigsten markieren. Das ist ein bekanntes Problem des Tauri-Projekts, im offiziellen Repository von Entwicklern anderer Apps gemeldet, deren frische Builds als Trojaner erkannt werden.",
+      "sourcesTitle": "Offizielle Tauri-Quellen und Reports",
+      "sourcesText": "Offizielle Dokumentation und öffentliche Reports des Tauri-Projekts zu Fehlalarmen und Virenschutz-Warnungen:",
+      "src4749Text": "Ein geschlossener Report, in dem ein Entwickler seinen Installer auf VirusTotal hochlädt und Trojan.Heur-Funde für .msi, Haupt-.exe und Sidecars bekommt – sogar aus einer isolierten Build-Umgebung.",
+      "src2486Text": "Ein offener Report mit den Labels type: bug und platform: Windows über Windows-Defender- und andere Virenschutz-Warnungen bei Tauri-Apps.",
+      "src10649Text": "Ein geschlossener Report eines Entwicklers, dessen Tauri-2-Pakete konstant von Windows Defender markiert wurden, ohne Malware zu enthalten.",
+      "srcDocsText": "Die offizielle Dokumentation erklärt, dass Code-Signing und Reputation mit der Zeit entstehen: Eine Warnung beweist nicht, dass die App schädlich ist.",
+      "whatToDoTitle": "So prüfst du es selbst",
+      "stepOne": "Vergleiche die SHA256 der heruntergeladenen Datei mit dem Wert auf dieser Seite und in den GitHub Releases.",
+      "stepTwo": "Sieh dir den gesamten Bericht an: ein oder zwei Funde unter Dutzenden sind meist Fehlalarme.",
+      "stepThree": "Prüfe den Quellcode: Der Launcher wird aus diesem Code auf GitHub kompiliert, und jeder kann die Compilation nachstellen.",
+      "openSourceTitle": "Der Quellcode ist veröffentlicht",
+      "openSourceText": "Der Code, aus dem CubicLauncher kompiliert wurde, steht auf GitHub. Jeder kann ihn ansehen, prüfen und erneut bauen.",
+      "viewSource": "Code auf GitHub ansehen",
+      "backToDownloads": "Zurück zu den Downloads"
+    },
     "windowsWarning": {
       "bannerTitle": "Zeigt Windows beim Öffnen von CubicLauncher eine Warnung?",
       "bannerText": "Windows kann nicht bestätigen, wer den Installer veröffentlicht hat, weil ihm eine digitale Signatur zur Kennzeichnung fehlt.",

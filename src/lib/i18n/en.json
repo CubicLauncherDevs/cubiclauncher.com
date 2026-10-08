@@ -87,6 +87,41 @@
     "sourceCode": "Source Code"
   },
   "home": {
+    "screenshots": {
+      "title": "A look inside CubicLauncher",
+      "subtitle": "Explore the interface, organize your instances and see what you can do before you play.",
+      "expand": "Enlarge screenshot",
+      "open": "Enlarge screenshot: {name}",
+      "previous": "Previous screenshot",
+      "next": "Next screenshot",
+      "choose": "Launcher screenshots",
+      "select": "View screenshot: {name}",
+      "store": {
+        "title": "Mod store",
+        "description": "Find mods, read their details and choose a version for your instance right from the launcher.",
+        "alt": "CubicLauncher mod store showing Modrinth results and Fabric API details."
+      },
+      "installed": {
+        "title": "Installed mods",
+        "description": "Browse each instance's mods and manage which ones you want to keep enabled.",
+        "alt": "Installed mod management in CubicLauncher, with options to enable or uninstall Iris."
+      },
+      "instances": {
+        "title": "Create an instance",
+        "description": "Give your next adventure a name and an icon, with options to import modpacks.",
+        "alt": "CubicLauncher instance creation wizard with name, icon and modpack options."
+      },
+      "overview": {
+        "title": "Your gaming space",
+        "description": "A simple interface with your instances always within reach in the sidebar.",
+        "alt": "CubicLauncher home screen with instances organized in the sidebar."
+      },
+      "settings": {
+        "title": "Make it yours",
+        "description": "Adjust the language, themes and launcher behavior in one place.",
+        "alt": "CubicLauncher settings panel with language, theme and update options."
+      }
+    },
     "featuresTitle": "WHY CUBIC LAUNCHER?",
     "featuresSubtitle": "What sets it apart.",
     "feature1Title": "Instance Management",
@@ -176,6 +211,34 @@
     "defaultDownloadsAvailable": "Default downloads are still available",
     "lookingForOther": "Looking for another version or architecture?",
     "viewAllReleases": "View all releases",
+    "virusTotalWarning": {
+      "bannerTitle": "Does VirusTotal or another antivirus flag CubicLauncher?",
+      "bannerText": "VirusTotal can produce false positives with CubicLauncher. Not everything VirusTotal or another virus scanner reports confirms that the file is malicious.",
+      "bannerSource": "That is what the source code is for: the launcher is compiled from that code, which is published on GitHub for anyone to review.",
+      "reviewCode": "View the source code on GitHub",
+      "readGuide": "What does it mean, and what should I do?",
+      "pageTitle": "VirusTotal and other antivirus warnings when installing CubicLauncher",
+      "pageDescription": "What a VirusTotal or other antivirus warning on CubicLauncher means and why it is usually a false positive.",
+      "intro": "VirusTotal and other scanners may flag CubicLauncher as malicious. Here is what Tauri’s official reports say about this issue and how to check it yourself.",
+      "whatTitle": "What a VirusTotal warning says",
+      "whatText": "VirusTotal collects the results of dozens of antivirus engines in a single report. When one or two engines flag a file and the rest do not, the signal is weak: scanners work with patterns and heuristics, not proof. An isolated warning does not confirm that a file is malicious, which is why the full report matters more than the alert count.",
+      "whyTitle": "Why CubicLauncher shows up in scanners",
+      "whyText": "CubicLauncher is built with Tauri v2 (Rust and SvelteKit) and on Windows it is distributed as an NSIS installer: the combination scanners flag most often. This is a known issue in the Tauri project, reported in its official repository by developers of other applications whose recent builds are flagged as trojans.",
+      "sourcesTitle": "Official Tauri sources and reports",
+      "sourcesText": "Official documentation and public reports from the Tauri project about false positives and antivirus warnings:",
+      "src4749Text": "A closed report where a developer uploads their installer to VirusTotal and gets Trojan.Heur detections on the .msi, the main .exe and sidecars, even when building in an isolated environment.",
+      "src2486Text": "An open report labeled type: bug and platform: Windows about Windows Defender and other antivirus alerts on Tauri applications.",
+      "src10649Text": "A closed report from a developer whose Tauri 2 packages were consistently flagged by Windows Defender without containing malware.",
+      "srcDocsText": "The official documentation explains that code signing and reputation are built over time: a warning does not prove the application is malicious.",
+      "whatToDoTitle": "How to check it yourself",
+      "stepOne": "Compare the SHA256 of the file you downloaded with the one published on this page and on GitHub Releases.",
+      "stepTwo": "Look at the whole report: one or two antivirus hits among dozens are usually false positives.",
+      "stepThree": "Review the source code: the launcher is compiled from that code on GitHub, and anyone can reproduce the build.",
+      "openSourceTitle": "The source code is published",
+      "openSourceText": "The code CubicLauncher was compiled from is on GitHub. Anyone can view it, review it and build it again.",
+      "viewSource": "View the code on GitHub",
+      "backToDownloads": "Back to downloads"
+    },
     "windowsWarning": {
       "bannerTitle": "Does Windows show a warning when you open CubicLauncher?",
       "bannerText": "Windows cannot confirm who published the installer because we do not have a digital signature identifying it.",
