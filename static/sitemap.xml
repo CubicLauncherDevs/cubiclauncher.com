@@ -104,9 +104,15 @@
   </url>
   <url>
     <loc>https://www.cubiclauncher.org/themes/cubiclauncher-bedrockore</loc>
-    <lastmod>2026-09-19T05:36:04.000Z</lastmod>
+    <lastmod>2026-10-05T02:48:57.000Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.cubiclauncher.org/themes/cubiclauncher-bedrockore/V2</loc>
+    <lastmod>2026-10-05T02:48:57.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.cubiclauncher.org/themes/cubiclauncher-bedrockore/V1</loc>
@@ -477,6 +483,18 @@
   <url>
     <loc>https://www.cubiclauncher.org/themes/notstaff-starlit02/V1</loc>
     <lastmod>2026-09-19T05:33:17.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.cubiclauncher.org/themes/notstaff-tsukiko</loc>
+    <lastmod>2026-10-09T05:01:25.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.cubiclauncher.org/themes/notstaff-tsukiko/V1</loc>
+    <lastmod>2026-10-09T05:01:25.000Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -908,7 +926,7 @@
   </url>
   <url>
     <loc>https://www.cubiclauncher.org/themes/author/cubiclauncher</loc>
-    <lastmod>2026-09-19T05:36:04.000Z</lastmod>
+    <lastmod>2026-10-05T02:48:57.000Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
