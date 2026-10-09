@@ -38,6 +38,9 @@
   import IconSquaresFour from "~icons/ph/squares-four";
   import IconList from "~icons/ph/list";
   import IconWarning from "~icons/ph/warning";
+  import IconPalette from "~icons/ph/palette";
+  import IconGithubLogo from "~icons/ph/github-logo";
+  import IconBookOpen from "~icons/ph/book-open";
 
   let {
     initialThemes,
@@ -406,6 +409,37 @@
         </p>
       </div>
     </div>
+
+    <!-- Contribute -->
+    {#if activeTab === "themes" && (!loading || hasCached)}
+      <div class="mb-4 bg-cl-surface border border-cl-border rounded-lg p-4 flex flex-col sm:flex-row sm:items-center gap-4">
+        <div class="flex items-center justify-center w-10 h-10 shrink-0 rounded-lg bg-cl-elevated border border-cl-border text-cl-text">
+          <IconPalette class="w-5 h-5" />
+        </div>
+        <div class="flex-1 min-w-0">
+          <h3 class="text-sm font-semibold text-cl-text">{$t('themes.createYourOwn')}</h3>
+          <p class="text-xs text-cl-muted mt-0.5 leading-relaxed">{$t('themes.createYourOwnHint')}</p>
+        </div>
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 shrink-0">
+          <a
+            href="https://dev.cubiclauncher.org/docs/es-ES/guias/hacer-themes"
+            class="inline-flex items-center justify-center gap-1.5 h-8 px-3.5 rounded bg-cl-accent text-cl-accent-inverse text-xs font-medium hover:opacity-90 transition-opacity"
+          >
+            <IconBookOpen class="w-4 h-4" />
+            {$t('themes.followGuide')}
+          </a>
+          <a
+            href="https://github.com/CubicLauncherDevs/Themes"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-1.5 h-8 px-3.5 rounded border border-cl-border bg-cl-base text-cl-text text-xs font-medium hover:bg-cl-elevated hover:border-cl-border-hover transition-colors"
+          >
+            <IconGithubLogo class="w-4 h-4" />
+            {$t('themes.shareOnGithub')}
+          </a>
+        </div>
+      </div>
+    {/if}
 
     <!-- Toolbar -->
     <div class="flex flex-col gap-3 mb-4">
@@ -796,18 +830,6 @@
         {/if}
       {/if}
     </div>
-
-    <!-- Contribute -->
-    {#if activeTab === "themes" && (!loading || hasCached)}
-      <div class="mt-10 pt-4 border-t border-cl-border text-center">
-        <p class="text-[11px] text-cl-dim">
-          {$t('themes.createYourOwn')}
-          <a href="https://dev.cubiclauncher.org/docs/es-ES/guias/hacer-themes" class="text-cl-text hover:underline underline-offset-4 decoration-cl-border-hover transition-all">{$t('themes.followGuide')}</a>
-          {$t('themes.shareOn')}
-          <a href="https://github.com/CubicLauncherDevs/Themes" target="_blank" rel="noopener noreferrer" class="text-cl-text hover:underline underline-offset-4 decoration-cl-border-hover transition-all">GitHub</a>.
-        </p>
-      </div>
-    {/if}
   </div>
 </section>
 
