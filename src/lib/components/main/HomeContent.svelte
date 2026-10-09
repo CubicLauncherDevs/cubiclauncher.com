@@ -7,6 +7,8 @@
   import IconSliders from "~icons/ph/sliders-horizontal";
   import IconPackage from "~icons/ph/package";
   import IconSparkle from "~icons/ph/sparkle";
+  import IconPalette from "~icons/ph/palette";
+  import IconArrowsLeftRight from "~icons/ph/arrows-left-right";
   import Hero from "./Hero.svelte";
   import QuickStart from "./QuickStart.svelte";
   import RandomThemes from "./RandomThemes.svelte";
@@ -46,6 +48,16 @@
       titleKey: "home.feature7Title",
       descKey: "home.feature7Desc",
       Icon: IconSparkle,
+    },
+    {
+      titleKey: "home.feature8Title",
+      descKey: "home.feature8Desc",
+      Icon: IconPalette,
+    },
+    {
+      titleKey: "home.feature9Title",
+      descKey: "home.feature9Desc",
+      Icon: IconArrowsLeftRight,
     },
   ];
 </script>
