@@ -7,6 +7,7 @@
   import IconFedora from "~icons/simple-icons/fedora";
   import IconArchlinux from "~icons/simple-icons/archlinux";
   import IconNixos from "~icons/simple-icons/nixos";
+  import IconHomebrew from "~icons/simple-icons/homebrew";
   import IconDownload from "~icons/ph/download-simple";
 
   interface Props {
@@ -20,7 +21,9 @@
   const lower = label.toLowerCase();
 
   const Icon = $derived(
-    os === "windows"
+    lower.includes("homebrew")
+      ? IconHomebrew
+      : os === "windows"
       ? IconWindows
       : os === "macos"
         ? IconApple

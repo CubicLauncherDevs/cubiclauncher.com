@@ -8,9 +8,10 @@
   interface Props {
     downloads: Download[];
     platformNameKey: string;
+    onHomebrew?: () => void;
   }
 
-  let { downloads, platformNameKey }: Props = $props();
+  let { downloads, platformNameKey, onHomebrew }: Props = $props();
 
   function formatNumber(n: number): string {
     return n.toLocaleString();
@@ -54,15 +55,26 @@
 
           <div class="col-span-2 flex min-w-0 items-center justify-between gap-2 sm:col-span-1 sm:justify-end">
             <VerificationRow {download} variant="dark" />
-            <a
-              href={download.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded border border-cl-border bg-cl-base text-cl-muted transition-colors hover:border-cl-text hover:bg-cl-text hover:text-cl-accent-inverse sm:h-6 sm:w-6"
-              aria-label={$t("install.download")}
-            >
-              <IconDownload class="w-3 h-3" />
-            </a>
+            {#if download.kind === "homebrew"}
+              <button
+                type="button"
+                onclick={() => onHomebrew?.()}
+                class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded border border-cl-border bg-cl-base text-cl-muted transition-colors hover:border-cl-text hover:bg-cl-text hover:text-cl-accent-inverse sm:h-6 sm:w-6"
+                aria-label={$t("install.homebrew.open")}
+              >
+                <IconDownload class="w-3 h-3" />
+              </button>
+            {:else}
+              <a
+                href={download.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded border border-cl-border bg-cl-base text-cl-muted transition-colors hover:border-cl-text hover:bg-cl-text hover:text-cl-accent-inverse sm:h-6 sm:w-6"
+                aria-label={$t("install.download")}
+              >
+                <IconDownload class="w-3 h-3" />
+              </a>
+            {/if}
           </div>
         </div>
       {/each}

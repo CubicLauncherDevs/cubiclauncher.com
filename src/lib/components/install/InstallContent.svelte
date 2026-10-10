@@ -15,6 +15,7 @@
     type ReleaseInfo as ReleaseData,
   } from "$lib/utils/install";
   import DownloadList from "./DownloadList.svelte";
+  import HomebrewModal from "./HomebrewModal.svelte";
   import InstallError from "./InstallError.svelte";
   import InstallRequirements from "./InstallRequirements.svelte";
   import InstallSkeleton from "./InstallSkeleton.svelte";
@@ -30,6 +31,7 @@
   let release = $state<ReleaseData | null>(null);
   let loading = $state(true);
   let error = $state("");
+  let showHomebrew = $state(false);
 
   const platform = $derived(platformData[selectedOS]);
 
@@ -228,12 +230,15 @@
         <DownloadList
           downloads={activeDownloads}
           platformNameKey={platform.nameKey}
+          onHomebrew={() => (showHomebrew = true)}
         />
 
         <InstallRequirements platformId={selectedOS} />
       {/if}
     </div>
   </section>
+
+  <HomebrewModal show={showHomebrew} onClose={() => (showHomebrew = false)} />
 
   <!-- Footer -->
   <section class="py-8 border-t border-cl-border">

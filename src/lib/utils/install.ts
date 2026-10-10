@@ -7,6 +7,7 @@ export interface Download {
   sha256?: string;
   sigUrl?: string;
   os: PlatformId;
+  kind?: "homebrew";
 }
 
 export interface ReleaseInfo {
@@ -60,6 +61,20 @@ const externalLinuxDownloads: Download[] = [
   },
 ];
 
+const externalMacosDownloads: Download[] = [
+  {
+    label: "Homebrew",
+    url: "https://github.com/CubicLauncherDevs/homebrew-Cubiclauncher",
+    os: "macos",
+    kind: "homebrew",
+  },
+];
+
+const externalDownloads: Partial<Record<PlatformId, Download[]>> = {
+  linux: externalLinuxDownloads,
+  macos: externalMacosDownloads,
+};
+
 export const fallbackDownloads: Record<PlatformId, Download[]> = {
   windows: [
     { label: "x64-setup.exe", url: "#", os: "windows" },
@@ -70,6 +85,7 @@ export const fallbackDownloads: Record<PlatformId, Download[]> = {
     { label: "x64.dmg", url: "#", os: "macos" },
     { label: ".app.tar.gz", url: "#", os: "macos" },
     { label: "x64.app.tar.gz", url: "#", os: "macos" },
+    ...externalMacosDownloads,
   ],
   linux: [
     { label: ".deb", url: "#", os: "linux" },
@@ -164,15 +180,12 @@ export function parseReleaseAssets(assets: any[]): {
     });
   }
 
-  const linuxWithExternal = [
-    ...downloads.filter((d) => d.os === "linux"),
-    ...externalLinuxDownloads,
-  ];
-
-  const merged = [
-    ...downloads.filter((d) => d.os !== "linux"),
-    ...linuxWithExternal,
-  ];
+  const merged = (["windows", "macos", "linux"] as PlatformId[]).flatMap(
+    (os) => [
+      ...downloads.filter((d) => d.os === os),
+      ...(externalDownloads[os] ?? []),
+    ]
+  );
 
   return { downloads: sortDownloads(merged), totals };
 }

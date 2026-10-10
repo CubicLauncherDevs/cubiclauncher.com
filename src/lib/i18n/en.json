@@ -215,6 +215,19 @@
     "defaultDownloadsAvailable": "Default downloads are still available",
     "lookingForOther": "Looking for another version or architecture?",
     "viewAllReleases": "View all releases",
+    "homebrew": {
+      "open": "View install commands",
+      "title": "Install with Homebrew",
+      "subtitle": "macOS · Apple Silicon & Intel",
+      "description": "Homebrew automatically picks the right .dmg for your Mac. Copy and paste one of these commands into the Terminal.",
+      "quickInstall": "Quick install",
+      "stepByStep": "Step by step",
+      "step1": "Add the tap",
+      "step2": "Install the app",
+      "copy": "Copy command",
+      "viewTap": "View the tap on GitHub",
+      "close": "Close"
+    },
     "virusTotalWarning": {
       "bannerTitle": "Does VirusTotal or another antivirus flag CubicLauncher?",
       "bannerText": "VirusTotal can produce false positives with CubicLauncher. Not everything VirusTotal or another virus scanner reports confirms that the file is malicious.",

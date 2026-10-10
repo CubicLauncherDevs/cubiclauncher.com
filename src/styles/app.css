@@ -455,6 +455,23 @@ body {
   }
 }
 
+/* Thin scrollbar */
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--cl-border-hover) transparent;
+  &::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--cl-border-hover);
+    border-radius: 9999px;
+  }
+}
+
 /* Animations */
 @keyframes fall {
   0% {
