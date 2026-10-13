@@ -2,9 +2,19 @@
   "schemaVersion": 1,
   "repository": "CubicLauncherDevs/CubicLauncher",
   "source": "https://github.com/CubicLauncherDevs/CubicLauncher/releases",
-  "generatedAt": "2026-10-09T21:02:18.556Z",
+  "generatedAt": "2026-10-13T03:38:35.770Z",
   "notesFormat": "markdown",
   "releases": [
+    {
+      "id": 411056653,
+      "tag": "v36.0.0-beta.1",
+      "name": "CubicLauncher v36.0.0-beta.1",
+      "body": "CubicLauncher 36 — Beta 1\r\n\r\n- Nuevo: Importador de instancias (MultiMC, Prism Launcher, elyprims)\r\n- Nuevo: Soporte para importar modpacks (CurseForge, Modrinth, Technic)\r\n- Nuevo: Exportación de instancias\r\n- Refactor: Mejoras en la UI de instancias, lanzador y flujo de creación\r\n- Fix: Optimización de rendimiento y uso de memoria en gestión de instancias\r\n- Chore: Actualización de dependencias y configuración del proyecto",
+      "publishedAt": "2026-10-12T23:11:33Z",
+      "updatedAt": "2026-10-12T23:17:25Z",
+      "prerelease": true,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v36.0.0-beta.1"
+    },
     {
       "id": 393409218,
       "tag": "v35.0.0",
