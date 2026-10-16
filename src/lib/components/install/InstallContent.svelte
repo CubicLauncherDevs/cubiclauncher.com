@@ -233,6 +233,19 @@
           onHomebrew={() => (showHomebrew = true)}
         />
 
+        {#if selectedOS === "linux"}
+          <aside class="mt-4 rounded border border-cl-border bg-cl-surface p-4" aria-labelledby="cachix-install-title">
+            <h3 id="cachix-install-title" class="text-sm font-semibold text-cl-text">{$t("install.cachix.title")}</h3>
+            <p class="mt-1 text-xs text-cl-muted">{$t("install.cachix.description")}</p>
+            <p class="mt-3 text-xs font-medium text-cl-text">{$t("install.cachix.setup")}</p>
+            <pre class="mt-1 overflow-x-auto rounded border border-cl-border bg-cl-base p-2 text-xs text-cl-text"><code>nix run nixpkgs#cachix -- use cubiclauncher</code></pre>
+            <div class="mt-3 grid gap-3 sm:grid-cols-2">
+              <div><p class="text-xs font-medium text-cl-text">{$t("install.cachix.stable")}</p><pre class="mt-1 overflow-x-auto rounded border border-cl-border bg-cl-base p-2 text-xs text-cl-text"><code>nix profile add github:CubicLauncherDevs/CubicLauncher/latest-release</code></pre></div>
+              <div><p class="text-xs font-medium text-cl-text">{$t("install.cachix.beta")}</p><pre class="mt-1 overflow-x-auto rounded border border-cl-border bg-cl-base p-2 text-xs text-cl-text"><code>nix profile add github:CubicLauncherDevs/CubicLauncher/latest-beta</code></pre></div>
+            </div>
+          </aside>
+        {/if}
+
         <InstallRequirements platformId={selectedOS} />
       {/if}
     </div>

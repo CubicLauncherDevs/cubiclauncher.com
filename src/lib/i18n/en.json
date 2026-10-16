@@ -215,6 +215,13 @@
     "defaultDownloadsAvailable": "Default downloads are still available",
     "lookingForOther": "Looking for another version or architecture?",
     "viewAllReleases": "View all releases",
+    "cachix": {
+      "title": "Install with Nix and Cachix",
+      "description": "On Linux, install CubicLauncher from our public Cachix binary cache.",
+      "setup": "Set up the cache once:",
+      "stable": "Latest stable release",
+      "beta": "Latest beta"
+    },
     "homebrew": {
       "open": "View install commands",
       "title": "Install with Homebrew",
