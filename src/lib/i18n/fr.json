@@ -218,9 +218,25 @@
     "cachix": {
       "title": "Installer avec Nix et Cachix",
       "description": "Sous Linux, installez CubicLauncher avec les binaires précompilés de notre cache public Cachix.",
-      "setup": "Configurez le cache une fois :",
+      "pageTitle": "Installer avec Nix/NixOS",
+      "back": "Retour aux téléchargements",
+      "intro": "CubicLauncher publie des paquets pour Linux x86_64 et ARM64. Nix télécharge le binaire depuis Cachix s’il est disponible ; sinon, il le compile localement.",
+      "profileTitle": "Installer avec Nix Flakes sans Cachix",
+      "noCacheText": "Ces commandes utilisent directement le flake. Si aucun cache binaire n’est configuré, Nix compile le paquet sur votre ordinateur.",
+      "cacheTitle": "Facultatif : télécharger les binaires précompilés avec Cachix",
+      "cacheConfigured": "Une fois configuré, le cache fournit les binaires publiés lorsqu’un build existe pour votre révision et votre architecture.",
+      "setup": "Configurez le cache public une seule fois :",
+      "chooseChannel": "Installez le canal de votre choix :",
       "stable": "Dernière version stable",
-      "beta": "Dernière bêta"
+      "beta": "Dernière bêta",
+      "specificTitle": "Choisir une version précise",
+      "specificText": "Remplacez TAG par le tag d’une version publiée sur GitHub :",
+      "flakeTitle": "Utiliser CubicLauncher depuis votre flake NixOS",
+      "flakeText": "Ajoutez CubicLauncher comme entrée du flake et transmettez-la à un module NixOS. Pour utiliser la bêta, remplacez latest-release par latest-beta.",
+      "nixosTitle": "Activer Cachix sur NixOS",
+      "nixosText": "Ajoutez le cache et sa clé publique à votre configuration NixOS :",
+      "nixosApply": "Appliquez la configuration, puis installez CubicLauncher avec l’une des commandes de profil ci-dessus.",
+      "nixosNote": "Le cache du projet propose des builds pour Linux x86_64 et ARM64. Sur les autres plateformes, Nix peut compiler le paquet localement."
     },
     "homebrew": {
       "open": "Voir les commandes d'installation",

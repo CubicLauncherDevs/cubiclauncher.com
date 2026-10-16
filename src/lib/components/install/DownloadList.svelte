@@ -4,6 +4,7 @@
   import DownloadIcon from "./DownloadIcon.svelte";
   import VerificationRow from "./VerificationRow.svelte";
   import IconDownload from "~icons/ph/download-simple";
+  import IconArrowRight from "~icons/ph/arrow-right";
 
   interface Props {
     downloads: Download[];
@@ -64,6 +65,14 @@
               >
                 <IconDownload class="w-3 h-3" />
               </button>
+            {:else if download.kind === "guide"}
+              <a
+                href={download.url}
+                class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded border border-cl-border bg-cl-base text-cl-muted transition-colors hover:border-cl-text hover:bg-cl-text hover:text-cl-accent-inverse sm:h-6 sm:w-6"
+                aria-label={download.label}
+              >
+                <IconArrowRight class="w-3 h-3" />
+              </a>
             {:else}
               <a
                 href={download.url}

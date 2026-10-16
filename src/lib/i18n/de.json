@@ -218,9 +218,25 @@
     "cachix": {
       "title": "Mit Nix und Cachix installieren",
       "description": "Installiere CubicLauncher unter Linux mit vorgefertigten Binärdateien aus unserem öffentlichen Cachix-Cache.",
-      "setup": "Richte den Cache einmalig ein:",
+      "pageTitle": "Mit Nix/NixOS installieren",
+      "back": "Zurück zu den Downloads",
+      "intro": "CubicLauncher veröffentlicht Pakete für Linux x86_64 und ARM64. Nix lädt verfügbare Binärdateien aus Cachix herunter, andernfalls wird lokal gebaut.",
+      "profileTitle": "Mit Nix Flakes ohne Cachix installieren",
+      "noCacheText": "Diese Befehle verwenden das Flake direkt. Wenn kein Binär-Cache eingerichtet ist, baut Nix das Paket auf deinem Rechner.",
+      "cacheTitle": "Optional: Vorgefertigte Binärdateien mit Cachix herunterladen",
+      "cacheConfigured": "Nach der Einrichtung lädt der Cache veröffentlichte Binärdateien herunter, sofern ein Build für deine Revision und Architektur verfügbar ist.",
+      "setup": "Richte den öffentlichen Cache einmalig ein:",
+      "chooseChannel": "Installiere den gewünschten Kanal:",
       "stable": "Neueste stabile Version",
-      "beta": "Neueste Beta"
+      "beta": "Neueste Beta",
+      "specificTitle": "Eine bestimmte Version auswählen",
+      "specificText": "Ersetze TAG durch den Tag einer auf GitHub veröffentlichten Version:",
+      "flakeTitle": "CubicLauncher mit deinem NixOS-Flake verwenden",
+      "flakeText": "Füge CubicLauncher als Flake-Input hinzu und übergib ihn an ein NixOS-Modul. Für die Beta ersetze latest-release durch latest-beta.",
+      "nixosTitle": "Cachix auf NixOS aktivieren",
+      "nixosText": "Füge den Cache und seinen öffentlichen Schlüssel zur NixOS-Konfiguration hinzu:",
+      "nixosApply": "Wende die Konfiguration an und installiere CubicLauncher anschließend mit einem der Profilbefehle oben.",
+      "nixosNote": "Der Projekt-Cache bietet Builds für Linux x86_64 und ARM64. Auf anderen Plattformen kann Nix das Paket lokal bauen."
     },
     "homebrew": {
       "open": "Installationsbefehle anzeigen",

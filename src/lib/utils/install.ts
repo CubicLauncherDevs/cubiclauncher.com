@@ -7,7 +7,7 @@ export interface Download {
   sha256?: string;
   sigUrl?: string;
   os: PlatformId;
-  kind?: "homebrew";
+  kind?: "homebrew" | "guide";
 }
 
 export interface ReleaseInfo {
@@ -55,9 +55,10 @@ const externalLinuxDownloads: Download[] = [
     os: "linux",
   },
   {
-    label: "Nix flake",
-    url: "https://dev.cubiclauncher.org/docs/es-ES/guias/nix",
+    label: "Nix/NixOS",
+    url: "/install/nix",
     os: "linux",
+    kind: "guide",
   },
 ];
 
