@@ -225,18 +225,15 @@
       "noCacheText": "Estos comandos usan el flake directamente. Si no tienes una caché binaria configurada, Nix compilará el paquete en tu equipo.",
       "cacheTitle": "Opcional: descargar binarios precompilados con Cachix",
       "cacheConfigured": "Una vez configurada, la caché permite descargar los binarios publicados si hay un build para tu revisión y arquitectura.",
-      "setup": "Configura la caché pública una vez:",
+      "setup": "Configura la caché una vez. En NixOS, ejecuta esto desde /etc/nixos:",
       "chooseChannel": "Instala el canal que prefieras:",
       "stable": "Última versión estable",
       "beta": "Última beta",
       "specificTitle": "Elegir una versión específica",
       "specificText": "Reemplaza TAG por el tag de una versión publicada en GitHub Releases:",
-      "flakeTitle": "Usar CubicLauncher desde tu flake de NixOS",
-      "flakeText": "Añade CubicLauncher como input del flake y pásalo a un módulo de NixOS. Para usar la beta, cambia latest-release por latest-beta.",
       "nixosTitle": "Activar Cachix en NixOS",
-      "nixosText": "Añade la caché y su clave pública a tu configuración de NixOS:",
-      "nixosApply": "Aplica la configuración y luego instala CubicLauncher con uno de los comandos de perfil anteriores.",
-      "nixosNote": "La caché del proyecto ofrece builds para Linux x86_64 y ARM64. En otras plataformas Nix puede compilar el paquete localmente."
+      "nixosText": "Después de ejecutar el comando de Cachix, agrega esta línea a configuration.nix:",
+      "nixosApply": "Aplica el cambio con:"
     },
     "homebrew": {
       "open": "Ver comandos de instalación",

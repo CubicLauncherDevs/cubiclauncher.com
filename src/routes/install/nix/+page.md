@@ -14,12 +14,9 @@
     beta: "install.cachix.beta",
     specificTitle: "install.cachix.specificTitle",
     specificText: "install.cachix.specificText",
-    flakeTitle: "install.cachix.flakeTitle",
-    flakeText: "install.cachix.flakeText",
     nixosTitle: "install.cachix.nixosTitle",
     nixosText: "install.cachix.nixosText",
     nixosApply: "install.cachix.nixosApply",
-    nixosNote: "install.cachix.nixosNote",
   };
 </script>
 
@@ -75,54 +72,19 @@ nix run nixpkgs#cachix -- use cubiclauncher
 
 {$t(keys.cacheConfigured)}
 
-## {$t(keys.flakeTitle)}
-
-{$t(keys.flakeText)}
-
-```nix
-{
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    cubiclauncher.url = "github:CubicLauncherDevs/CubicLauncher/latest-release";
-  };
-
-  outputs = { nixpkgs, cubiclauncher, ... }: {
-    nixosConfigurations.HOST = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./configuration.nix
-        ({ pkgs, ... }: {
-          environment.systemPackages = [
-            cubiclauncher.packages.${pkgs.system}.default
-          ];
-        })
-      ];
-    };
-  };
-}
-```
-
 ## {$t(keys.nixosTitle)}
 
 {$t(keys.nixosText)}
 
 ```nix
-nix.settings = {
-  extra-substituters = [ "https://cubiclauncher.cachix.org" ];
-  extra-trusted-public-keys = [
-    "cubiclauncher.cachix.org-1:tBeOuLW/CLlkYAH0AB+DNio4XNZOGVMHvQHVuQSqhcA="
-  ];
-};
+imports = [ ./cachix.nix ];
 ```
 
 {$t(keys.nixosApply)}
 
 ```sh
 sudo nixos-rebuild switch
-nix profile add github:CubicLauncherDevs/CubicLauncher/latest-release
 ```
-
-{$t(keys.nixosNote)}
     </article>
   </div>
 </main>
