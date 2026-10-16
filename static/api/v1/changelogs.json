@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "repository": "CubicLauncherDevs/CubicLauncher",
   "source": "https://github.com/CubicLauncherDevs/CubicLauncher/releases",
-  "generatedAt": "2026-10-15T23:42:53.777Z",
+  "generatedAt": "2026-10-16T04:43:00.111Z",
   "notesFormat": "markdown",
   "releases": [
     {
@@ -11,7 +11,7 @@
       "name": "CubicLauncher v36.0.0",
       "body": "# CubicLauncher 36\r\n\r\n## Novedades\r\n- **Migración desde XMCL:** ahora puedes importar a CubicLauncher las instancias que tienes en X Minecraft Launcher.\r\n- **Sistema de modpacks (experimental):** las instancias con modpacks incluyen un panel con opciones para proteger el pack y actualizarlo.\r\n- **Actualización de modpacks:** selecciona una versión publicada o un archivo local. Antes de aplicar la actualización, puedes revisar qué archivos se agregarán, modificarán o eliminarán. Si hay conflictos con tus archivos, eliges si conservarlos o reemplazarlos por los del pack.\r\n- **Perfiles de ajustes (experimental):** guarda los controles y las opciones gráficas de Minecraft para aplicarlos en otras instancias sin configurar todo de nuevo. Los perfiles se crean a partir de los ajustes de una instancia o importando un archivo `options.txt`.\r\n- **Aplicación manual o automática:** aplica un perfil cuando lo necesites o cada vez que inicies la instancia. Se guarda un respaldo antes de reemplazar los ajustes existentes. Si lo aplicas manualmente, se pide confirmación antes de sobrescribirlos.\r\n- **CurseForge para texturas y shaders:** ahora puedes buscar e instalar estos paquetes desde CurseForge, además de Modrinth.\r\n- **Selector de fuente:** cambia la tipografía del launcher desde los ajustes de Interfaz.\r\n\r\n## Interfaz\r\n- **Creación de instancias:** rediseñada la ventana para crear instancias. El selector de versiones vuelve a mostrar únicamente las que ya tienes instaladas.\r\n- **Actualización de modpacks:** los cambios y conflictos se muestran en grupos para facilitar su revisión.\r\n- **Temas oscuros:** corregidos los colores de los iconos que no se distinguían del fondo.\r\n\r\n## Mejoras\r\n- Más paneles se cargan al abrirlos para reducir la carga inicial del launcher.\r\n- Se evitan descargas repetidas de avatares.\r\n\r\n> Si activas la aplicación automática de un perfil, los ajustes que cambies dentro de Minecraft se reemplazarán en el siguiente inicio.\r\n",
       "publishedAt": "2026-10-15T23:03:11Z",
-      "updatedAt": "2026-10-15T23:32:29Z",
+      "updatedAt": "2026-10-16T00:44:13Z",
       "prerelease": false,
       "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v36.0.0"
     },
