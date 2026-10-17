@@ -2,9 +2,19 @@
   "schemaVersion": 1,
   "repository": "CubicLauncherDevs/CubicLauncher",
   "source": "https://github.com/CubicLauncherDevs/CubicLauncher/releases",
-  "generatedAt": "2026-10-16T04:43:00.111Z",
+  "generatedAt": "2026-10-17T03:48:18.463Z",
   "notesFormat": "markdown",
   "releases": [
+    {
+      "id": 415557653,
+      "tag": "v36.0.1",
+      "name": "CubicLauncher v36.0.1",
+      "body": "## Interfaz\r\n- Barra lateral: los items de instancia adoptan el estilo de la sidebar colapsada, con fondo transparente, resaltado suave y estado activo con el borde y el brillo del acento.\r\n- Acciones rápidas: ahora aparecen como overlay al pasar el cursor, sin alterar el diseño de la lista.\r\n- Modpacks: corregidos los iconos de bloqueo, que vuelven a reflejar el estado real del pack.\r\n- Icono de la aplicación: restaurado a su diseño anterior.\r\n## Mejoras\r\n- Proveedores de Java: la lista se limita a Azul Zulu, Eclipse Temurin, BellSoft Liberica y GraalVM. Se retiran Corretto, Microsoft y Semeru/OpenJ9.\r\n- Detección de Java: el escaneo del runtime se ejecuta en segundo plano, el estado de los JRE se consulta en paralelo y los proveedores disponibles por versión se guardan en caché. Ajustes abre más rápido.",
+      "publishedAt": "2026-10-17T03:40:56Z",
+      "updatedAt": "2026-10-17T03:40:56Z",
+      "prerelease": false,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v36.0.1"
+    },
     {
       "id": 413407713,
       "tag": "v36.0.0",
