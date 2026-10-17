@@ -40,3 +40,8 @@ Thumbs.db
 # Bun
 bun.lock
 deno.lock
+
+# Nix
+result
+result-*
+.direnv

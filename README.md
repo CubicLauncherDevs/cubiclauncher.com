@@ -9,6 +9,25 @@ La página `/changelogs` y el launcher pueden consumir el historial público en
 
 Actualizar la copia local: `bun run fetch-changelogs`.
 
+## Desarrollo con Nix
+
+El repositorio incluye un `flake.nix` con un entorno de desarrollo que provee
+Bun, Node.js, Git y los certificados TLS necesarios para las descargas de
+`fetch-themes` y `fetch-changelogs`.
+
+```bash
+nix develop          # entra en el entorno
+bun install          # instala dependencias
+bun run dev          # servidor de desarrollo
+```
+
+También se pueden ejecutar comandos sin entrar al shell:
+
+```bash
+nix develop -c bun run build
+nix develop -c bun run check
+```
+
 ## Despliegue e indexación
 
 El sitio usa `adapter-static` y genera el contenido en `build/`. En Vercel,
