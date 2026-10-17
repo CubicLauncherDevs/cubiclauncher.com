@@ -2,6 +2,7 @@
   import HeroBackground from "./HeroBackground.svelte";
   import Logo from "$lib/Logo.svelte";
   import { t } from "$lib/i18n";
+  import { themeStore } from "$lib/stores/theme.svelte";
   import IconDownload from "~icons/ph/download-simple";
   import IconPalette from "~icons/ph/palette";
   import IconGithub from "~icons/simple-icons/github";
@@ -22,11 +23,12 @@
       <Logo
         width="3.5rem"
         height="3.5rem"
-        color="#ffffff"
+        color={themeStore.resolved === "dark" ? "#ffffff" : "#24292e"}
+        variant="halloween"
         className="shrink-0 -ml-1"
       />
       <h1
-        class="text-[28px] sm:text-[34px] lg:text-[40px] font-semibold leading-[1.15] text-white"
+        class="text-[28px] sm:text-[34px] lg:text-[40px] font-semibold leading-[1.15] text-cl-text"
       >
         {$t("hero.title")}
       </h1>
@@ -67,6 +69,10 @@
 
 <style>
   .hero-content {
+    text-shadow: 0 1px 10px rgba(255, 255, 255, 0.55);
+  }
+
+  :global(html.dark) .hero-content {
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
   }
 </style>

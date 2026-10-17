@@ -1,3 +1,7 @@
+<script module>
+  let instance = 0;
+</script>
+
 <script>
   /** Color de relleno principal */
   export let color = "#24292e";
@@ -16,30 +20,84 @@
 
   /** Atributo aria-label para accesibilidad */
   export let label = "Polyhedron icon";
+
+  /** Variante de temporada: "" = normal, "halloween" = cubo + sombrero de bruja. */
+  export let variant = "";
+
+  const paths = [
+    "m 86.694479,219.56319 -0.628221,126.5865 166.164412,96.43191 h 12.25031 l 164.90798,-99.88712 -59.68098,-32.66749 -0.31411,-118.73374 -101.77178,57.1681 -0.94234,115.90675 56.53988,-34.86626 24.81473,12.25031 -84.49571,56.85399 -137.26626,-73.81596 -0.31411,-81.66871 z",
+    "M 147.03656,307.84393 148.36922,237.21307 85.752147,199.42086 85.678784,143.92703 250.97423,42.404908 h 6.59632 l 172.13252,99.258892 0.31411,164.90798 -39.57792,-21.67362 -0.31411,-114.96442 -134.43926,-76.642942 -125.95828,73.501842 0.0196,10.26748 119.89202,69.86994 -0.23558,117.9092 z",
+    "m 156.42699,174.6454 100.82945,-57.79632 102.4,57.48221 -100.20123,57.48221 z"
+  ];
+
+  const isHalloween = variant === "halloween";
+  const id = `witchHat${instance++}`;
 </script>
 
 <svg
   {width}
   {height}
-  viewBox="0 0 512 512"
+  viewBox={isHalloween ? "0 -170 512 662" : "0 0 512 512"}
   version="1.1"
   xmlns="http://www.w3.org/2000/svg"
   role="img"
   aria-label={label}
   class={className}
 >
-  <g>
-    <path
-      style="fill:{color};fill-opacity:{opacity}"
-      d="m 86.694479,219.56319 -0.628221,126.5865 166.164412,96.43191 h 12.25031 l 164.90798,-99.88712 -59.68098,-32.66749 -0.31411,-118.73374 -101.77178,57.1681 -0.94234,115.90675 56.53988,-34.86626 24.81473,12.25031 -84.49571,56.85399 -137.26626,-73.81596 -0.31411,-81.66871 z"
-    />
-    <path
-      style="fill:{color};fill-opacity:{opacity}"
-      d="M 147.03656,307.84393 148.36922,237.21307 85.752147,199.42086 85.678784,143.92703 250.97423,42.404908 h 6.59632 l 172.13252,99.258892 0.31411,164.90798 -39.57792,-21.67362 -0.31411,-114.96442 -134.43926,-76.642942 -125.95828,73.501842 0.0196,10.26748 119.89202,69.86994 -0.23558,117.9092 z"
-    />
-    <path
-      style="fill:{color};fill-opacity:{opacity}"
-      d="m 156.42699,174.6454 100.82945,-57.79632 102.4,57.48221 -100.20123,57.48221 z"
-    />
-  </g>
+  {#if isHalloween}
+    <defs>
+      <linearGradient id="{id}-cone" x1="0" y1="0" x2="1" y2="0.25">
+        <stop offset="0" stop-color="#3b0764" />
+        <stop offset="0.45" stop-color="#5b21b6" />
+        <stop offset="1" stop-color="#7c3aed" />
+      </linearGradient>
+      <linearGradient id="{id}-brim" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#6d28d9" />
+        <stop offset="1" stop-color="#4c1d95" />
+      </linearGradient>
+    </defs>
+
+    <!-- cubo -->
+    <g fill="#ffffff">
+      {#each paths as d}
+        <path {d} />
+      {/each}
+    </g>
+
+    <!-- sombrero de bruja -->
+    <g>
+      <!-- envés del ala -->
+      <ellipse cx="258" cy="56" rx="96" ry="17" fill="#2e1065" />
+      <!-- cono con punta doblada -->
+      <path
+        d="M204 46 C208 -10 224 -52 252 -74 C292 -104 316 -100 332 -86 C320 -60 312 -10 314 46 Z"
+        fill="url(#{id}-cone)"
+      />
+      <!-- pliegues -->
+      <g fill="none" stroke="#3b0764" stroke-width="2" stroke-linecap="round" opacity="0.45">
+        <path d="M230 34 C236 -8 248 -44 266 -62" />
+        <path d="M258 40 C264 -2 278 -34 296 -50" />
+      </g>
+      <!-- franja -->
+      <path d="M217 -2 C242 8 290 8 312 -2 L316 34 C292 44 240 44 216 34 Z" fill="#ea580c" />
+      <g fill="none" stroke="#9a3412" stroke-width="1.6" stroke-dasharray="3 4" stroke-linecap="round">
+        <path d="M222 5 C244 14 288 14 310 5" />
+        <path d="M219 33 C243 42 289 42 313 33" />
+      </g>
+      <!-- hebilla -->
+      <rect x="240" y="2" width="36" height="28" rx="3" fill="#f59e0b" />
+      <rect x="250" y="9" width="16" height="14" rx="1" fill="#4c1d95" />
+      <rect x="256" y="9" width="4" height="14" fill="#f59e0b" />
+      <rect x="243" y="4" width="30" height="3" rx="1.5" fill="#fbbf24" opacity="0.75" />
+      <!-- ala (superficie) -->
+      <path d="M162 50 C180 31 336 31 354 50 C336 67 180 67 162 50 Z" fill="url(#{id}-brim)" />
+      <path d="M162 50 C180 58 336 58 354 50" fill="none" stroke="#2e1065" stroke-width="2" opacity="0.5" />
+    </g>
+  {:else}
+    <g>
+      {#each paths as d}
+        <path style="fill:{color};fill-opacity:{opacity}" {d} />
+      {/each}
+    </g>
+  {/if}
 </svg>

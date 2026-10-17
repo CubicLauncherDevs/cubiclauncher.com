@@ -4,7 +4,8 @@
     import { cubicOut } from "svelte/easing";
     import Logo from "$lib/Logo.svelte";
     import LanguageSwitcher from "$lib/i18n/LanguageSwitcher.svelte";
-    import ThemeSwitcher from "$lib/components/global/ThemeSwitcher.svelte";
+    // Halloween 2026: selector de tema oculto (modo oscuro forzado). Reactivar al revertir.
+    // import ThemeSwitcher from "$lib/components/global/ThemeSwitcher.svelte";
     import { t } from "$lib/i18n";
     import { page } from "$app/stores";
     import { tick } from "svelte";
@@ -78,6 +79,7 @@
                     width="1.5rem"
                     height="1.5rem"
                     color={themeStore.resolved === "dark" ? "#ffffff" : "#24292e"}
+                    variant="halloween"
                     className="transition-transform duration-200 group-hover:scale-105"
                 />
                 <span class="hidden sm:block font-semibold text-sm text-cl-text tracking-tight">
@@ -176,7 +178,7 @@
 
         <div class="flex items-center gap-3 shrink-0">
             <div class="hidden sm:flex items-center gap-3">
-                <ThemeSwitcher />
+                <!-- Halloween 2026: ThemeSwitcher oculto (modo oscuro forzado). -->
                 <LanguageSwitcher />
             </div>
 
@@ -284,7 +286,7 @@
                         </a>
                     </div>
                     <div class="flex items-center gap-3">
-                        <ThemeSwitcher />
+                        <!-- Halloween 2026: ThemeSwitcher oculto (modo oscuro forzado). -->
                         <LanguageSwitcher />
                     </div>
                 </div>

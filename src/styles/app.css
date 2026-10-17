@@ -91,6 +91,38 @@ html {
   --cl-code-text: #f4f4f5;
 }
 
+/* ============================================================
+   Halloween 2026 — tema temporal.
+   Para revertir: eliminar este bloque y la temática del resto
+   de archivos (HalloweenDecor.svelte, variante de Logo, bg-halloween).
+   ============================================================ */
+:root,
+.light {
+  --cl-base: #faf6f0;
+  --cl-surface: #fffdf9;
+  --cl-elevated: #f3ebe0;
+  --cl-hover: #ebe0d1;
+  --cl-border: rgba(80, 40, 0, 0.10);
+  --cl-border-hover: rgba(80, 40, 0, 0.20);
+  --cl-accent: #ea580c;
+  --cl-link: #7c3aed;
+  --cl-success: #65a30d;
+  --cl-warning: #c2410c;
+}
+
+.dark {
+  --cl-base: #0c0a12;
+  --cl-surface: #14111c;
+  --cl-elevated: #1c1626;
+  --cl-hover: #261e33;
+  --cl-border: rgba(255, 180, 120, 0.08);
+  --cl-border-hover: rgba(255, 180, 120, 0.16);
+  --cl-accent: #f97316;
+  --cl-link: #c084fc;
+  --cl-success: #a3e635;
+  --cl-warning: #fb923c;
+}
+
 @theme {
   --color-cl-base: var(--cl-base);
   --color-cl-surface: var(--cl-surface);
