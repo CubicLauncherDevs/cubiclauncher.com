@@ -703,6 +703,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.cubiclauncher.org/themes/the-unknown-matrix</loc>
+    <lastmod>2026-10-17T21:21:02.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.cubiclauncher.org/themes/the-unknown-matrix/V1</loc>
+    <lastmod>2026-10-17T21:21:02.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.cubiclauncher.org/themes/toritopablo-mina</loc>
     <lastmod>2026-09-06T14:44:25.000Z</lastmod>
     <changefreq>weekly</changefreq>
@@ -993,6 +1005,12 @@
   <url>
     <loc>https://www.cubiclauncher.org/themes/author/stylesfx</loc>
     <lastmod>2026-09-09T02:18:55.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.cubiclauncher.org/themes/author/the-unknown</loc>
+    <lastmod>2026-10-17T21:21:02.000Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
