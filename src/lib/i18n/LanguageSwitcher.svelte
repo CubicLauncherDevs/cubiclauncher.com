@@ -12,6 +12,9 @@
     { code: 'en', label: 'EN', nameKey: 'language.english' },
     { code: 'fr', label: 'FR', nameKey: 'language.french' },
     { code: 'de', label: 'DE', nameKey: 'language.german' },
+    { code: 'ru', label: 'RU', nameKey: 'language.russian' },
+    { code: 'uk', label: 'UK', nameKey: 'language.ukrainian' },
+    { code: 'ja', label: 'JA', nameKey: 'language.japanese' },
   ] as const;
 
   let current = $derived(locales.find(l => l.code === $currentLocale) || locales[0]);

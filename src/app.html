@@ -10,6 +10,20 @@
 	<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin="anonymous" />
 	<link rel="dns-prefetch" href="https://raw.githubusercontent.com" />
 	<script>
+		// Set the locale before first paint so the correct font loads immediately.
+		try {
+			const supportedLocales = ["es", "en", "fr", "de", "ru", "uk", "ja"];
+			const stored = localStorage.getItem("locale");
+			const candidates = navigator.languages?.length ? navigator.languages : [navigator.language];
+			const detected = candidates
+				.map((lang) => (lang || "").split("-")[0].toLowerCase())
+				.find((lang) => supportedLocales.includes(lang));
+			const locale = stored && supportedLocales.includes(stored) ? stored : detected;
+			if (locale) document.documentElement.lang = locale;
+		} catch {
+			// Ignore storage/navigator access errors.
+		}
+
 		// Halloween 2026: modo oscuro forzado temporalmente.
 		// Para revertir, restaurar la resolución light/dark/system original.
 		document.documentElement.classList.add("dark");

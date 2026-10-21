@@ -55,6 +55,9 @@
     "english": "English",
     "french": "French",
     "german": "German",
+    "russian": "Russian",
+    "ukrainian": "Ukrainian",
+    "japanese": "Japanese",
     "switchLanguage": "Switch language"
   },
   "nav": {

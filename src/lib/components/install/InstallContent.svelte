@@ -6,6 +6,7 @@
   import IconArrowRight from "~icons/ph/arrow-right";
   import IconWarningCircle from "~icons/ph/warning-circle";
   import IconGithubLogo from "~icons/ph/github-logo";
+  import IconCoffee from "~icons/ph/coffee";
   import {
     detectOS,
     fetchLatestRelease,
@@ -252,15 +253,24 @@
             {$t("install.lookingForOther")}
           </p>
         </div>
-        <a
-          href="https://github.com/CubicLauncherDevs/CubicLauncher/releases"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex min-h-10 w-full items-center justify-center gap-1.5 px-3 py-1.5 bg-cl-text text-cl-accent-inverse font-medium text-xs rounded hover:opacity-90 transition-opacity sm:min-h-0 sm:w-auto sm:shrink-0"
-        >
-          {$t("install.viewAllReleases")}
-          <IconArrowRight class="w-3 h-3" />
-        </a>
+        <div class="flex w-full flex-col items-stretch gap-2 sm:w-auto sm:shrink-0 sm:flex-row sm:items-center">
+          <a
+            href="/donate"
+            class="inline-flex min-h-10 w-full items-center justify-center gap-1.5 px-3 py-1.5 border border-cl-border text-cl-text font-medium text-xs rounded hover:bg-cl-elevated hover:border-cl-border-hover transition-colors sm:min-h-0 sm:w-auto"
+          >
+            <IconCoffee class="w-3.5 h-3.5" />
+            {$t("nav.donate")}
+          </a>
+          <a
+            href="https://github.com/CubicLauncherDevs/CubicLauncher/releases"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex min-h-10 w-full items-center justify-center gap-1.5 px-3 py-1.5 bg-cl-text text-cl-accent-inverse font-medium text-xs rounded hover:opacity-90 transition-opacity sm:min-h-0 sm:w-auto"
+          >
+            {$t("install.viewAllReleases")}
+            <IconArrowRight class="w-3 h-3" />
+          </a>
+        </div>
       </div>
     </div>
   </section>

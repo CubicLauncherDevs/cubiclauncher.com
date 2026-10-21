@@ -9,6 +9,7 @@
   import IconSparkle from "~icons/ph/sparkle";
   import IconPalette from "~icons/ph/palette";
   import IconArrowsLeftRight from "~icons/ph/arrows-left-right";
+  import IconCoffee from "~icons/ph/coffee";
   import Hero from "./Hero.svelte";
   import QuickStart from "./QuickStart.svelte";
   import RandomThemes from "./RandomThemes.svelte";
@@ -114,7 +115,7 @@
             {$t('home.mission')}
           </p>
         </div>
-        <div class="flex items-center gap-2 shrink-0">
+        <div class="flex flex-wrap items-center gap-2 shrink-0">
           <a
             href="https://discord.com/invite/7VaqSrPukm"
             target="_blank"
@@ -130,6 +131,13 @@
             class="inline-flex items-center gap-1.5 px-3 py-1.5 text-cl-text text-xs font-medium rounded border border-cl-border hover:border-cl-border-hover hover:bg-cl-elevated transition-colors"
           >
             {$t('home.contributeGitHub')}
+          </a>
+          <a
+            href="/donate"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-cl-text text-cl-accent-inverse text-xs font-medium rounded hover:opacity-90 transition-opacity"
+          >
+            <IconCoffee class="w-3.5 h-3.5" />
+            {$t('nav.donate')}
           </a>
         </div>
       </div>

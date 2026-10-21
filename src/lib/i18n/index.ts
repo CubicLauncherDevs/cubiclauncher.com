@@ -5,8 +5,11 @@ import es from './es.json';
 import en from './en.json';
 import fr from './fr.json';
 import de from './de.json';
+import ru from './ru.json';
+import uk from './uk.json';
+import ja from './ja.json';
 
-export const SUPPORTED_LOCALES = ['es', 'en', 'fr', 'de'] as const;
+export const SUPPORTED_LOCALES = ['es', 'en', 'fr', 'de', 'ru', 'uk', 'ja'] as const;
 export type AppLocale = typeof SUPPORTED_LOCALES[number];
 
 export function isSupportedLocale(value: string): value is AppLocale {
@@ -17,7 +20,10 @@ const dateLocaleMap: Record<AppLocale, string> = {
   es: 'es-ES',
   en: 'en-US',
   fr: 'fr-FR',
-  de: 'de-DE'
+  de: 'de-DE',
+  ru: 'ru-RU',
+  uk: 'uk-UA',
+  ja: 'ja-JP'
 };
 
 export function getDateLocale(localeCode: string | null | undefined): string {
@@ -30,6 +36,9 @@ addMessages('es', es);
 addMessages('en', en);
 addMessages('fr', fr);
 addMessages('de', de);
+addMessages('ru', ru);
+addMessages('uk', uk);
+addMessages('ja', ja);
 
 function detectBrowserLocale(): AppLocale | null {
   if (!browser) return null;

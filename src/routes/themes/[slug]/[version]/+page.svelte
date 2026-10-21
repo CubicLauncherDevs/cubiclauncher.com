@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from "$app/stores";
-  import { t, locale } from "$lib/i18n";
+  import { t, locale, getDateLocale } from "$lib/i18n";
   import { slugify } from "$lib/utils/theme-search";
   import { renderMarkdown } from "$lib/utils/markdown";
   import { getCanonicalUrl } from "$lib/utils/site.js";
@@ -175,7 +175,7 @@
 
             {#if ver.date}
               <p class="text-[11px] text-cl-dim mb-3">
-                {$t('themeDetail.publishedOn')} {new Date(ver.date).toLocaleDateString($locale === 'en' ? 'en-US' : 'es-ES', {
+                {$t('themeDetail.publishedOn')} {new Date(ver.date).toLocaleDateString(getDateLocale($locale), {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
