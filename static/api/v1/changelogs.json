@@ -2,9 +2,19 @@
   "schemaVersion": 1,
   "repository": "CubicLauncherDevs/CubicLauncher",
   "source": "https://github.com/CubicLauncherDevs/CubicLauncher/releases",
-  "generatedAt": "2026-10-17T03:48:18.463Z",
+  "generatedAt": "2026-10-31T18:02:45.553Z",
   "notesFormat": "markdown",
   "releases": [
+    {
+      "id": 430091569,
+      "tag": "v37.0.0-beta.1",
+      "name": "CubicLauncher v37.0.0-beta.1",
+      "body": "## Novedades\r\n\r\n  - **Catálogo de skins de Mosaicary** integrado en el gestor de skins, con lectura por bloques y límite de 1 MiB por skin.\r\n  - **Detección automática del modelo de skin** (clásica o delgada) al subirla, y bloqueo del modelo clásico en skins delgadas.\r\n  - **Temas V2**: herencia entre temas y layout packs, validación del formato y prioridad de `Meta.toml`.\r\n  - **Discord Rich Presence** con soporte multi-instancia y reconexión más robusta.\r\n  - **Descargas** con proveedor BMCLAPI y fallback automático al oficial.\r\n  - **Ajustes de rendimiento** renovados y memoria RAM editable manualmente.\r\n  - **Almacenamiento** rediseñado.\r\n  - **Iconos de instancia** normalizados y migrados al nuevo formato.\r\n  \r\n  ## Rendimiento\r\n\r\n  - Arranque más rápido: ya no se refresca el token de Microsoft en cada inicio.\r\n  - Reapertura más rápida al cerrar el juego.\r\n  - Visor 3D de perfiles más liviano.\r\n  - Cachés y pool HTTP acotados; menos memoria en logs, mods y catálogo de skins.\r\n  \r\n  ## Correcciones\r\n\r\n  - Las miniaturas de capas muestran la cara exterior.\r\n  - Las skins cambiadas por URL se suben como archivo y mirar una skin del catálogo ya no cuenta como descarga.\r\n  - Texture packs correctos en versiones anteriores a 1.6.\r\n  - Credenciales enmascaradas en logs y subidas.\r\n  - Correcciones en el protocolo IPC de Discord.",
+      "publishedAt": "2026-10-31T18:00:28Z",
+      "updatedAt": "2026-10-31T18:00:28Z",
+      "prerelease": true,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v37.0.0-beta.1"
+    },
     {
       "id": 415557653,
       "tag": "v36.0.1",
