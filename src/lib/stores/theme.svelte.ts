@@ -4,11 +4,7 @@ export type ThemeMode = "light" | "dark" | "system";
 
 const STORAGE_KEY = "theme-mode";
 
-// Halloween 2026: modo oscuro forzado temporalmente. Cambiar a false para revertir.
-const FORCE_DARK = true;
-
 function getSystemIsDark(): boolean {
-  if (FORCE_DARK) return true;
   if (!browser) return false;
   return window.matchMedia("(prefers-color-scheme: dark)").matches;
 }
@@ -27,7 +23,7 @@ function readStoredTheme(): ThemeMode {
 function applyThemeClass(mode: ThemeMode) {
   if (!browser) return;
 
-  const resolved = FORCE_DARK ? "dark" : mode === "system" ? (getSystemIsDark() ? "dark" : "light") : mode;
+  const resolved = mode === "system" ? (getSystemIsDark() ? "dark" : "light") : mode;
   const root = document.documentElement;
 
   root.classList.remove("light", "dark");
@@ -47,7 +43,7 @@ function persistTheme(mode: ThemeMode) {
 class ThemeStore {
   mode = $state<ThemeMode>("system");
   resolved = $derived<"light" | "dark">(
-    FORCE_DARK ? "dark" : this.mode === "system" ? (getSystemIsDark() ? "dark" : "light") : this.mode
+    this.mode === "system" ? (getSystemIsDark() ? "dark" : "light") : this.mode
   );
 
   private mediaQuery: MediaQueryList | null = null;
