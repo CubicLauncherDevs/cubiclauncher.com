@@ -111,7 +111,7 @@
           <!-- Info -->
           <div class="border border-cl-border rounded bg-cl-surface p-4 mb-4">
             {#if descriptionHtml}
-              <div class="prose prose-invert prose-neutral max-w-none text-xs text-cl-muted">
+              <div class="prose prose-neutral max-w-none text-xs text-cl-muted">
                 {@html descriptionHtml}
               </div>
             {:else}

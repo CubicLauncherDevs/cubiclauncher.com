@@ -22,11 +22,11 @@
       <Logo
         width="3.5rem"
         height="3.5rem"
-        color="#ffffff"
+        color="var(--cl-text)"
         className="shrink-0 -ml-1"
       />
       <h1
-        class="text-[28px] sm:text-[34px] lg:text-[40px] font-semibold leading-[1.15] text-white"
+        class="text-[28px] sm:text-[34px] lg:text-[40px] font-semibold leading-[1.15] text-cl-text"
       >
         {$t("hero.title")}
       </h1>
@@ -66,7 +66,11 @@
 </section>
 
 <style>
-  .hero-content {
+  :global(html.light) .hero-content {
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  :global(html.dark) .hero-content {
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
   }
 </style>

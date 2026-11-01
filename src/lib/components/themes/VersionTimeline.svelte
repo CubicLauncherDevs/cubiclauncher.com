@@ -92,7 +92,7 @@
               <div class="min-w-0 flex-1">
                 {#if v.changelog}
                   {@const changelog = renderMarkdown(v.changelog)}
-                  <div class="prose prose-invert prose-neutral max-w-none text-[11px] text-cl-muted [&_p]:mb-2 [&_ul]:mb-2 [&_li]:mb-0.5">
+                  <div class="prose prose-neutral max-w-none text-[11px] text-cl-muted [&_p]:mb-2 [&_ul]:mb-2 [&_li]:mb-0.5">
                     {@html changelog}
                   </div>
                 {:else}

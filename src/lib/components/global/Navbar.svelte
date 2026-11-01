@@ -234,7 +234,7 @@
     <div class="fixed inset-0 z-40 md:hidden">
         <button
             type="button"
-            class="absolute inset-0 block w-full h-full bg-cl-accent/40 backdrop-blur-sm"
+            class="absolute inset-0 block w-full h-full bg-black/40 backdrop-blur-sm"
             aria-label="Close menu"
             onclick={closeMobileMenu}
             transition:fade={{ duration: 200, easing: cubicOut }}

@@ -148,7 +148,7 @@
           {#if changelogHtml}
             <div class="border border-cl-border rounded bg-cl-surface p-4">
               <h2 class="text-sm font-semibold mb-2">{$t('themeDetail.changelog')} — {ver.version}</h2>
-              <div class="prose prose-invert prose-neutral max-w-none text-xs text-cl-muted">
+              <div class="prose prose-neutral max-w-none text-xs text-cl-muted">
                 {@html changelogHtml}
               </div>
             </div>

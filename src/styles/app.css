@@ -43,27 +43,27 @@ html {
 
 :root {
   /* Light mode (default) */
-  --cl-base: #f7f7f8;
+  --cl-base: #faf9f7;
   --cl-surface: #ffffff;
-  --cl-elevated: #f0f0f1;
-  --cl-hover: #e4e4e7;
-  --cl-border: rgba(0, 0, 0, 0.10);
-  --cl-border-hover: rgba(0, 0, 0, 0.18);
-  --cl-text: #18181b;
-  --cl-muted: #3f3f46;
-  --cl-dim: #5c5c66;
-  --cl-accent: #09090b;
+  --cl-elevated: #f2f0ec;
+  --cl-hover: #e8e4de;
+  --cl-border: rgba(28, 25, 23, 0.10);
+  --cl-border-hover: rgba(28, 25, 23, 0.20);
+  --cl-text: #1c1917;
+  --cl-muted: #44403c;
+  --cl-dim: #78716c;
+  --cl-accent: #1c1917;
   --cl-accent-inverse: #ffffff;
 
   /* Functional accents */
-  --cl-success: #16a34a;
+  --cl-success: #15803d;
   --cl-warning: #b45309;
-  --cl-danger: #dc2626;
+  --cl-danger: #b91c1c;
   --cl-link: #1d4ed8;
 
   /* Code blocks */
-  --cl-code-bg: #f6f8fa;
-  --cl-code-text: #27272a;
+  --cl-code-bg: #f5f5f4;
+  --cl-code-text: #292524;
 
   /* Layout scale */
   --navbar-height: 56px;
@@ -75,25 +75,25 @@ html {
 
 .light {
   /* Explicit light palette (same as :root) */
-  --cl-base: #f7f7f8;
+  --cl-base: #faf9f7;
   --cl-surface: #ffffff;
-  --cl-elevated: #f0f0f1;
-  --cl-hover: #e4e4e7;
-  --cl-border: rgba(0, 0, 0, 0.10);
-  --cl-border-hover: rgba(0, 0, 0, 0.18);
-  --cl-text: #18181b;
-  --cl-muted: #3f3f46;
-  --cl-dim: #5c5c66;
-  --cl-accent: #09090b;
+  --cl-elevated: #f2f0ec;
+  --cl-hover: #e8e4de;
+  --cl-border: rgba(28, 25, 23, 0.10);
+  --cl-border-hover: rgba(28, 25, 23, 0.20);
+  --cl-text: #1c1917;
+  --cl-muted: #44403c;
+  --cl-dim: #78716c;
+  --cl-accent: #1c1917;
   --cl-accent-inverse: #ffffff;
 
-  --cl-success: #16a34a;
+  --cl-success: #15803d;
   --cl-warning: #b45309;
-  --cl-danger: #dc2626;
+  --cl-danger: #b91c1c;
   --cl-link: #1d4ed8;
 
-  --cl-code-bg: #f6f8fa;
-  --cl-code-text: #27272a;
+  --cl-code-bg: #f5f5f4;
+  --cl-code-text: #292524;
 }
 
 .dark {
@@ -223,7 +223,7 @@ body {
 }
 
 .code-block-lang {
-  @apply text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded text-cl-text;
+  @apply text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded text-white;
   background-color: #525252;
 }
 
