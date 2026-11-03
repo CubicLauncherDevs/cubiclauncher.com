@@ -2,9 +2,19 @@
   "schemaVersion": 1,
   "repository": "CubicLauncherDevs/CubicLauncher",
   "source": "https://github.com/CubicLauncherDevs/CubicLauncher/releases",
-  "generatedAt": "2026-10-31T18:02:45.553Z",
+  "generatedAt": "2026-11-03T06:58:58.720Z",
   "notesFormat": "markdown",
   "releases": [
+    {
+      "id": 432227719,
+      "tag": "v37.0.0",
+      "name": "CubicLauncher v37.0.0",
+      "body": "  ## Novedades\r\n\r\n  - **Catálogo de skins de Mosaicary:** integrado en el gestor de skins, con lectura por bloques y un límite de 1 MiB por skin.\r\n\r\n  - **Detección automática del modelo de skin** (clásica o delgada) al subirla, y bloqueo del modelo clásico en skins delgadas.\r\n\r\n  - **Temas V2:** herencia entre temas y layout packs, validación del formato y prioridad de `Meta.toml`.\r\n\r\n  - **Discord Rich Presence:** soporte multi-instancia y reconexión más robusta.\r\n\r\n  - **Descargas:** proveedor BMCLAPI con fallback automático al oficial.\r\n\r\n  - **Migración desde SKLauncher 4**, sumada a los importadores ya existentes.\r\n\r\n  - **Cuentas cubicAuth:** usan el catálogo de skins y las etiquetas pasan a Usuario y Token.\r\n\r\n  - **Ajustes de rendimiento** renovados y memoria RAM editable manualmente.\r\n\r\n  - **Almacenamiento** rediseñado.\r\n\r\n  - **Iconos de instancia** normalizados y migrados al nuevo formato.  \r\n  \r\n  ## Interfaz\r\n\r\n  - Skeletons de carga de bajo consumo en los paneles que se abren.\r\n\r\n  - El estado de la cuenta se muestra junto al nombre y las acciones en su propia fila.\r\n\r\n  - Se retiró el tema integrado de Halloween 2026.\r\n\r\n  - El catálogo de loaders se agrupa desde Rust, así el selector de versiones responde más rápido.\r\n\r\n  - Se reactivó el FXAA en el visor de skins.\r\n\r\n## Rendimiento\r\n\r\n  - Arranque más rápido: ya no se refresca el token de Microsoft en cada inicio.\r\n\r\n  - Reapertura más rápida al cerrar el juego.\r\n\r\n  - Visor 3D de perfiles más liviano: se dibuja bajo demanda, libera su contexto WebGL y las tarjetas del armario comparten una\r\n  sola escena.\r\n\r\n  - Catálogo de skins: los ojos se animan solo bajo el cursor y el scroll infinito acota su memoria.\r\n\r\n  - Iconos servidos por protocolo en vez de base64, y respuestas de la API deserializadas desde bytes.\r\n\r\n  - Cachés y pool HTTP acotados; menos memoria en logs, mods y catálogo de skins.\r\n\r\n  ## Correcciones\r\n\r\n  - Las miniaturas de capas muestran la cara exterior.\r\n\r\n  - Las skins cambiadas por URL se suben como archivo, y mirar una skin del catálogo ya no cuenta como descarga.\r\n\r\n  - Texture packs correctos en versiones anteriores a 1.6.\r\n\r\n  - Credenciales enmascaradas en logs y subidas.\r\n\r\n  - Correcciones en el protocolo IPC de Discord.\r\n\r\n  - Las primeras skins del catálogo ya no quedan en blanco al cambiar de filtro.\r\n\r\n  - Se evita la unidad de textura 0 en WebKitGTK.\r\n\r\n  - Se permite acceder a los assets después de mover instancias.\r\n\r\n  - Las sesiones de autenticación expiradas ofrecen volver a iniciar sesión.\r\n\r\n  ## Mejoras\r\n\r\n  - CI valida frontend y Rust en Linux, Windows y macOS.\r\n\r\n  - Imagen Docker multi-arquitectura publicada en GHCR.\r\n\r\n  - Dependencias y `cargoHash` de Nix sincronizados con la versión 37.",
+      "publishedAt": "2026-11-03T03:29:20Z",
+      "updatedAt": "2026-11-03T03:29:20Z",
+      "prerelease": false,
+      "htmlUrl": "https://github.com/CubicLauncherDevs/CubicLauncher/releases/tag/v37.0.0"
+    },
     {
       "id": 430091569,
       "tag": "v37.0.0-beta.1",
