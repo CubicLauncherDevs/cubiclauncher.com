@@ -1,3 +1,7 @@
 name = "cubiclauncher"
-pages_build_output_dir = "./build"
 compatibility_date = "2026-11-03"
+
+[assets]
+directory = "./build"
+html_handling = "auto-trailing-slash"
+not_found_handling = "404-page"
