@@ -12,6 +12,7 @@
     "prebuild": "bun run fetch-themes && bun run fetch-changelogs",
     "dev": "vite",
     "build": "vite build",
+    "deploy": "npx wrangler pages deploy ./build",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
