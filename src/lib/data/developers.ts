@@ -102,19 +102,19 @@ export const contributors: Developer[] = [
   {
     name: "skypegg",
     role: "Colaborador",
-    rolekey: "developers.role14",
+    roleKey: "developers.role14",
     github: "skypegg",
   },
   {
     name: "darthreaper49-gif",
     role: "Colaborador",
-    rolekey: "developers.role15",
+    roleKey: "developers.role15",
     github: "darthreaper49-gif",
   },
   {
     name: "MopicMP",
     role: "Colaborador",
-    rolekey: "developers.role16",
+    roleKey: "developers.role16",
     github: "MopicMP"
   }
 ];

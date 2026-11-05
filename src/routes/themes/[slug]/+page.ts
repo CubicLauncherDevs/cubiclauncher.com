@@ -31,6 +31,7 @@ export const load: PageLoad = ({ params }) => {
     theme,
     relatedThemes: getRelatedThemes(theme, themes),
     sortedVersions: getSortedVersions(theme),
+    allThemes: themes,
     authorUrl: `/themes/author/${slugify(theme.author)}`
   };
 };

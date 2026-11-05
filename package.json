@@ -9,6 +9,8 @@
     "test:changelogs": "node --test scripts/fetch-changelogs.test.mjs",
     "test:theme-activity": "node --test scripts/theme-activity.test.mjs",
     "test:download-log": "node --test scripts/download-log.test.mjs",
+    "test:fetch-themes": "node --test scripts/fetch-themes.test.mjs",
+    "test:theme-inheritance": "node --test scripts/theme-inheritance.test.mjs",
     "prebuild": "bun run fetch-themes && bun run fetch-changelogs",
     "dev": "vite",
     "build": "vite build",

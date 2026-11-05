@@ -1,5 +1,5 @@
 import { writeFileSync, mkdirSync } from 'node:fs';
-import { dirname, join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SITE_ORIGIN } from '../src/lib/utils/site.js';
 
@@ -58,7 +58,7 @@ function deriveFileUrl(files, baseName) {
   return match?.url || null;
 }
 
-function patchThemeUrls(theme) {
+export function patchThemeUrls(theme) {
   const versions = theme.versions.map((version) => ({
     ...version,
     previewUrl: version.previewUrl || deriveFileUrl(version.files, 'preview'),
@@ -172,7 +172,9 @@ async function main() {
   console.log(`Generated sitemap with ${sitemap.match(/<url>/g)?.length ?? 0} URLs.`);
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}

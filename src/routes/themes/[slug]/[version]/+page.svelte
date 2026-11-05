@@ -5,15 +5,18 @@
   import { renderMarkdown } from "$lib/utils/markdown";
   import { getCanonicalUrl } from "$lib/utils/site.js";
   import { getThemeVerification } from "$lib/utils/themes";
+  import { getThemeInheritance } from "$lib/utils/theme-inheritance";
   import { goToThemesList } from "$lib/utils/theme-history";
   import IconImage from "~icons/ph/image";
   import DownloadThemeButton from "$lib/components/themes/DownloadThemeButton.svelte";
+  import ThemeInheritance from "$lib/components/themes/ThemeInheritance.svelte";
   import VerifiedBadge from "$lib/components/themes/VerifiedBadge.svelte";
   import ThemeSocialMeta from "$lib/components/themes/ThemeSocialMeta.svelte";
 
   let { data } = $props();
   let theme = $derived(data.theme);
   let ver = $derived(data.version);
+  let inheritance = $derived(getThemeInheritance(ver, data.allThemes ?? []));
 
   let slug = $derived($page.params.slug as string);
   let versionName = $derived($page.params.version as string);
@@ -172,6 +175,12 @@
               {$t('themeDetail.by')} <a href={authorUrl} class="text-cl-text hover:underline underline-offset-4 decoration-cl-border-hover transition-all">{theme.author}</a>
             </p>
             <p class="text-xs text-cl-dim mb-3">{$t('themeDetail.version')} {ver.version}</p>
+
+            {#if inheritance}
+              <div class="mb-3 rounded-md border border-cl-border bg-cl-base px-3 py-2.5">
+                <ThemeInheritance extendsId={inheritance.extendsId} baseTheme={inheritance.baseTheme} showNote />
+              </div>
+            {/if}
 
             {#if ver.date}
               <p class="text-[11px] text-cl-dim mb-3">

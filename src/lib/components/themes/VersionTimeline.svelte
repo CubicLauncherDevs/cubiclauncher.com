@@ -2,8 +2,10 @@
   import { slide } from "svelte/transition";
   import { t, locale, getDateLocale } from "$lib/i18n";
   import { renderMarkdown } from "$lib/utils/markdown";
-  import type { ThemeVersion } from "$lib/types/theme";
+  import type { Theme, ThemeVersion } from "$lib/types/theme";
+  import { getThemeInheritance } from "$lib/utils/theme-inheritance";
   import DownloadThemeButton from "./DownloadThemeButton.svelte";
+  import ThemeInheritance from "./ThemeInheritance.svelte";
   import IconCaretDown from "~icons/ph/caret-down";
 
   let {
@@ -12,6 +14,7 @@
     themeName,
     themeAuthor,
     themeSlug,
+    themes = [],
     expandedVersion,
     onToggleVersion,
   }: {
@@ -20,6 +23,7 @@
     themeName: string;
     themeAuthor: string;
     themeSlug: string;
+    themes?: Theme[];
     expandedVersion: string | null;
     onToggleVersion: (ver: string) => void;
   } = $props();
@@ -30,6 +34,7 @@
     {@const isExpanded = expandedVersion === v.version}
     {@const isLatest = v.version === latestVersion}
     {@const isLast = i === versions.length - 1}
+    {@const inheritance = getThemeInheritance(v, themes)}
 
     <div class="relative mb-3 last:mb-0 pl-7">
       {#if !isLast}
@@ -100,6 +105,12 @@
                 {/if}
               </div>
             </div>
+
+            {#if inheritance}
+              <div class="rounded-md border border-cl-border bg-cl-surface px-3 py-2">
+                <ThemeInheritance extendsId={inheritance.extendsId} baseTheme={inheritance.baseTheme} compact />
+              </div>
+            {/if}
 
             <div class="flex flex-wrap gap-x-3 gap-y-1 text-[10px] text-cl-dim">
               {#if v.date}

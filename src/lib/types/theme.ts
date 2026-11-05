@@ -7,6 +7,8 @@ export interface ThemeVersion {
   changelog?: string | null;
   files: { name: string; url: string }[];
   injectsCss: boolean;
+  extends?: string | null;
+  extendsTheme?: string | null;
 }
 
 export type ThemeVerification = "none" | "verified" | "official";
@@ -26,6 +28,8 @@ export interface Theme {
   latestVersion: string;
   previewUrl: string | null;
   date?: string | null;
+  extends?: string | null;
+  extendsTheme?: string | null;
 }
 
 export interface ThemeJson {

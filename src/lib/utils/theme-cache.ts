@@ -4,7 +4,7 @@ const DB_NAME = "cubiclauncher-themes";
 const DB_VERSION = 3;
 const STORE_NAME = "themes";
 const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
-const CACHE_VERSION = 1; // bump when the source repo/structure changes
+const CACHE_VERSION = 2; // bump when the source repo/structure changes
 
 const KEY_THEMES = "themes";
 const KEY_TIMESTAMP = "themes-timestamp";
@@ -75,7 +75,7 @@ async function setItem<T>(key: string, value: T): Promise<void> {
 }
 
 // Legacy localStorage fallback for environments without IndexedDB
-const LEGACY_CACHE_VERSION = 4;
+const LEGACY_CACHE_VERSION = 5;
 const LEGACY_CACHE_KEY = `cubiclauncher-themes-v${LEGACY_CACHE_VERSION}`;
 
 export function getLegacyCachedThemes(): Theme[] | null {

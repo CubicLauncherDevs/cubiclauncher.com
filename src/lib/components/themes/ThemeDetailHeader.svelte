@@ -2,17 +2,20 @@
   import { t, locale, getDateLocale } from "$lib/i18n";
   import type { Theme, ThemeVersion } from "$lib/types/theme";
   import { getThemeVerification } from "$lib/utils/themes";
+  import type { ThemeInheritance as ThemeInheritanceInfo } from "$lib/utils/theme-inheritance";
   import { slugify, compareVersionsDesc } from "$lib/utils/theme-search";
   import DownloadThemeButton from "./DownloadThemeButton.svelte";
+  import ThemeInheritance from "./ThemeInheritance.svelte";
   import VerifiedBadge from "./VerifiedBadge.svelte";
   import IconPalette from "~icons/ph/palette";
   import IconArrowsOut from "~icons/ph/arrows-out";
   import IconArrowUpRight from "~icons/ph/arrow-up-right";
 
-  let { theme, currentVer, selectedVersion, onVersionChange, onPreviewClick }: {
+  let { theme, currentVer, selectedVersion, inheritance = null, onVersionChange, onPreviewClick }: {
     theme: Theme;
     currentVer: ThemeVersion | null;
     selectedVersion: string;
+    inheritance?: ThemeInheritanceInfo | null;
     onVersionChange: (ver: string) => void;
     onPreviewClick: (url: string) => void;
   } = $props();
@@ -67,6 +70,11 @@
       {#if theme.tags.length > 0}
         <div class="mt-4 flex flex-wrap gap-1.5">
           {#each theme.tags as tag}<span class="rounded-md border border-cl-border bg-cl-base px-2 py-1 text-[10px] text-cl-muted">{tag}</span>{/each}
+        </div>
+      {/if}
+      {#if inheritance}
+        <div class="mt-4 rounded-md border border-cl-border bg-cl-base px-3 py-2.5">
+          <ThemeInheritance extendsId={inheritance.extendsId} baseTheme={inheritance.baseTheme} showNote />
         </div>
       {/if}
 

@@ -6,6 +6,7 @@
   import { renderMarkdown } from "$lib/utils/markdown";
   import { getCanonicalUrl } from "$lib/utils/site.js";
   import { goToThemesList } from "$lib/utils/theme-history";
+  import { getThemeInheritance } from "$lib/utils/theme-inheritance";
   import ThemeCard from "$lib/components/themes/ThemeCard.svelte";
   import ThemeDetailHeader from "$lib/components/themes/ThemeDetailHeader.svelte";
   import VersionTimeline from "$lib/components/themes/VersionTimeline.svelte";
@@ -49,6 +50,8 @@
   let currentVer = $derived(
     theme?.versions.find((v) => v.version === selectedVersion) || theme?.versions[0] || null
   );
+
+  let inheritance = $derived(getThemeInheritance(currentVer, data.allThemes ?? []));
 
   let activityEvents = $derived(
     theme.versions.flatMap((version) => version.date ? [{
@@ -142,6 +145,7 @@
         {theme}
         {currentVer}
         {selectedVersion}
+        {inheritance}
         onVersionChange={(version) => selection = { slug, version }}
         onPreviewClick={(url) => { lightboxUrl = url; showLightbox = true; }}
       />
@@ -173,7 +177,7 @@
                 </div>
               {/if}
             {:else if activeTab === 'versions'}
-              <VersionTimeline versions={sortedVersions} latestVersion={theme.latestVersion} themeName={theme.name} themeAuthor={theme.author} themeSlug={theme.slug} {expandedVersion} onToggleVersion={toggleVersion} />
+              <VersionTimeline versions={sortedVersions} latestVersion={theme.latestVersion} themeName={theme.name} themeAuthor={theme.author} themeSlug={theme.slug} themes={data.allThemes ?? []} {expandedVersion} onToggleVersion={toggleVersion} />
             {:else if currentVer}
               {#key `${theme.slug}/${currentVer.version}`}<ThemeFiles version={currentVer} />{/key}
             {/if}
@@ -199,6 +203,9 @@
             {#if theme.date && !Number.isNaN(Date.parse(theme.date))}<div><dt class="text-cl-dim">{$t('themeDetail.publishedOn')}</dt><dd class="mt-1">{new Date(theme.date).toLocaleDateString(getDateLocale($locale), { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}</dd></div>{/if}
             <div><dt class="text-cl-dim">{$t('themeDetail.format')}</dt><dd class="mt-1">.cbth</dd></div>
             <div><dt class="text-cl-dim">{$t('themeDetail.latestVersion')}</dt><dd class="mt-1">{theme.latestVersion}</dd></div>
+            {#if inheritance}
+              <div><dt class="text-cl-dim">{$t('themeDetail.baseTheme')}</dt><dd class="mt-1">{#if inheritance.baseTheme}<a href={`/themes/${inheritance.baseTheme.id}`} class="hover:underline">{inheritance.baseTheme.name}</a>{:else}<code class="font-mono text-[10px]">{inheritance.extendsId}</code>{/if}</dd></div>
+            {/if}
           </dl>
         </section>
       </aside>
