@@ -30,15 +30,16 @@ nix develop -c bun run check
 
 ## Despliegue e indexación
 
-El sitio usa `adapter-static` y genera el contenido en `build/`. En Vercel,
-`vercel.json` habilita `cleanUrls` para servir los archivos `.html` desde las
-rutas sin extensión del sitemap, como `/themes` y `/themes/notstaff-windows7`.
+El sitio usa `adapter-static` y genera el contenido en `build/`. El despliegue se
+hace en Cloudflare Workers con `wrangler.toml`, que sirve los archivos `.html`
+desde las rutas sin extensión del sitemap, como `/themes` y
+`/themes/notstaff-windows7`.
 
 El dominio principal es `https://www.cubiclauncher.org`, definido en
-`src/lib/utils/site.js`. En Vercel se debe mantener la redirección permanente
-de `cubiclauncher.org` a `www.cubiclauncher.org`. Si cambia el dominio principal,
-actualizar también `static/robots.txt` y regenerar el sitemap con
-`bun run fetch-themes` (se ejecuta automáticamente antes de `bun run build`).
+`src/lib/utils/site.js`. La redirección permanente de `cubiclauncher.org` a
+`www.cubiclauncher.org` se configura en el proveedor del dominio. Si cambia el
+dominio principal, actualizar también `static/robots.txt` y regenerar el sitemap
+con `bun run fetch-themes` (se ejecuta automáticamente antes de `bun run build`).
 
 Tras desplegar, comprobar que las URLs del sitemap responden HTTP 200 al abrirlas
 directamente y que las URLs con `.html` redirigen a sus equivalentes sin extensión.
