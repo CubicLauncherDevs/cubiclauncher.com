@@ -436,6 +436,14 @@
     "author": "Author",
     "format": "Download format"
   },
+  "inheritanceDownload": {
+    "title": "This theme inherits from another",
+    "description": "\"{name}\" inherits from \"{base}\". The base theme must be installed for this theme to work. Do you want to download the inheritance too?",
+    "baseMissing": "We couldn't find \"{base}\" in the catalog, so you can only download this theme.",
+    "downloadOnly": "This theme only",
+    "downloadBoth": "Download both",
+    "close": "Close"
+  },
   "packageDetail": {
     "retry": "Retry",
     "viewAll": "View all packages",

@@ -195,6 +195,7 @@
             <DownloadThemeButton
               version={ver}
               themeName={theme.name}
+              baseTheme={inheritance?.baseTheme ?? null}
               label={`${$t('themeDetail.downloadZIP')} (${ver.version})`}
             />
 

@@ -436,6 +436,14 @@
     "author": "Autor",
     "format": "Formato de descarga"
   },
+  "inheritanceDownload": {
+    "title": "Este tema hereda de otro",
+    "description": "«{name}» hereda de «{base}». El tema base debe estar instalado para que este tema funcione. ¿Quieres descargar también la herencia?",
+    "baseMissing": "No encontramos «{base}» en el catálogo, así que solo puedes descargar este tema.",
+    "downloadOnly": "Solo este tema",
+    "downloadBoth": "Descargar ambos",
+    "close": "Cerrar"
+  },
   "packageDetail": {
     "retry": "Reintentar",
     "viewAll": "Ver todos los paquetes",

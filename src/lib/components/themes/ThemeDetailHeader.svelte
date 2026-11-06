@@ -85,7 +85,7 @@
         </select>
         {#if currentVer}
           <div class="mt-3">
-            {#key `${theme.slug}/${currentVer.version}`}<DownloadThemeButton version={currentVer} themeName={theme.name} label={`${$t('themeDetail.downloadZIP')} · ${currentVer.version}`} />{/key}
+            {#key `${theme.slug}/${currentVer.version}`}<DownloadThemeButton version={currentVer} themeName={theme.name} baseTheme={inheritance?.baseTheme ?? null} label={`${$t('themeDetail.downloadZIP')} · ${currentVer.version}`} />{/key}
           </div>
           <p class="mt-2 text-[10px] leading-relaxed text-cl-dim">{$t('themeDetail.downloadHint')}</p>
         {/if}

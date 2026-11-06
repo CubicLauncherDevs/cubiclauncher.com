@@ -436,6 +436,14 @@
     "author": "作者",
     "format": "ダウンロード形式"
   },
+  "inheritanceDownload": {
+    "title": "このテーマは別のテーマを継承しています",
+    "description": "「{name}」は「{base}」を継承しています。このテーマを適用するには、ベーステーマをインストールする必要があります。継承元もダウンロードしますか？",
+    "baseMissing": "カタログに「{base}」が見つからないため、このテーマのみダウンロードできます。",
+    "downloadOnly": "このテーマのみ",
+    "downloadBoth": "両方ダウンロード",
+    "close": "閉じる"
+  },
   "packageDetail": {
     "retry": "再試行",
     "viewAll": "すべてのパッケージを見る",

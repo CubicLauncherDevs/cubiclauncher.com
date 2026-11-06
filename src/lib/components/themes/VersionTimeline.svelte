@@ -122,7 +122,7 @@
               <span>{themeAuthor}</span>
             </div>
 
-            <DownloadThemeButton version={v} {themeName} label={$t('themeDetail.downloadZIP') + ' (' + v.version + ')'} />
+            <DownloadThemeButton version={v} {themeName} baseTheme={inheritance?.baseTheme ?? null} label={$t('themeDetail.downloadZIP') + ' (' + v.version + ')'} />
             <a href={`/themes/${themeSlug}/${encodeURIComponent(v.version)}`} class="inline-block text-[11px] text-cl-muted underline underline-offset-4 hover:text-cl-text">{$t('themeDetail.versionDetails')}</a>
           </div>
         {/if}

@@ -436,6 +436,14 @@
     "author": "Autor",
     "format": "Downloadformat"
   },
+  "inheritanceDownload": {
+    "title": "Dieses Theme erbt von einem anderen",
+    "description": "„{name}“ erbt von „{base}“. Das Basis-Theme muss installiert sein, damit dieses Theme funktioniert. Möchtest du die Vererbung ebenfalls herunterladen?",
+    "baseMissing": "„{base}“ wurde im Katalog nicht gefunden, daher kannst du nur dieses Theme herunterladen.",
+    "downloadOnly": "Nur dieses Theme",
+    "downloadBoth": "Beide herunterladen",
+    "close": "Schließen"
+  },
   "packageDetail": {
     "retry": "Retry",
     "viewAll": "View all packages",

@@ -436,6 +436,14 @@
     "author": "Auteur",
     "format": "Format de téléchargement"
   },
+  "inheritanceDownload": {
+    "title": "Ce thème hérite d'un autre",
+    "description": "« {name} » hérite de « {base} ». Le thème de base doit être installé pour que ce thème fonctionne. Voulez-vous télécharger aussi l'héritage ?",
+    "baseMissing": "Impossible de trouver « {base} » dans le catalogue, vous ne pouvez donc télécharger que ce thème.",
+    "downloadOnly": "Ce thème uniquement",
+    "downloadBoth": "Télécharger les deux",
+    "close": "Fermer"
+  },
   "packageDetail": {
     "retry": "Retry",
     "viewAll": "View all packages",
