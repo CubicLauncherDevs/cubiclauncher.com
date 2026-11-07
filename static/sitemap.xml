@@ -979,6 +979,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.cubiclauncher.org/themes/skypegg-marginalia</loc>
+    <lastmod>2026-11-07T04:42:11.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.cubiclauncher.org/themes/skypegg-marginalia/V1</loc>
+    <lastmod>2026-11-07T04:42:11.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.cubiclauncher.org/themes/author/4xnl</loc>
     <lastmod>2026-07-24T07:38:50.000Z</lastmod>
     <changefreq>weekly</changefreq>
@@ -1059,6 +1071,12 @@
   <url>
     <loc>https://www.cubiclauncher.org/themes/author/kittyhos</loc>
     <lastmod>2026-07-24T06:34:20.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.cubiclauncher.org/themes/author/skypegg</loc>
+    <lastmod>2026-11-07T04:42:11.000Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
