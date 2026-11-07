@@ -422,7 +422,7 @@
         </div>
         <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 shrink-0">
           <a
-            href="https://dev.cubiclauncher.org/docs/es-ES/guias/hacer-themes"
+            href="https://dev.cubiclauncher.org/docs/es-ES/guias/crear-tema"
             class="inline-flex items-center justify-center gap-1.5 h-8 px-3.5 rounded bg-cl-accent text-cl-accent-inverse text-xs font-medium hover:opacity-90 transition-opacity"
           >
             <IconBookOpen class="w-4 h-4" />
