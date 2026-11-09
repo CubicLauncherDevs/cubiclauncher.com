@@ -11,6 +11,7 @@
   import IconArrowsLeftRight from "~icons/ph/arrows-left-right";
   import IconCoffee from "~icons/ph/coffee";
   import Hero from "./Hero.svelte";
+  import ScreenshotCarousel from "./ScreenshotCarousel.svelte";
   import QuickStart from "./QuickStart.svelte";
   import RandomThemes from "./RandomThemes.svelte";
 
@@ -98,6 +99,8 @@
       </div>
     </div>
   </section>
+
+  <ScreenshotCarousel />
 
   <QuickStart />
 

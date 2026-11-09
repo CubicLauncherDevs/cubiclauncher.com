@@ -475,6 +475,14 @@ body {
   @apply bg-cl-elevated/50;
 }
 
+.md-table {
+  @apply mb-4 overflow-x-auto;
+}
+
+.md-table table {
+  @apply mb-0;
+}
+
 .prose blockquote {
   @apply border-l-2 border-cl-border pl-4 text-cl-muted my-4 bg-cl-elevated/30 py-2 pr-3 rounded-r-md;
 }

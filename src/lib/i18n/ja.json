@@ -1,6 +1,8 @@
 {
   "changelogs": {
     "nav": "変更履歴",
+    "versions": "バージョン",
+    "latest": "最新",
     "title": "ランチャーの更新",
     "pageTitle": "変更履歴 — CubicLauncher",
     "subtitle": "CubicLauncher の新機能、改善、修正。GitHub で公開されているリリース履歴をご覧ください。",
@@ -91,38 +93,78 @@
   },
   "home": {
     "screenshots": {
-      "title": "CubicLauncher の内部を見る",
-      "subtitle": "インターフェースを確認し、インスタンスを整理して、プレイ前にできることを見てみましょう。",
-      "expand": "スクリーンショットを拡大",
-      "open": "スクリーンショットを拡大: {name}",
+      "title": "インターフェースのスクリーンショット",
+      "subtitle": "ランチャーの主要画面の一覧: インスタンス、MOD、ワールド、サーバー、設定。",
+      "expand": "原寸大で表示",
+      "open": "スクリーンショットを開く: {name}",
       "previous": "前のスクリーンショット",
       "next": "次のスクリーンショット",
-      "choose": "ランチャーのスクリーンショット",
-      "select": "スクリーンショットを見る: {name}",
+      "choose": "インターフェースのスクリーンショット",
+      "select": "スクリーンショットを選択: {name}",
+      "overview": {
+        "title": "ホーム",
+        "description": "インスタンスを選択する前の、サイドバーの一覧と作業エリア。",
+        "alt": "インスタンスのサイドバーを表示した CubicLauncher のホーム画面。"
+      },
+      "instance": {
+        "title": "インスタンスのダッシュボード",
+        "description": "インスタンスの状態、バージョン、プレイ時間、マーケットとリソースへのアクセス。",
+        "alt": "バージョン、プレイ時間、マーケット、リソースを表示する CubicLauncher のインスタンスダッシュボード。"
+      },
+      "instances": {
+        "title": "インスタンスの作成",
+        "description": "ゼロから、MOD パックから、ZIP のインポート、別ランチャーからの移行という 4 つの方法。",
+        "alt": "4 つの方法を表示する CubicLauncher のインスタンス作成ダイアログ。"
+      },
+      "create": {
+        "title": "初期設定",
+        "description": "インスタンス作成前の名前、Minecraft バージョン、ローダーの設定。",
+        "alt": "CubicLauncher のインスタンス初期設定フォーム。"
+      },
+      "modpacks": {
+        "title": "MOD パック",
+        "description": "Modrinth と CurseForge での MOD パック検索と、ローカルファイルの読み込み。",
+        "alt": "Modrinth の検索結果を表示する CubicLauncher の MOD パックブラウザ。"
+      },
+      "versions": {
+        "title": "バージョンとローダー",
+        "description": "Vanilla、Fabric、Forge、NeoForge、Quilt、OptiFine のダウンロードとインストール。",
+        "alt": "利用可能なローダーを表示する CubicLauncher のバージョンダウンロードダイアログ。"
+      },
       "store": {
-        "title": "MOD ストア",
-        "description": "ランチャーから直接 MOD を探し、詳細を読み、インスタンスに合ったバージョンを選べます。",
-        "alt": "Modrinth の検索結果と Fabric API の詳細を表示する CubicLauncher の MOD ストア。"
+        "title": "コンテンツを探す",
+        "description": "説明、ダウンロード数、直接インストールを備えた Modrinth の MOD カタログ。",
+        "alt": "Modrinth の検索結果を表示する CubicLauncher のコンテンツカタログ。"
       },
       "installed": {
         "title": "インストール済み MOD",
-        "description": "各インスタンスの MOD を確認し、有効のままにするものを管理できます。",
-        "alt": "Iris を有効化またはアンインストールできる CubicLauncher のインストール済み MOD 管理画面。"
+        "description": "インスタンスごとの MOD 一覧と、更新・無効化・削除の操作。",
+        "alt": "管理操作を備えた CubicLauncher のインストール済み MOD 一覧。"
       },
-      "instances": {
-        "title": "インスタンスを作成",
-        "description": "次の冒険に名前とアイコンを付け、MOD パックをインポートするオプションも利用できます。",
-        "alt": "名前、アイコン、MOD パックのオプションを備えた CubicLauncher のインスタンス作成ウィザード。"
+      "worlds": {
+        "title": "ワールド",
+        "description": "1 つの画面でのワールドのインポート、エクスポート、複製、削除。",
+        "alt": "ワールドごとの操作を備えた CubicLauncher のワールド管理画面。"
       },
-      "overview": {
-        "title": "あなたのゲームスペース",
-        "description": "サイドバーにインスタンスが常に手の届く場所にあるシンプルなインターフェース。",
-        "alt": "サイドバーにインスタンスが整理された CubicLauncher のホーム画面。"
+      "servers": {
+        "title": "サーバー",
+        "description": "状態、接続プレイヤー数、レイテンシを表示するサーバー一覧。",
+        "alt": "状態とレイテンシを表示する CubicLauncher のサーバー一覧。"
+      },
+      "skins": {
+        "title": "スキンカタログ",
+        "description": "フィルター、プレビュー、プロフィールへの直接適用を備えたスキン一覧。",
+        "alt": "フィルターとプレビューを備えた CubicLauncher のスキンカタログ。"
+      },
+      "profile": {
+        "title": "ユーザープロフィール",
+        "description": "保存済みアカウント、スキン、マント、Microsoft・Ely.by・CubicAuth でのログイン。",
+        "alt": "アカウント、スキン、マントを表示する CubicLauncher のユーザープロフィール。"
       },
       "settings": {
-        "title": "自分好みに",
-        "description": "言語、テーマ、ランチャーの動作を一か所で調整できます。",
-        "alt": "言語、テーマ、更新オプションを備えた CubicLauncher の設定パネル。"
+        "title": "設定",
+        "description": "ストレージ、テーマ、パフォーマンス、アップデートのオプション。",
+        "alt": "利用可能なセクションを表示する CubicLauncher の設定パネル。"
       }
     },
     "featuresTitle": "CUBIC LAUNCHER が選ばれる理由",

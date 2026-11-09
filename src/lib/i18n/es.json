@@ -1,6 +1,8 @@
 {
   "changelogs": {
     "nav": "Changelogs",
+    "versions": "Versiones",
+    "latest": "Última",
     "title": "Novedades del launcher",
     "pageTitle": "Changelogs — CubicLauncher",
     "subtitle": "Nuevas funciones, mejoras y correcciones de CubicLauncher. Consulta el historial de versiones publicado en GitHub.",
@@ -91,38 +93,78 @@
   },
   "home": {
     "screenshots": {
-      "title": "Así se ve CubicLauncher",
-      "subtitle": "Explorá la interfaz, organizá tus instancias y descubrí todo lo que podés hacer antes de jugar.",
-      "expand": "Ampliar captura",
-      "open": "Ampliar captura: {name}",
+      "title": "Capturas de la interfaz",
+      "subtitle": "Recorrido por las pantallas principales del launcher: instancias, mods, mundos, servidores y configuración.",
+      "expand": "Ver en tamaño completo",
+      "open": "Abrir captura: {name}",
       "previous": "Captura anterior",
-      "next": "Siguiente captura",
-      "choose": "Capturas del launcher",
-      "select": "Ver captura: {name}",
+      "next": "Captura siguiente",
+      "choose": "Capturas de la interfaz",
+      "select": "Seleccionar captura: {name}",
+      "overview": {
+        "title": "Inicio",
+        "description": "Barra lateral con las instancias y área de trabajo antes de seleccionar una.",
+        "alt": "Pantalla de inicio de CubicLauncher con la barra lateral de instancias."
+      },
+      "instance": {
+        "title": "Panel de instancia",
+        "description": "Estado de la instancia, versión, tiempo jugado y accesos a market y recursos.",
+        "alt": "Panel de instancia de CubicLauncher con versión, tiempo jugado y accesos a market y recursos."
+      },
+      "instances": {
+        "title": "Creación de instancia",
+        "description": "Cuatro métodos: desde cero, desde un modpack, importación de ZIP o migración desde otro launcher.",
+        "alt": "Diálogo de creación de instancia de CubicLauncher con los cuatro métodos disponibles."
+      },
+      "create": {
+        "title": "Configuración inicial",
+        "description": "Nombre, versión de Minecraft y cargador antes de crear la instancia.",
+        "alt": "Formulario de configuración inicial de una instancia en CubicLauncher."
+      },
+      "modpacks": {
+        "title": "Modpacks",
+        "description": "Búsqueda de modpacks en Modrinth y CurseForge, con opción de importar archivos locales.",
+        "alt": "Buscador de modpacks de CubicLauncher con resultados de Modrinth."
+      },
+      "versions": {
+        "title": "Versiones y cargadores",
+        "description": "Descarga e instalación de Vanilla, Fabric, Forge, NeoForge, Quilt y OptiFine.",
+        "alt": "Diálogo de descarga de versiones de CubicLauncher con los cargadores disponibles."
+      },
       "store": {
-        "title": "Tienda de mods",
-        "description": "Buscá mods, consultá sus detalles y elegí la versión para tu instancia desde el launcher.",
-        "alt": "Tienda de mods de CubicLauncher con resultados de Modrinth y detalles de Fabric API."
+        "title": "Explorar contenido",
+        "description": "Catálogo de mods de Modrinth con descripciones, descargas e instalación directa.",
+        "alt": "Catálogo de mods de CubicLauncher con resultados de Modrinth."
       },
       "installed": {
         "title": "Mods instalados",
-        "description": "Revisá los mods de cada instancia y gestioná cuáles querés mantener activos.",
-        "alt": "Gestión de mods instalados en CubicLauncher, con opciones para activar o desinstalar Iris."
+        "description": "Listado de mods por instancia con acciones para actualizar, deshabilitar o eliminar.",
+        "alt": "Listado de mods instalados en CubicLauncher con acciones de gestión."
       },
-      "instances": {
-        "title": "Crear una instancia",
-        "description": "Dale un nombre y un ícono a tu próxima partida, con opciones para importar modpacks.",
-        "alt": "Asistente de CubicLauncher para crear una instancia con nombre, ícono y opciones de modpacks."
+      "worlds": {
+        "title": "Mundos",
+        "description": "Importación, exportación, duplicado y eliminación de mundos desde una sola vista.",
+        "alt": "Gestor de mundos de CubicLauncher con acciones por mundo."
       },
-      "overview": {
-        "title": "Tu espacio de juego",
-        "description": "Una interfaz sencilla con tus instancias siempre a mano en la barra lateral.",
-        "alt": "Pantalla inicial de CubicLauncher con las instancias organizadas en la barra lateral."
+      "servers": {
+        "title": "Servidores",
+        "description": "Lista de servidores con estado, jugadores conectados y latencia.",
+        "alt": "Lista de servidores de CubicLauncher con estado y latencia."
+      },
+      "skins": {
+        "title": "Catálogo de skins",
+        "description": "Exploración de skins con filtros, vista previa y aplicación directa al perfil.",
+        "alt": "Catálogo de skins de CubicLauncher con filtros y vista previa."
+      },
+      "profile": {
+        "title": "Perfil de usuario",
+        "description": "Cuentas guardadas, skin y capa, e inicio de sesión con Microsoft, Ely.by o CubicAuth.",
+        "alt": "Perfil de usuario de CubicLauncher con cuentas, skin y capa."
       },
       "settings": {
-        "title": "A tu manera",
-        "description": "Ajustá el idioma, los temas y el comportamiento del launcher desde un mismo lugar.",
-        "alt": "Panel de ajustes de CubicLauncher con opciones de idioma, temas y actualizaciones."
+        "title": "Ajustes",
+        "description": "Opciones de almacenamiento, temas, rendimiento y actualizaciones.",
+        "alt": "Panel de ajustes de CubicLauncher con las secciones disponibles."
       }
     },
     "featuresTitle": "POR QUÉ CUBIC LAUNCHER?",

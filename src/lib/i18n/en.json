@@ -1,6 +1,8 @@
 {
   "changelogs": {
     "nav": "Changelogs",
+    "versions": "Versions",
+    "latest": "Latest",
     "title": "Launcher updates",
     "pageTitle": "Changelogs — CubicLauncher",
     "subtitle": "New features, improvements and fixes for CubicLauncher. Browse the release history published on GitHub.",
@@ -91,38 +93,78 @@
   },
   "home": {
     "screenshots": {
-      "title": "A look inside CubicLauncher",
-      "subtitle": "Explore the interface, organize your instances and see what you can do before you play.",
-      "expand": "Enlarge screenshot",
-      "open": "Enlarge screenshot: {name}",
+      "title": "Interface screenshots",
+      "subtitle": "An overview of the launcher's main screens: instances, mods, worlds, servers and settings.",
+      "expand": "View full size",
+      "open": "Open screenshot: {name}",
       "previous": "Previous screenshot",
       "next": "Next screenshot",
-      "choose": "Launcher screenshots",
-      "select": "View screenshot: {name}",
+      "choose": "Interface screenshots",
+      "select": "Select screenshot: {name}",
+      "overview": {
+        "title": "Home",
+        "description": "Sidebar instance list and workspace before an instance is selected.",
+        "alt": "CubicLauncher home screen with the instance sidebar."
+      },
+      "instance": {
+        "title": "Instance dashboard",
+        "description": "Instance status, version, playtime and shortcuts to the market and resources.",
+        "alt": "CubicLauncher instance dashboard with version, playtime, market and resource shortcuts."
+      },
+      "instances": {
+        "title": "Create instance",
+        "description": "Four starting points: from scratch, from a modpack, ZIP import or migration from another launcher.",
+        "alt": "CubicLauncher create instance dialog with the four available methods."
+      },
+      "create": {
+        "title": "Initial setup",
+        "description": "Name, Minecraft version and loader before the instance is created.",
+        "alt": "CubicLauncher initial instance setup form."
+      },
+      "modpacks": {
+        "title": "Modpacks",
+        "description": "Modpack search on Modrinth and CurseForge, with support for local files.",
+        "alt": "CubicLauncher modpack browser with Modrinth results."
+      },
+      "versions": {
+        "title": "Versions and loaders",
+        "description": "Download and install Vanilla, Fabric, Forge, NeoForge, Quilt and OptiFine.",
+        "alt": "CubicLauncher version download dialog with the available loaders."
+      },
       "store": {
-        "title": "Mod store",
-        "description": "Find mods, read their details and choose a version for your instance right from the launcher.",
-        "alt": "CubicLauncher mod store showing Modrinth results and Fabric API details."
+        "title": "Browse content",
+        "description": "Modrinth catalog with descriptions, download counts and direct installation.",
+        "alt": "CubicLauncher content catalog with Modrinth results."
       },
       "installed": {
         "title": "Installed mods",
-        "description": "Browse each instance's mods and manage which ones you want to keep enabled.",
-        "alt": "Installed mod management in CubicLauncher, with options to enable or uninstall Iris."
+        "description": "Per-instance mod list with actions to update, disable or remove.",
+        "alt": "CubicLauncher installed mods list with management actions."
       },
-      "instances": {
-        "title": "Create an instance",
-        "description": "Give your next adventure a name and an icon, with options to import modpacks.",
-        "alt": "CubicLauncher instance creation wizard with name, icon and modpack options."
+      "worlds": {
+        "title": "Worlds",
+        "description": "Import, export, duplicate and delete worlds from a single view.",
+        "alt": "CubicLauncher world manager with per-world actions."
       },
-      "overview": {
-        "title": "Your gaming space",
-        "description": "A simple interface with your instances always within reach in the sidebar.",
-        "alt": "CubicLauncher home screen with instances organized in the sidebar."
+      "servers": {
+        "title": "Servers",
+        "description": "Server list with status, connected players and latency.",
+        "alt": "CubicLauncher server list with status and latency."
+      },
+      "skins": {
+        "title": "Skin catalog",
+        "description": "Skin browsing with filters, preview and direct application to the profile.",
+        "alt": "CubicLauncher skin catalog with filters and preview."
+      },
+      "profile": {
+        "title": "User profile",
+        "description": "Saved accounts, skin and cape, and sign-in with Microsoft, Ely.by or CubicAuth.",
+        "alt": "CubicLauncher user profile with accounts, skin and cape."
       },
       "settings": {
-        "title": "Make it yours",
-        "description": "Adjust the language, themes and launcher behavior in one place.",
-        "alt": "CubicLauncher settings panel with language, theme and update options."
+        "title": "Settings",
+        "description": "Storage, themes, performance and update options.",
+        "alt": "CubicLauncher settings panel with the available sections."
       }
     },
     "featuresTitle": "WHY CUBIC LAUNCHER?",

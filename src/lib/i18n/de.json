@@ -1,6 +1,8 @@
 {
   "changelogs": {
     "nav": "Changelogs",
+    "versions": "Versionen",
+    "latest": "Neueste",
     "title": "Launcher-Neuigkeiten",
     "pageTitle": "Changelogs — CubicLauncher",
     "subtitle": "Neue Funktionen, Verbesserungen und Fehlerbehebungen für CubicLauncher. Entdecke den auf GitHub veröffentlichten Versionsverlauf.",
@@ -91,38 +93,78 @@
   },
   "home": {
     "screenshots": {
-      "title": "Ein Blick in CubicLauncher",
-      "subtitle": "Entdecke die Oberfläche, organisiere deine Instanzen und lerne die Möglichkeiten vor dem Spielen kennen.",
-      "expand": "Screenshot vergrößern",
-      "open": "Screenshot vergrößern: {name}",
+      "title": "Screenshots der Oberfläche",
+      "subtitle": "Überblick über die wichtigsten Ansichten des Launchers: Instanzen, Mods, Welten, Server und Einstellungen.",
+      "expand": "In voller Größe anzeigen",
+      "open": "Screenshot öffnen: {name}",
       "previous": "Vorheriger Screenshot",
       "next": "Nächster Screenshot",
-      "choose": "Launcher-Screenshots",
-      "select": "Screenshot ansehen: {name}",
-      "store": {
-        "title": "Mod-Katalog",
-        "description": "Finde Mods, lies ihre Details und wähle direkt im Launcher eine Version für deine Instanz.",
-        "alt": "Mod-Katalog von CubicLauncher mit Modrinth-Ergebnissen und Details zu Fabric API."
+      "choose": "Screenshots der Oberfläche",
+      "select": "Screenshot auswählen: {name}",
+      "overview": {
+        "title": "Start",
+        "description": "Instanzliste in der Seitenleiste und Arbeitsbereich, solange keine Instanz ausgewählt ist.",
+        "alt": "Startbildschirm von CubicLauncher mit der Instanz-Seitenleiste."
       },
-      "installed": {
-        "title": "Installierte Mods",
-        "description": "Sieh dir die Mods jeder Instanz an und verwalte, welche du aktiviert lassen möchtest.",
-        "alt": "Verwaltung installierter Mods in CubicLauncher mit Optionen zum Aktivieren oder Deinstallieren von Iris."
+      "instance": {
+        "title": "Instanz-Übersicht",
+        "description": "Status der Instanz, Version, Spielzeit sowie Zugriff auf Market und Ressourcen.",
+        "alt": "Instanz-Übersicht von CubicLauncher mit Version, Spielzeit, Market und Ressourcen."
       },
       "instances": {
         "title": "Instanz erstellen",
-        "description": "Gib deinem nächsten Abenteuer einen Namen und ein Symbol oder importiere ein Modpack.",
-        "alt": "Assistent zum Erstellen einer CubicLauncher-Instanz mit Name, Symbol und Modpack-Optionen."
+        "description": "Vier Ausgangspunkte: von Grund auf, aus einem Modpack, ZIP-Import oder Migration von einem anderen Launcher.",
+        "alt": "Dialog zum Erstellen einer Instanz in CubicLauncher mit den vier verfügbaren Methoden."
       },
-      "overview": {
-        "title": "Dein Spielbereich",
-        "description": "Eine übersichtliche Oberfläche mit deinen Instanzen stets griffbereit in der Seitenleiste.",
-        "alt": "Startbildschirm von CubicLauncher mit Instanzen in der Seitenleiste."
+      "create": {
+        "title": "Ersteinrichtung",
+        "description": "Name, Minecraft-Version und Loader vor dem Erstellen der Instanz.",
+        "alt": "Formular zur Ersteinrichtung einer Instanz in CubicLauncher."
+      },
+      "modpacks": {
+        "title": "Modpacks",
+        "description": "Modpack-Suche auf Modrinth und CurseForge, mit Unterstützung für lokale Dateien.",
+        "alt": "Modpack-Browser von CubicLauncher mit Modrinth-Ergebnissen."
+      },
+      "versions": {
+        "title": "Versionen und Loader",
+        "description": "Herunterladen und Installieren von Vanilla, Fabric, Forge, NeoForge, Quilt und OptiFine.",
+        "alt": "Dialog zum Herunterladen von Versionen in CubicLauncher mit den verfügbaren Loadern."
+      },
+      "store": {
+        "title": "Inhalte durchsuchen",
+        "description": "Modrinth-Katalog mit Beschreibungen, Downloadzahlen und direkter Installation.",
+        "alt": "Inhaltskatalog von CubicLauncher mit Modrinth-Ergebnissen."
+      },
+      "installed": {
+        "title": "Installierte Mods",
+        "description": "Mod-Liste pro Instanz mit Aktionen zum Aktualisieren, Deaktivieren oder Entfernen.",
+        "alt": "Liste installierter Mods in CubicLauncher mit Verwaltungsaktionen."
+      },
+      "worlds": {
+        "title": "Welten",
+        "description": "Importieren, Exportieren, Duplizieren und Löschen von Welten in einer Ansicht.",
+        "alt": "Weltenverwaltung von CubicLauncher mit Aktionen pro Welt."
+      },
+      "servers": {
+        "title": "Server",
+        "description": "Serverliste mit Status, verbundenen Spielern und Latenz.",
+        "alt": "Serverliste von CubicLauncher mit Status und Latenz."
+      },
+      "skins": {
+        "title": "Skin-Katalog",
+        "description": "Skin-Durchsicht mit Filtern, Vorschau und direkter Anwendung auf das Profil.",
+        "alt": "Skin-Katalog von CubicLauncher mit Filtern und Vorschau."
+      },
+      "profile": {
+        "title": "Benutzerprofil",
+        "description": "Gespeicherte Konten, Skin und Cape sowie Anmeldung mit Microsoft, Ely.by oder CubicAuth.",
+        "alt": "Benutzerprofil von CubicLauncher mit Konten, Skin und Cape."
       },
       "settings": {
-        "title": "Nach deinen Wünschen",
-        "description": "Passe Sprache, Themes und das Verhalten des Launchers an einem Ort an.",
-        "alt": "Einstellungsbereich von CubicLauncher mit Optionen für Sprache, Themes und Updates."
+        "title": "Einstellungen",
+        "description": "Optionen für Speicher, Themes, Leistung und Updates.",
+        "alt": "Einstellungsbereich von CubicLauncher mit den verfügbaren Abschnitten."
       }
     },
     "featuresTitle": "WARUM CUBIC LAUNCHER?",
