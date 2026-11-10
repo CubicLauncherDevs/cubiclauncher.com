@@ -385,6 +385,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.cubiclauncher.org/themes/notstaff-cieloeterno</loc>
+    <lastmod>2026-11-10T00:05:17.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.cubiclauncher.org/themes/notstaff-cieloeterno/V1</loc>
+    <lastmod>2026-11-10T00:05:17.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.cubiclauncher.org/themes/notstaff-clang</loc>
     <lastmod>2026-07-24T04:00:59.000Z</lastmod>
     <changefreq>weekly</changefreq>
