@@ -349,6 +349,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.cubiclauncher.org/themes/mel-roses-nexus0</loc>
+    <lastmod>2026-11-14T22:41:56.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.cubiclauncher.org/themes/mel-roses-nexus0/V1</loc>
+    <lastmod>2026-11-14T22:41:56.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.cubiclauncher.org/themes/notstaff-aquablush</loc>
     <lastmod>2026-09-05T12:36:28.000Z</lastmod>
     <changefreq>weekly</changefreq>
@@ -1065,6 +1077,12 @@
   <url>
     <loc>https://www.cubiclauncher.org/themes/author/mpg</loc>
     <lastmod>2026-09-13T17:57:24.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.cubiclauncher.org/themes/author/mel-roses</loc>
+    <lastmod>2026-11-14T22:41:56.000Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
