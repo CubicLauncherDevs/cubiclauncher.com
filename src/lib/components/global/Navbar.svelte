@@ -46,6 +46,7 @@
 
     const moreLinks: { labelKey: string; href: string; external?: boolean }[] = [
         { labelKey: "nav.about", href: "/about" },
+        { labelKey: "nav.security", href: "/security" },
         { labelKey: "nav.docs", href: "https://dev.cubiclauncher.org/docs", external: true },
         { labelKey: "nav.discord", href: "https://discord.com/invite/7VaqSrPukm", external: true },
         { labelKey: "nav.donate", href: "/donate" },

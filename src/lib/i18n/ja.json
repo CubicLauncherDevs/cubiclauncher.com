@@ -70,7 +70,8 @@
     "discord": "Discord",
     "donate": "寄付",
     "download": "ダウンロード",
-    "accounts": "アカウント"
+    "accounts": "アカウント",
+    "security": "セキュリティ"
   },
   "footer": {
     "brand": "CubicLauncher は、モダンで軽量、広告なしの Minecraft ランチャーです。低スペックなハードウェアでも快適に動作するように作られています。",
@@ -82,7 +83,8 @@
     "privacy": "プライバシー",
     "terms": "利用規約",
     "license": "ライセンス",
-    "copyright": "© {year} CubicLauncher。GPLv3 の下でオープンソース。Mojang AB とは提携していません。"
+    "copyright": "© {year} CubicLauncher。GPLv3 の下でオープンソース。Mojang AB とは提携していません。",
+    "security": "セキュリティ"
   },
   "hero": {
     "title": "CubicLauncher",
@@ -547,7 +549,9 @@
     "packageTitle": "{name} - CubicLauncher",
     "packageDesc": "CubicLauncher のテーマパッケージ。",
     "donateTitle": "寄付 - CubicLauncher",
-    "donateDesc": "寄付で CubicLauncher を支援してください。プロジェクトは無料でオープンソース、コミュニティによって維持されています。"
+    "donateDesc": "寄付で CubicLauncher を支援してください。プロジェクトは無料でオープンソース、コミュニティによって維持されています。",
+    "securityTitle": "セキュリティ | CubicLauncher",
+    "securityDesc": "Minecraft と CubicLauncher の脆弱性（CVE）に関するアドバイザリと記事。"
   },
   "themesUtil": {
     "unknownAuthor": "不明",
@@ -563,5 +567,109 @@
     "groupIcons": "アイコン",
     "groupTransitions": "トランジション",
     "groupOther": "その他"
+  },
+  "security": {
+    "badge": "ブログ",
+    "subtitle": "Minecraft と CubicLauncher の脆弱性（CVE）に関する記事です。各アドバイザリの対象範囲、影響、修正バージョンを掲載しています。",
+    "articleCount": "{count, plural, =0 {記事なし} other {# 件の記事}}",
+    "empty": "公開済みの記事はまだありません。Minecraft と CubicLauncher に関するアドバイザリをこのセクションに掲載します。",
+    "readArticle": "記事を読む",
+    "backToList": "セキュリティに戻る",
+    "notFound": "指定された記事は存在しないか、削除されています。",
+    "source": "原典:",
+    "category": {
+      "minecraft": "Minecraft",
+      "launcher": "CubicLauncher"
+    },
+    "severity": {
+      "critical": "緊急",
+      "high": "高",
+      "medium": "中",
+      "low": "低",
+      "none": "情報"
+    },
+    "articles": {
+      "minecraft2shell": {
+        "title": "Minecraft2Shell：リソースパック経由のネイティブコード実行",
+        "summary": "細工された TrueType フォントを含むリソースパックにより、FreeType のグリフ用バッファ外への書き込みを発生させ、Minecraft: Java Edition クライアントでネイティブコードを実行できます。",
+        "body": {
+          "paragraphs": [
+            "Minecraft2Shell は **Minecraft: Java Edition** のリモートコード実行につながる脆弱性です。サーバーは細工された TrueType フォントを含むリソースパックを配信でき、プレイヤーがこれを受け入れた場合、または手動でインストールして有効化した場合に、クライアントが任意のコードを実行します。",
+            "概念実証は 2026 年 11 月 22 日に公開され、デモに使われたバージョンだけでなく、フォントヒンティング対応の FreeType を同梱する最近のクライアントすべてに影響します。"
+          ],
+          "details": [
+            {
+              "label": "脆弱性の種類",
+              "value": "FreeType の TrueType インタプリタを経由したネイティブメモリの境界外書き込み。"
+            },
+            {
+              "label": "関連する識別子",
+              "value": "Firefox の同種の問題に割り当てられた CVE-2026-10701。Mojang 独自の CVE はまだ割り当てられていません。"
+            },
+            {
+              "label": "影響を受けるコンポーネント",
+              "value": "リソースパックのフォント描画のために Java クライアントが読み込むネイティブの FreeType ライブラリ。"
+            },
+            {
+              "label": "攻撃経路",
+              "value": "サーバーが配信する、またはプレイヤーがインストールするリソースパック内の TrueType フォント。"
+            },
+            {
+              "label": "最初の影響バージョン",
+              "value": "1.20.5 以降（スナップショット 24w03a 以降）。1.20.4 以前は stb_truetype を使用しており影響を受けません。"
+            },
+            {
+              "label": "修正",
+              "value": "FreeType 2.15.0 で境界外書き込みが修正されましたが、これを取り込んだ Minecraft のバージョンはまだありません。"
+            }
+          ],
+          "versions": [
+            {
+              "versions": "26.4-snapshot-10",
+              "status": "high",
+              "notes": "引き続き FreeType 2.14.3 を使用。bikini の PoC が動作します。"
+            },
+            {
+              "versions": "26.3",
+              "status": "high",
+              "notes": "デモで使用されたバージョン。独立して再現されています。"
+            },
+            {
+              "versions": "26.1–26.2",
+              "status": "medium",
+              "notes": "FreeType 2.14.1 にも誤った境界計算がありますが、公開された PoC は失敗しました。"
+            },
+            {
+              "versions": "1.20.5–1.21.11",
+              "status": "medium",
+              "notes": "FreeType 2.13.2 にも誤った境界計算がありますが、公開された PoC は失敗しました。"
+            },
+            {
+              "versions": "1.20.4 以前",
+              "status": "none",
+              "notes": "リソースパックのフォントに FreeType を使用していません。"
+            }
+          ],
+          "sections": "## 攻撃の仕組み\n\n中心となるのは通常のリソースパックです。`pack.mcmeta`、フォントの JSON 定義、TTF ファイルで構成されます。PoC で公開されたパックは、ヒープの配置が攻撃に適したものになる確率を高めるため、長さの等しい 144 種類のフォントを含んでいます。\n\n1. クライアントはパックを読み込み、各フォントを登録します。JSON 定義は `A`、`F`、`G` を奪う `space` プロバイダを使うため、TTF フォントは特定のグリフ読み込みが発生するまで保持されます。\n2. サーバーは `title ... actionbar` コマンドで通常の *action bar* テキストを送信します。`F` と `A` を描画する際、クライアントは FreeType にグリフ読み込みを要求し、フォントに埋め込まれたヒンティング命令を実行します。\n3. この命令は TrueType インタプリタの `SHZ` オペレーションを使用します。影響を受ける FreeType では、ループの上限が実際に確保された点バッファではなく合成グリフの輪郭の点数から決まるため、フォントが指定した差分で確保領域の外に書き込みます。\n4. この上書きによりインタプリタ自身のフィールド、たとえばエラー値が変化します。するとフォントの `SHZ` 用 `IDEF` が、同じくバイトコードで書かれた復旧プログラムへ実行を移します。\n5. バイトコードは必要なフィールドを修復し、`WS` で永続ストレージを確保し、インタプリタのコールバックを書き換えて、TrueType 仮想マシンのスタック上の ROP チェーンへ実行を移します。\n6. ROP チェーンは FreeType モジュールの既存のインポート（`GetModuleHandleExW`、`GetProcAddress`、`WinExec`）を利用し、任意のプログラムを起動します。デモでは `calc.exe` です。\n\n## Firefox の問題との関連\n\n同じ不具合は以前 Firefox で報告され、**CVE-2026-10701** として管理されています。`canvas` に描画された悪意ある Web フォントが、フォント側の値でグリフの点バッファ外に 8 バイトの読み書きを発生させました。`sec-high` と評価され、153 ブランチで修正され、Firefox 151.0.3 へバックポートされました。この不具合の説明では、X 軸への書き込みにはフォントファミリ名がフォントローダーの特定の「厄介な」名前と一致する必要があるとされています。\n\nFreeType ではこの不具合は https://gitlab.freedesktop.org/freetype/freetype/-/work_items/1419 で追跡されています。Alexei Podtelezhnikov による修正（https://github.com/freetype/freetype/commit/1803559c4ee4）はファントム点を除く `n_points - 4` に `SHZ` の走査範囲を制限し、FreeType 2.15.0 に含まれました。\n",
+          "mitigationTitle": "推奨する対応",
+          "mitigation": "- 信頼できないサーバーのリソースパックは受け入れず、出所を確認せずに手動でインストールしないでください。\n- クライアントの設定で可能な場合は、サーバーのリソースパック自動読み込みを無効にしてください。\n- 公開サーバーに接続する前に、使用しているクライアントが同梱する FreeType のバージョンとビルドを確認してください。",
+          "riskTitle": "この不具合で可能になること",
+          "risk": "- クライアントを起動したユーザーの権限でのネイティブコード実行。\n- 追加の操作は不要で、リソースパックを受け入れ、サーバーが送るテキストが描画されるだけで成立します。\n- CubicLauncher は起動時に、インターフェースでリソースパックのフォントを読み込みません。",
+          "caveatTitle": "MOD を導入したクライアント",
+          "caveat": "1.20.5–1.21.11 と 26.1–26.2 のビルドは、FreeType #1403 として追跡されているインタプリタの別の特性により、公開された概念実証では悪用できませんでした。これは攻撃の改変版や、26.3 や最近のスナップショットのように FreeType 2.14.3 を同梱するビルドのリスクを否定するものではありません。1.20.4 より後のバージョンでは注意してください。"
+        }
+      }
+    },
+    "vulnerability": "セキュリティ",
+    "status": {
+      "high": "影響あり",
+      "medium": "要確認",
+      "none": "MOD クライアントのみ"
+    },
+    "versions": {
+      "versions": "バージョン",
+      "status": "状態",
+      "notes": "備考"
+    }
   }
 }

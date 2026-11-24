@@ -26,9 +26,19 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.cubiclauncher.org/security</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.cubiclauncher.org/donate</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.cubiclauncher.org/security/minecraft2shell</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.cubiclauncher.org/themes/4xnl-colorful</loc>

@@ -23,6 +23,7 @@
           <a href="/themes" class="text-xs text-cl-muted hover:text-cl-text transition-colors">{$t('footer.themes')}</a>
           <a href="/changelogs" class="text-xs text-cl-muted hover:text-cl-text transition-colors">{$t('changelogs.nav')}</a>
           <a href="/about" class="text-xs text-cl-muted hover:text-cl-text transition-colors">{$t('nav.about')}</a>
+          <a href="/security" class="text-xs text-cl-muted hover:text-cl-text transition-colors">{$t('footer.security')}</a>
           <a href="/donate" class="text-xs text-cl-muted hover:text-cl-text transition-colors">{$t('nav.donate')}</a>
           <a href="https://dev.cubiclauncher.org/docs" class="text-xs text-cl-muted hover:text-cl-text transition-colors">{$t('footer.documentation')}</a>
           <a href="https://dev.cubiclauncher.org/docs/es-ES/Legal/privacy" class="text-xs text-cl-muted hover:text-cl-text transition-colors">{$t('footer.privacy')}</a>

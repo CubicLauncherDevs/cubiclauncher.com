@@ -70,7 +70,8 @@
     "discord": "Discord",
     "donate": "Donner",
     "download": "Télécharger",
-    "accounts": "Comptes"
+    "accounts": "Comptes",
+    "security": "Sécurité"
   },
   "footer": {
     "brand": "CubicLauncher est un lanceur Minecraft moderne, léger et sans publicité. Il est conçu pour bien fonctionner même sur du matériel modeste.",
@@ -82,7 +83,8 @@
     "privacy": "Confidentialité",
     "terms": "Conditions",
     "license": "Licences",
-    "copyright": "© {year} CubicLauncher. Open source sous licence GPLv3. Non affilié à Mojang AB."
+    "copyright": "© {year} CubicLauncher. Open source sous licence GPLv3. Non affilié à Mojang AB.",
+    "security": "Sécurité"
   },
   "hero": {
     "title": "CubicLauncher",
@@ -547,7 +549,9 @@
     "packageTitle": "{name} - CubicLauncher",
     "packageDesc": "Theme package for CubicLauncher.",
     "donateTitle": "Don - CubicLauncher",
-    "donateDesc": "Soutenez CubicLauncher avec un don. Le projet est gratuit, open source et maintenu par la communauté."
+    "donateDesc": "Soutenez CubicLauncher avec un don. Le projet est gratuit, open source et maintenu par la communauté.",
+    "securityTitle": "Sécurité | CubicLauncher",
+    "securityDesc": "Avis et articles sur les vulnérabilités (CVE) de Minecraft et de CubicLauncher."
   },
   "themesUtil": {
     "unknownAuthor": "Inconnu",
@@ -563,5 +567,109 @@
     "groupIcons": "Icônes",
     "groupTransitions": "Transitions",
     "groupOther": "Autres"
+  },
+  "security": {
+    "badge": "Blog",
+    "subtitle": "Articles sur les vulnérabilités (CVE) de Minecraft et de CubicLauncher : périmètre, impact et version corrigée de chaque avis concernant le lanceur.",
+    "articleCount": "{count, plural, =0 {Aucun article} one {# article} other {# articles}}",
+    "empty": "Aucun article n'a encore été publié. Les avis concernant Minecraft et CubicLauncher seront publiés dans cette section.",
+    "readArticle": "Lire l'article",
+    "backToList": "Retour à la sécurité",
+    "notFound": "L'article demandé n'existe pas ou a été retiré.",
+    "source": "Source originale :",
+    "category": {
+      "minecraft": "Minecraft",
+      "launcher": "CubicLauncher"
+    },
+    "severity": {
+      "critical": "Critique",
+      "high": "Élevée",
+      "medium": "Moyenne",
+      "low": "Faible",
+      "none": "Informative"
+    },
+    "articles": {
+      "minecraft2shell": {
+        "title": "Minecraft2Shell : exécution de code natif via les resource packs",
+        "summary": "Un resource pack contenant des polices TrueType piégées permet d'écrire au-delà du tampon de glyphes de FreeType et d'exécuter du code natif dans le client Minecraft : Java Edition.",
+        "body": {
+          "paragraphs": [
+            "Minecraft2Shell est une vulnérabilité d'exécution de code à distance dans **Minecraft : Java Edition**. Un serveur peut livrer un resource pack contenant une police TrueType piégée ; si le joueur l'accepte — ou s'il installe et active ce pack manuellement — le client exécute du code arbitraire.",
+            "La preuve de concept a été publiée le 22 novembre 2026 et concerne toutes les versions modernes du client embarquant FreeType avec prise en charge du hinting, et pas seulement la version utilisée pour la démonstration."
+          ],
+          "details": [
+            {
+              "label": "Type de vulnérabilité",
+              "value": "Écriture hors limites en mémoire native via l'interpréteur TrueType de FreeType."
+            },
+            {
+              "label": "Identifiant associé",
+              "value": "CVE-2026-10701, issue du problème équivalent dans Firefox. Mojang n'a pas encore attribué de CVE propre."
+            },
+            {
+              "label": "Composant touché",
+              "value": "La bibliothèque native FreeType chargée par le client Java pour afficher les polices des resource packs."
+            },
+            {
+              "label": "Vecteur d'attaque",
+              "value": "Une police TrueType contenue dans un resource pack livré par le serveur ou installé par le joueur."
+            },
+            {
+              "label": "Première version affectée",
+              "value": "1.20.5 et suivantes (snapshot 24w03a incluse). Les versions 1.20.4 et antérieures utilisent stb_truetype et ne sont pas vulnérables."
+            },
+            {
+              "label": "Correctif",
+              "value": "FreeType 2.15.0 corrige l'écriture hors limites ; aucune version de Minecraft ne l'intègre encore."
+            }
+          ],
+          "versions": [
+            {
+              "versions": "26.4-snapshot-10",
+              "status": "high",
+              "notes": "Embarque toujours FreeType 2.14.3 ; le PoC de bikini y fonctionne."
+            },
+            {
+              "versions": "26.3",
+              "status": "high",
+              "notes": "Version utilisée pour la démonstration ; reproduite indépendamment."
+            },
+            {
+              "versions": "26.1–26.2",
+              "status": "medium",
+              "notes": "FreeType 2.14.1 contient le calcul erroné, mais le PoC publié a échoué."
+            },
+            {
+              "versions": "1.20.5–1.21.11",
+              "status": "medium",
+              "notes": "FreeType 2.13.2 contient le calcul erroné, mais le PoC publié a échoué."
+            },
+            {
+              "versions": "1.20.4 et antérieures",
+              "status": "none",
+              "notes": "Elles n'utilisent pas FreeType pour les polices des resource packs."
+            }
+          ],
+          "sections": "## Fonctionnement de l'attaque\n\nL'élément central est un resource pack ordinaire : `pack.mcmeta`, des définitions JSON de police et des fichiers TTF. Le pack publié avec le PoC contient 144 polices distinctes de même longueur pour augmenter les chances que la disposition du tas permette l'exploitation.\n\n1. Le client charge le pack et enregistre chaque police. Les définitions JSON utilisent un fournisseur `space` qui capture les glyphes `A`, `F` et `G`, de sorte que la police TTF est conservée jusqu'à ce qu'un chargement de glyphe précis l'active.\n2. Le serveur envoie un texte ordinaire dans l'*action bar* avec la commande `title ... actionbar`. En dessinant les glyphes `F` et `A`, le client demande à FreeType de charger le glyphe et exécute les instructions de hinting intégrées à la police.\n3. Ces instructions utilisent l'opération `SHZ` de l'interpréteur TrueType. Dans les versions affectées de FreeType, la limite de la boucle provient du nombre de points du contour composite et non du tampon de points réellement alloué : chaque itération écrit hors de l'allocation, avec des décalages contrôlés par la police.\n4. Le débordement décale des champs de l'interpréteur, dont la valeur d'erreur. L'`IDEF` de la police pour l'opération `SHZ` entre alors dans un programme de récupération, lui aussi écrit en bytecode.\n5. Le bytecode répare les champs nécessaires, alloue un stockage persistant via `WS` et modifie le callback de l'interpréteur pour transférer l'exécution vers une chaîne ROP placée dans la pile de la machine virtuelle TrueType.\n6. La chaîne ROP réutilise les importations déjà chargées du module FreeType (`GetModuleHandleExW`, `GetProcAddress`, `WinExec`) et lance un programme. Dans la démonstration, `calc.exe`.\n\n## Lien avec le bogue Firefox\n\nLe même défaut avait été signalé auparavant dans Firefox et est suivi sous **CVE-2026-10701**. Une police web malveillante affichée dans un `canvas` provoquait une lecture et une écriture de 8 octets hors du tampon de points du glyphe, avec des valeurs contrôlées par la police. Le défaut a été classé `sec-high` et corrigé sur la branche 153, avec des rétroportages vers Firefox 151.0.3. La description du bogue précise que les écritures sur l'axe X exigent que le nom de famille de la police corresponde à certains noms « problématiques » du chargeur de polices.\n\nDans FreeType, le défaut est suivi sous https://gitlab.freedesktop.org/freetype/freetype/-/work_items/1419. Le correctif d'Alexei Podtelezhnikov (https://github.com/freetype/freetype/commit/1803559c4ee4) limite le parcours de `SHZ` à `n_points - 4`, en excluant les points fantômes, et a été livré dans FreeType 2.15.0.\n",
+          "mitigationTitle": "Que faire",
+          "mitigation": "- N'acceptez pas de resource packs provenant de serveurs inconnus et n'installez pas de packs manuellement sans vérifier leur origine.\n- Si votre client le permet, désactivez le chargement automatique des resource packs du serveur.\n- Vérifiez la version et la compilation de FreeType embarquées par votre client avant de rejoindre des serveurs publics.",
+          "riskTitle": "Ce que permet le défaut",
+          "risk": "- L'exécution de code natif avec les droits de l'utilisateur qui a lancé le client.\n- Sans interaction supplémentaire : il suffit que le joueur accepte le resource pack et affiche le texte envoyé par le serveur.\n- Au lancement, CubicLauncher ne charge pas de polices de resource packs dans son interface.",
+          "caveatTitle": "Clients moddés",
+          "caveat": "Les builds 1.20.5–1.21.11 et 26.1–26.2 n'ont pas pu être exploités par la preuve de concept en raison d'une seconde particularité de l'interpréteur, suivie sous FreeType #1403. Cela n'exclut pas des variantes modifiées de l'attaque ni les builds embarquant FreeType 2.14.3, comme 26.3 et les snapshots récents. La prudence reste de mise sur toutes les versions postérieures à 1.20.4."
+        }
+      }
+    },
+    "vulnerability": "Sécurité",
+    "status": {
+      "high": "Affecté",
+      "medium": "À vérifier",
+      "none": "Clients moddés uniquement"
+    },
+    "versions": {
+      "versions": "Versions",
+      "status": "Statut",
+      "notes": "Remarques"
+    }
   }
 }

@@ -70,7 +70,8 @@
     "discord": "Discord",
     "donate": "Donar",
     "download": "Descargar",
-    "accounts": "Cuentas"
+    "accounts": "Cuentas",
+    "security": "Seguridad"
   },
   "footer": {
     "brand": "CubicLauncher es un launcher de Minecraft moderno, ligero y sin publicidad. Está pensado para funcionar bien incluso en equipos modestos.",
@@ -82,7 +83,8 @@
     "privacy": "Privacidad",
     "terms": "Términos",
     "license": "Licencias",
-    "copyright": "© {year} CubicLauncher. Código abierto bajo licencia GPLv3. No afiliado a Mojang AB."
+    "copyright": "© {year} CubicLauncher. Código abierto bajo licencia GPLv3. No afiliado a Mojang AB.",
+    "security": "Seguridad"
   },
   "hero": {
     "title": "CubicLauncher",
@@ -547,7 +549,9 @@
     "packageTitle": "{name} - CubicLauncher",
     "packageDesc": "Paquete de temas para CubicLauncher.",
     "donateTitle": "Donar - CubicLauncher",
-    "donateDesc": "Apoyá a CubicLauncher con una donación. El proyecto es gratuito, de código abierto y mantenido por la comunidad."
+    "donateDesc": "Apoyá a CubicLauncher con una donación. El proyecto es gratuito, de código abierto y mantenido por la comunidad.",
+    "securityTitle": "Seguridad | CubicLauncher",
+    "securityDesc": "Avisos y artículos sobre vulnerabilidades (CVE) de Minecraft y de CubicLauncher."
   },
   "themesUtil": {
     "unknownAuthor": "Desconocido",
@@ -563,5 +567,109 @@
     "groupIcons": "Iconos",
     "groupTransitions": "Transiciones",
     "groupOther": "Otras"
+  },
+  "security": {
+    "badge": "Blog",
+    "subtitle": "Artículos sobre vulnerabilidades (CVE) de Minecraft y de CubicLauncher: alcance, impacto y versión corregida de cada aviso relevante para el launcher.",
+    "articleCount": "{count, plural, =0 {Sin artículos} one {# artículo} other {# artículos}}",
+    "empty": "Todavía no hay artículos publicados. Los avisos sobre Minecraft y CubicLauncher se publicarán en esta sección.",
+    "readArticle": "Leer artículo",
+    "backToList": "Volver a seguridad",
+    "notFound": "El artículo solicitado no existe o fue retirado.",
+    "source": "Fuente original:",
+    "category": {
+      "minecraft": "Minecraft",
+      "launcher": "CubicLauncher"
+    },
+    "severity": {
+      "critical": "Crítica",
+      "high": "Alta",
+      "medium": "Media",
+      "low": "Baja",
+      "none": "Informativa"
+    },
+    "articles": {
+      "minecraft2shell": {
+        "title": "Minecraft2Shell: ejecución de código nativo mediante resource packs",
+        "summary": "Un resource pack con fuentes TrueType manipulado permite escribir fuera de los límites del búfer de glifos en FreeType y ejecutar código nativo en el cliente de Minecraft: Java Edition.",
+        "body": {
+          "paragraphs": [
+            "Minecraft2Shell es una vulnerabilidad de ejecución remota de código en **Minecraft: Java Edition**. Un servidor puede entregar un resource pack con una fuente TrueType manipulada; si el jugador lo acepta —o si instala y activa ese pack manualmente—, el cliente ejecuta código de forma arbitraria.",
+            "La prueba de concepto fue publicada el 22 de noviembre de 2026 y afecta a todas las versiones modernas del cliente que incluyen FreeType con soporte de *hinting* de fuentes, no solo a la versión utilizada en la demostración."
+          ],
+          "details": [
+            {
+              "label": "Tipo de vulnerabilidad",
+              "value": "Escritura fuera de límites en memoria nativa (out-of-bounds write) mediante el intérprete TrueType de FreeType."
+            },
+            {
+              "label": "Identificador asociado",
+              "value": "CVE-2026-10701, del error equivalente en Firefox. Mojang todavía no asignó un CVE propio."
+            },
+            {
+              "label": "Componente afectado",
+              "value": "Biblioteca nativa FreeType, cargada por el cliente de Java para renderizar fuentes de resource packs."
+            },
+            {
+              "label": "Origen del ataque",
+              "value": "Fuente TrueType incluida en un resource pack entregado o instalado por el jugador."
+            },
+            {
+              "label": "Primera versión afectada",
+              "value": "1.20.5 y posteriores (instantánea 24w03a en adelante). Las versiones 1.20.4 y anteriores usan stb_truetype y no son vulnerables."
+            },
+            {
+              "label": "Corrección",
+              "value": "FreeType 2.15.0 corrige la escritura fuera de límites; todavía no existe una versión de Minecraft que la incorpore."
+            }
+          ],
+          "versions": [
+            {
+              "versions": "26.4-snapshot-10",
+              "status": "high",
+              "notes": "Sigue usando FreeType 2.14.3; el PoC de bikini funciona."
+            },
+            {
+              "versions": "26.3",
+              "status": "high",
+              "notes": "Versión de la demostración; reproducida de forma independiente."
+            },
+            {
+              "versions": "26.1–26.2",
+              "status": "medium",
+              "notes": "FreeType 2.14.1 tiene el cálculo erróneo, pero el PoC publicado no funcionó."
+            },
+            {
+              "versions": "1.20.5–1.21.11",
+              "status": "medium",
+              "notes": "FreeType 2.13.2 tiene el cálculo erróneo, pero el PoC publicado no funcionó."
+            },
+            {
+              "versions": "1.20.4 y anteriores",
+              "status": "none",
+              "notes": "No usan FreeType para fuentes de resource packs."
+            }
+          ],
+          "sections": "## Cómo funciona el ataque\n\nEl recurso clave es un resource pack normal: `pack.mcmeta`, definiciones JSON de fuente y archivos TTF. El pack que acompaña al PoC incluye 144 fuentes distintas de la misma longitud para aumentar las probabilidades de que la disposición del heap permita el ataque.\n\n1. El cliente carga el pack y registra cada fuente. Las definiciones JSON usan un proveedor `space` que captura los glifos `A`, `F` y `G`, de modo que la fuente TTF se conserva hasta que la carga concreta del glifo la activa.\n2. El servidor envía texto normal en la *action bar* con los comandos `title ... actionbar`. Al dibujar los glifos `F` y `A`, el cliente pide a FreeType que cargue el glifo y ejecuta las instrucciones de *hinting* incluidas en la fuente.\n3. Esas instrucciones usan la operación `SHZ` del intérprete TrueType. En versiones de FreeType afectadas, el límite del bucle se toma del número de puntos del contorno compuesto en lugar del búfer de puntos realmente reservado, de modo que cada iteración escribe fuera de la asignación con desplazamientos controlados por la fuente.\n4. El desbordamiento desplaza campos del propio intérprete, entre ellos el valor de error. El `IDEF` de la fuente para la operación `SHZ` entra entonces en un programa de recuperación también escrito en bytecode.\n5. El bytecode repara los campos necesarios, reserva almacenamiento persistente mediante `WS`, y modifica el callback del intérprete para que transfiera la ejecución a una cadena ROP alojada en la pila de la máquina virtual de TrueType.\n6. La cadena ROP utiliza las importaciones ya cargadas del módulo FreeType (`GetModuleHandleExW`, `GetProcAddress`, `WinExec`) y ejecuta un programa del sistema. En la demostración, `calc.exe`.\n\n## Relación con el error de Firefox\n\nEl mismo fallo se reportó antes en Firefox y quedó registrado como **CVE-2026-10701**. Una fuente web maliciosa renderizada en un `canvas` producía una lectura y escritura de 8 bytes fuera del búfer de puntos del glifo, con valores controlados desde la fuente. Se clasificó como `sec-high` y se corrigió en la rama 153, con retroportes a Firefox 151.0.3. La descripción del error observa que las escrituras en el eje X requieren que el nombre de familia de la fuente coincida con ciertos nombres \"problemáticos\" del cargador de fuentes.\n\nEn FreeType, el error está registrado como https://gitlab.freedesktop.org/freetype/freetype/-/work_items/1419. La corrección de Alexei Podtelezhnikov (https://github.com/freetype/freetype/commit/1803559c4ee4) limita el recorrido de `SHZ` a `n_points - 4`, descontando los puntos fantasma del contorno, y se incluyó en FreeType 2.15.0.\n",
+          "mitigationTitle": "Qué hacer",
+          "mitigation": "- No aceptes resource packs de servidores que no conozcas y no instales packs manualmente sin verificar su origen.\n- Si tu cliente lo permite, desactiva la carga automática de resource packs del servidor.\n- Revisa qué versión y qué compilación de FreeType incluye el cliente que utilizas antes de conectarte a servidores públicos.",
+          "riskTitle": "Qué permite el fallo",
+          "risk": "- Ejecución de código nativo con los permisos del usuario que inició el cliente.\n- Sin interacción adicional: alcanza con que el jugador acepte el resource pack e interactúe con el texto que envía el servidor.\n- Al inicio, CubicLauncher no carga fuentes de resource packs en su interfaz.",
+          "caveatTitle": "Clientes con mods",
+          "caveat": "Las cargas de las versiones 1.20.5–1.21.11 y 26.1–26.2 no fueron vulnerables a la prueba de concepto por una segunda particularidad del intérprete, registrada como FreeType #1403. Esto no descarta variantes modificadas del ataque ni el riesgo de las compilaciones con FreeType 2.14.3, que son las utilizadas por 26.3 y las instantáneas recientes. Se recomienda cautela en todas las versiones posteriores a 1.20.4."
+        }
+      }
+    },
+    "vulnerability": "Seguridad",
+    "status": {
+      "high": "Afectado",
+      "medium": "Debe comprobarse",
+      "none": "Solo clientes modificados"
+    },
+    "versions": {
+      "versions": "Versiones",
+      "status": "Estado",
+      "notes": "Notas"
+    }
   }
 }

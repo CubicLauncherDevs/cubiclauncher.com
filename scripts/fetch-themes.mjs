@@ -2,6 +2,7 @@ import { writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SITE_ORIGIN } from '../src/lib/utils/site.js';
+import { SECURITY_ARTICLES } from '../src/lib/data/security.ts';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = join(__dirname, '..', 'src', 'lib', 'data');
@@ -103,8 +104,17 @@ function buildSitemap(themes, packages) {
     { loc: '/install', priority: 0.8, changefreq: 'weekly' },
     { loc: '/changelogs', priority: 0.8, changefreq: 'weekly' },
     { loc: '/about', priority: 0.7, changefreq: 'monthly' },
+    { loc: '/security', priority: 0.6, changefreq: 'monthly' },
     { loc: '/donate', priority: 0.5, changefreq: 'monthly' }
   ];
+
+  for (const article of SECURITY_ARTICLES) {
+    entries.push({
+      loc: `/security/${article.slug}`,
+      priority: 0.6,
+      changefreq: 'monthly'
+    });
+  }
 
   for (const theme of themes) {
     entries.push({

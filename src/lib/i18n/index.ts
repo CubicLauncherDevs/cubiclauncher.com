@@ -1,4 +1,4 @@
-import { addMessages, init, locale as svelteLocale, t as svelteT } from 'svelte-i18n';
+import { addMessages, init, json as svelteJson, locale as svelteLocale, t as svelteT } from 'svelte-i18n';
 import { browser } from '$app/environment';
 import type { Readable } from 'svelte/store';
 import es from './es.json';
@@ -78,6 +78,8 @@ init({
 });
 
 export const t = svelteT as Readable<MessageFormatter>;
+/** Resolve a message holding an object (e.g. article texts) without the string formatter. */
+export const json = svelteJson as Readable<<T = unknown>(id: string, locale?: string) => T | undefined>;
 export { svelteLocale as currentLocale, svelteLocale as locale };
 
 export function setLocale(localeCode: string) {

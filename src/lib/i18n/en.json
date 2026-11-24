@@ -70,7 +70,8 @@
     "discord": "Discord",
     "donate": "Donate",
     "download": "Download",
-    "accounts": "Accounts"
+    "accounts": "Accounts",
+    "security": "Security"
   },
   "footer": {
     "brand": "CubicLauncher is a modern, lightweight and ad-free Minecraft launcher. It's built to run well even on modest hardware.",
@@ -82,7 +83,8 @@
     "privacy": "Privacy",
     "terms": "Terms",
     "license": "Licenses",
-    "copyright": "© {year} CubicLauncher. Open source under GPLv3. Not affiliated with Mojang AB."
+    "copyright": "© {year} CubicLauncher. Open source under GPLv3. Not affiliated with Mojang AB.",
+    "security": "Security"
   },
   "hero": {
     "title": "CubicLauncher",
@@ -547,7 +549,9 @@
     "packageTitle": "{name} - CubicLauncher",
     "packageDesc": "Theme package for CubicLauncher.",
     "donateTitle": "Donate - CubicLauncher",
-    "donateDesc": "Support CubicLauncher with a donation. The project is free, open source and maintained by the community."
+    "donateDesc": "Support CubicLauncher with a donation. The project is free, open source and maintained by the community.",
+    "securityTitle": "Security | CubicLauncher",
+    "securityDesc": "Advisories and articles on Minecraft and CubicLauncher vulnerabilities (CVE)."
   },
   "themesUtil": {
     "unknownAuthor": "Unknown",
@@ -563,5 +567,109 @@
     "groupIcons": "Icons",
     "groupTransitions": "Transitions",
     "groupOther": "Other"
+  },
+  "security": {
+    "badge": "Blog",
+    "subtitle": "Articles on Minecraft and CubicLauncher vulnerabilities (CVE): scope, impact and the fixed version of every advisory relevant to the launcher.",
+    "articleCount": "{count, plural, =0 {No articles} one {# article} other {# articles}}",
+    "empty": "No articles have been published yet. Advisories about Minecraft and CubicLauncher will be published in this section.",
+    "readArticle": "Read article",
+    "backToList": "Back to security",
+    "notFound": "The requested article does not exist or has been removed.",
+    "source": "Original source:",
+    "category": {
+      "minecraft": "Minecraft",
+      "launcher": "CubicLauncher"
+    },
+    "severity": {
+      "critical": "Critical",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low",
+      "none": "Informational"
+    },
+    "articles": {
+      "minecraft2shell": {
+        "title": "Minecraft2Shell: native code execution through resource packs",
+        "summary": "A crafted resource pack carrying TrueType fonts lets an attacker write past the glyph buffer in FreeType and execute native code in the Minecraft: Java Edition client.",
+        "body": {
+          "paragraphs": [
+            "Minecraft2Shell is a remote code execution vulnerability in **Minecraft: Java Edition**. A server can deliver a resource pack with a crafted TrueType font; if the player accepts it —or manually installs and enables that pack— the client executes arbitrary code.",
+            "The proof of concept was published on 22 November 2026 and affects every modern client release that bundles FreeType with font hinting support, not only the version used in the demonstration."
+          ],
+          "details": [
+            {
+              "label": "Vulnerability type",
+              "value": "Out-of-bounds write in native memory through the FreeType TrueType interpreter."
+            },
+            {
+              "label": "Associated identifier",
+              "value": "CVE-2026-10701, from the equivalent Firefox issue. Mojang has not assigned a CVE of its own yet."
+            },
+            {
+              "label": "Affected component",
+              "value": "The native FreeType library loaded by the Java client to render resource-pack fonts."
+            },
+            {
+              "label": "Attack vector",
+              "value": "A TrueType font inside a resource pack delivered by the server or installed by the player."
+            },
+            {
+              "label": "First affected version",
+              "value": "1.20.5 and later (snapshot 24w03a onwards). 1.20.4 and earlier use stb_truetype and are not vulnerable."
+            },
+            {
+              "label": "Fix",
+              "value": "FreeType 2.15.0 fixes the out-of-bounds write; no Minecraft release includes it yet."
+            }
+          ],
+          "versions": [
+            {
+              "versions": "26.4-snapshot-10",
+              "status": "high",
+              "notes": "Still bundles FreeType 2.14.3; bikini's PoC works on it."
+            },
+            {
+              "versions": "26.3",
+              "status": "high",
+              "notes": "The version used for the demonstration; independently reproduced."
+            },
+            {
+              "versions": "26.1–26.2",
+              "status": "medium",
+              "notes": "FreeType 2.14.1 has the flawed bounds calculation, but the published PoC failed."
+            },
+            {
+              "versions": "1.20.5–1.21.11",
+              "status": "medium",
+              "notes": "FreeType 2.13.2 has the flawed bounds calculation, but the published PoC failed."
+            },
+            {
+              "versions": "1.20.4 and older",
+              "status": "none",
+              "notes": "They do not use FreeType for resource-pack fonts."
+            }
+          ],
+          "sections": "## How the attack works\n\nThe key asset is an ordinary resource pack: `pack.mcmeta`, JSON font definitions and TTF files. The pack published with the PoC ships 144 distinct same-length fonts to increase the chance that the heap layout allows the attack.\n\n1. The client loads the pack and registers each font. The JSON definitions use a `space` provider that captures the `A`, `F` and `G` glyphs, so the TTF font is retained until a specific glyph load activates it.\n2. The server sends ordinary *action bar* text with the `title ... actionbar` command. While drawing the `F` and `A` glyphs, the client asks FreeType to load the glyph and runs the hinting instructions embedded in the font.\n3. Those instructions use the `SHZ` operation of the TrueType interpreter. In affected FreeType releases the loop limit comes from the composite outline's point count instead of the point buffer that was actually allocated, so each iteration writes outside the allocation with font-controlled deltas.\n4. The overflow shifts fields of the interpreter itself, including the error value. The font's `IDEF` for the `SHZ` operation then enters a recovery program that is again written in bytecode.\n5. The bytecode repairs the required fields, allocates persistent storage with `WS` and patches the interpreter callback so that it transfers execution to a ROP chain stored in the TrueType VM stack.\n6. The ROP chain reuses the module's existing imports (`GetModuleHandleExW`, `GetProcAddress`, `WinExec`) and launches a program. In the demonstration, `calc.exe`.\n\n## Relation to the Firefox issue\n\nThe same bug was reported earlier in Firefox and is tracked as **CVE-2026-10701**. A malicious web font rendered on a `canvas` produced an 8-byte read and write outside the glyph point buffer, with values controlled from the font. It was rated `sec-high` and fixed on the 153 branch, with backports to Firefox 151.0.3. The bug description notes that X-axis writes require the font's family name to match certain \"tricky\" names in the font loader.\n\nIn FreeType the bug is tracked as https://gitlab.freedesktop.org/freetype/freetype/-/work_items/1419. Alexei Podtelezhnikov's fix (https://github.com/freetype/freetype/commit/1803559c4ee4) limits the `SHZ` sweep to `n_points - 4`, subtracting the phantom points, and shipped in FreeType 2.15.0.\n",
+          "mitigationTitle": "What to do",
+          "mitigation": "- Do not accept resource packs from servers you do not trust, and do not install packs manually without verifying their origin.\n- If your client allows it, disable automatic server resource-pack loading.\n- Check which version and build of FreeType your client bundles before joining public servers.",
+          "riskTitle": "What the flaw allows",
+          "risk": "- Native code execution with the permissions of the user who started the client.\n- No further interaction beyond accepting the resource pack and rendering the text the server sends.\n- At launch, CubicLauncher does not load resource-pack fonts in its interface.",
+          "caveatTitle": "Modded clients",
+          "caveat": "The 1.20.5–1.21.11 and 26.1–26.2 builds were not exploitable by the proof of concept because of a second interpreter quirk tracked as FreeType #1403. That does not rule out modified variants of the attack, and it does not cover builds that bundle FreeType 2.14.3, such as 26.3 and recent snapshots. Caution is advised on every version after 1.20.4."
+        }
+      }
+    },
+    "vulnerability": "Security",
+    "status": {
+      "high": "Affected",
+      "medium": "Verify",
+      "none": "Modded clients only"
+    },
+    "versions": {
+      "versions": "Versions",
+      "status": "Status",
+      "notes": "Notes"
+    }
   }
 }
